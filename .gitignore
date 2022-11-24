@@ -1,0 +1,17 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/.swc/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+/npm-debug.log*
+/tsconfig.tsbuildinfo
+
+# local env file
+/.env.local

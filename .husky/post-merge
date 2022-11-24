@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+export CI=true
+git diff HEAD^ HEAD --exit-code -- ./package-lock.json || npm clean-install

@@ -1,0 +1,26 @@
+name: Quality
+
+on:
+  push:
+
+jobs:
+  quality:
+    name: Quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+      - name: Install dependencies
+        run: npm clean-install
+      - name: Check format
+        run: npm run check-format
+      - name: Lint
+        run: npm run lint
+      - name: Check types
+        run: npm run check-types
