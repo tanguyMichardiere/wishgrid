@@ -34,10 +34,8 @@ export default function MePage(): JSX.Element {
       <Head>
         <title>{NEXT_PUBLIC_TITLE} - Me</title>
       </Head>
-      <div className="flex h-full items-center justify-center gap-4 p-4">
-        {session.status === "loading" ? (
-          <Spinner />
-        ) : (
+      <div className="flex items-center justify-center gap-4 p-4">
+        {session.data !== null ? (
           <div className="flex flex-col gap-2">
             <div>
               Signed in as{" "}
@@ -47,6 +45,8 @@ export default function MePage(): JSX.Element {
               Sign out
             </button>
           </div>
+        ) : (
+          <Spinner />
         )}
       </div>
     </>

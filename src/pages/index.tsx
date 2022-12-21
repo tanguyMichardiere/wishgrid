@@ -35,7 +35,7 @@ export default function HomePage(): JSX.Element {
       <Head>
         <title>{NEXT_PUBLIC_TITLE}</title>
       </Head>
-      <ul className="grid h-full grid-cols-1 grid-rows-2 p-2 text-xl">
+      <ul className="grid grid-cols-1 grid-rows-2 p-2 text-xl">
         <li>
           {session.data !== null ? <SelfPreviewCard user={session.data.user} /> : <Spinner />}
         </li>
