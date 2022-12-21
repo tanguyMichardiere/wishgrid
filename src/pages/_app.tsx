@@ -9,6 +9,7 @@ import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 
 import ErrorBoundary from "../components/ErrorBoundary";
+import TopBar from "../components/TopBar";
 
 import "../styles.css";
 import { trpc } from "../utils/trpc";
@@ -43,7 +44,8 @@ function App({
         >
           <SessionProvider session={session}>
             <ReactQueryDevtools />
-            <main className={cx(inter.variable, "h-full font-sans")}>
+            <main className={cx(inter.variable, "font-sans")}>
+              <TopBar />
               <Component {...pageProps} />
             </main>
           </SessionProvider>
