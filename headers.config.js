@@ -61,6 +61,8 @@ if (process.env.NODE_ENV === "production") {
       "'sha256-zlqnbDt84zf1iSefLU/ImC54isoprH/MRiVZGskwexk='",
       // next-auth
       "'sha256-KkLBTP2id6c7TuTX4KBzGRSZ1GQyIsiVeQF9yWOfUR0='",
+      // next-auth mock provider
+      "'sha256-YZHEnxhhLf8QwXURGuVPY+3pwbsaILLoH0885C7MNqE='",
     ],
     "style-src-attr": ["'none'"],
     "worker-src": ["'self'"],

@@ -1,6 +1,10 @@
 import cx from "classix";
 
-export default function Spinner(props: { className?: string }): JSX.Element {
+type Props = {
+  className?: string;
+};
+
+export default function Spinner(props: Props): JSX.Element {
   return (
     <svg
       className={cx("animate-spin text-current", props.className)}
