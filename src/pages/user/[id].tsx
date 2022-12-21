@@ -49,9 +49,9 @@ export default function Page(
 
   return (
     <Head>
-      <title>
-        {NEXT_PUBLIC_TITLE} - {user.data?.name}
-      </title>
+      <title>{`${NEXT_PUBLIC_TITLE}${
+        user.data !== undefined ? ` - ${user.data.name ?? user.data.id}` : ""
+      }`}</title>
     </Head>
   );
 }

@@ -26,7 +26,7 @@ export default function UnauthenticatedPage(): JSX.Element {
   return (
     <>
       <Head>
-        <title>{NEXT_PUBLIC_TITLE} - Unauthenticated</title>
+        <title>{`${NEXT_PUBLIC_TITLE} - Unauthenticated`}</title>
       </Head>
       <div className="flex flex-col items-center gap-4 p-4">
         <h1 className="text-5xl font-bold">{NEXT_PUBLIC_TITLE}</h1>

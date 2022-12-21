@@ -24,7 +24,7 @@ export default function SettingsPage(): JSX.Element {
   return (
     <>
       <Head>
-        <title>{NEXT_PUBLIC_TITLE} - Settings</title>
+        <title>{`${NEXT_PUBLIC_TITLE} - Settings`}</title>
       </Head>
       <TopBar />
       <div className="flex flex-col gap-2 p-4">

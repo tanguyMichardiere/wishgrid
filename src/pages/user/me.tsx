@@ -32,7 +32,7 @@ export default function MePage(): JSX.Element {
   return (
     <>
       <Head>
-        <title>{NEXT_PUBLIC_TITLE} - Me</title>
+        <title>{`${NEXT_PUBLIC_TITLE} - Me`}</title>
       </Head>
       <div className="flex items-center gap-4 p-4">
         {session.data !== null ? (
