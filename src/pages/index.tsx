@@ -1,6 +1,7 @@
 import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import Head from "next/head";
 
+import type { DehydratedState } from "@tanstack/react-query";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 
@@ -14,7 +15,7 @@ import { trpc } from "../utils/trpc";
 
 export async function getServerSideProps(
   context: GetServerSidePropsContext
-): Promise<GetServerSidePropsResult<{ session: Session }>> {
+): Promise<GetServerSidePropsResult<{ session: Session; trpcState: DehydratedState }>> {
   const session = await getServerSession(context);
   if (session === null) {
     return { redirect: { destination: "/unauthenticated", permanent: false } };
@@ -23,7 +24,7 @@ export async function getServerSideProps(
   const ssg = createProxySSGHelpers(context, session);
   await ssg.user.follow.listFollows.prefetch();
 
-  return { props: { session } };
+  return { props: { session, trpcState: ssg.dehydrate() } };
 }
 
 export default function HomePage(): JSX.Element {
