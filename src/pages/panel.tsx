@@ -12,7 +12,7 @@ export async function getStaticProps(): Promise<
   return { notFound: true };
 }
 
-export default function Panel(
+export default function PanelPage(
   props: InferGetServerSidePropsType<typeof getStaticProps>
 ): JSX.Element {
   return (

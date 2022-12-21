@@ -7,6 +7,7 @@ import type { Session } from "next-auth";
 import { signOut as _signOut, useSession } from "next-auth/react";
 
 import Spinner from "../../components/Spinner";
+import TopBar from "../../components/TopBar";
 
 import { NEXT_PUBLIC_TITLE } from "../../env/client";
 import { getServerSession } from "../../utils/ssgHelpers";
@@ -22,7 +23,7 @@ export async function getServerSideProps(
   return { props: { session } };
 }
 
-export default function MePage(): JSX.Element {
+export default function UserMePage(): JSX.Element {
   const session = useSession({ required: true });
 
   const signOut = useCallback(async function () {
@@ -34,7 +35,8 @@ export default function MePage(): JSX.Element {
       <Head>
         <title>{`${NEXT_PUBLIC_TITLE} - Me`}</title>
       </Head>
-      <div className="flex items-center gap-4 p-4">
+      <TopBar />
+      <div className="flex justify-center">
         {session.data !== null ? (
           <div className="flex flex-col gap-2">
             <div>

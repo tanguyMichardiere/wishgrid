@@ -12,7 +12,7 @@ export default function FollowPreviewCard(props: Props): JSX.Element {
       className="flex items-center justify-center rounded-md p-2 shadow-md"
       href={`/user/${props.user.id}`}
     >
-      <div>{props.user.id}</div>
+      <div>{props.user.name ?? props.user.id}</div>
     </Link>
   );
 }

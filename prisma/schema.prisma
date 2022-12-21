@@ -50,6 +50,8 @@ model User {
   accounts Account[]
   sessions Session[]
 
+  wishList Wish[]
+
   follows          User[] @relation("follows")
   followers        User[] @relation("follows")
   followRequests   User[] @relation("followerRequests")
@@ -62,4 +64,16 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Wish {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  link        String
+
+  User   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  @@index([userId])
 }

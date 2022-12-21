@@ -9,7 +9,7 @@ type Props = {
 export default function SelfPreviewCard(props: Props): JSX.Element {
   return (
     <Link className="flex items-center justify-center rounded-md p-2 shadow-md" href="/user/me">
-      <div>{props.user.id}</div>
+      <div>{props.user.name ?? props.user.id}</div>
     </Link>
   );
 }
