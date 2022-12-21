@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import FollowPreviewCard from "../components/FollowPreviewCard";
 import SelfPreviewCard from "../components/SelfPreviewCard";
 import Spinner from "../components/Spinner";
+import TopBar from "../components/TopBar";
 
 import { NEXT_PUBLIC_TITLE } from "../env/client";
 import { createProxySSGHelpers, getServerSession } from "../utils/ssgHelpers";
@@ -36,6 +37,7 @@ export default function HomePage(): JSX.Element {
       <Head>
         <title>{NEXT_PUBLIC_TITLE}</title>
       </Head>
+      <TopBar />
       <ul className="grid grid-cols-1 grid-rows-2 p-2 text-xl">
         <li>
           {session.data !== null ? <SelfPreviewCard user={session.data.user} /> : <Spinner />}

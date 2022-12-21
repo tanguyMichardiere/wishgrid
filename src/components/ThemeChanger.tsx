@@ -5,8 +5,8 @@ import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import cx from "classix";
 import { useTheme } from "next-themes";
 
-export default function ThemeMenu(): JSX.Element {
-  const { setTheme } = useTheme();
+export default function ThemeChanger(): JSX.Element {
+  const { theme, setTheme } = useTheme();
 
   const setSystemTheme = useCallback(
     function () {
@@ -30,11 +30,14 @@ export default function ThemeMenu(): JSX.Element {
   );
 
   return (
-    <div className="text-right">
+    <div className="flex items-center justify-between">
+      <p>Theme</p>
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-sm font-medium shadow-md dark:bg-gray-700">
-            Theme
+            {theme !== undefined
+              ? { system: "System", dark: "Dark", light: "Light" }[theme]
+              : "Theme"}
             <ChevronDownIcon aria-hidden="true" className="ml-2 -mr-1 h-5 w-5" />
           </Menu.Button>
         </div>
