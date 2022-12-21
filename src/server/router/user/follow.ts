@@ -41,6 +41,18 @@ export const follow = t.router({
       });
     }),
 
+  decline: t.procedure
+    .use(requireSession)
+    .input(z.object({ id: z.string().cuid() }))
+    .mutation(async function ({ ctx, input }) {
+      await ctx.prisma.user.update({
+        where: { id: ctx.session.user.id },
+        data: {
+          followerRequests: { disconnect: { id: input.id } },
+        },
+      });
+    }),
+
   listFollows: t.procedure.use(requireSession).query(async function ({ ctx }) {
     const { follows } = await ctx.prisma.user.findUniqueOrThrow({
       where: { id: ctx.session.user.id },
