@@ -53,7 +53,7 @@ export const follow = t.router({
       });
     }),
 
-  listFollows: t.procedure.use(requireSession).query(async function ({ ctx }) {
+  list: t.procedure.use(requireSession).query(async function ({ ctx }) {
     const { follows } = await ctx.prisma.user.findUniqueOrThrow({
       where: { id: ctx.session.user.id },
       include: { follows: true },

@@ -23,14 +23,14 @@ export async function getServerSideProps(
   }
 
   const ssg = createProxySSGHelpers(context, session);
-  await ssg.user.follow.listFollows.prefetch();
+  await ssg.user.follow.list.prefetch();
 
   return { props: { session, trpcState: ssg.dehydrate() } };
 }
 
 export default function HomePage(): JSX.Element {
   const session = useSession({ required: true });
-  const follows = trpc.user.follow.listFollows.useQuery();
+  const follows = trpc.user.follow.list.useQuery();
 
   return (
     <>
