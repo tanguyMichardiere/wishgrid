@@ -26,7 +26,7 @@ export default function NavBar(): JSX.Element {
   const router = useRouter();
 
   return (
-    <nav className="fixed bottom-0 flex w-full justify-center gap-1 p-1">
+    <nav className="fixed bottom-0 flex w-full justify-center gap-1 bg-white p-1 dark:bg-black">
       {tabs.map((tab) => (
         <Link
           className={cx(

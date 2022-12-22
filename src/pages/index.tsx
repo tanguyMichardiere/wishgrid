@@ -34,9 +34,9 @@ export default function HomePage(): JSX.Element {
       <Head>
         <title>{NEXT_PUBLIC_TITLE}</title>
       </Head>
-      <div className="mx-auto max-w-xl p-4">
+      <div className="mx-auto max-w-xl p-4 pb-20">
         {follows.data !== undefined ? (
-          <ul>
+          <ul className="flex flex-col gap-2">
             {follows.data.map((user) => (
               <li key={user.id}>
                 <FollowPreviewCard user={user} />
