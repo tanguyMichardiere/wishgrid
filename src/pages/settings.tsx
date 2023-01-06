@@ -1,22 +1,17 @@
 import { useCallback } from "react";
 
 import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
-import dynamic from "next/dynamic";
 import Head from "next/head";
 
 import type { Session } from "next-auth";
 import { signOut as _signOut } from "next-auth/react";
 
-import DynamicLoadingSpinner from "../components/DynamicLoadingSpinner";
 import NavBar from "../components/NavBar";
 import Separator from "../components/Separator";
+import ThemeMenu from "../components/ThemeMenu";
 
 import { NEXT_PUBLIC_TITLE } from "../env/client";
 import { getServerSession } from "../utils/ssgHelpers";
-
-const ThemeMenu = dynamic(() => import("../components/ThemeMenu"), {
-  loading: DynamicLoadingSpinner,
-});
 
 export async function getServerSideProps(
   context: GetServerSidePropsContext
@@ -45,7 +40,7 @@ export default function SettingsPage(): JSX.Element {
           <ThemeMenu />
         </div>
         <Separator />
-        <button onClick={signOut} type="button">
+        <button className="btn" onClick={signOut} type="button">
           Disconnect
         </button>
       </div>

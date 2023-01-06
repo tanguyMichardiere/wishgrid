@@ -4,7 +4,9 @@ export default function Page(): JSX.Element {
   return (
     <div className="flex flex-col items-center">
       <h1>404 - Page Not Found</h1>
-      <Link href="/">Home Page</Link>
+      <Link className="link" href="/">
+        Home Page
+      </Link>
     </div>
   );
 }

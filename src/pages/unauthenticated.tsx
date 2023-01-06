@@ -30,7 +30,7 @@ export default function UnauthenticatedPage(): JSX.Element {
       </Head>
       <div className="flex flex-col items-center gap-4 p-4">
         <h1 className="text-5xl font-bold">{NEXT_PUBLIC_TITLE}</h1>
-        <button onClick={signIn} type="button">
+        <button className="btn-primary btn" onClick={signIn} type="button">
           Sign in
         </button>
       </div>

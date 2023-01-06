@@ -29,13 +29,13 @@ function App({
   return (
     <>
       <meta content="initial-scale=1, width=device-width" name="viewport" />
-      <ThemeProvider attribute="class" disableTransitionOnChange>
+      <ThemeProvider attribute="data-theme" disableTransitionOnChange>
         <ErrorBoundary
           fallback={
             <div className="flex h-full flex-col items-center justify-center">
               <h2>An expected error has occurred, it has been reported</h2>
               <Link href="/">Home Page</Link>
-              <button onClick={locationReload} type="button">
+              <button className="btn" onClick={locationReload} type="button">
                 Reload
               </button>
             </div>

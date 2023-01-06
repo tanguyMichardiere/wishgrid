@@ -2,10 +2,15 @@ import { Fragment, useCallback } from "react";
 
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { cx } from "classix";
 import { useTheme } from "next-themes";
 
-export default function ThemeMenu(): JSX.Element {
-  const { theme, setTheme } = useTheme();
+type Props = {
+  position?: "left" | "right";
+};
+
+export default function ThemeMenu({ position = "left" }: Props): JSX.Element {
+  const { setTheme } = useTheme();
 
   const setSystemTheme = useCallback(
     function () {
@@ -29,9 +34,9 @@ export default function ThemeMenu(): JSX.Element {
   );
 
   return (
-    <Menu as="div" className="relative inline-block text-left">
-      <Menu.Button className="inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-sm font-medium shadow-md dark:bg-gray-700">
-        {theme !== undefined ? { system: "System", dark: "Dark", light: "Light" }[theme] : "Theme"}
+    <Menu as="div" className="relative inline-block">
+      <Menu.Button className="btn">
+        Theme
         <ChevronDownIcon aria-hidden="true" className="ml-2 -mr-1 h-5 w-5" />
       </Menu.Button>
       <Transition
@@ -43,34 +48,29 @@ export default function ThemeMenu(): JSX.Element {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="p-1">
-            <Menu.Item
-              as="button"
-              className="group flex w-full items-center rounded-md px-2 py-2 text-sm ui-active:bg-violet-500 ui-active:text-white ui-not-active:text-gray-900"
-              onClick={setSystemTheme}
-            >
+        <Menu.Items
+          as="ul"
+          className={cx(
+            "menu absolute mt-2 w-48 rounded-md bg-base-100 shadow-md",
+            position === "left" && "right-0",
+            position === "right" && "left-0"
+          )}
+        >
+          <li>
+            <Menu.Item as="button" onClick={setSystemTheme}>
               System
             </Menu.Item>
-          </div>
-          <div className="p-1">
-            <Menu.Item
-              as="button"
-              className="group flex w-full items-center rounded-md px-2 py-2 text-sm ui-active:bg-violet-500 ui-active:text-white ui-not-active:text-gray-900"
-              onClick={setDarkTheme}
-            >
+          </li>
+          <li>
+            <Menu.Item as="button" onClick={setDarkTheme}>
               Dark
             </Menu.Item>
-          </div>
-          <div className="p-1">
-            <Menu.Item
-              as="button"
-              className="group flex w-full items-center rounded-md px-2 py-2 text-sm ui-active:bg-violet-500 ui-active:text-white ui-not-active:text-gray-900"
-              onClick={setLightTheme}
-            >
+          </li>
+          <li>
+            <Menu.Item as="button" onClick={setLightTheme}>
               Light
             </Menu.Item>
-          </div>
+          </li>
         </Menu.Items>
       </Transition>
     </Menu>
