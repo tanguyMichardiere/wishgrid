@@ -14,8 +14,6 @@ let nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
-  // TODO: remove when default (next@13?)
-  swcMinify: true,
   /** @param {import('webpack').Configuration} config */
   // webpack(config) {
   //   return config;
