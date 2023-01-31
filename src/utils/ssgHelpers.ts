@@ -3,7 +3,7 @@ import type { GetServerSidePropsContext } from "next";
 import { PrismaClient } from "@prisma/client";
 import { createProxySSGHelpers as _createProxySSGHelpers } from "@trpc/react-query/ssg";
 import type { Session } from "next-auth";
-import { unstable_getServerSession as _getServerSession } from "next-auth";
+import { getServerSession as _getServerSession } from "next-auth";
 import { log } from "next-axiom";
 import SuperJSON from "superjson";
 
