@@ -13,7 +13,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@headlessui/react": "1.7.9",
+    "@headlessui/react": "1.7.10",
     "@headlessui/tailwindcss": "0.1.2",
     "@heroicons/react": "2.0.14",
     "@hookform/resolvers": "2.9.10",
@@ -51,8 +51,8 @@
     "@types/prettier": "2.7.2",
     "@types/react": "18.0.27",
     "@types/webpack": "5.28.0",
-    "@typescript-eslint/eslint-plugin": "5.50.0",
-    "@typescript-eslint/parser": "5.50.0",
+    "@typescript-eslint/eslint-plugin": "5.51.0",
+    "@typescript-eslint/parser": "5.51.0",
     "autoprefixer": "10.4.13",
     "cross-env": "7.0.3",
     "eslint": "8.33.0",
