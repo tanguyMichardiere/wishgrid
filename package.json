@@ -31,7 +31,7 @@
     "@trpc/react-query": "10.11.1",
     "@trpc/server": "10.11.1",
     "classix": "2.1.22",
-    "daisyui": "2.50.0",
+    "daisyui": "2.50.1",
     "next": "13.1.6",
     "next-auth": "4.19.2",
     "next-axiom": "0.17.0",
