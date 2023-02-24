@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app";
+import { Inter } from "next/font/google";
 import Link from "next/link";
 
-import { Inter } from "@next/font/google";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { cx } from "classix";
 import type { Session } from "next-auth";
