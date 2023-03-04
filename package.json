@@ -13,7 +13,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@headlessui/react": "1.7.12",
+    "@headlessui/react": "1.7.13",
     "@headlessui/tailwindcss": "0.1.2",
     "@heroicons/react": "2.0.16",
     "@hookform/resolvers": "2.9.11",
@@ -25,11 +25,11 @@
     "@tailwindcss/line-clamp": "0.4.2",
     "@tailwindcss/typography": "0.5.9",
     "@tanstack/react-query": "4.24.10",
-    "@tanstack/react-query-devtools": "4.24.12",
-    "@trpc/client": "10.13.2",
-    "@trpc/next": "10.13.2",
-    "@trpc/react-query": "10.13.2",
-    "@trpc/server": "10.13.2",
+    "@tanstack/react-query-devtools": "4.24.13",
+    "@trpc/client": "10.14.0",
+    "@trpc/next": "10.14.0",
+    "@trpc/react-query": "10.14.0",
+    "@trpc/server": "10.14.0",
     "classix": "2.1.22",
     "daisyui": "2.51.3",
     "next": "13.2.3",
@@ -39,7 +39,7 @@
     "next-themes": "0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "7.43.3",
+    "react-hook-form": "7.43.4",
     "superjson": "1.12.2",
     "tslib": "2.5.0",
     "zod": "3.20.6"
@@ -47,7 +47,7 @@
   "devDependencies": {
     "@next/bundle-analyzer": "13.2.3",
     "@trivago/prettier-plugin-sort-imports": "4.1.1",
-    "@types/node": "18.14.4",
+    "@types/node": "18.14.6",
     "@types/prettier": "2.7.2",
     "@types/react": "18.0.28",
     "@types/webpack": "5.28.0",
