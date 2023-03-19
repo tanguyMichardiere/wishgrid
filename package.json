@@ -39,7 +39,7 @@
     "next-themes": "0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "7.43.6",
+    "react-hook-form": "7.43.7",
     "superjson": "1.12.2",
     "tslib": "2.5.0",
     "zod": "3.21.4"
