@@ -1,7 +1,7 @@
 import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import type { Session } from "next-auth";
 import Head from "next/head";
-import NavBar from "../../components/Navbar";
+import Navbar from "../../components/Navbar";
 import { NEXT_PUBLIC_TITLE } from "../../env";
 import { getServerSession } from "../../utils/ssgHelpers";
 
@@ -23,7 +23,7 @@ export default function ProfilePage(): JSX.Element {
         <title>{`${NEXT_PUBLIC_TITLE} - Profile`}</title>
       </Head>
       <div className="mx-auto max-w-xl p-4">TODO</div>
-      <NavBar />
+      <Navbar />
     </>
   );
 }

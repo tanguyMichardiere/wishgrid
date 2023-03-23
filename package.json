@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "prepare": "husky install",
-    "dev": "NODE_OPTIONS=\"--inspect\" next dev",
+    "dev": "NODE_OPTIONS=--inspect next dev",
     "format": "prettier -w src",
     "check-format": "prettier --check src",
     "lint": "eslint src --max-warnings 0",

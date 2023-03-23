@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback } from "react";
 
-export default function NavBar(): JSX.Element {
+export default function Navbar(): JSX.Element {
   const signOut = useCallback(async function () {
     await _signOut();
   }, []);

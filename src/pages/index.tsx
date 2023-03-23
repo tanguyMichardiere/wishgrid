@@ -3,7 +3,7 @@ import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import type { Session } from "next-auth";
 import Head from "next/head";
 import FollowPreviewCard from "../components/FollowPreviewCard";
-import NavBar from "../components/Navbar";
+import Navbar from "../components/Navbar";
 import Spinner from "../components/Spinner";
 import { NEXT_PUBLIC_TITLE } from "../env";
 import { createProxySSGHelpers, getServerSession } from "../utils/ssgHelpers";
@@ -46,7 +46,7 @@ export default function HomePage(): JSX.Element {
           </div>
         )}
       </div>
-      <NavBar />
+      <Navbar />
     </>
   );
 }

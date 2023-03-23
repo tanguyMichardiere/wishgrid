@@ -4,7 +4,7 @@ import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import type { Session } from "next-auth";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import NavBar from "../../components/Navbar";
+import Navbar from "../../components/Navbar";
 import { NEXT_PUBLIC_TITLE } from "../../env.js";
 import { createProxySSGHelpers, getServerSession } from "../../utils/ssgHelpers";
 import { trpc } from "../../utils/trpc";
@@ -48,7 +48,7 @@ export default function UserIdPage(): JSX.Element {
         </button>
         TODO
       </div>
-      <NavBar />
+      <Navbar />
     </>
   );
 }
