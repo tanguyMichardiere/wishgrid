@@ -31,7 +31,7 @@ export default function HomePage(): JSX.Element {
       <Head>
         <title>{NEXT_PUBLIC_TITLE}</title>
       </Head>
-      <div className="mx-auto  max-w-xl p-4 pb-20">
+      <div className="mx-auto max-w-xl p-4 pb-20">
         {friends.data !== undefined ? (
           <ul className="flex flex-col gap-2">
             {friends.data.map((user) => (

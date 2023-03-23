@@ -19,4 +19,8 @@ module.exports = {
     require("@headlessui/tailwindcss"),
     require("daisyui"),
   ],
+  daisyui: {
+    themes: ["light", "dark"],
+    logs: false,
+  },
 };

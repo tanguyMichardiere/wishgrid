@@ -7,6 +7,9 @@ const { headers } = require("./headers.config");
 let nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  experimental: {
+    swcPlugins: [["next-superjson-plugin", {}]],
+  },
   headers() {
     return Promise.resolve([
       {
