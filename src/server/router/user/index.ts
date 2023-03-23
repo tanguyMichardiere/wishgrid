@@ -1,11 +1,10 @@
 import { z } from "zod";
-
 import { t } from "../..";
 import { requireSession } from "../../middlewares/requireSession";
-import { follow } from "./follow";
+import { friend } from "./friend";
 
 export const user = t.router({
-  follow,
+  friend,
 
   get: t.procedure
     .use(requireSession)

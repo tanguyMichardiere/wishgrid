@@ -1,14 +1,11 @@
-import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
-import Head from "next/head";
-import { useRouter } from "next/router";
-
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import type { DehydratedState } from "@tanstack/react-query";
+import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import type { Session } from "next-auth";
-
-import NavBar from "../../components/NavBar";
-
-import { NEXT_PUBLIC_TITLE } from "../../env/client";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import NavBar from "../../components/Navbar";
+import { NEXT_PUBLIC_TITLE } from "../../env.js";
 import { createProxySSGHelpers, getServerSession } from "../../utils/ssgHelpers";
 import { trpc } from "../../utils/trpc";
 

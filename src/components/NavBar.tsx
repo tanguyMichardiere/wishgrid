@@ -1,47 +1,46 @@
+import { signOut as _signOut } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-
-import { Cog6ToothIcon, GiftIcon, UserCircleIcon } from "@heroicons/react/24/outline";
-import { cx } from "classix";
-
-const tabs = [
-  {
-    label: "Follows",
-    Icon: GiftIcon,
-    href: "/",
-  },
-  {
-    label: "Profile",
-    Icon: UserCircleIcon,
-    href: "/profile",
-  },
-  {
-    label: "Settings",
-    Icon: Cog6ToothIcon,
-    href: "/settings",
-  },
-];
+import { useCallback } from "react";
 
 export default function NavBar(): JSX.Element {
-  const router = useRouter();
+  const signOut = useCallback(async function () {
+    await _signOut();
+  }, []);
 
   return (
-    <nav className="fixed bottom-0 flex w-full justify-center gap-1 bg-white p-1 dark:bg-black">
-      {tabs.map((tab) => (
-        <Link
-          className={cx(
-            "flex w-full max-w-[12rem] flex-col items-center rounded-lg py-2 px-4",
-            router.pathname === tab.href
-              ? "bg-black/20 dark:bg-white/20"
-              : "hover:bg-black/10 dark:hover:bg-white/10"
-          )}
-          href={tab.href}
-          key={tab.label}
-        >
-          <tab.Icon className="h-6 w-6" />
-          {tab.label}
-        </Link>
-      ))}
+    <nav className="navbar bg-base-100">
+      <div className="flex-1">
+        <a className="btn-ghost btn text-xl normal-case">daisyUI</a>
+      </div>
+      <div className="flex-none gap-2">
+        <div className="dropdown-end dropdown">
+          <label className="btn-ghost btn-circle avatar btn" tabIndex={0}>
+            <div className="w-10 rounded-full">
+              <Image alt="profile" src="https://placeimg.com/80/80/people" />
+            </div>
+          </label>
+          <ul
+            className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
+            tabIndex={0}
+          >
+            <li>
+              <Link className="justify-between" href="/profile">
+                Profile
+                <span className="badge">New</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/settings">Settings</Link>
+            </li>
+            <li>
+              <button onClick={signOut} type="button">
+                Logout
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
   );
 }

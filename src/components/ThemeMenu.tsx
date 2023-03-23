@@ -1,9 +1,8 @@
-import { Fragment, useCallback } from "react";
-
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { cx } from "classix";
 import { useTheme } from "next-themes";
+import { Fragment, useCallback } from "react";
 
 type Props = {
   position?: "left" | "right";

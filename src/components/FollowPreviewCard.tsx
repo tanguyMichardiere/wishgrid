@@ -1,6 +1,5 @@
-import Link from "next/link";
-
 import type { User } from "@prisma/client";
+import Link from "next/link";
 
 type Props = {
   user: User;
@@ -8,7 +7,7 @@ type Props = {
 
 export default function FollowPreviewCard(props: Props): JSX.Element {
   return (
-    <Link className="block rounded-md p-2 shadow-md" href={`/user/${props.user.id}`}>
+    <Link className="card bg-base-100 p-2 shadow-xl" href={`/user/${props.user.id}`}>
       {props.user.name ?? props.user.id}
     </Link>
   );

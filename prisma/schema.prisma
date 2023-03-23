@@ -52,10 +52,10 @@ model User {
 
   wishList Wish[]
 
-  follows          User[] @relation("follows")
-  followers        User[] @relation("follows")
-  followRequests   User[] @relation("followerRequests")
-  followerRequests User[] @relation("followerRequests")
+  friends           User[] @relation("Friend")
+  outFriends        User[] @relation("Friend")
+  friendRequests    User[] @relation("FriendRequest")
+  outFriendRequests User[] @relation("FriendRequest")
 }
 
 model VerificationToken {

@@ -1,5 +1,4 @@
 import { TRPCError } from "@trpc/server";
-
 import { t } from "..";
 
 export const requireSession = t.middleware(function ({ next, ctx }) {

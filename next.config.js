@@ -1,9 +1,5 @@
 // ensure all environment variables are defined at build time
-require("./src/env/server");
-
-// HACK: @trivago/prettier-plugin-sort-imports locks the @babel/parser version
-// we have to override the version in package.json
-// https://github.com/trivago/prettier-plugin-sort-imports/issues/156
+require("./src/env");
 
 const { headers } = require("./headers.config");
 
@@ -11,17 +7,6 @@ const { headers } = require("./headers.config");
 let nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  compiler: {
-    removeConsole: process.env.NODE_ENV === "production",
-  },
-  /** @param {import('webpack').Configuration} config */
-  // webpack(config) {
-  //   return config;
-  // },
-  // TODO: remove when no more experimental features
-  experimental: {
-    swcPlugins: [["next-superjson-plugin", {}]],
-  },
   headers() {
     return Promise.resolve([
       {

@@ -1,15 +1,12 @@
-import type { AppProps } from "next/app";
-import { Inter } from "next/font/google";
-import Link from "next/link";
-
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { cx } from "classix";
 import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
-
+import type { AppProps } from "next/app";
+import { Inter } from "next/font/google";
+import Link from "next/link";
 import ErrorBoundary from "../components/ErrorBoundary";
-
 import "../styles.css";
 import { trpc } from "../utils/trpc";
 

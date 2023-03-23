@@ -1,11 +1,8 @@
 import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
-import Head from "next/head";
-
 import type { Session } from "next-auth";
-
-import NavBar from "../../components/NavBar";
-
-import { NEXT_PUBLIC_TITLE } from "../../env/client";
+import Head from "next/head";
+import NavBar from "../../components/Navbar";
+import { NEXT_PUBLIC_TITLE } from "../../env";
 import { getServerSession } from "../../utils/ssgHelpers";
 
 export async function getServerSideProps(

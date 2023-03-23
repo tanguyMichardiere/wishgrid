@@ -1,12 +1,10 @@
-import type { GetServerSidePropsContext } from "next";
-
 import { PrismaClient } from "@prisma/client";
 import { createProxySSGHelpers as _createProxySSGHelpers } from "@trpc/react-query/ssg";
+import type { GetServerSidePropsContext } from "next";
 import type { Session } from "next-auth";
 import { getServerSession as _getServerSession } from "next-auth";
 import { log } from "next-axiom";
 import SuperJSON from "superjson";
-
 import { nextAuthOptions } from "../pages/api/auth/[...nextauth]";
 import type { Router } from "../server/router";
 import { router } from "../server/router";

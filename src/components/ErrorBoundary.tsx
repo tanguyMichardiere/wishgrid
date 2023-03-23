@@ -1,7 +1,6 @@
+import { log } from "next-axiom";
 import type { ErrorInfo, ReactNode } from "react";
 import { Component } from "react";
-
-import { log } from "next-axiom";
 
 type Props = {
   fallback: ReactNode;

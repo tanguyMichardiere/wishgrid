@@ -1,6 +1,5 @@
 import { Head, Html, Main, NextScript } from "next/document";
-
-import { NEXT_PUBLIC_DESCRIPTION, NEXT_PUBLIC_TITLE } from "../env/client";
+import { NEXT_PUBLIC_DESCRIPTION, NEXT_PUBLIC_TITLE } from "../env";
 
 /* eslint-disable react/no-invalid-html-attribute */
 /* eslint-disable react/jsx-sort-props */

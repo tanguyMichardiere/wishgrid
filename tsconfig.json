@@ -31,7 +31,9 @@
     "src/**/*.tsx",
     "src/**/*.js",
     "./*.js",
-    "./.*.js"
+    "./.*.js",
+    "src/env/client.js",
+    "src/env.js"
   ],
   "exclude": ["node_modules"]
 }
