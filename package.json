@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "prepare": "husky install",
+    "postinstall": "prisma generate",
     "dev": "NODE_OPTIONS=--inspect next dev",
     "format": "prettier -w src",
     "check-format": "prettier --check src",
