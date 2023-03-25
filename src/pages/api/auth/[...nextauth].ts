@@ -9,7 +9,7 @@ export const nextAuthOptions: NextAuthOptions = {
   providers: [MockProvider()],
   callbacks: {
     session({ session, user }) {
-      // @ts-expect-error incorrect types
+      // @ts-expect-error incorrect types, user comes from prisma
       session.user = user;
       return session;
     },
