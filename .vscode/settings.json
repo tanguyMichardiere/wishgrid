@@ -12,8 +12,7 @@
     "editor.wordWrap": "on"
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.organizeImports": true
+    "source.fixAll": true
   },
   "editor.formatOnSave": true,
   "editor.quickSuggestions": {
