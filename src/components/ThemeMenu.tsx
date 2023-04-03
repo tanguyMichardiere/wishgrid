@@ -36,7 +36,7 @@ export default function ThemeMenu({ position = "left" }: Props): JSX.Element {
     <Menu as="div" className="relative inline-block">
       <Menu.Button className="btn">
         Theme
-        <ChevronDownIcon aria-hidden="true" className="ml-2 -mr-1 h-5 w-5" />
+        <ChevronDownIcon aria-hidden="true" className="-mr-1 ml-2 h-5 w-5" />
       </Menu.Button>
       <Transition
         as={Fragment}
