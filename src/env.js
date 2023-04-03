@@ -1,7 +1,7 @@
 const { z } = require("zod");
 
 const server = z.object({
-  NODE_ENV: z.enum(["development", "test", "production"]),
+  NODE_ENV: z.enum(["production", "development", "test"]),
   DATABASE_URL: z.string().url(),
 });
 
