@@ -10,6 +10,6 @@ export const user = t.router({
     .use(requireSession)
     .input(z.object({ id: z.string().cuid() }))
     .query(async function ({ ctx, input }) {
-      return await ctx.prisma.user.findUniqueOrThrow({ where: { id: input.id } });
+      return ctx.prisma.user.findUniqueOrThrow({ where: { id: input.id } });
     }),
 });

@@ -36,6 +36,7 @@ module.exports = {
     "no-else-return": "warn",
     "no-implicit-coercion": "warn",
     "no-return-assign": "warn",
+    "no-return-await": "off",
     "no-throw-literal": "warn",
     "no-useless-return": "warn",
     "no-void": "warn",
@@ -69,7 +70,7 @@ module.exports = {
       "warn",
       { prefer: "type-imports", disallowTypeAnnotations: true },
     ],
-    "@typescript-eslint/explicit-module-boundary-types": ["warn"],
+    "@typescript-eslint/explicit-module-boundary-types": "warn",
     "@typescript-eslint/no-floating-promises": ["warn", { ignoreVoid: true }],
     "@typescript-eslint/no-misused-promises": [
       "warn",
@@ -80,6 +81,7 @@ module.exports = {
     "@typescript-eslint/non-nullable-type-assertion-style": "warn",
     "@typescript-eslint/prefer-for-of": "warn",
     "@typescript-eslint/prefer-nullish-coalescing": "warn",
+    "@typescript-eslint/return-await": ["warn", "in-try-catch"],
     "@typescript-eslint/strict-boolean-expressions": [
       "warn",
       { allowString: false, allowNumber: false, allowNullableObject: false },
