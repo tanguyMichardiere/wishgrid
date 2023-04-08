@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: npm clean-install
       - name: Update dependencies
-        run: npx zx scripts/updateDependencies.mjs
+        run: scripts/update-dependencies.sh
       - name: Check format
         run: npm run check-format
       - name: Lint

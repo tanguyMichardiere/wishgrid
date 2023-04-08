@@ -1,0 +1,34 @@
+name: Deploy database deploy request
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+jobs:
+  deploy-request:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+      - name: Create a deploy request
+        id: create_deploy_request
+        uses: planetscale/create-deploy-request-action@v1
+        with:
+          org_name: tanguy-michardiere
+          database_name: wisher
+          branch_name: develop
+        env:
+          PLANETSCALE_SERVICE_TOKEN_ID: ${{ secrets.PLANETSCALE_SERVICE_TOKEN_ID }}
+          PLANETSCALE_SERVICE_TOKEN: ${{ secrets.PLANETSCALE_SERVICE_TOKEN }}
+      - name: Deploy a deploy request
+        uses: planetscale/deploy-deploy-request-action@v1
+        with:
+          org_name: tanguy-michardiere
+          database_name: wisher
+          number: ${{ steps.create_deploy_request.outputs.number }}
+          wait: true
+        env:
+          PLANETSCALE_SERVICE_TOKEN_ID: ${{ secrets.PLANETSCALE_SERVICE_TOKEN_ID }}
+          PLANETSCALE_SERVICE_TOKEN: ${{ secrets.PLANETSCALE_SERVICE_TOKEN }}

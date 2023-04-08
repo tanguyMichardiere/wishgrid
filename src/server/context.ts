@@ -1,9 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import type { inferAsyncReturnType } from "@trpc/server";
 import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
-import { unstable_getServerSession as getServerSession } from "next-auth";
+import { getServerSession } from "next-auth";
 import { log } from "next-axiom";
-
 import { nextAuthOptions } from "../pages/api/auth/[...nextauth]";
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

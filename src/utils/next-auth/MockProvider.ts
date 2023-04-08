@@ -3,8 +3,7 @@ import { log } from "next-axiom";
 
 export default function MockProvider(): EmailConfig {
   if (process.env["VERCEL_ENV"] === "production") {
-    // in a real project, throw an error here
-    log.warn("using the mock auth provider in a production environment");
+    throw new Error("using the mock auth provider in a production environment");
   }
   return {
     id: "mock",
