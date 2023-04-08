@@ -2,7 +2,7 @@ import type { DehydratedState } from "@tanstack/react-query";
 import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import type { Session } from "next-auth";
 import Head from "next/head";
-import FollowPreviewCard from "../components/FollowPreviewCard";
+import FriendPreviewCard from "../components/FriendPreviewCard";
 import Navbar from "../components/Navbar";
 import Spinner from "../components/Spinner";
 import { NEXT_PUBLIC_TITLE } from "../env";
@@ -42,7 +42,7 @@ export default function HomePage(): JSX.Element {
           <ul className="flex flex-col gap-2">
             {friends.data.map((user) => (
               <li key={user.id}>
-                <FollowPreviewCard user={user} />
+                <FriendPreviewCard user={user} />
               </li>
             ))}
           </ul>

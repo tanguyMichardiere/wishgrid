@@ -1,4 +1,3 @@
-import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import type { DehydratedState } from "@tanstack/react-query";
 import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import type { Session } from "next-auth";
@@ -36,9 +35,8 @@ export async function getServerSideProps(
 }
 
 export default function UserIdPage(): JSX.Element {
-  const router = useRouter();
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-  const { id } = router.query as Params;
+  const { id } = useRouter().query as Params;
 
   const user = trpc.user.get.useQuery({ id });
 
@@ -47,13 +45,8 @@ export default function UserIdPage(): JSX.Element {
       <Head>
         <title>{`${NEXT_PUBLIC_TITLE} - ${user.data?.name ?? id}`}</title>
       </Head>
-      <Navbar />
-      <div className="mx-auto flex max-w-xl flex-col gap-4 p-4">
-        <button className="w-fit p-2" onClick={router.back} title="back" type="button">
-          <ArrowLeftIcon className="h-6 w-6" />
-        </button>
-        TODO
-      </div>
+      <Navbar withBackButton />
+      <div className="mx-auto max-w-xl p-4">TODO</div>
     </>
   );
 }

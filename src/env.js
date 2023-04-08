@@ -3,6 +3,8 @@ const { z } = require("zod");
 const server = z.object({
   NODE_ENV: z.enum(["production", "development", "test"]),
   DATABASE_URL: z.string().url(),
+  DISCORD_CLIENT_ID: z.optional(z.string()),
+  DISCORD_CLIENT_SECRET: z.optional(z.string()),
 });
 
 const client = z.object({
@@ -14,6 +16,8 @@ const client = z.object({
 const processEnv = {
   NODE_ENV: process.env.NODE_ENV,
   DATABASE_URL: process.env["DATABASE_URL"],
+  DISCORD_CLIENT_ID: process.env["DISCORD_CLIENT_ID"],
+  DISCORD_CLIENT_SECRET: process.env["DISCORD_CLIENT_SECRET"],
   NEXT_PUBLIC_TITLE: process.env["NEXT_PUBLIC_TITLE"],
   NEXT_PUBLIC_DESCRIPTION: process.env["NEXT_PUBLIC_DESCRIPTION"],
 };

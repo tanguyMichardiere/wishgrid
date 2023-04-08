@@ -10,6 +10,9 @@ let nextConfig = {
   experimental: {
     swcPlugins: [["next-superjson-plugin", {}]],
   },
+  images: {
+    domains: ["cdn.discordapp.com"],
+  },
   headers() {
     return Promise.resolve([
       {

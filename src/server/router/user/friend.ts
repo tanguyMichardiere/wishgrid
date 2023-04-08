@@ -10,10 +10,7 @@ export const friend = t.router({
     .mutation(async function ({ ctx, input }) {
       await ctx.prisma.user.update({
         where: { id: ctx.session.user.id },
-        data: {
-          friendRequests: { connect: { id: input.id } },
-          outFriendRequests: { connect: { id: input.id } },
-        },
+        data: { outFriendRequests: { connect: { id: input.id } } },
       });
     }),
 
@@ -73,9 +70,35 @@ export const friend = t.router({
 
   list: t.procedure.use(requireSession).query(async function ({ ctx }) {
     const { friends } = await ctx.prisma.user.findUniqueOrThrow({
-      where: { id: ctx.session.user.id },
       include: { friends: true },
+      where: { id: ctx.session.user.id },
     });
     return friends;
   }),
+
+  remove: t.procedure
+    .use(requireSession)
+    .input(z.object({ id: z.string().cuid() }))
+    .mutation(async function ({ ctx, input }) {
+      await ctx.prisma.$transaction(async function (tx) {
+        const { friends } = await tx.user.findUniqueOrThrow({
+          include: { friends: true },
+          where: { id: ctx.session.user.id },
+        });
+        if (friends.map((user) => user.id).includes(input.id)) {
+          await tx.user.update({
+            where: { id: ctx.session.user.id },
+            data: {
+              friends: { disconnect: { id: input.id } },
+              outFriends: { disconnect: { id: input.id } },
+            },
+          });
+        } else {
+          ctx.logger.error(
+            `User ${ctx.session.user.id} tried to unfriend non friend user ${input.id}`
+          );
+          throw new TRPCError({ code: "BAD_REQUEST", message: "No friend" });
+        }
+      });
+    }),
 });

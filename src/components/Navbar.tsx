@@ -1,40 +1,40 @@
-import Identicon from "identicon.js";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { signOut as _signOut, useSession } from "next-auth/react";
-import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useMemo } from "react";
+import { useRouter } from "next/router";
+import { useCallback } from "react";
+import Avatar from "./Avatar";
 
-export default function Navbar(): JSX.Element {
+type Props = {
+  withBackButton?: boolean;
+};
+
+export default function Navbar({ withBackButton = false }: Props): JSX.Element {
+  const router = useRouter();
+
   const session = useSession({ required: true });
 
   const signOut = useCallback(async function () {
     await _signOut();
   }, []);
 
-  const imageSrc = useMemo(
-    () =>
-      session.status === "loading"
-        ? null
-        : session.data.user.image ??
-          `data:image/png;base64,${new Identicon(session.data.user.id).toString()}`,
-    [session.status, session.data?.user.image, session.data?.user.id]
-  );
-
   return (
     <nav className="navbar bg-base-100">
       <div className="flex-1">
+        {withBackButton && (
+          <button className="w-fit p-2" onClick={router.back} title="back" type="button">
+            <ArrowLeftIcon className="h-6 w-6" />
+          </button>
+        )}
         <Link className="btn-ghost btn text-xl normal-case" href="/">
           Wisher
         </Link>
       </div>
-      {imageSrc !== null && (
-        // imageSrc === null iff session.status === "loading"
+      {session.status !== "loading" && (
         <div className="flex-none gap-2">
           <div className="dropdown-end dropdown">
-            <label className="btn-ghost btn-circle avatar btn" tabIndex={0}>
-              <div className="w-10 rounded-full">
-                <Image alt="profile picture" height={40} src={imageSrc} width={40} />
-              </div>
+            <label className="btn-ghost btn-circle btn" tabIndex={0}>
+              <Avatar user={session.data.user} />
             </label>
             <ul
               className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
