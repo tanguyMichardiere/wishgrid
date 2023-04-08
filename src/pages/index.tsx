@@ -28,7 +28,7 @@ export async function getServerSideProps(
   return { props: { session, trpcState: trpc.dehydrate() } };
 }
 
-export default function HomePage(props: Props): JSX.Element {
+export default function HomePage(): JSX.Element {
   const friends = trpc.user.friend.list.useQuery();
 
   return (
@@ -36,7 +36,7 @@ export default function HomePage(props: Props): JSX.Element {
       <Head>
         <title>{NEXT_PUBLIC_TITLE}</title>
       </Head>
-      <Navbar session={props.session} />
+      <Navbar />
       <div className="mx-auto max-w-xl p-4 pb-20">
         {friends.data !== undefined ? (
           <ul className="flex flex-col gap-2">

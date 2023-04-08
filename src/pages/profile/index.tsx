@@ -20,13 +20,13 @@ export async function getServerSideProps(
   return { props: { session } };
 }
 
-export default function ProfilePage(props: Props): JSX.Element {
+export default function ProfilePage(): JSX.Element {
   return (
     <>
       <Head>
         <title>{`${NEXT_PUBLIC_TITLE} - Profile`}</title>
       </Head>
-      <Navbar session={props.session} />
+      <Navbar />
       <div className="mx-auto max-w-xl p-4">TODO</div>
     </>
   );

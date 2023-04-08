@@ -23,13 +23,13 @@ export async function getServerSideProps(
   return { props: { session } };
 }
 
-export default function SettingsPage(props: Props): JSX.Element {
+export default function SettingsPage(): JSX.Element {
   return (
     <>
       <Head>
         <title>{`${NEXT_PUBLIC_TITLE} - Settings`}</title>
       </Head>
-      <Navbar session={props.session} />
+      <Navbar />
       <div className="mx-auto flex max-w-xl flex-col gap-2 p-4">
         <div className="flex items-center justify-between">
           <p>Theme</p>
