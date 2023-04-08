@@ -9,9 +9,14 @@ import { NEXT_PUBLIC_TITLE } from "../env";
 import { createServerSideHelpers, getServerSession } from "../utils/serverSideHelpers";
 import { trpc } from "../utils/trpc";
 
+type Props = {
+  session: Session;
+  trpcState: DehydratedState;
+};
+
 export async function getServerSideProps(
   context: GetServerSidePropsContext
-): Promise<GetServerSidePropsResult<{ session: Session; trpcState: DehydratedState }>> {
+): Promise<GetServerSidePropsResult<Props>> {
   const session = await getServerSession(context);
   if (session === null) {
     return { redirect: { destination: "/unauthenticated", permanent: false } };
@@ -23,7 +28,7 @@ export async function getServerSideProps(
   return { props: { session, trpcState: trpc.dehydrate() } };
 }
 
-export default function HomePage(): JSX.Element {
+export default function HomePage(props: Props): JSX.Element {
   const friends = trpc.user.friend.list.useQuery();
 
   return (
@@ -31,6 +36,7 @@ export default function HomePage(): JSX.Element {
       <Head>
         <title>{NEXT_PUBLIC_TITLE}</title>
       </Head>
+      <Navbar session={props.session} />
       <div className="mx-auto max-w-xl p-4 pb-20">
         {friends.data !== undefined ? (
           <ul className="flex flex-col gap-2">
@@ -46,7 +52,6 @@ export default function HomePage(): JSX.Element {
           </div>
         )}
       </div>
-      <Navbar />
     </>
   );
 }

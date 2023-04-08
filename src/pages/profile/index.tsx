@@ -5,9 +5,13 @@ import Navbar from "../../components/Navbar";
 import { NEXT_PUBLIC_TITLE } from "../../env";
 import { getServerSession } from "../../utils/serverSideHelpers";
 
+type Props = {
+  session: Session;
+};
+
 export async function getServerSideProps(
   context: GetServerSidePropsContext
-): Promise<GetServerSidePropsResult<{ session: Session }>> {
+): Promise<GetServerSidePropsResult<Props>> {
   const session = await getServerSession(context);
   if (session === null) {
     return { redirect: { destination: "/unauthenticated", permanent: false } };
@@ -16,14 +20,14 @@ export async function getServerSideProps(
   return { props: { session } };
 }
 
-export default function ProfilePage(): JSX.Element {
+export default function ProfilePage(props: Props): JSX.Element {
   return (
     <>
       <Head>
         <title>{`${NEXT_PUBLIC_TITLE} - Profile`}</title>
       </Head>
+      <Navbar session={props.session} />
       <div className="mx-auto max-w-xl p-4">TODO</div>
-      <Navbar />
     </>
   );
 }

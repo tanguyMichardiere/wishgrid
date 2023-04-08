@@ -41,7 +41,7 @@ function App({
           <SessionProvider session={session}>
             <ReactQueryDevtools />
             <main className={cx(inter.variable, "font-sans")}>
-              <Component {...pageProps} />
+              <Component {...pageProps} session={session} />
             </main>
           </SessionProvider>
         </ErrorBoundary>

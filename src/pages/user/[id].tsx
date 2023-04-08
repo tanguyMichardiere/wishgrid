@@ -13,9 +13,14 @@ type Params = {
   id: string;
 };
 
+type Props = {
+  session: Session;
+  trpcState: DehydratedState;
+};
+
 export async function getServerSideProps(
   context: GetServerSidePropsContext<Params>
-): Promise<GetServerSidePropsResult<{ session: Session; trpcState: DehydratedState }>> {
+): Promise<GetServerSidePropsResult<Props>> {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const { id } = context.params!;
 
@@ -30,7 +35,7 @@ export async function getServerSideProps(
   return { props: { session, trpcState: trpc.dehydrate() } };
 }
 
-export default function UserIdPage(): JSX.Element {
+export default function UserIdPage(props: Props): JSX.Element {
   const router = useRouter();
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const { id } = router.query as Params;
@@ -42,13 +47,13 @@ export default function UserIdPage(): JSX.Element {
       <Head>
         <title>{`${NEXT_PUBLIC_TITLE} - ${user.data?.name ?? id}`}</title>
       </Head>
+      <Navbar session={props.session} />
       <div className="mx-auto flex max-w-xl flex-col gap-4 p-4">
         <button className="w-fit p-2" onClick={router.back} title="back" type="button">
           <ArrowLeftIcon className="h-6 w-6" />
         </button>
         TODO
       </div>
-      <Navbar />
     </>
   );
 }
