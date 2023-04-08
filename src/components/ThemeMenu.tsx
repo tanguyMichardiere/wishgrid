@@ -1,3 +1,5 @@
+"use client";
+
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { cx } from "classix";
@@ -9,7 +11,7 @@ type Props = {
 };
 
 export default function ThemeMenu({ position = "left" }: Props): JSX.Element {
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   const setSystemTheme = useCallback(
     function () {
@@ -35,7 +37,7 @@ export default function ThemeMenu({ position = "left" }: Props): JSX.Element {
   return (
     <Menu as="div" className="relative inline-block">
       <Menu.Button className="btn">
-        Theme
+        {theme}
         <ChevronDownIcon aria-hidden="true" className="-mr-1 ml-2 h-5 w-5" />
       </Menu.Button>
       <Transition

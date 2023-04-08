@@ -1,10 +1,12 @@
 import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import type { Session } from "next-auth";
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import Navbar from "../components/Navbar";
-import ThemeMenu from "../components/ThemeMenu";
 import { NEXT_PUBLIC_TITLE } from "../env";
 import { getServerSession } from "../utils/serverSideHelpers";
+
+const ThemeMenu = dynamic(() => import("../components/ThemeMenu"), { ssr: false });
 
 type Props = {
   session: Session;
