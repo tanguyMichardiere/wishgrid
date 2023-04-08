@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { createProxySSGHelpers as _createProxySSGHelpers } from "@trpc/react-query/ssg";
+import { createServerSideHelpers as _createServerSideHelpers } from "@trpc/react-query/server";
 import type { GetServerSidePropsContext } from "next";
 import type { Session } from "next-auth";
 import { getServerSession as _getServerSession } from "next-auth";
@@ -16,11 +16,11 @@ export async function getServerSession({
   return _getServerSession(req, res, nextAuthOptions);
 }
 
-export function createProxySSGHelpers(
+export function createServerSideHelpers(
   { req, params }: GetServerSidePropsContext,
   session: Session | null
-): ReturnType<typeof _createProxySSGHelpers<Router>> {
-  return _createProxySSGHelpers({
+): ReturnType<typeof _createServerSideHelpers<Router>> {
+  return _createServerSideHelpers({
     router,
     ctx: {
       logger: log.with({ ssr: { url: req.url, params } }),

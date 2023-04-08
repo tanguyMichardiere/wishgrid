@@ -6,7 +6,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Navbar from "../../components/Navbar";
 import { NEXT_PUBLIC_TITLE } from "../../env.js";
-import { createProxySSGHelpers, getServerSession } from "../../utils/ssgHelpers";
+import { createServerSideHelpers, getServerSession } from "../../utils/serverSideHelpers";
 import { trpc } from "../../utils/trpc";
 
 type Params = {
@@ -24,10 +24,10 @@ export async function getServerSideProps(
     return { redirect: { destination: "/unauthenticated", permanent: false } };
   }
 
-  const ssg = createProxySSGHelpers(context, session);
-  await ssg.user.get.prefetch({ id });
+  const trpc = createServerSideHelpers(context, session);
+  await trpc.user.get.prefetch({ id });
 
-  return { props: { session, trpcState: ssg.dehydrate() } };
+  return { props: { session, trpcState: trpc.dehydrate() } };
 }
 
 export default function UserIdPage(): JSX.Element {

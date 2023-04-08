@@ -6,7 +6,7 @@ import FollowPreviewCard from "../components/FollowPreviewCard";
 import Navbar from "../components/Navbar";
 import Spinner from "../components/Spinner";
 import { NEXT_PUBLIC_TITLE } from "../env";
-import { createProxySSGHelpers, getServerSession } from "../utils/ssgHelpers";
+import { createServerSideHelpers, getServerSession } from "../utils/serverSideHelpers";
 import { trpc } from "../utils/trpc";
 
 export async function getServerSideProps(
@@ -17,10 +17,10 @@ export async function getServerSideProps(
     return { redirect: { destination: "/unauthenticated", permanent: false } };
   }
 
-  const ssg = createProxySSGHelpers(context, session);
-  await ssg.user.friend.list.prefetch();
+  const trpc = createServerSideHelpers(context, session);
+  await trpc.user.friend.list.prefetch();
 
-  return { props: { session, trpcState: ssg.dehydrate() } };
+  return { props: { session, trpcState: trpc.dehydrate() } };
 }
 
 export default function HomePage(): JSX.Element {

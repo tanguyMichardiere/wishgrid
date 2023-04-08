@@ -3,7 +3,7 @@ import type { Session } from "next-auth";
 import Head from "next/head";
 import Navbar from "../../components/Navbar";
 import { NEXT_PUBLIC_TITLE } from "../../env";
-import { getServerSession } from "../../utils/ssgHelpers";
+import { getServerSession } from "../../utils/serverSideHelpers";
 
 export async function getServerSideProps(
   context: GetServerSidePropsContext
