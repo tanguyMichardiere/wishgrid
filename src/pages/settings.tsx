@@ -6,9 +6,13 @@ import ThemeMenu from "../components/ThemeMenu";
 import { NEXT_PUBLIC_TITLE } from "../env";
 import { getServerSession } from "../utils/serverSideHelpers";
 
+type Props = {
+  session: Session;
+};
+
 export async function getServerSideProps(
   context: GetServerSidePropsContext
-): Promise<GetServerSidePropsResult<{ session: Session }>> {
+): Promise<GetServerSidePropsResult<Props>> {
   const session = await getServerSession(context);
   if (session === null) {
     return { redirect: { destination: "/unauthenticated", permanent: false } };
@@ -17,13 +21,13 @@ export async function getServerSideProps(
   return { props: { session } };
 }
 
-export default function SettingsPage(): JSX.Element {
+export default function SettingsPage(props: Props): JSX.Element {
   return (
     <>
       <Head>
         <title>{`${NEXT_PUBLIC_TITLE} - Settings`}</title>
       </Head>
-      <Navbar />
+      <Navbar session={props.session} />
       <div className="mx-auto flex max-w-xl flex-col gap-2 p-4">
         <div className="flex items-center justify-between">
           <p>Theme</p>
