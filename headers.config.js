@@ -30,8 +30,12 @@ module.exports = {
         process.env.NODE_ENV === "production"
           ? "Content-Security-Policy"
           : "Content-Security-Policy-Report-Only",
-      value:
-        "default-src 'self'; img-src 'self' data: cdn.discordapp.com; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
+      value: [
+        "default-src 'self'",
+        "img-src 'self' data: authjs.dev cdn.discordapp.com",
+        "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
+        "style-src 'self' 'unsafe-inline'",
+      ].join("; "),
     },
   ],
 };
