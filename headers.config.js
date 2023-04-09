@@ -1,3 +1,4 @@
+/** @type {import('next/dist/lib/load-custom-routes').Header["headers"]} */
 module.exports = {
   headers: [
     {
@@ -32,10 +33,26 @@ module.exports = {
           : "Content-Security-Policy-Report-Only",
       value: [
         "default-src 'self'",
-        "img-src 'self' data: authjs.dev cdn.discordapp.com",
+        "connect-src authjs.dev",
+        "img-src 'self' data: cdn.discordapp.com",
         "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
         "style-src 'self' 'unsafe-inline'",
       ].join("; "),
+    },
+    {
+      key:
+        process.env.NODE_ENV === "production"
+          ? "Content-Security-Policy"
+          : "Content-Security-Policy-Report-Only",
+      value: Object.entries({
+        "default-src": ["'self'"],
+        "connect-src": ["authjs.dev"],
+        "img-src": ["'self'", "data:", "cdn.discordapp.com"],
+        "script-src": ["'self'", "'unsafe-eval'", "'unsafe-inline'"],
+        "style-src": ["'self'", "'unsafe-inline'"],
+      })
+        .map(([key, value]) => `${key} ${value.join(" ")}`)
+        .join("; "),
     },
   ],
 };
