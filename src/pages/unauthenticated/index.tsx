@@ -2,8 +2,8 @@ import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import { signIn as _signIn } from "next-auth/react";
 import Head from "next/head";
 import { useCallback } from "react";
-import { NEXT_PUBLIC_TITLE } from "../env";
-import { getServerSession } from "../utils/serverSideHelpers";
+import { NEXT_PUBLIC_TITLE } from "../../env";
+import { getServerSession } from "../../utils/serverSideHelpers";
 
 export async function getServerSideProps(
   context: GetServerSidePropsContext
