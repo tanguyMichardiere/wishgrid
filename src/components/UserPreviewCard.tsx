@@ -2,7 +2,7 @@ import type { User } from "@prisma/client";
 import Avatar from "./Avatar";
 
 type Props = {
-  user: User;
+  user: Pick<User, "id" | "name" | "image">;
 };
 
 export default function UserPreviewCard(props: Props): JSX.Element {

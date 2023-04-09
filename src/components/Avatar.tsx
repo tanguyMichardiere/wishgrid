@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useMemo } from "react";
 
 type Props = {
-  user: User;
+  user: Pick<User, "id" | "image">;
 };
 
 export default function Avatar(props: Props): JSX.Element {
