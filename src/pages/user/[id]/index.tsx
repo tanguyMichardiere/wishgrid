@@ -3,10 +3,10 @@ import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import type { Session } from "next-auth";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Navbar from "../../components/Navbar";
-import { NEXT_PUBLIC_TITLE } from "../../env.js";
-import { createServerSideHelpers, getServerSession } from "../../utils/serverSideHelpers";
-import { trpc } from "../../utils/trpc";
+import Navbar from "../../../components/Navbar";
+import { NEXT_PUBLIC_TITLE } from "../../../env.js";
+import { createServerSideHelpers, getServerSession } from "../../../utils/serverSideHelpers";
+import { trpc } from "../../../utils/trpc";
 
 type Params = {
   id: string;
@@ -34,7 +34,7 @@ export async function getServerSideProps(
   return { props: { session, trpcState: trpc.dehydrate() } };
 }
 
-export default function UserIdPage(): JSX.Element {
+export default function UserDetailsPage(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const { id } = useRouter().query as Params;
 
@@ -45,8 +45,8 @@ export default function UserIdPage(): JSX.Element {
       <Head>
         <title>{`${NEXT_PUBLIC_TITLE} - ${user.data?.name ?? id}`}</title>
       </Head>
-      <Navbar withBackButton />
-      <div className="mx-auto max-w-xl p-4">TODO</div>
+      <Navbar backHref="/" title="User details" />
+      <div className="mx-auto max-w-xl">TODO</div>
     </>
   );
 }

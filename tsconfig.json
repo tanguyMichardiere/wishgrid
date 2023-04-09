@@ -30,6 +30,7 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.js",
+    "prisma/seed.mjs",
     "./*.js",
     "./.*.js"
   ],

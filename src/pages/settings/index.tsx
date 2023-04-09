@@ -2,11 +2,11 @@ import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import type { Session } from "next-auth";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import Navbar from "../components/Navbar";
-import { NEXT_PUBLIC_TITLE } from "../env";
-import { getServerSession } from "../utils/serverSideHelpers";
+import Navbar from "../../components/Navbar";
+import { NEXT_PUBLIC_TITLE } from "../../env";
+import { getServerSession } from "../../utils/serverSideHelpers";
 
-const ThemeMenu = dynamic(() => import("../components/ThemeMenu"), { ssr: false });
+const ThemeMenu = dynamic(() => import("../../components/ThemeMenu"), { ssr: false });
 
 type Props = {
   session: Session;
@@ -29,8 +29,8 @@ export default function SettingsPage(): JSX.Element {
       <Head>
         <title>{`${NEXT_PUBLIC_TITLE} - Settings`}</title>
       </Head>
-      <Navbar />
-      <div className="mx-auto flex max-w-xl flex-col gap-2 p-4">
+      <Navbar title="Settings" />
+      <div className="mx-auto flex max-w-xl flex-col gap-2">
         <div className="flex items-center justify-between">
           <p>Theme</p>
           <ThemeMenu />

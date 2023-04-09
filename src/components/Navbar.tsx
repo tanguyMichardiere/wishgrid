@@ -1,18 +1,21 @@
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { cx } from "classix";
 import { signOut as _signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useCallback } from "react";
+import { NEXT_PUBLIC_TITLE } from "../env";
+import { trpc } from "../utils/trpc";
 import Avatar from "./Avatar";
 
 type Props = {
-  withBackButton?: boolean;
+  backHref?: string;
+  title?: string;
 };
 
-export default function Navbar({ withBackButton = false }: Props): JSX.Element {
-  const router = useRouter();
-
+export default function Navbar(props: Props): JSX.Element {
   const session = useSession({ required: true });
+
+  const friendRequestsCount = trpc.user.friend.request.count.useQuery();
 
   const signOut = useCallback(async function () {
     await _signOut();
@@ -20,15 +23,18 @@ export default function Navbar({ withBackButton = false }: Props): JSX.Element {
 
   return (
     <nav className="navbar bg-base-100">
-      <div className="flex-1">
-        {withBackButton && (
-          <button className="w-fit p-2" onClick={router.back} title="back" type="button">
+      <div className="flex flex-1 gap-2">
+        {props.backHref !== undefined && (
+          <Link href={props.backHref}>
             <ArrowLeftIcon className="h-6 w-6" />
-          </button>
+          </Link>
         )}
-        <Link className="btn-ghost btn text-xl normal-case" href="/">
-          Wisher
+        <Link className="text-xl normal-case" href="/">
+          <h1>{NEXT_PUBLIC_TITLE}</h1>
         </Link>
+        {props.title !== undefined && (
+          <h2 className="line-clamp-1 text-xl font-light">{props.title}</h2>
+        )}
       </div>
       {session.status !== "loading" && (
         <div className="flex-none gap-2">
@@ -41,9 +47,16 @@ export default function Navbar({ withBackButton = false }: Props): JSX.Element {
               tabIndex={0}
             >
               <li>
-                <Link className="justify-between" href="/profile">
-                  Profile
-                  <span className="badge">New</span>
+                <Link href="/profile">Profile</Link>
+              </li>
+              <li>
+                <Link className="justify-between" href="/friend-requests">
+                  Friend requests
+                  {friendRequestsCount.isSuccess && (
+                    <span className={cx("badge", friendRequestsCount.data === 0 && "badge-ghost")}>
+                      {friendRequestsCount.data}
+                    </span>
+                  )}
                 </Link>
               </li>
               <li>

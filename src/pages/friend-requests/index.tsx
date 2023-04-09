@@ -3,12 +3,12 @@ import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import type { Session } from "next-auth";
 import Head from "next/head";
 import Link from "next/link";
-import Navbar from "../components/Navbar";
-import Spinner from "../components/Spinner";
-import UserPreviewCard from "../components/UserPreviewCard";
-import { NEXT_PUBLIC_TITLE } from "../env";
-import { createServerSideHelpers, getServerSession } from "../utils/serverSideHelpers";
-import { trpc } from "../utils/trpc";
+import Navbar from "../../components/Navbar";
+import Spinner from "../../components/Spinner";
+import UserPreviewCard from "../../components/UserPreviewCard";
+import { NEXT_PUBLIC_TITLE } from "../../env";
+import { createServerSideHelpers, getServerSession } from "../../utils/serverSideHelpers";
+import { trpc } from "../../utils/trpc";
 
 type Props = {
   session: Session;
@@ -24,26 +24,26 @@ export async function getServerSideProps(
   }
 
   const trpc = createServerSideHelpers(context, session);
-  await trpc.user.friend.list.prefetch();
+  await trpc.user.friend.request.list.prefetch();
 
   return { props: { session, trpcState: trpc.dehydrate() } };
 }
 
-export default function HomePage(): JSX.Element {
-  const friends = trpc.user.friend.list.useQuery();
+export default function FriendRequestsPage(): JSX.Element {
+  const friendRequests = trpc.user.friend.request.list.useQuery();
 
   return (
     <>
       <Head>
-        <title>{NEXT_PUBLIC_TITLE}</title>
+        <title>{`${NEXT_PUBLIC_TITLE} - Friend requests`}</title>
       </Head>
-      <Navbar title="Friends" />
+      <Navbar title="Friend requests" />
       <div className="mx-auto max-w-xl pb-20">
-        {friends.data !== undefined ? (
+        {friendRequests.data !== undefined ? (
           <ul className="flex flex-col gap-2">
-            {friends.data.map((user) => (
+            {friendRequests.data.map((user) => (
               <li key={user.id}>
-                <Link href={`/user/${user.id}`}>
+                <Link href={`/friend-requests/${user.id}`}>
                   <UserPreviewCard user={user} />
                 </Link>
               </li>
