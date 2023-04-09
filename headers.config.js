@@ -1,4 +1,4 @@
-/** @type {import('next/dist/lib/load-custom-routes').Header["headers"]} */
+/** @type {{ headers: import('next/dist/lib/load-custom-routes').Header["headers"] }} */
 module.exports = {
   headers: [
     {
