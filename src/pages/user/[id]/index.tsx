@@ -2,26 +2,31 @@ import type { DehydratedState } from "@tanstack/react-query";
 import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import type { Session } from "next-auth";
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { z } from "zod";
+import Avatar from "../../../components/Avatar";
 import Navbar from "../../../components/Navbar";
+import Spinner from "../../../components/Spinner";
 import { NEXT_PUBLIC_TITLE } from "../../../env.js";
 import { createServerSideHelpers, getServerSession } from "../../../utils/serverSideHelpers";
 import { trpc } from "../../../utils/trpc";
 
-type Params = {
-  id: string;
-};
+const Params = z.object({
+  id: z.string().cuid(),
+});
 
 type Props = {
   session: Session;
   trpcState: DehydratedState;
+  id: string;
 };
 
 export async function getServerSideProps(
-  context: GetServerSidePropsContext<Params>
+  context: GetServerSidePropsContext
 ): Promise<GetServerSidePropsResult<Props>> {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const { id } = context.params!;
+  const params = Params.safeParse(context.params);
+  if (!params.success) {
+    return { notFound: true };
+  }
 
   const session = await getServerSession(context);
   if (session === null) {
@@ -29,24 +34,32 @@ export async function getServerSideProps(
   }
 
   const trpc = createServerSideHelpers(context, session);
-  await trpc.user.get.prefetch({ id });
+  await trpc.user.get.prefetch({ id: params.data.id });
 
-  return { props: { session, trpcState: trpc.dehydrate() } };
+  return { props: { session, trpcState: trpc.dehydrate(), id: params.data.id } };
 }
 
-export default function UserDetailsPage(): JSX.Element {
-  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-  const { id } = useRouter().query as Params;
-
-  const user = trpc.user.get.useQuery({ id });
+export default function UserDetailsPage(props: Props): JSX.Element {
+  const user = trpc.user.get.useQuery({ id: props.id });
 
   return (
     <>
       <Head>
-        <title>{`${NEXT_PUBLIC_TITLE} - ${user.data?.name ?? id}`}</title>
+        <title>{`${NEXT_PUBLIC_TITLE} - ${user.data?.name ?? props.id}`}</title>
       </Head>
       <Navbar backHref="/" title="User details" />
-      <div className="mx-auto max-w-xl">TODO</div>
+      <div className="mx-auto max-w-xl">
+        {user.isSuccess ? (
+          <div className="flex flex-col items-center gap-2">
+            <Avatar user={user.data} />
+            <h3 className="text-lg">{user.data.name}</h3>
+          </div>
+        ) : (
+          <div className="flex justify-center">
+            <Spinner />
+          </div>
+        )}
+      </div>
     </>
   );
 }

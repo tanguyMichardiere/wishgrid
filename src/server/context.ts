@@ -8,7 +8,7 @@ import { nextAuthOptions } from "../pages/api/auth/[...nextauth]";
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function createContext({ req, res }: CreateNextContextOptions) {
   return {
-    logger: log.with(req.query),
+    log: log.with(req.query),
     prisma: new PrismaClient(),
     session: await getServerSession(req, res, nextAuthOptions),
   };

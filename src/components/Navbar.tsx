@@ -2,7 +2,7 @@ import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { cx } from "classix";
 import { signOut as _signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { NEXT_PUBLIC_TITLE } from "../env";
 import { trpc } from "../utils/trpc";
 import Avatar from "./Avatar";
@@ -21,6 +21,11 @@ export default function Navbar(props: Props): JSX.Element {
     await _signOut();
   }, []);
 
+  const showAvatarRing = useMemo(
+    () => friendRequestsCount.isSuccess && friendRequestsCount.data > 0,
+    [friendRequestsCount.isSuccess, friendRequestsCount.data]
+  );
+
   return (
     <nav className="navbar bg-base-100">
       <div className="flex flex-1 gap-2">
@@ -33,13 +38,21 @@ export default function Navbar(props: Props): JSX.Element {
           <h1>{NEXT_PUBLIC_TITLE}</h1>
         </Link>
         {props.title !== undefined && (
-          <h2 className="line-clamp-1 text-xl font-light">{props.title}</h2>
+          <>
+            |<h2 className="line-clamp-1 text-xl font-light">{props.title}</h2>
+          </>
         )}
       </div>
-      {session.status !== "loading" && (
+      {session.status === "authenticated" && (
         <div className="flex-none gap-2">
           <div className="dropdown-end dropdown">
-            <label className="btn-ghost btn-circle btn" tabIndex={0}>
+            <label
+              className={cx(
+                "btn-ghost btn-circle btn",
+                showAvatarRing && "ring ring-primary ring-offset-base-100"
+              )}
+              tabIndex={0}
+            >
               <Avatar user={session.data.user} />
             </label>
             <ul

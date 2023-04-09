@@ -23,7 +23,7 @@ export function createServerSideHelpers(
   return _createServerSideHelpers({
     router,
     ctx: {
-      logger: log.with({ ssr: { url: req.url, params } }),
+      log: log.with({ ssr: { url: req.url, params } }),
       prisma: new PrismaClient(),
       session,
     },

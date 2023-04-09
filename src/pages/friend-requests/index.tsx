@@ -39,7 +39,7 @@ export default function FriendRequestsPage(): JSX.Element {
       </Head>
       <Navbar title="Friend requests" />
       <div className="mx-auto max-w-xl pb-20">
-        {friendRequests.data !== undefined ? (
+        {friendRequests.isSuccess ? (
           <ul className="flex flex-col gap-2">
             {friendRequests.data.map((user) => (
               <li key={user.id}>

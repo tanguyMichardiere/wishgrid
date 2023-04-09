@@ -39,7 +39,7 @@ export default function HomePage(): JSX.Element {
       </Head>
       <Navbar title="Friends" />
       <div className="mx-auto max-w-xl pb-20">
-        {friends.data !== undefined ? (
+        {friends.isSuccess ? (
           <ul className="flex flex-col gap-2">
             {friends.data.map((user) => (
               <li key={user.id}>
