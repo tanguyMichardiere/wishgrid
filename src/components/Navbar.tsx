@@ -3,6 +3,7 @@ import { cx } from "classix";
 import { signOut as _signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useCallback } from "react";
+import { NEXT_PUBLIC_TITLE } from "../env";
 import { trpc } from "../utils/trpc";
 import Avatar from "./Avatar";
 
@@ -29,7 +30,7 @@ export default function Navbar(props: Props): JSX.Element {
           </Link>
         )}
         <Link className="text-xl normal-case" href="/">
-          <h1>Wisher</h1>
+          <h1>{NEXT_PUBLIC_TITLE}</h1>
         </Link>
         {props.title !== undefined && (
           <h2 className="line-clamp-1 text-xl font-light">{props.title}</h2>
