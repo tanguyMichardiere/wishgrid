@@ -3,10 +3,10 @@ import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import type { Session } from "next-auth";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Navbar from "../../components/Navbar";
-import { NEXT_PUBLIC_TITLE } from "../../env.js";
-import { createServerSideHelpers, getServerSession } from "../../utils/serverSideHelpers";
-import { trpc } from "../../utils/trpc";
+import Navbar from "../../../components/Navbar";
+import { NEXT_PUBLIC_TITLE } from "../../../env.js";
+import { createServerSideHelpers, getServerSession } from "../../../utils/serverSideHelpers";
+import { trpc } from "../../../utils/trpc";
 
 type Params = {
   id: string;

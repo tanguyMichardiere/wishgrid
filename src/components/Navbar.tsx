@@ -1,8 +1,10 @@
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { cx } from "classix";
 import { signOut as _signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
+import { trpc } from "../utils/trpc";
 import Avatar from "./Avatar";
 
 type Props = {
@@ -13,6 +15,8 @@ export default function Navbar({ withBackButton = false }: Props): JSX.Element {
   const router = useRouter();
 
   const session = useSession({ required: true });
+
+  const friendRequestsCount = trpc.user.friend.request.count.useQuery();
 
   const signOut = useCallback(async function () {
     await _signOut();
@@ -26,7 +30,7 @@ export default function Navbar({ withBackButton = false }: Props): JSX.Element {
             <ArrowLeftIcon className="h-6 w-6" />
           </button>
         )}
-        <Link className="btn-ghost btn text-xl normal-case" href="/">
+        <Link className="btn-ghost no-animation btn text-xl normal-case" href="/">
           Wisher
         </Link>
       </div>
@@ -41,9 +45,16 @@ export default function Navbar({ withBackButton = false }: Props): JSX.Element {
               tabIndex={0}
             >
               <li>
-                <Link className="justify-between" href="/profile">
-                  Profile
-                  <span className="badge">New</span>
+                <Link href="/profile">Profile</Link>
+              </li>
+              <li>
+                <Link className="justify-between" href="/friend-requests">
+                  Friend requests
+                  {friendRequestsCount.isSuccess && (
+                    <span className={cx("badge", friendRequestsCount.data === 0 && "badge-ghost")}>
+                      {friendRequestsCount.data}
+                    </span>
+                  )}
                 </Link>
               </li>
               <li>
