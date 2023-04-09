@@ -40,7 +40,7 @@ async function main() {
       outFriendRequests: { connect: [{ id: tanguy.id }, { id: noli.id }] },
     },
   });
-  const claire = await prisma.user.upsert({
+  await prisma.user.upsert({
     where: { email: "claire@mail.com" },
     update: {},
     create: {
