@@ -2,6 +2,7 @@ import type { DehydratedState } from "@tanstack/react-query";
 import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import type { Session } from "next-auth";
 import Head from "next/head";
+import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Spinner from "../../components/Spinner";
 import UserPreviewCard from "../../components/UserPreviewCard";
@@ -36,13 +37,15 @@ export default function FriendRequestsPage(): JSX.Element {
       <Head>
         <title>{`${NEXT_PUBLIC_TITLE} - Friend requests`}</title>
       </Head>
-      <Navbar />
-      <div className="mx-auto max-w-xl p-4 pb-20">
+      <Navbar title="Friend requests" />
+      <div className="mx-auto max-w-xl pb-20">
         {friendRequests.data !== undefined ? (
           <ul className="flex flex-col gap-2">
             {friendRequests.data.map((user) => (
               <li key={user.id}>
-                <UserPreviewCard user={user} />
+                <Link href={`/friend-requests/${user.id}`}>
+                  <UserPreviewCard user={user} />
+                </Link>
               </li>
             ))}
           </ul>

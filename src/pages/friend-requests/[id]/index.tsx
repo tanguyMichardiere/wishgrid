@@ -34,7 +34,7 @@ export async function getServerSideProps(
   return { props: { session, trpcState: trpc.dehydrate() } };
 }
 
-export default function FriendRequestsIdPage(): JSX.Element {
+export default function FriendRequestDetailsPage(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const { id } = useRouter().query as Params;
 
@@ -45,8 +45,8 @@ export default function FriendRequestsIdPage(): JSX.Element {
       <Head>
         <title>{`${NEXT_PUBLIC_TITLE} - ${user.data?.name ?? id}`}</title>
       </Head>
-      <Navbar withBackButton />
-      <div className="mx-auto max-w-xl p-4">TODO</div>
+      <Navbar backHref="/friend-requests" title="Friend request details" />
+      <div className="mx-auto max-w-xl">TODO</div>
     </>
   );
 }

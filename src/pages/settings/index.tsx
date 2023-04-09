@@ -29,8 +29,8 @@ export default function SettingsPage(): JSX.Element {
       <Head>
         <title>{`${NEXT_PUBLIC_TITLE} - Settings`}</title>
       </Head>
-      <Navbar />
-      <div className="mx-auto flex max-w-xl flex-col gap-2 p-4">
+      <Navbar title="Settings" />
+      <div className="mx-auto flex max-w-xl flex-col gap-2">
         <div className="flex items-center justify-between">
           <p>Theme</p>
           <ThemeMenu />

@@ -14,10 +14,10 @@ export default function Avatar(props: Props): JSX.Element {
   );
 
   return (
-    <label className="avatar" tabIndex={0}>
+    <div className="avatar">
       <div className="w-10 rounded-full">
         <Image alt="profile picture" height={40} src={imageSrc} width={40} />
       </div>
-    </label>
+    </div>
   );
 }

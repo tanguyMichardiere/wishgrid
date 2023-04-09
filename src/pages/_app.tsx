@@ -40,7 +40,7 @@ function App({
         >
           <SessionProvider session={session}>
             <ReactQueryDevtools />
-            <main className={cx(inter.variable, "font-sans")}>
+            <main className={cx(inter.variable, "px-2 font-sans")}>
               <Component {...pageProps} session={session} />
             </main>
           </SessionProvider>

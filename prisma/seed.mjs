@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import { log } from "next-axiom";
 
 const prisma = new PrismaClient();
 
@@ -28,11 +27,30 @@ async function main() {
     create: {
       name: "Thed",
       email: "thed@mail.com",
+      friends: { connect: [{ id: tanguy.id }, { id: noli.id }] },
+      outFriends: { connect: [{ id: tanguy.id }, { id: noli.id }] },
+    },
+  });
+  const maxence = await prisma.user.upsert({
+    where: { email: "maxence@mail.com" },
+    update: {},
+    create: {
+      name: "Maxence",
+      email: "maxence@mail.com",
       outFriendRequests: { connect: [{ id: tanguy.id }, { id: noli.id }] },
     },
   });
-
-  log.info("success", { tanguy, noli, thed });
+  const claire = await prisma.user.upsert({
+    where: { email: "claire@mail.com" },
+    update: {},
+    create: {
+      name: "Claire",
+      email: "claire@mail.com",
+      friends: { connect: { id: maxence.id } },
+      outFriends: { connect: { id: maxence.id } },
+      outFriendRequests: { connect: [{ id: noli.id }, { id: thed.id }] },
+    },
+  });
 }
 
 main()
