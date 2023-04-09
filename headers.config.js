@@ -31,22 +31,9 @@ module.exports = {
         process.env.NODE_ENV === "production"
           ? "Content-Security-Policy"
           : "Content-Security-Policy-Report-Only",
-      value: [
-        "default-src 'self'",
-        "connect-src authjs.dev",
-        "img-src 'self' data: cdn.discordapp.com",
-        "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
-        "style-src 'self' 'unsafe-inline'",
-      ].join("; "),
-    },
-    {
-      key:
-        process.env.NODE_ENV === "production"
-          ? "Content-Security-Policy"
-          : "Content-Security-Policy-Report-Only",
       value: Object.entries({
         "default-src": ["'self'"],
-        "connect-src": ["authjs.dev"],
+        "connect-src": ["'self'", "authjs.dev"],
         "img-src": ["'self'", "data:", "cdn.discordapp.com"],
         "script-src": ["'self'", "'unsafe-eval'", "'unsafe-inline'"],
         "style-src": ["'self'", "'unsafe-inline'"],
