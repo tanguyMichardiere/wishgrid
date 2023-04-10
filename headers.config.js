@@ -34,7 +34,7 @@ module.exports = {
       value: Object.entries({
         "default-src": ["'self'"],
         "connect-src": ["'self'", "authjs.dev"],
-        "img-src": ["'self'", "data:", "cdn.discordapp.com"],
+        "img-src": ["'self'", "data:", "authjs.dev", "cdn.discordapp.com"],
         "script-src": ["'self'", "'unsafe-eval'", "'unsafe-inline'"],
         "style-src": ["'self'", "'unsafe-inline'"],
       })
