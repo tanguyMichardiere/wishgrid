@@ -50,7 +50,9 @@ model User {
   accounts Account[]
   sessions Session[]
 
-  wishList Wish[]
+  wishList       Wish[]    @relation("WishList")
+  reservedWishes Wish[]    @relation("ReservedWishes")
+  comments       Comment[]
 
   friends           User[] @relation("Friend")
   outFriends        User[] @relation("Friend")
@@ -72,8 +74,28 @@ model Wish {
   description String
   link        String
 
-  User   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User   @relation("WishList", fields: [userId], references: [id], onDelete: Cascade)
   userId String
 
+  reservedBy   User?   @relation("ReservedWishes", fields: [reservedById], references: [id], onDelete: SetNull)
+  reservedById String?
+
+  comments Comment[]
+
   @@index([userId])
+  @@index([reservedById])
+}
+
+model Comment {
+  id   String   @id @default(cuid())
+  text String
+  date DateTime
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  Wish   Wish   @relation(fields: [wishId], references: [id], onDelete: Cascade)
+  wishId String
+
+  @@index([userId])
+  @@index([wishId])
 }

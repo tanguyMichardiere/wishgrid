@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client";
 import { createServerSideHelpers as _createServerSideHelpers } from "@trpc/react-query/server";
 import type { GetServerSidePropsContext } from "next";
 import type { Session } from "next-auth";
@@ -6,6 +5,7 @@ import { getServerSession as _getServerSession } from "next-auth";
 import { log } from "next-axiom";
 import SuperJSON from "superjson";
 import { nextAuthOptions } from "../pages/api/auth/[...nextauth]";
+import { prisma } from "../server/prisma";
 import type { Router } from "../server/router";
 import { router } from "../server/router";
 
@@ -24,7 +24,7 @@ export function createServerSideHelpers(
     router,
     ctx: {
       log: log.with({ ssr: { url: req.url, params } }),
-      prisma: new PrismaClient(),
+      prisma,
       session,
     },
     transformer: SuperJSON,

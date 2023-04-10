@@ -1,9 +1,10 @@
 import type { GetStaticPropsResult, InferGetServerSidePropsType } from "next";
+import { NODE_ENV } from "../env";
 
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<{ session: null; panel: string }>
 > {
-  if (process.env.NODE_ENV === "development") {
+  if (NODE_ENV === "development") {
     const { renderTrpcPanel } = await import("trpc-panel");
     const { router } = await import("../server/router");
     const panel = renderTrpcPanel(router, { url: "/api/trpc", transformer: "superjson" });

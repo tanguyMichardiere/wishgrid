@@ -1,7 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import type { Session } from "next-auth";
-import { log } from "next-axiom";
 import Head from "next/head";
 import Link from "next/link";
 import { useCallback, useState } from "react";
@@ -48,7 +47,7 @@ export default function SearchPage(): JSX.Element {
   }, []);
 
   const search = trpc.user.search.useQuery({ name }, { enabled: name.length > 0 });
-  log.debug("search", { search });
+
   return (
     <>
       <Head>

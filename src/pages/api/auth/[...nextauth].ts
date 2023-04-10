@@ -1,10 +1,10 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
 import type { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth";
 import type { Provider } from "next-auth/providers";
 import DiscordProvider from "next-auth/providers/discord";
 import { DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, NODE_ENV } from "../../../env";
+import { prisma } from "../../../server/prisma";
 import MockProvider from "../../../utils/next-auth/MockProvider";
 
 const providers: Array<Provider> = [];
@@ -23,7 +23,7 @@ if (DISCORD_CLIENT_ID !== undefined && DISCORD_CLIENT_SECRET !== undefined) {
 }
 
 export const nextAuthOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(new PrismaClient()),
+  adapter: PrismaAdapter(prisma),
   providers,
   callbacks: {
     session({ session, user }) {
