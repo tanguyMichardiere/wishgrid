@@ -32,7 +32,7 @@ export const user = t.router({
 
   search: t.procedure
     .use(requireSession)
-    .input(z.object({ name: z.string().min(4) }))
+    .input(z.object({ name: z.string().min(4).max(32) }))
     .query(async function ({ ctx, input }) {
       ctx.log.debug(`user.search({name: ${input.name}})`);
       return ctx.prisma.user.findMany({
@@ -44,7 +44,7 @@ export const user = t.router({
 
   rename: t.procedure
     .use(requireSession)
-    .input(z.object({ name: z.string().min(4) }))
+    .input(z.object({ name: z.string().min(4).max(32) }))
     .mutation(async function ({ ctx, input }) {
       ctx.log.debug(`user.rename({name: ${input.name}})`);
       await ctx.prisma.user.update({

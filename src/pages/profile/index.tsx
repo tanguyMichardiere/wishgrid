@@ -29,7 +29,7 @@ export async function getServerSideProps(
 }
 
 const FormData = z.object({
-  name: z.string().min(4),
+  name: z.string().min(4).max(32),
 });
 type FormData = z.infer<typeof FormData>;
 
