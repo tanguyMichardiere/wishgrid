@@ -64,6 +64,14 @@ export default function ProfilePage(): JSX.Element {
     [reset, renameUser]
   );
 
+  const handleBlur = useCallback(
+    function () {
+      reset();
+      setRenaming(false);
+    },
+    [reset]
+  );
+
   return (
     <>
       <Head>
@@ -79,7 +87,12 @@ export default function ProfilePage(): JSX.Element {
             </h3>
             {renaming ? (
               <form className="text-center" onSubmit={handleSubmit(onSubmit)}>
-                <input autoFocus className="input" placeholder="New name" {...register("name")} />
+                <input
+                  autoFocus
+                  className="input"
+                  placeholder="New name"
+                  {...register("name", { onBlur: handleBlur })}
+                />
                 {errors["name"] !== undefined && <p>{errors["name"].message?.toString()}</p>}
               </form>
             ) : (
