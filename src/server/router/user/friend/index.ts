@@ -13,7 +13,13 @@ export const friend = t.router({
       select: { friends: { select: { id: true, name: true, image: true } } },
       where: { id: ctx.session.user.id },
     });
-    return friends;
+    return friends
+      .concat(friends)
+      .concat(friends)
+      .concat(friends)
+      .concat(friends)
+      .concat(friends)
+      .concat(friends);
   }),
 
   get: t.procedure

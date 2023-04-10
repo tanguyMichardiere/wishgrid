@@ -1,7 +1,6 @@
 "use client";
 
 import { Menu as HeadlessUiMenu, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { cx } from "classix";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -10,9 +9,14 @@ import { Fragment } from "react";
 type Props = {
   position: "left" | "right";
   children: ReactNode;
-  buttonClassName: string;
-  menuClassName: string;
-  items: Array<{ key: string; children: ReactNode } & ({ onClick: () => void } | { href: string })>;
+  buttonClassName?: string;
+  menuClassName?: string;
+  items: Array<
+    { key: string; children: ReactNode; className?: string } & (
+      | { onClick: () => Promise<void> | void }
+      | { href: string }
+    )
+  >;
 };
 
 export default function Menu(props: Props): JSX.Element {
@@ -20,7 +24,6 @@ export default function Menu(props: Props): JSX.Element {
     <HeadlessUiMenu as="div" className="relative inline-block">
       <HeadlessUiMenu.Button className={props.buttonClassName}>
         {props.children}
-        <ChevronDownIcon aria-hidden="true" className="-mr-1 ml-2 h-5 w-5" />
       </HeadlessUiMenu.Button>
       <Transition
         as={Fragment}
@@ -34,7 +37,7 @@ export default function Menu(props: Props): JSX.Element {
         <HeadlessUiMenu.Items
           as="ul"
           className={cx(
-            "menu absolute mt-2 w-fit rounded-md bg-base-100 shadow-md",
+            "menu absolute z-50 mt-2 rounded-md bg-base-100 shadow-md",
             props.position === "left" && "right-0",
             props.position === "right" && "left-0",
             props.menuClassName
@@ -43,11 +46,11 @@ export default function Menu(props: Props): JSX.Element {
           {props.items.map((item) => (
             <li key={item.key}>
               {"onClick" in item ? (
-                <HeadlessUiMenu.Item as="button" onClick={item.onClick}>
+                <HeadlessUiMenu.Item as="button" className={item.className} onClick={item.onClick}>
                   {item.children}
                 </HeadlessUiMenu.Item>
               ) : (
-                <HeadlessUiMenu.Item as={Link} href={item.href}>
+                <HeadlessUiMenu.Item as={Link} className={item.className} href={item.href}>
                   {item.children}
                 </HeadlessUiMenu.Item>
               )}

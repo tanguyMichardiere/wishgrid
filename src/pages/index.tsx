@@ -38,9 +38,9 @@ export default function HomePage(): JSX.Element {
         <title>{NEXT_PUBLIC_TITLE}</title>
       </Head>
       <Navbar title="Friends" />
-      <div className="mx-auto max-w-xl pb-20">
+      <div className="mx-auto max-w-sm pb-20">
         {friends.isSuccess ? (
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col">
             {friends.data.map((user) => (
               <li key={user.id}>
                 <Link href={`/user/${user.id}`}>

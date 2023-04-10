@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { useTheme } from "next-themes";
 import { useCallback } from "react";
 import Menu from "./Menu";
@@ -44,6 +45,7 @@ export default function ThemeMenu(props: Props): JSX.Element {
       position={props.position}
     >
       {theme ?? "Theme"}
+      <ChevronDownIcon aria-hidden="true" className="-mr-1 ml-2 h-5 w-5" />
     </Menu>
   );
 }
