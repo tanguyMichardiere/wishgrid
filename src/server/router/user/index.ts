@@ -41,4 +41,15 @@ export const user = t.router({
         take: 10,
       });
     }),
+
+  rename: t.procedure
+    .use(requireSession)
+    .input(z.object({ name: z.string().min(4) }))
+    .mutation(async function ({ ctx, input }) {
+      ctx.log.debug(`user.rename({name: ${input.name}})`);
+      await ctx.prisma.user.update({
+        where: { id: ctx.session.user.id },
+        data: { name: input.name },
+      });
+    }),
 });

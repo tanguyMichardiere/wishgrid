@@ -86,7 +86,7 @@ export default function FriendRequestDetailsPage(props: Props): JSX.Element {
       <div className="mx-auto max-w-sm">
         {user.isSuccess ? (
           <div className="flex flex-col items-center gap-2">
-            <Avatar user={user.data} />
+            <Avatar size="large" user={user.data} />
             <h3 className="text-lg">{user.data.name}</h3>
             <p>requested to be friends with you</p>
             <div className="flex gap-4">

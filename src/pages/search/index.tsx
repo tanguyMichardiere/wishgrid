@@ -56,7 +56,12 @@ export default function SearchPage(): JSX.Element {
       <Navbar title="Search" />
       <div className="mx-auto flex max-w-sm flex-col gap-4">
         <form className="text-center" onSubmit={handleSubmit(onSubmit)}>
-          <input autoFocus className="input w-full max-w-xs" {...register("name")} />
+          <input
+            autoFocus
+            className="input w-full max-w-xs"
+            placeholder="Search by name"
+            {...register("name")}
+          />
           {errors["name"] !== undefined && <p>{errors["name"].message?.toString()}</p>}
         </form>
         {search.isSuccess ? (

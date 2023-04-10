@@ -73,7 +73,7 @@ export default function Navbar(props: Props): JSX.Element {
             menuClassName="w-52"
             position="left"
           >
-            <Avatar user={session.data.user} />
+            <Avatar size="small" user={session.data.user} />
           </Menu>
         </div>
       ) : (

@@ -48,14 +48,23 @@ export default function UserDetailsPage(props: Props): JSX.Element {
   const user = trpc.user.get.useQuery({ id: props.id });
 
   const createFriendRequest = trpc.user.friend.request.create.useMutation();
+  const cancelFriendRequest = trpc.user.friend.request.cancel.useMutation();
 
-  const handleFriendRequest = useCallback(
+  const handleCreateFriendRequest = useCallback(
     function () {
       if (user.isSuccess) {
         createFriendRequest.mutate({ id: user.data.id });
       }
     },
     [user.isSuccess, createFriendRequest, user.data?.id]
+  );
+  const handleCancelFriendRequest = useCallback(
+    function () {
+      if (user.isSuccess) {
+        cancelFriendRequest.mutate({ id: user.data.id });
+      }
+    },
+    [user.isSuccess, cancelFriendRequest, user.data?.id]
   );
 
   return (
@@ -67,12 +76,29 @@ export default function UserDetailsPage(props: Props): JSX.Element {
       <div className="mx-auto max-w-sm">
         {user.isSuccess ? (
           <div className="flex flex-col items-center gap-2">
-            <Avatar user={user.data} />
+            <Avatar size="large" user={user.data} />
             <h3 className="text-lg">{user.data.name}</h3>
             {user.data.friendRequest ? (
-              <p className="text-center">
-                You have already requested to be friends with {user.data.name}
-              </p>
+              <>
+                <p className="text-center">
+                  You have already requested to be friends with {user.data.name}
+                </p>
+                {cancelFriendRequest.isSuccess ? (
+                  <div className="flex gap-2">
+                    <CheckIcon className="h-6 w-6" />
+                    Friend request cancelled
+                  </div>
+                ) : (
+                  <button
+                    className="btn"
+                    disabled={cancelFriendRequest.isLoading}
+                    onClick={handleCancelFriendRequest}
+                    type="button"
+                  >
+                    {cancelFriendRequest.isLoading ? <Spinner /> : "Cancel"}
+                  </button>
+                )}
+              </>
             ) : createFriendRequest.isSuccess ? (
               <div className="flex gap-2">
                 <CheckIcon className="h-6 w-6" />
@@ -82,7 +108,7 @@ export default function UserDetailsPage(props: Props): JSX.Element {
               <button
                 className="btn"
                 disabled={createFriendRequest.isLoading}
-                onClick={handleFriendRequest}
+                onClick={handleCreateFriendRequest}
                 type="button"
               >
                 {createFriendRequest.isLoading ? <Spinner /> : "Friend request"}
