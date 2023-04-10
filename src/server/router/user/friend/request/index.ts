@@ -8,6 +8,7 @@ export const request = t.router({
     .use(requireSession)
     .input(z.object({ id: z.string().cuid() }))
     .mutation(async function ({ ctx, input }) {
+      ctx.log.debug(`user.friend.request.create({id: ${input.id}})`);
       await ctx.prisma.$transaction(async function (tx) {
         const { friends, outFriendRequests } = await tx.user.findUniqueOrThrow({
           select: {
@@ -29,10 +30,35 @@ export const request = t.router({
       });
     }),
 
+  cancel: t.procedure
+    .use(requireSession)
+    .input(z.object({ id: z.string().cuid() }))
+    .mutation(async function ({ ctx, input }) {
+      ctx.log.debug(`user.friend.request.cancel({id: ${input.id}})`);
+      await ctx.prisma.$transaction(async function (tx) {
+        const { outFriendRequests } = await tx.user.findUniqueOrThrow({
+          select: { outFriendRequests: { select: { id: true } } },
+          where: { id: ctx.session.user.id },
+        });
+        if (outFriendRequests.map((user) => user.id).includes(input.id)) {
+          await tx.user.update({
+            where: { id: ctx.session.user.id },
+            data: {
+              friendRequests: { disconnect: { id: input.id } },
+              outFriendRequests: { disconnect: { id: input.id } },
+            },
+          });
+        } else {
+          throw new TRPCError({ code: "BAD_REQUEST" });
+        }
+      });
+    }),
+
   accept: t.procedure
     .use(requireSession)
     .input(z.object({ id: z.string().cuid() }))
     .mutation(async function ({ ctx, input }) {
+      ctx.log.debug(`user.friend.request.accept({id: ${input.id}})`);
       await ctx.prisma.$transaction(async function (tx) {
         const { friendRequests } = await tx.user.findUniqueOrThrow({
           select: { friendRequests: { select: { id: true } } },
@@ -58,6 +84,7 @@ export const request = t.router({
     .use(requireSession)
     .input(z.object({ id: z.string().cuid() }))
     .mutation(async function ({ ctx, input }) {
+      ctx.log.debug(`user.friend.request.decline({id: ${input.id}})`);
       await ctx.prisma.$transaction(async function (tx) {
         const { friendRequests } = await tx.user.findUniqueOrThrow({
           select: { friendRequests: { select: { id: true } } },
@@ -78,6 +105,7 @@ export const request = t.router({
     }),
 
   count: t.procedure.use(requireSession).query(async function ({ ctx }) {
+    ctx.log.debug("user.friend.request.count");
     const { _count } = await ctx.prisma.user.findUniqueOrThrow({
       select: { _count: { select: { friendRequests: true } } },
       where: { id: ctx.session.user.id },
@@ -86,6 +114,7 @@ export const request = t.router({
   }),
 
   list: t.procedure.use(requireSession).query(async function ({ ctx }) {
+    ctx.log.debug("user.friend.request.list");
     const { friendRequests } = await ctx.prisma.user.findUniqueOrThrow({
       select: { friendRequests: true },
       where: { id: ctx.session.user.id },

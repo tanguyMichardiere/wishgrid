@@ -38,9 +38,9 @@ export default function FriendRequestsPage(): JSX.Element {
         <title>{`${NEXT_PUBLIC_TITLE} - Friend requests`}</title>
       </Head>
       <Navbar title="Friend requests" />
-      <div className="mx-auto max-w-xl pb-20">
-        {friendRequests.data !== undefined ? (
-          <ul className="flex flex-col gap-2">
+      <div className="mx-auto max-w-sm pb-20">
+        {friendRequests.isSuccess ? (
+          <ul className="flex flex-col">
             {friendRequests.data.map((user) => (
               <li key={user.id}>
                 <Link href={`/friend-requests/${user.id}`}>

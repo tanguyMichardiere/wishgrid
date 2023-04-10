@@ -30,10 +30,10 @@ export default function SettingsPage(): JSX.Element {
         <title>{`${NEXT_PUBLIC_TITLE} - Settings`}</title>
       </Head>
       <Navbar title="Settings" />
-      <div className="mx-auto flex max-w-xl flex-col gap-2">
+      <div className="mx-auto flex max-w-sm flex-col gap-2">
         <div className="flex items-center justify-between">
           <p>Theme</p>
-          <ThemeMenu />
+          <ThemeMenu position="left" />
         </div>
       </div>
     </>
