@@ -43,7 +43,7 @@ export default function HomePage(): JSX.Element {
           <ul className="flex flex-col">
             {friends.data.map((user) => (
               <li key={user.id}>
-                <Link href={`/user/${user.id}`}>
+                <Link href={`/friend/${user.id}`}>
                   <UserPreviewCard user={user} />
                 </Link>
               </li>

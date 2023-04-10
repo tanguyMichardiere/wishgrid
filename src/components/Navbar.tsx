@@ -24,7 +24,7 @@ export default function Navbar(props: Props): JSX.Element {
   );
 
   return (
-    <nav className="navbar sticky top-0 z-40 bg-base-100 px-4">
+    <nav className="navbar sticky top-0 z-40 mb-2 bg-base-100 px-4">
       <div className="flex flex-1 gap-2">
         {props.backHref !== undefined && (
           <Link href={props.backHref}>
@@ -49,6 +49,7 @@ export default function Navbar(props: Props): JSX.Element {
             )}
             items={[
               { key: "profile", children: "Profile", href: "/profile" },
+              { key: "search", children: "Search", href: "/search" },
               {
                 key: "friend-requests",
                 className: "justify-between",

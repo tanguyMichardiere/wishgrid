@@ -47,13 +47,13 @@ export default function FriendRequestDetailsPage(props: Props): JSX.Element {
   const user = trpc.user.get.useQuery({ id: props.id });
 
   const context = trpc.useContext();
-  const accept = trpc.user.friend.request.accept.useMutation({
+  const acceptFriendRequest = trpc.user.friend.request.accept.useMutation({
     async onSuccess(_, variables) {
       await context.user.friend.invalidate();
       await router.push(`/user/${variables.id}`);
     },
   });
-  const refuse = trpc.user.friend.request.decline.useMutation({
+  const refuseFriendRequest = trpc.user.friend.request.decline.useMutation({
     async onSuccess() {
       await context.user.friend.request.invalidate();
       await router.push("/friend-requests");
@@ -63,18 +63,18 @@ export default function FriendRequestDetailsPage(props: Props): JSX.Element {
   const handleAccept = useCallback(
     function () {
       if (user.isSuccess) {
-        accept.mutate({ id: user.data.id });
+        acceptFriendRequest.mutate({ id: user.data.id });
       }
     },
-    [user.isSuccess, accept, user.data?.id]
+    [user.isSuccess, acceptFriendRequest, user.data?.id]
   );
   const handleRefuse = useCallback(
     function () {
       if (user.isSuccess) {
-        refuse.mutate({ id: user.data.id });
+        refuseFriendRequest.mutate({ id: user.data.id });
       }
     },
-    [user.isSuccess, refuse, user.data?.id]
+    [user.isSuccess, refuseFriendRequest, user.data?.id]
   );
 
   return (
@@ -92,19 +92,19 @@ export default function FriendRequestDetailsPage(props: Props): JSX.Element {
             <div className="flex gap-4">
               <button
                 className="btn-success btn"
-                disabled={accept.isLoading || refuse.isLoading}
+                disabled={acceptFriendRequest.isLoading || refuseFriendRequest.isLoading}
                 onClick={handleAccept}
                 type="button"
               >
-                {accept.isLoading ? <Spinner /> : "Accept"}
+                {acceptFriendRequest.isLoading ? <Spinner /> : "Accept"}
               </button>
               <button
                 className="btn-error btn"
-                disabled={accept.isLoading || refuse.isLoading}
+                disabled={acceptFriendRequest.isLoading || refuseFriendRequest.isLoading}
                 onClick={handleRefuse}
                 type="button"
               >
-                {refuse.isLoading ? <Spinner /> : "Refuse"}
+                {refuseFriendRequest.isLoading ? <Spinner /> : "Refuse"}
               </button>
             </div>
           </div>
