@@ -27,7 +27,7 @@ export default function ProfilePage(): JSX.Element {
         <title>{`${NEXT_PUBLIC_TITLE} - Profile`}</title>
       </Head>
       <Navbar title="Profile" />
-      <div className="mx-auto max-w-xl">TODO</div>
+      <div className="mx-auto max-w-sm">TODO</div>
     </>
   );
 }

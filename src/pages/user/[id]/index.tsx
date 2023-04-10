@@ -48,7 +48,7 @@ export default function UserDetailsPage(props: Props): JSX.Element {
         <title>{`${NEXT_PUBLIC_TITLE} - ${user.data?.name ?? props.id}`}</title>
       </Head>
       <Navbar backHref="/" title="User details" />
-      <div className="mx-auto max-w-xl">
+      <div className="mx-auto max-w-sm">
         {user.isSuccess ? (
           <div className="flex flex-col items-center gap-2">
             <Avatar user={user.data} />
