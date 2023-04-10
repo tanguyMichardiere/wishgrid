@@ -48,7 +48,7 @@ async function main() {
       email: "claire@mail.com",
       friends: { connect: { id: maxence.id } },
       outFriends: { connect: { id: maxence.id } },
-      outFriendRequests: { connect: [{ id: noli.id }, { id: thed.id }] },
+      outFriendRequests: { connect: [{ id: tanguy.id }, { id: noli.id }, { id: thed.id }] },
     },
   });
 }
