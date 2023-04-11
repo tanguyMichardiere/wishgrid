@@ -1,12 +1,13 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { t } from "../../../..";
+import { Id } from "../../../../../utils/fieldTypes";
 import { requireSession } from "../../../../middlewares/requireSession";
 
 export const request = t.router({
   create: t.procedure
     .use(requireSession)
-    .input(z.object({ id: z.string().cuid() }))
+    .input(z.object({ id: Id }))
     .mutation(async function ({ ctx, input }) {
       ctx.log.debug(`user.friend.request.create({id: ${input.id}})`);
       await ctx.prisma.$transaction(async function (tx) {
@@ -32,7 +33,7 @@ export const request = t.router({
 
   cancel: t.procedure
     .use(requireSession)
-    .input(z.object({ id: z.string().cuid() }))
+    .input(z.object({ id: Id }))
     .mutation(async function ({ ctx, input }) {
       ctx.log.debug(`user.friend.request.cancel({id: ${input.id}})`);
       await ctx.prisma.$transaction(async function (tx) {
@@ -56,7 +57,7 @@ export const request = t.router({
 
   accept: t.procedure
     .use(requireSession)
-    .input(z.object({ id: z.string().cuid() }))
+    .input(z.object({ id: Id }))
     .mutation(async function ({ ctx, input }) {
       ctx.log.debug(`user.friend.request.accept({id: ${input.id}})`);
       await ctx.prisma.$transaction(async function (tx) {
@@ -82,7 +83,7 @@ export const request = t.router({
 
   decline: t.procedure
     .use(requireSession)
-    .input(z.object({ id: z.string().cuid() }))
+    .input(z.object({ id: Id }))
     .mutation(async function ({ ctx, input }) {
       ctx.log.debug(`user.friend.request.decline({id: ${input.id}})`);
       await ctx.prisma.$transaction(async function (tx) {

@@ -9,17 +9,18 @@ import Avatar from "../../../components/Avatar";
 import Navbar from "../../../components/Navbar";
 import Spinner from "../../../components/Spinner";
 import { NEXT_PUBLIC_TITLE } from "../../../env.js";
+import { Id } from "../../../utils/fieldTypes";
 import { createServerSideHelpers, getServerSession } from "../../../utils/serverSideHelpers";
 import { trpc } from "../../../utils/trpc";
 
 const Params = z.object({
-  id: z.string().cuid(),
+  id: Id,
 });
 
 type Props = {
   session: Session;
   trpcState: DehydratedState;
-  id: string;
+  id: number;
 };
 
 export async function getServerSideProps(

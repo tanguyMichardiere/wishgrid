@@ -1,49 +1,39 @@
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({ log: ["query", "info", "warn", "error"] });
 
 async function main() {
-  const tanguy = await prisma.user.upsert({
-    where: { email: "tanguy@mail.com" },
-    update: {},
-    create: {
+  const tanguy = await prisma.user.create({
+    data: {
       name: "Tanguy",
       email: "tanguy@mail.com",
     },
   });
-  const noli = await prisma.user.upsert({
-    where: { email: "noli@mail.com" },
-    update: {},
-    create: {
+  const noli = await prisma.user.create({
+    data: {
       name: "Noli",
       email: "noli@mail.com",
       friends: { connect: { id: tanguy.id } },
       outFriends: { connect: { id: tanguy.id } },
     },
   });
-  const thed = await prisma.user.upsert({
-    where: { email: "thed@mail.com" },
-    update: {},
-    create: {
+  const thed = await prisma.user.create({
+    data: {
       name: "Thed",
       email: "thed@mail.com",
       friends: { connect: [{ id: tanguy.id }, { id: noli.id }] },
       outFriends: { connect: [{ id: tanguy.id }, { id: noli.id }] },
     },
   });
-  const maxence = await prisma.user.upsert({
-    where: { email: "maxence@mail.com" },
-    update: {},
-    create: {
+  const maxence = await prisma.user.create({
+    data: {
       name: "Maxence",
       email: "maxence@mail.com",
       outFriendRequests: { connect: [{ id: tanguy.id }, { id: noli.id }] },
     },
   });
-  await prisma.user.upsert({
-    where: { email: "claire@mail.com" },
-    update: {},
-    create: {
+  await prisma.user.create({
+    data: {
       name: "Claire",
       email: "claire@mail.com",
       friends: { connect: { id: maxence.id } },

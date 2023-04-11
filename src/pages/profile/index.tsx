@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import type { Session } from "next-auth";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -10,6 +10,7 @@ import Avatar from "../../components/Avatar";
 import Navbar from "../../components/Navbar";
 import Spinner from "../../components/Spinner";
 import { NEXT_PUBLIC_TITLE } from "../../env";
+import { UserName } from "../../utils/fieldTypes";
 import { getServerSession } from "../../utils/serverSideHelpers";
 import { trpc } from "../../utils/trpc";
 
@@ -28,13 +29,23 @@ export async function getServerSideProps(
   return { props: { session } };
 }
 
-const FormData = z.object({
-  name: z.string().min(4).max(32),
-});
+const FormData = z.object({ name: UserName });
 type FormData = z.infer<typeof FormData>;
 
 export default function ProfilePage(): JSX.Element {
   const session = useSession({ required: true });
+
+  const regenerateDefaultImage = trpc.user.regenerateDefaultImage.useMutation({
+    async onSuccess() {
+      await session.update();
+    },
+  });
+  const handleRegenerateDefaultImage = useCallback(
+    function () {
+      regenerateDefaultImage.mutate();
+    },
+    [regenerateDefaultImage]
+  );
 
   const [renaming, setRenaming] = useState(false);
   const setRenamingTrue = useCallback(function () {
@@ -72,6 +83,25 @@ export default function ProfilePage(): JSX.Element {
     [reset]
   );
 
+  const deleteUser = trpc.user.delete.useMutation({
+    async onSuccess() {
+      await signOut();
+    },
+  });
+  const handleDeleteAccount = useCallback(
+    function () {
+      if (
+        // eslint-disable-next-line no-alert
+        confirm(
+          "Are you sure you want to delete your account? This action will delete all your wishes and comments, and remove you from anyone's friend list."
+        )
+      ) {
+        deleteUser.mutate();
+      }
+    },
+    [deleteUser]
+  );
+
   return (
     <>
       <Head>
@@ -82,6 +112,16 @@ export default function ProfilePage(): JSX.Element {
         {session.status === "authenticated" ? (
           <div className="flex flex-col items-center gap-2">
             <Avatar size="large" user={session.data.user} />
+            {session.data.user.image === null && (
+              <button
+                className="btn"
+                disabled={regenerateDefaultImage.isLoading}
+                onClick={handleRegenerateDefaultImage}
+                type="button"
+              >
+                {regenerateDefaultImage.isLoading ? <Spinner /> : "Regenerate profile image"}
+              </button>
+            )}
             <h3 className="text-lg">
               {session.data.user.name ?? "You have not set a user name yet"}
             </h3>
@@ -100,6 +140,14 @@ export default function ProfilePage(): JSX.Element {
                 {renameUser.isLoading ? <Spinner /> : "Change name"}
               </button>
             )}
+            <button
+              className="btn-error btn fixed bottom-20"
+              disabled={deleteUser.isLoading}
+              onClick={handleDeleteAccount}
+              type="button"
+            >
+              {deleteUser.isLoading ? <Spinner /> : "Delete account"}
+            </button>
           </div>
         ) : (
           <div className="flex justify-center">

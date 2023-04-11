@@ -10,6 +10,7 @@ import Navbar from "../../components/Navbar";
 import Spinner from "../../components/Spinner";
 import UserPreviewCard from "../../components/UserPreviewCard";
 import { NEXT_PUBLIC_TITLE } from "../../env";
+import { UserName } from "../../utils/fieldTypes";
 import { getServerSession } from "../../utils/serverSideHelpers";
 import { trpc } from "../../utils/trpc";
 
@@ -28,9 +29,7 @@ export async function getServerSideProps(
   return { props: { session } };
 }
 
-const FormData = z.object({
-  name: z.string().min(4).max(32),
-});
+const FormData = z.object({ name: UserName });
 type FormData = z.infer<typeof FormData>;
 
 export default function SearchPage(): JSX.Element {

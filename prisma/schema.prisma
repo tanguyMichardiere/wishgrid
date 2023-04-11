@@ -6,11 +6,11 @@ datasource db {
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["extendedWhereUnique"]
+  previewFeatures = ["extendedWhereUnique", "fullTextSearch", "fullTextIndex"]
 }
 
 model Account {
-  id                String  @id @default(cuid()) @db.Char(25)
+  id                Int     @id @default(autoincrement())
   type              String  @db.VarChar(5)
   provider          String  @db.VarChar(7)
   providerAccountId String
@@ -22,30 +22,31 @@ model Account {
   id_token          String? @db.Text
   session_state     String?
 
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String @db.Char(25)
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
 
   @@unique([provider, providerAccountId])
   @@index([userId])
 }
 
 model Session {
-  id           String   @id @default(cuid()) @db.Char(25)
+  id           Int      @id @default(autoincrement())
   sessionToken String   @unique @db.Char(36)
   expires      DateTime
 
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String @db.Char(25)
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
 
   @@index([userId])
 }
 
 model User {
-  id            String    @id @default(cuid()) @db.Char(25)
+  id            Int       @id @default(autoincrement())
   name          String?   @db.VarChar(32)
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  defaultImage  String    @default(uuid()) @db.Char(36)
 
   accounts Account[]
   sessions Session[]
@@ -58,6 +59,8 @@ model User {
   outFriends        User[] @relation("Friend")
   friendRequests    User[] @relation("FriendRequest")
   outFriendRequests User[] @relation("FriendRequest")
+
+  @@fulltext([name])
 }
 
 model VerificationToken {
@@ -69,16 +72,16 @@ model VerificationToken {
 }
 
 model Wish {
-  id          String @id @default(cuid()) @db.Char(25)
+  id          Int    @id @default(autoincrement())
   title       String @db.VarChar(32)
   description String @db.Text
   link        String
 
-  user   User   @relation("WishList", fields: [userId], references: [id], onDelete: Cascade)
-  userId String @db.Char(25)
+  user   User @relation("WishList", fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
 
-  reservedBy   User?   @relation("ReservedWishes", fields: [reservedById], references: [id], onDelete: SetNull)
-  reservedById String? @db.Char(25)
+  reservedBy   User? @relation("ReservedWishes", fields: [reservedById], references: [id], onDelete: SetNull)
+  reservedById Int?
 
   comments Comment[]
 
@@ -87,14 +90,14 @@ model Wish {
 }
 
 model Comment {
-  id   String   @id @default(cuid()) @db.Char(25)
+  id   Int      @id @default(autoincrement())
   text String   @db.Text
   date DateTime
 
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String @db.Char(25)
-  Wish   Wish   @relation(fields: [wishId], references: [id], onDelete: Cascade)
-  wishId String @db.Char(25)
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
+  Wish   Wish @relation(fields: [wishId], references: [id], onDelete: Cascade)
+  wishId Int
 
   @@index([userId])
   @@index([wishId])

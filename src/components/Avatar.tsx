@@ -7,7 +7,7 @@ import { useMemo } from "react";
 type Size = "small" | "large";
 
 type Props = {
-  user: Pick<User, "id" | "image">;
+  user: Pick<User, "image" | "defaultImage">;
   size: Size;
 };
 
@@ -24,8 +24,10 @@ const sizes = {
 
 export default function Avatar(props: Props): JSX.Element {
   const imageSrc = useMemo(
-    () => props.user.image ?? `data:image/png;base64,${new Identicon(props.user.id).toString()}`,
-    [props.user.image, props.user.id]
+    () =>
+      props.user.image ??
+      `data:image/png;base64,${new Identicon(props.user.defaultImage).toString()}`,
+    [props.user.image, props.user.defaultImage]
   );
 
   return (
@@ -33,6 +35,7 @@ export default function Avatar(props: Props): JSX.Element {
       <div className={cx("rounded-full", sizes[props.size].className)}>
         <Image
           alt="profile picture"
+          className={cx(props.user.image === null && "image-pixelated")}
           height={sizes[props.size].size}
           src={imageSrc}
           width={sizes[props.size].size}

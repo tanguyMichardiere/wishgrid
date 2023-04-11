@@ -7,6 +7,7 @@ import { NEXT_PUBLIC_TITLE } from "../env";
 import { trpc } from "../utils/trpc";
 import Avatar from "./Avatar";
 import Menu from "./Menu";
+import Spinner from "./Spinner";
 
 type Props = {
   backHref?: string;
@@ -77,7 +78,7 @@ export default function Navbar(props: Props): JSX.Element {
           </Menu>
         </div>
       ) : (
-        "TODO"
+        <Spinner />
       )}
     </nav>
   );

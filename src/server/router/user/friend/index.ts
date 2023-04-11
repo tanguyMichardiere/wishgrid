@@ -1,6 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { t } from "../../..";
+import { Id } from "../../../../utils/fieldTypes";
 import { requireSession } from "../../../middlewares/requireSession";
 import { request } from "./request";
 
@@ -10,7 +11,7 @@ export const friend = t.router({
   list: t.procedure.use(requireSession).query(async function ({ ctx }) {
     ctx.log.debug("user.friend.list");
     const { friends } = await ctx.prisma.user.findUniqueOrThrow({
-      select: { friends: { select: { id: true, name: true, image: true } } },
+      select: { friends: { select: { id: true, name: true, image: true, defaultImage: true } } },
       where: { id: ctx.session.user.id },
     });
     return friends;
@@ -18,7 +19,7 @@ export const friend = t.router({
 
   get: t.procedure
     .use(requireSession)
-    .input(z.object({ id: z.string().cuid() }))
+    .input(z.object({ id: Id }))
     .query(async function ({ ctx, input }) {
       ctx.log.debug(`user.friend.get({id: ${input.id}})`);
       return ctx.prisma.$transaction(async function (tx) {
@@ -28,7 +29,7 @@ export const friend = t.router({
         });
         if (friends.map((user) => user.id).includes(input.id)) {
           return tx.user.findUniqueOrThrow({
-            select: { id: true, name: true, image: true, wishList: true },
+            select: { id: true, name: true, image: true, defaultImage: true, wishList: true },
             where: { id: input.id },
           });
         }
@@ -38,7 +39,7 @@ export const friend = t.router({
 
   remove: t.procedure
     .use(requireSession)
-    .input(z.object({ id: z.string().cuid() }))
+    .input(z.object({ id: Id }))
     .mutation(async function ({ ctx, input }) {
       ctx.log.debug(`user.friend.remove({id: ${input.id}})`);
       await ctx.prisma.$transaction(async function (tx) {
