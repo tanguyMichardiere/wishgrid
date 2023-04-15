@@ -13,14 +13,14 @@ model Account {
   id                Int     @id @default(autoincrement())
   type              String  @db.VarChar(5)
   provider          String  @db.VarChar(7)
-  providerAccountId String
+  providerAccountId String  @db.VarChar(191)
   refresh_token     String? @db.Text
   access_token      String? @db.Text
   expires_at        Int?
   token_type        String? @db.VarChar(6)
   scope             String? @db.VarChar(14)
   id_token          String? @db.Text
-  session_state     String?
+  session_state     String? @db.VarChar(191)
 
   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId Int
@@ -43,9 +43,9 @@ model Session {
 model User {
   id            Int       @id @default(autoincrement())
   name          String?   @db.VarChar(32)
-  email         String?   @unique
+  email         String?   @unique @db.VarChar(191)
   emailVerified DateTime?
-  image         String?
+  image         String?   @db.VarChar(191)
   defaultImage  String    @default(uuid()) @db.Char(36)
 
   accounts Account[]
@@ -64,7 +64,7 @@ model User {
 }
 
 model VerificationToken {
-  identifier String
+  identifier String   @db.VarChar(191)
   token      String   @unique @db.Char(64)
   expires    DateTime
 
@@ -74,8 +74,8 @@ model VerificationToken {
 model Wish {
   id          Int    @id @default(autoincrement())
   title       String @db.VarChar(32)
-  description String @db.Text
-  link        String
+  description String @db.VarChar(256)
+  link        String @db.VarChar(191)
 
   user   User @relation("WishList", fields: [userId], references: [id], onDelete: Cascade)
   userId Int
@@ -91,7 +91,7 @@ model Wish {
 
 model Comment {
   id   Int      @id @default(autoincrement())
-  text String   @db.Text
+  text String   @db.VarChar(256)
   date DateTime
 
   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)

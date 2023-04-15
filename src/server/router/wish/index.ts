@@ -10,8 +10,8 @@ export const wish = t.router({
     .input(
       z.object({
         title: z.string().min(4).max(32),
-        description: z.string(),
-        link: z.string().url(),
+        description: z.string().max(256),
+        link: z.union([z.literal(""), z.string().url()]),
       })
     )
     .mutation(async function ({ ctx, input }) {

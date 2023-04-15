@@ -9,7 +9,6 @@ export const friend = t.router({
   request,
 
   list: t.procedure.use(requireSession).query(async function ({ ctx }) {
-    ctx.log.debug("user.friend.list");
     const { friends } = await ctx.prisma.user.findUniqueOrThrow({
       select: { friends: { select: { id: true, name: true, image: true, defaultImage: true } } },
       where: { id: ctx.session.user.id },
@@ -21,7 +20,6 @@ export const friend = t.router({
     .use(requireSession)
     .input(z.object({ id: Id }))
     .query(async function ({ ctx, input }) {
-      ctx.log.debug(`user.friend.get({id: ${input.id}})`);
       return ctx.prisma.$transaction(async function (tx) {
         const { friends } = await tx.user.findUniqueOrThrow({
           select: { friends: { select: { id: true } } },
@@ -41,7 +39,6 @@ export const friend = t.router({
     .use(requireSession)
     .input(z.object({ id: Id }))
     .mutation(async function ({ ctx, input }) {
-      ctx.log.debug(`user.friend.remove({id: ${input.id}})`);
       await ctx.prisma.$transaction(async function (tx) {
         const { friends } = await tx.user.findUniqueOrThrow({
           select: { friends: { select: { id: true } } },
