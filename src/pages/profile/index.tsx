@@ -35,7 +35,7 @@ type FormData = z.infer<typeof FormData>;
 export default function ProfilePage(): JSX.Element {
   const session = useSession({ required: true });
 
-  const regenerateDefaultImage = trpc.user.regenerateDefaultImage.useMutation({
+  const regenerateDefaultImage = trpc.user.self.regenerateDefaultImage.useMutation({
     async onSuccess() {
       await session.update();
     },
@@ -52,7 +52,7 @@ export default function ProfilePage(): JSX.Element {
     setRenaming(true);
   }, []);
 
-  const renameUser = trpc.user.rename.useMutation({
+  const renameUser = trpc.user.self.rename.useMutation({
     async onSuccess() {
       await session.update();
     },
@@ -70,7 +70,7 @@ export default function ProfilePage(): JSX.Element {
     function (data: FormData) {
       reset();
       setRenaming(false);
-      renameUser.mutate({ name: data.name });
+      renameUser.mutate(data);
     },
     [reset, renameUser]
   );
@@ -83,7 +83,7 @@ export default function ProfilePage(): JSX.Element {
     [reset]
   );
 
-  const deleteUser = trpc.user.delete.useMutation({
+  const deleteUser = trpc.user.self.delete.useMutation({
     async onSuccess() {
       await signOut();
     },
@@ -133,7 +133,7 @@ export default function ProfilePage(): JSX.Element {
                   placeholder="New name"
                   {...register("name", { onBlur: handleBlur })}
                 />
-                {errors["name"] !== undefined && <p>{errors["name"].message?.toString()}</p>}
+                {errors.name !== undefined && <p>{errors.name.message?.toString()}</p>}
               </form>
             ) : (
               <button className="btn" onClick={setRenamingTrue} type="button">

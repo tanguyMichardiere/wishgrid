@@ -50,6 +50,7 @@ export default function Navbar(props: Props): JSX.Element {
             )}
             items={[
               { key: "profile", children: "Profile", href: "/profile" },
+              { key: "wish-list", children: "Wish list", href: "/wish-list" },
               { key: "search", children: "Search", href: "/search" },
               {
                 key: "friend-requests",
