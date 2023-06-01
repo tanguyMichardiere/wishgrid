@@ -11,7 +11,7 @@ type Props = {
   children: ReactNode;
   buttonClassName?: string;
   menuClassName?: string;
-  items: Array<
+  items: ReadonlyArray<
     { key: string; children: ReactNode; className?: string } & (
       | { onClick: () => Promise<void> | void }
       | { href: string }
