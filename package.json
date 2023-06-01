@@ -10,10 +10,9 @@
     "lint": "eslint src --max-warnings 0",
     "check-types": "tsc",
     "check-migrations": "drizzle-kit check:pg --config=drizzle.config.ts",
-    "migrate": "node scripts/migrate.js",
     "analyze-bundle": "ANALYZE=true next build",
     "build": "next build",
-    "postbuild": "npm run migrate",
+    "migrate": "node scripts/migrate.js",
     "start": "next start"
   },
   "dependencies": {
