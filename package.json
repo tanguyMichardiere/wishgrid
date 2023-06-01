@@ -3,13 +3,17 @@
   "private": true,
   "scripts": {
     "prepare": "husky install",
+    "update-dependencies": "sh scripts/update-dependencies.sh",
     "dev": "next dev",
     "format": "prettier -w src",
     "check-format": "prettier --check src",
     "lint": "eslint src --max-warnings 0",
     "check-types": "tsc",
+    "check-migrations": "drizzle-kit check:pg --config=drizzle.config.ts",
+    "migrate": "node scripts/migrate.js",
     "analyze-bundle": "ANALYZE=true next build",
     "build": "next build",
+    "postbuild": "npm run migrate",
     "start": "next start"
   },
   "dependencies": {

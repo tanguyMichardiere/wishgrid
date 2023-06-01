@@ -24,3 +24,5 @@ jobs:
         run: npm run lint
       - name: Check types
         run: npm run check-types
+      - name: Check database migrations
+        run: npm run check-migrations
