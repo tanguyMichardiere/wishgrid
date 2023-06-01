@@ -1,13 +1,11 @@
-import type { User } from "@prisma/client";
+import type { User } from "@clerk/nextjs/dist/types/server";
 import { cx } from "classix";
-import Identicon from "identicon.js";
 import Image from "next/image";
-import { useMemo } from "react";
 
 type Size = "small" | "large";
 
 type Props = {
-  user: Pick<User, "image" | "defaultImage">;
+  user: Pick<User, "imageUrl">;
   size: Size;
 };
 
@@ -23,21 +21,13 @@ const sizes = {
 };
 
 export default function Avatar(props: Props): JSX.Element {
-  const imageSrc = useMemo(
-    () =>
-      props.user.image ??
-      `data:image/png;base64,${new Identicon(props.user.defaultImage).toString()}`,
-    [props.user.image, props.user.defaultImage]
-  );
-
   return (
     <div className="avatar">
       <div className={cx("rounded-full", sizes[props.size].className)}>
         <Image
           alt="profile picture"
-          className={cx(props.user.image === null && "image-pixelated")}
           height={sizes[props.size].size}
-          src={imageSrc}
+          src={props.user.imageUrl}
           width={sizes[props.size].size}
         />
       </div>

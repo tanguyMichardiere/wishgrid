@@ -1,6 +1,9 @@
 # dependencies
 /node_modules
 
+# vercel
+/.vercel
+
 # next.js
 /.next/
 /.swc/
