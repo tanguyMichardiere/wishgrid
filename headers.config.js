@@ -33,9 +33,15 @@ module.exports = {
           : "Content-Security-Policy-Report-Only",
       value: Object.entries({
         "default-src": ["'self'"],
-        "connect-src": ["'self'", "*.clerk.accounts.dev"],
+        "connect-src": ["'self'", "*.wishgrid.app", "*.clerk.accounts.dev"],
         "img-src": ["'self'", "img.clerk.com"],
-        "script-src": ["'self'", "'unsafe-eval'", "'unsafe-inline'", "*.clerk.accounts.dev"],
+        "script-src": [
+          "'self'",
+          "'unsafe-eval'",
+          "'unsafe-inline'",
+          "*.wishgrid.app",
+          "*.clerk.accounts.dev",
+        ],
         "worker-src": ["'self'", "blob:"],
         "style-src": ["'self'", "'unsafe-inline'"],
       })
