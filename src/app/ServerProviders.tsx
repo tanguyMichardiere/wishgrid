@@ -6,5 +6,5 @@ type Props = {
 };
 
 export function ServerProviders(props: Props): JSX.Element {
-  return <ClerkProvider>{props.children}</ClerkProvider>;
+  return <ClerkProvider appearance={{ baseTheme: undefined }}>{props.children}</ClerkProvider>;
 }

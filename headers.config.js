@@ -34,7 +34,7 @@ module.exports = {
       value: Object.entries({
         "default-src": ["'self'"],
         "connect-src": ["'self'", "*.wishgrid.app", "*.clerk.accounts.dev"],
-        "img-src": ["'self'", "img.clerk.com"],
+        "img-src": ["'self'", "img.clerk.com", "www.gravatar.com"],
         "script-src": [
           "'self'",
           "'unsafe-eval'",

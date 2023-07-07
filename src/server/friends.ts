@@ -1,34 +1,27 @@
 import { clerkClient } from "@clerk/nextjs";
 import type { User } from "@clerk/nextjs/dist/types/server";
-import { and, eq, sql } from "drizzle-orm";
+import { and, eq, or, sql } from "drizzle-orm";
 import { log } from "next-axiom";
 import "server-only";
 import { db } from "../db";
 import { friends } from "../db/schema/friends";
+import { UserNotFriendError } from "./errors";
 import { getCurrentUser, getUsers } from "./users";
 
 export async function getFriends(): Promise<Array<User>> {
   const currentUser = await getCurrentUser();
 
-  log.debug(`retrieving IDs of friends of ${currentUser.id}`, { currentUserId: currentUser.id });
   const friendIds = await db
     .select({ id: friends.friendId })
     .from(friends)
     .where(eq(friends.userId, currentUser.id));
-  log.debug(`found ${friendIds.length} IDs`);
 
   return getUsers(friendIds.map((row) => row.id));
 }
 
-export class UserNotFriendError extends Error {}
-
 export async function getFriend(userId: string): Promise<User> {
   const currentUser = await getCurrentUser();
 
-  log.debug(`checking that users ${currentUser.id} and ${userId} are friends`, {
-    currentUserId: currentUser.id,
-    userId,
-  });
   const rows = await db
     .select({ count: sql<number>`count(*)` })
     .from(friends)
@@ -45,4 +38,20 @@ export async function getFriend(userId: string): Promise<User> {
   }
 
   return clerkClient.users.getUser(userId);
+}
+
+export async function getFriendsStatus(userId: string): Promise<boolean> {
+  const currentUser = await getCurrentUser();
+
+  const rows = await db
+    .select({})
+    .from(friends)
+    .where(
+      or(
+        and(eq(friends.userId, currentUser.id), eq(friends.friendId, userId)),
+        and(eq(friends.userId, userId), eq(friends.friendId, currentUser.id))
+      )
+    );
+
+  return rows.length === 2;
 }

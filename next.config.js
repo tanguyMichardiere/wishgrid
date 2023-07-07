@@ -7,11 +7,11 @@ const { headers } = require("./headers.config");
 let nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  // experimental: {
-  //   swcPlugins: [["next-superjson-plugin", {}]],
-  // },
+  experimental: {
+    serverActions: true,
+  },
   images: {
-    domains: ["img.clerk.com"],
+    domains: ["img.clerk.com", "www.gravatar.com"],
   },
   headers() {
     return Promise.resolve([
@@ -22,11 +22,6 @@ let nextConfig = {
     ]);
   },
 };
-
-// nextConfig = require("next-pwa")({
-//   dest: "public",
-//   disable: process.env.NODE_ENV !== "production",
-// })(nextConfig);
 
 nextConfig = require("next-axiom").withAxiom(nextConfig);
 

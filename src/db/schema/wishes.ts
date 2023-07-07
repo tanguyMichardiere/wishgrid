@@ -1,4 +1,5 @@
 import { char, pgTable, uuid, varchar } from "drizzle-orm/pg-core";
+import "server-only";
 
 export const wishes = pgTable("wishes", {
   id: uuid("id").primaryKey().defaultRandom(),

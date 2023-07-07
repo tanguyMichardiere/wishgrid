@@ -16,9 +16,9 @@ export type ResponseBody = {
 };
 
 export async function GET(request: NextRequest): Promise<NextResponse<ResponseBody>> {
-  const body = RequestQuery.parse(Object.fromEntries(new URL(request.url).searchParams));
+  const query = RequestQuery.parse(Object.fromEntries(new URL(request.url).searchParams));
 
-  const users = await searchUsers(body.query);
+  const users = await searchUsers(query.query);
 
   return NextResponse.json({ users });
 }

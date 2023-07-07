@@ -1,4 +1,5 @@
 import { char, pgTable, primaryKey } from "drizzle-orm/pg-core";
+import "server-only";
 
 export const friends = pgTable(
   "friends",

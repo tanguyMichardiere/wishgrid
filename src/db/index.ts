@@ -1,5 +1,6 @@
 import { drizzle } from "drizzle-orm/neon-serverless";
 import { log } from "next-axiom";
+import "server-only";
 import { pool } from "./pool";
 
 function logQuery(query: string, params: Array<unknown>) {

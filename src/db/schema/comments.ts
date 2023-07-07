@@ -1,4 +1,5 @@
 import { char, date, pgTable, uuid, varchar } from "drizzle-orm/pg-core";
+import "server-only";
 import { wishes } from "./wishes";
 
 export const comments = pgTable("comments", {

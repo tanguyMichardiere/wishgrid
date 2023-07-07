@@ -10,9 +10,10 @@ type Props = {
 export default function SignedInLayout(props: Props): JSX.Element {
   return (
     <>
-      {/* @ts-expect-error Async Server Component */}
       <Navbar />
-      <div className="mx-auto max-w-sm pb-20">{props.children}</div>
+      <div className="mx-auto flex min-h-[calc(100%-72px)] max-w-sm flex-col pb-20">
+        {props.children}
+      </div>
     </>
   );
 }

@@ -82,5 +82,6 @@ module.exports = {
       { allowString: false, allowNumber: false, allowNullableObject: false },
     ],
     "@typescript-eslint/switch-exhaustiveness-check": "warn",
+    "@typescript-eslint/unbound-method": ["warn", { ignoreStatic: true }],
   },
 };
