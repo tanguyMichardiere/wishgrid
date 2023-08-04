@@ -16,21 +16,21 @@ export default function ThemeMenu(props: Props): JSX.Element {
     function () {
       setTheme("system");
     },
-    [setTheme]
+    [setTheme],
   );
 
   const setDarkTheme = useCallback(
     function () {
       setTheme("dark");
     },
-    [setTheme]
+    [setTheme],
   );
 
   const setLightTheme = useCallback(
     function () {
       setTheme("light");
     },
-    [setTheme]
+    [setTheme],
   );
 
   return (

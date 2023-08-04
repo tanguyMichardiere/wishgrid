@@ -10,7 +10,7 @@ export default function SignOutButton(): JSX.Element {
     async function () {
       await clerk.signOut();
     },
-    [clerk]
+    [clerk],
   );
 
   return (

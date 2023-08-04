@@ -29,7 +29,7 @@ export async function getFriendRequestsCount(): Promise<number> {
 }
 
 export async function getFriendRequestsStatus(
-  userId: string
+  userId: string,
 ): Promise<{ from: boolean; to: boolean }> {
   const currentUser = await getCurrentUser();
 
@@ -39,8 +39,8 @@ export async function getFriendRequestsStatus(
     .where(
       or(
         and(eq(friendRequests.userId, currentUser.id), eq(friendRequests.friendId, userId)),
-        and(eq(friendRequests.userId, userId), eq(friendRequests.friendId, currentUser.id))
-      )
+        and(eq(friendRequests.userId, userId), eq(friendRequests.friendId, currentUser.id)),
+      ),
     );
   const userIds = rows.map((row) => row.userId);
 

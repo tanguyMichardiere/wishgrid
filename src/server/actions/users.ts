@@ -21,7 +21,7 @@ export async function deleteCurrentUser(): Promise<void> {
     db
       .delete(friendRequests)
       .where(
-        or(eq(friendRequests.userId, currentUser.id), eq(friendRequests.friendId, currentUser.id))
+        or(eq(friendRequests.userId, currentUser.id), eq(friendRequests.friendId, currentUser.id)),
       ),
     // TODO: anonymize comments instead?
     db.delete(comments).where(eq(comments.userId, currentUser.id)),

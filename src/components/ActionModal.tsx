@@ -15,7 +15,7 @@ export default forwardRef<HTMLDialogElement, Props>(function ActionModal(props, 
       <h3 className="text-lg font-bold">{props.title}</h3>
       <p className="py-4">{props.body}</p>
       <div className="modal-action">
-        <button className="btn-ghost btn" type="submit">
+        <button className="btn btn-ghost" type="submit">
           Cancel
         </button>
         <button className="btn" formAction={props.action} type="submit">

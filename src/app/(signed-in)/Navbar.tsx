@@ -29,13 +29,13 @@ export default async function Navbar(): Promise<JSX.Element> {
   return (
     <nav className="navbar sticky top-0 z-40 mb-2 bg-base-100 px-4">
       <div className="flex-1">
-        <Link className="btn-ghost btn" href="/">
+        <Link className="btn btn-ghost" href="/">
           <h1>WishGrid</h1>
         </Link>
       </div>
       <ul className="hidden gap-4 md:flex">
         {links.map((link) => (
-          <Link className="btn-ghost btn" href={link.href} key={link.key}>
+          <Link className="btn btn-ghost" href={link.href} key={link.key}>
             {link.children}
           </Link>
         ))}
@@ -43,7 +43,7 @@ export default async function Navbar(): Promise<JSX.Element> {
       <Menu
         buttonClassName={cx(
           "btn-ghost btn-circle btn md:hidden",
-          friendRequestsCount > 0 && "ring ring-primary ring-offset-base-100"
+          friendRequestsCount > 0 && "ring ring-primary ring-offset-base-100",
         )}
         items={links}
         menuClassName="w-52"

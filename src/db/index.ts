@@ -6,7 +6,9 @@ import { pool } from "./pool";
 function logQuery(query: string, params: Array<unknown>) {
   log.debug(
     query,
-    Object.fromEntries(Object.entries(params).map(([key, value]) => [`$${Number(key) + 1}`, value]))
+    Object.fromEntries(
+      Object.entries(params).map(([key, value]) => [`$${Number(key) + 1}`, value]),
+    ),
   );
 }
 

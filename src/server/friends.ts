@@ -49,8 +49,8 @@ export async function getFriendsStatus(userId: string): Promise<boolean> {
     .where(
       or(
         and(eq(friends.userId, currentUser.id), eq(friends.friendId, userId)),
-        and(eq(friends.userId, userId), eq(friends.friendId, currentUser.id))
-      )
+        and(eq(friends.userId, userId), eq(friends.friendId, currentUser.id)),
+      ),
     );
 
   return rows.length === 2;

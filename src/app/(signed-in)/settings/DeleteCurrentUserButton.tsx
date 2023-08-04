@@ -13,7 +13,7 @@ export default function DeleteCurrentUserButton(): JSX.Element {
 
   return (
     <>
-      <button className="btn-error btn" onClick={handleDeleteAccount} type="button">
+      <button className="btn btn-error" onClick={handleDeleteAccount} type="button">
         Delete account
       </button>
       <ActionModal

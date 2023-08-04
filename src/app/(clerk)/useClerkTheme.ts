@@ -16,6 +16,6 @@ export function useClerkTheme(): BaseThemeTaggedType | undefined {
         : systemTheme === "dark"
         ? dark
         : undefined,
-    [theme, systemTheme]
+    [theme, systemTheme],
   );
 }

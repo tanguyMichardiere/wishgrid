@@ -30,7 +30,7 @@ export default function InnerActionButton({ afterAction, ...props }: Props): JSX
         }
       }
     },
-    [pending, previousPending, afterAction, router]
+    [pending, previousPending, afterAction, router],
   );
 
   return (

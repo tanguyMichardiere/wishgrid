@@ -40,7 +40,7 @@ export default function Menu(props: Props): JSX.Element {
             "menu absolute z-50 mt-2 rounded-md bg-base-100 shadow-md",
             props.position === "left" && "right-0",
             props.position === "right" && "left-0",
-            props.menuClassName
+            props.menuClassName,
           )}
         >
           {props.items.map((item) => (

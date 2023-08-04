@@ -15,7 +15,7 @@ async function fetchSearchUsers({ query }: { query: RequestQuery }): Promise<Res
 }
 
 async function queryFn(
-  context: QueryFunctionContext<["users", "search", string]>
+  context: QueryFunctionContext<["users", "search", string]>,
 ): Promise<ResponseBody> {
   return fetchSearchUsers({ query: { query: context.queryKey[2] } });
 }

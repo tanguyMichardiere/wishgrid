@@ -50,7 +50,7 @@ export async function declineFriendRequest(userId: string): Promise<void> {
     .where(
       or(
         and(eq(friendRequests.userId, userId), eq(friendRequests.friendId, currentUser.id)),
-        and(eq(friendRequests.userId, userId), eq(friendRequests.friendId, currentUser.id))
-      )
+        and(eq(friendRequests.userId, userId), eq(friendRequests.friendId, currentUser.id)),
+      ),
     );
 }

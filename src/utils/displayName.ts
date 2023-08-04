@@ -10,7 +10,7 @@ export function displayName(user: User): [string, string | null] {
   // all users have a primary email address
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const emailAddress = user.emailAddresses.find(
-    (emailAddress) => emailAddress.id === user.primaryEmailAddressId
+    (emailAddress) => emailAddress.id === user.primaryEmailAddressId,
   )!.emailAddress;
   if (user.username !== null) {
     return [user.username, emailAddress];

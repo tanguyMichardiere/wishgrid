@@ -9,5 +9,5 @@ export const friendRequests = pgTable(
   },
   (table) => ({
     pk: primaryKey(table.userId, table.friendId),
-  })
+  }),
 );
