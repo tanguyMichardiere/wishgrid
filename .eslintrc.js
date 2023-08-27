@@ -52,6 +52,7 @@ module.exports = {
     "react/no-multi-comp": "warn",
     "react/no-namespace": "warn",
     "react/no-unstable-nested-components": "warn",
+    "react/no-unused-prop-types": "warn",
     "react/self-closing-comp": "warn",
     "tsdoc/syntax": "warn",
     "@typescript-eslint/array-type": ["warn", { default: "generic" }],
