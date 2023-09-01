@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import Navbar from "./Navbar";
+import Navbar from "../../components/Navbar";
 
 export const runtime = "edge";
 

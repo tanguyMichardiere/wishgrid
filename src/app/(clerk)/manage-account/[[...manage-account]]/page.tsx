@@ -1,7 +1,7 @@
 "use client";
 
 import { UserProfile } from "@clerk/nextjs";
-import { useClerkTheme } from "../../useClerkTheme";
+import { useClerkTheme } from "../../../../hooks/useClerkTheme";
 
 export default function UserProfilePage(): JSX.Element {
   const theme = useClerkTheme();

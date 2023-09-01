@@ -1,4 +1,4 @@
-import type { User } from "@clerk/nextjs/dist/types/server";
+import type { User } from "../schemas/user";
 import { displayName } from "../utils/displayName";
 import Avatar from "./Avatar";
 

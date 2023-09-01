@@ -1,11 +1,11 @@
-import type { User } from "@clerk/nextjs/dist/types/server";
 import { cx } from "classix";
 import Image from "next/image";
+import type { User } from "../schemas/user";
 
 type Size = "small" | "large";
 
 type Props = {
-  user: Pick<User, "imageUrl">;
+  user: User;
   size: Size;
 };
 
@@ -27,6 +27,7 @@ export default function Avatar(props: Props): JSX.Element {
         <Image
           alt="profile picture"
           height={sizes[props.size].size}
+          priority
           src={props.user.imageUrl}
           width={sizes[props.size].size}
         />

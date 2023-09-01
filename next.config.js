@@ -3,12 +3,12 @@ require("./src/env");
 
 const { headers } = require("./headers.config");
 
-/** @type {import('next').NextConfig} */
+/** @type {import("next").NextConfig} */
 let nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   experimental: {
-    serverActions: true,
+    typedRoutes: true,
   },
   images: {
     domains: ["img.clerk.com", "www.gravatar.com"],

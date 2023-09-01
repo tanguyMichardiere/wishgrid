@@ -1,5 +1,16 @@
-import type { User } from "@clerk/nextjs/dist/types/server";
+import type { User } from "../schemas/user";
 
+/**
+ * @returns One of (in order of priority):
+ *
+ *   ["firstName lastName", "username" | null]
+ *
+ *   ["firstName", "username" | null]
+ *
+ *   ["username", "emailAddress"]
+ *
+ *   ["emailAddress", null] |
+ */
 export function displayName(user: User): [string, string | null] {
   if (user.firstName !== null) {
     if (user.lastName !== null) {

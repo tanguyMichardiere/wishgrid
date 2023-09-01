@@ -1,14 +1,17 @@
 "use client";
 
 import { useClerk } from "@clerk/nextjs";
+import { log } from "next-axiom";
 import { useCallback } from "react";
 
 export default function SignOutButton(): JSX.Element {
   const clerk = useClerk();
 
   const signOut = useCallback(
-    async function () {
-      await clerk.signOut();
+    function () {
+      clerk.signOut().catch(function (error) {
+        log.error("error", { error: error });
+      });
     },
     [clerk],
   );

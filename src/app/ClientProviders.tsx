@@ -1,19 +1,19 @@
 "use client";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider } from "next-themes";
 import type { ReactNode } from "react";
+import { trpc } from "../utils/trpc/client";
 
 type Props = {
   children: ReactNode;
 };
 
-const queryClient = new QueryClient();
-
-export function ClientProviders(props: Props): JSX.Element {
+export default trpc.withTRPC(function ClientProviders(props: Props): JSX.Element {
   return (
     <ThemeProvider attribute="data-theme" disableTransitionOnChange>
-      <QueryClientProvider client={queryClient}>{props.children}</QueryClientProvider>
+      {props.children}
+      <ReactQueryDevtools initialIsOpen />
     </ThemeProvider>
   );
-}
+});

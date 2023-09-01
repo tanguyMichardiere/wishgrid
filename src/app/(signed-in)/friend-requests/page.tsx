@@ -1,18 +1,16 @@
-import { getFriendRequests } from "../../../server/friendRequests";
-import FriendRequestsCard from "./FriendRequestCard";
+import { createServerSideHelpers } from "../../../utils/trpc/server";
+import { FriendRequestList } from "./page.client";
 
 export const runtime = "edge";
 
 export default async function FriendRequestsPage(): Promise<JSX.Element> {
-  const friendRequests = await getFriendRequests();
+  const trpc = await createServerSideHelpers();
+
+  const friendRequests = await trpc.friendRequests.list.fetch();
 
   return (
     <ul className="flex flex-col">
-      {friendRequests.map((user) => (
-        <li key={user.id}>
-          <FriendRequestsCard user={user} />
-        </li>
-      ))}
+      <FriendRequestList initialFriendRequests={friendRequests} />
     </ul>
   );
 }

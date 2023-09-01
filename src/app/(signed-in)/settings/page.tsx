@@ -1,7 +1,7 @@
 import Link from "next/link";
+import DeleteCurrentUserButton from "../../../components/DeleteCurrentUserButton";
+import SignOutButton from "../../../components/SignOutButton";
 import ThemeMenu from "../../../components/ThemeMenu";
-import DeleteCurrentUserButton from "./DeleteCurrentUserButton";
-import SignOutButton from "./SignOutButton";
 
 export const runtime = "edge";
 
@@ -13,7 +13,7 @@ export default function SettingsPage(): JSX.Element {
           <p>Theme</p>
           <ThemeMenu position="left" />
         </div>
-        <Link className="link" href="/manage-account">
+        <Link className="link" href="/manage-account/">
           Manage account
         </Link>
         <SignOutButton />

@@ -1,7 +1,8 @@
 "use client";
 
-import { Menu as HeadlessUiMenu, Transition } from "@headlessui/react";
+import { Menu as HeadlessUIMenu, Transition } from "@headlessui/react";
 import { cx } from "classix";
+import type { Route } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Fragment } from "react";
@@ -13,18 +14,18 @@ type Props = {
   menuClassName?: string;
   items: ReadonlyArray<
     { key: string; children: ReactNode; className?: string } & (
-      | { onClick: () => Promise<void> | void }
-      | { href: string }
+      | { onClick: () => void }
+      | { href: Route }
     )
   >;
 };
 
 export default function Menu(props: Props): JSX.Element {
   return (
-    <HeadlessUiMenu as="div" className="relative inline-block">
-      <HeadlessUiMenu.Button className={props.buttonClassName}>
+    <HeadlessUIMenu as="div" className="relative inline-block">
+      <HeadlessUIMenu.Button className={props.buttonClassName}>
         {props.children}
-      </HeadlessUiMenu.Button>
+      </HeadlessUIMenu.Button>
       <Transition
         as={Fragment}
         enter="transition ease-out duration-100"
@@ -34,7 +35,7 @@ export default function Menu(props: Props): JSX.Element {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <HeadlessUiMenu.Items
+        <HeadlessUIMenu.Items
           as="ul"
           className={cx(
             "menu absolute z-50 mt-2 rounded-md bg-base-100 shadow-md",
@@ -46,18 +47,18 @@ export default function Menu(props: Props): JSX.Element {
           {props.items.map((item) => (
             <li key={item.key}>
               {"onClick" in item ? (
-                <HeadlessUiMenu.Item as="button" className={item.className} onClick={item.onClick}>
+                <HeadlessUIMenu.Item as="button" className={item.className} onClick={item.onClick}>
                   {item.children}
-                </HeadlessUiMenu.Item>
+                </HeadlessUIMenu.Item>
               ) : (
-                <HeadlessUiMenu.Item as={Link} className={item.className} href={item.href}>
+                <HeadlessUIMenu.Item as={Link} className={item.className} href={item.href}>
                   {item.children}
-                </HeadlessUiMenu.Item>
+                </HeadlessUIMenu.Item>
               )}
             </li>
           ))}
-        </HeadlessUiMenu.Items>
+        </HeadlessUIMenu.Items>
       </Transition>
-    </HeadlessUiMenu>
+    </HeadlessUIMenu>
   );
 }

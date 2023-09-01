@@ -1,15 +1,7 @@
-import { redirect } from "next/navigation";
-import ActionButton from "../../../../components/ActionButton";
+import { notFound, redirect } from "next/navigation";
 import Avatar from "../../../../components/Avatar";
-import {
-  acceptFriendRequest,
-  cancelFriendRequest,
-  createFriendRequest,
-  declineFriendRequest,
-} from "../../../../server/actions/friendRequests";
-import { getFriendRequestsStatus } from "../../../../server/friendRequests";
-import { getFriendsStatus } from "../../../../server/friends";
-import { getCurrentUser, getUser } from "../../../../server/users";
+import { createServerSideHelpers } from "../../../../utils/trpc/server";
+import { Buttons } from "./page.client";
 
 export const runtime = "edge";
 
@@ -18,66 +10,38 @@ type Props = {
 };
 
 export default async function UserIdPage(props: Props): Promise<JSX.Element> {
-  const [currentUser, user] = await Promise.all([getCurrentUser(), getUser(props.params.id)]);
+  const trpc = await createServerSideHelpers();
 
-  if (currentUser.id === user.id) {
+  const [currentUser, user] = await Promise.allSettled([
+    trpc.users.getCurrent.fetch(),
+    trpc.users.get.fetch({ userId: props.params.id }),
+  ]);
+
+  if (currentUser.status === "rejected") {
+    redirect("/sign-in/");
+  }
+
+  if (user.status === "rejected") {
+    notFound();
+  }
+
+  if (currentUser.value.id === user.value.id) {
     redirect("/user");
   }
 
-  const friendsStatus = await getFriendsStatus(user.id);
+  const friendsStatus = await trpc.friends.status.fetch({ userId: user.value.id });
 
   if (friendsStatus) {
-    redirect(`/friends/${user.id}`);
+    redirect(`/friend/${user.value.id}`);
   }
 
-  const friendRequestsStatus = await getFriendRequestsStatus(user.id);
-
-  async function decline() {
-    "use server";
-
-    await declineFriendRequest(user.id);
-  }
-
-  async function accept() {
-    "use server";
-
-    await acceptFriendRequest(user.id);
-  }
-
-  async function cancel() {
-    "use server";
-
-    await cancelFriendRequest(user.id);
-  }
-
-  async function request() {
-    "use server";
-
-    await createFriendRequest(user.id);
-  }
+  const friendRequestsStatus = await trpc.friendRequests.status.fetch({ userId: user.value.id });
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <Avatar size="large" user={user} />
-      <h3 className="text-lg">{user.username}</h3>
-      {friendRequestsStatus.from ? (
-        <div className="flex gap-4">
-          <ActionButton action={decline} afterAction="router.refresh" className="btn-ghost">
-            Decline
-          </ActionButton>
-          <ActionButton action={accept} afterAction="router.refresh" className="btn-primary">
-            Accept
-          </ActionButton>
-        </div>
-      ) : friendRequestsStatus.to ? (
-        <ActionButton action={cancel} afterAction="router.refresh">
-          Cancel friend request
-        </ActionButton>
-      ) : (
-        <ActionButton action={request} afterAction="router.refresh">
-          Request friend
-        </ActionButton>
-      )}
+      <Avatar size="large" user={user.value} />
+      <h3 className="text-lg">{user.value.username}</h3>
+      <Buttons initialFriendRequestsStatus={friendRequestsStatus} userId={user.value.id} />
     </div>
   );
 }
