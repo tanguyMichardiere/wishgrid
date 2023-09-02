@@ -2,40 +2,41 @@ import { TRPCError } from "@trpc/server";
 import { and, eq, or, sql } from "drizzle-orm";
 import "server-only";
 import { z } from "zod";
-import { t } from "..";
+import { createRouter } from "..";
 import { User, UserId } from "../../schemas/user";
 import { db } from "../db";
 import { friendRequests } from "../db/schema/friendRequests";
 import { friends } from "../db/schema/friends";
-import { requireAuthentication } from "../middleware/requireAuthentication";
+import { procedure } from "../procedure";
 import { getUsers } from "./users";
 
-export const friendRequestsRouter = t.router({
-  count: t.procedure.use(requireAuthentication).query(async function ({ ctx }) {
+export const friendRequestsRouter = createRouter({
+  count: procedure.output(z.number().int().nonnegative()).query(async function ({ ctx }) {
     const rows = await db
-      .select({ count: sql<number>`count(*)` })
+      .select({ count: sql<string>`count(*)` })
       .from(friendRequests)
       .where(eq(friendRequests.friendId, ctx.user.id));
+
     // count will always return exactly one row
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return rows[0]!.count;
+    return parseInt(rows[0]!.count);
   }),
 
-  list: t.procedure
-    .use(requireAuthentication)
-    .output(z.array(User))
-    .query(async function ({ ctx }) {
-      const rows = await db
-        .select({ id: friendRequests.userId })
-        .from(friendRequests)
-        .where(eq(friendRequests.friendId, ctx.user.id));
+  list: procedure.output(z.array(User)).query(async function ({ ctx }) {
+    const rows = await db
+      .select({ id: friendRequests.userId })
+      .from(friendRequests)
+      .where(eq(friendRequests.friendId, ctx.user.id));
 
-      return getUsers(rows.map((row) => row.id));
-    }),
+    return getUsers(
+      rows.map((row) => row.id),
+      ctx.log,
+    );
+  }),
 
-  status: t.procedure
-    .use(requireAuthentication)
+  status: procedure
     .input(z.object({ userId: UserId }))
+    .output(z.object({ from: z.boolean(), to: z.boolean() }))
     .query(async function ({ ctx, input }) {
       const rows = await db
         .select({ userId: friendRequests.userId })
@@ -51,16 +52,16 @@ export const friendRequestsRouter = t.router({
       return { from: userIds.includes(input.userId), to: userIds.includes(ctx.user.id) };
     }),
 
-  create: t.procedure
-    .use(requireAuthentication)
+  create: procedure
     .input(z.object({ userId: UserId }))
+    .output(z.void())
     .mutation(async function ({ ctx, input }) {
       await db.insert(friendRequests).values({ userId: ctx.user.id, friendId: input.userId });
     }),
 
-  cancel: t.procedure
-    .use(requireAuthentication)
+  cancel: procedure
     .input(z.object({ userId: UserId }))
+    .output(z.void())
     .mutation(async function ({ ctx, input }) {
       await db
         .delete(friendRequests)
@@ -69,9 +70,9 @@ export const friendRequestsRouter = t.router({
         );
     }),
 
-  accept: t.procedure
-    .use(requireAuthentication)
+  accept: procedure
     .input(z.object({ userId: UserId }))
+    .output(z.void())
     .mutation(async function ({ ctx, input }) {
       await db.transaction(async function (tx) {
         const rows = await tx
@@ -95,9 +96,9 @@ export const friendRequestsRouter = t.router({
       });
     }),
 
-  decline: t.procedure
-    .use(requireAuthentication)
+  decline: procedure
     .input(z.object({ userId: UserId }))
+    .output(z.void())
     .mutation(async function ({ ctx, input }) {
       await db
         .delete(friendRequests)

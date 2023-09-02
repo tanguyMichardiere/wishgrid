@@ -11,7 +11,7 @@ let nextConfig = {
     typedRoutes: true,
   },
   images: {
-    domains: ["img.clerk.com", "www.gravatar.com"],
+    domains: ["img.clerk.com"],
   },
   headers() {
     return Promise.resolve([

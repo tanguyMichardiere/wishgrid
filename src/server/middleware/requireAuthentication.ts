@@ -1,8 +1,8 @@
 import { TRPCError } from "@trpc/server";
 import "server-only";
-import { t } from "..";
+import { createMiddleware } from "..";
 
-export const requireAuthentication = t.middleware(async function ({ ctx, next }) {
+export const requireAuthentication = createMiddleware(async function ({ ctx, next }) {
   if (ctx.user === null) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
