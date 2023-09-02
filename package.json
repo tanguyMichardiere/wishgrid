@@ -10,7 +10,7 @@
     "lint": "eslint --max-warnings 0 src",
     "check-types": "tsc",
     "check-migrations": "drizzle-kit check:pg --config=drizzle.config.ts",
-    "knip": "knip",
+    "check-dead-code": "knip",
     "analyze-bundle": "ANALYZE=true next build",
     "build": "next build",
     "migrate": "node scripts/migrate.js",
