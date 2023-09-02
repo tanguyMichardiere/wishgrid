@@ -4,8 +4,8 @@ on:
   push:
 
 jobs:
-  quality:
-    name: Quality
+  check-format:
+    name: Check format
     runs-on: ubuntu-latest
 
     steps:
@@ -20,11 +20,71 @@ jobs:
         run: npm clean-install
       - name: Check format
         run: npm run check-format
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+      - name: Install dependencies
+        run: npm clean-install
       - name: Lint
         run: npm run lint
+
+  check-types:
+    name: Check types
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+      - name: Install dependencies
+        run: npm clean-install
       - name: Check types
         run: npm run check-types
+
+  check-migrations:
+    name: Check database migrations
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+      - name: Install dependencies
+        run: npm clean-install
       - name: Check database migrations
         run: npm run check-migrations
+
+  check-dead-code:
+    name: Check dead code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+      - name: Install dependencies
+        run: npm clean-install
       - name: Check dead code
-        run: npm run knip
+        run: npm run check-dead-code

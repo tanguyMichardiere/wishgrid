@@ -1,4 +1,5 @@
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
+import { log } from "next-axiom";
 import { createContext } from "../../../server/context";
 import { router } from "../../../server/router";
 
@@ -10,6 +11,9 @@ async function handler(req: Request): Promise<Response> {
     router,
     req,
     createContext,
+    onError({ ctx, path, input, error }) {
+      (ctx?.log ?? log).error(path ?? "", { input, error });
+    },
   });
 }
 

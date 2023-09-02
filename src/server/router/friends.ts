@@ -5,14 +5,13 @@ import "server-only";
 import { z } from "zod";
 import { createRouter } from "..";
 import { User, UserId } from "../../schemas/user";
-import { db } from "../db";
 import { friends } from "../db/schema/friends";
 import { procedure } from "../procedure";
 import { getUsers } from "./users";
 
 export const friendsRouter = createRouter({
   list: procedure.output(z.array(User)).query(async function ({ ctx }) {
-    const friendIds = await db
+    const friendIds = await ctx.db
       .select({ id: friends.friendId })
       .from(friends)
       .where(eq(friends.userId, ctx.user.id));
@@ -27,7 +26,7 @@ export const friendsRouter = createRouter({
     .input(z.object({ userId: UserId }))
     .output(User)
     .query(async function ({ ctx, input }) {
-      const rows = await db
+      const rows = await ctx.db
         .select({ count: sql<string>`count(*)` })
         .from(friends)
         .where(and(eq(friends.userId, ctx.user.id), eq(friends.friendId, input.userId)));
@@ -49,7 +48,7 @@ export const friendsRouter = createRouter({
     .input(z.object({ userId: UserId }))
     .output(z.boolean())
     .query(async function ({ ctx, input }) {
-      const rows = await db
+      const rows = await ctx.db
         .select({})
         .from(friends)
         .where(
