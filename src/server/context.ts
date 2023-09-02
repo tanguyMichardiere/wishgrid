@@ -3,7 +3,6 @@ import { currentUser } from "@clerk/nextjs";
 import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 import { Logger } from "next-axiom";
 import "server-only";
-import { NODE_ENV } from "../env";
 
 export type Context = {
   start: number;
@@ -14,9 +13,7 @@ export type Context = {
 
 export async function createContext(opts?: FetchCreateContextFnOptions): Promise<Context> {
   const start = Date.now();
-  const log = new Logger(
-    NODE_ENV === "development" ? { args: { url: opts?.req.url } } : { req: opts?.req },
-  );
+  const log = new Logger({ args: { url: opts?.req.url } });
   const user = await currentUser();
   const contextCreated = Date.now();
 

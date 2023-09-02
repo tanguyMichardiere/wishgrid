@@ -11,7 +11,7 @@ export const createMiddleware = t.middleware;
 
 const loggerMiddleware = createMiddleware(async function ({ ctx, path, input, next }) {
   ctx.log.debug(path, { input });
-  const result = await next();
+  const result = await next({ ctx: { ...ctx, log: ctx.log.with({ path, input }) } });
   const now = Date.now();
   ctx.log.debug(path, {
     input,
