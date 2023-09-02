@@ -30,10 +30,10 @@ const loggerMiddleware = createMiddleware(async function ({ ctx, path, input, ne
   return result;
 });
 
-const dbMiddleware = createMiddleware(async function ({ ctx, next }) {
+const dbTransactionMiddleware = createMiddleware(async function ({ ctx, next }) {
   return createDb(ctx.log).transaction(async function (db) {
     return next({ ctx: { ...ctx, db } });
   });
 });
 
-export const publicProcedure = t.procedure.use(loggerMiddleware).use(dbMiddleware);
+export const publicProcedure = t.procedure.use(loggerMiddleware).use(dbTransactionMiddleware);

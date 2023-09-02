@@ -11,9 +11,9 @@ export type Context = {
   user: User | null;
 };
 
-export async function createContext(opts?: FetchCreateContextFnOptions): Promise<Context> {
+export async function createContext(_opts?: FetchCreateContextFnOptions): Promise<Context> {
   const start = Date.now();
-  const log = new Logger({ args: { url: opts?.req.url } });
+  const log = new Logger();
   const user = await currentUser();
   const contextCreated = Date.now();
 
