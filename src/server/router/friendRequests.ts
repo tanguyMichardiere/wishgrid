@@ -4,7 +4,6 @@ import "server-only";
 import { z } from "zod";
 import { createRouter } from "..";
 import { User, UserId } from "../../schemas/user";
-import { db } from "../db";
 import { friendRequests } from "../db/schema/friendRequests";
 import { friends } from "../db/schema/friends";
 import { procedure } from "../procedure";
@@ -12,7 +11,7 @@ import { getUsers } from "./users";
 
 export const friendRequestsRouter = createRouter({
   count: procedure.output(z.number().int().nonnegative()).query(async function ({ ctx }) {
-    const rows = await db
+    const rows = await ctx.db
       .select({ count: sql<string>`count(*)` })
       .from(friendRequests)
       .where(eq(friendRequests.friendId, ctx.user.id));
@@ -23,7 +22,7 @@ export const friendRequestsRouter = createRouter({
   }),
 
   list: procedure.output(z.array(User)).query(async function ({ ctx }) {
-    const rows = await db
+    const rows = await ctx.db
       .select({ id: friendRequests.userId })
       .from(friendRequests)
       .where(eq(friendRequests.friendId, ctx.user.id));
@@ -38,7 +37,7 @@ export const friendRequestsRouter = createRouter({
     .input(z.object({ userId: UserId }))
     .output(z.object({ from: z.boolean(), to: z.boolean() }))
     .query(async function ({ ctx, input }) {
-      const rows = await db
+      const rows = await ctx.db
         .select({ userId: friendRequests.userId })
         .from(friendRequests)
         .where(
@@ -56,14 +55,14 @@ export const friendRequestsRouter = createRouter({
     .input(z.object({ userId: UserId }))
     .output(z.void())
     .mutation(async function ({ ctx, input }) {
-      await db.insert(friendRequests).values({ userId: ctx.user.id, friendId: input.userId });
+      await ctx.db.insert(friendRequests).values({ userId: ctx.user.id, friendId: input.userId });
     }),
 
   cancel: procedure
     .input(z.object({ userId: UserId }))
     .output(z.void())
     .mutation(async function ({ ctx, input }) {
-      await db
+      await ctx.db
         .delete(friendRequests)
         .where(
           and(eq(friendRequests.userId, ctx.user.id), eq(friendRequests.friendId, input.userId)),
@@ -74,33 +73,31 @@ export const friendRequestsRouter = createRouter({
     .input(z.object({ userId: UserId }))
     .output(z.void())
     .mutation(async function ({ ctx, input }) {
-      await db.transaction(async function (tx) {
-        const rows = await tx
-          .delete(friendRequests)
-          .where(
-            and(eq(friendRequests.userId, input.userId), eq(friendRequests.friendId, ctx.user.id)),
-          )
-          .returning();
-        if (rows.length === 0) {
-          throw new TRPCError({ code: "NOT_FOUND" });
-        }
-        await tx
-          .delete(friendRequests)
-          .where(
-            and(eq(friendRequests.userId, input.userId), eq(friendRequests.friendId, ctx.user.id)),
-          );
-        await tx.insert(friends).values([
-          { userId: ctx.user.id, friendId: input.userId },
-          { userId: input.userId, friendId: ctx.user.id },
-        ]);
-      });
+      const rows = await ctx.db
+        .delete(friendRequests)
+        .where(
+          and(eq(friendRequests.userId, input.userId), eq(friendRequests.friendId, ctx.user.id)),
+        )
+        .returning();
+      if (rows.length === 0) {
+        throw new TRPCError({ code: "NOT_FOUND" });
+      }
+      await ctx.db
+        .delete(friendRequests)
+        .where(
+          and(eq(friendRequests.userId, input.userId), eq(friendRequests.friendId, ctx.user.id)),
+        );
+      await ctx.db.insert(friends).values([
+        { userId: ctx.user.id, friendId: input.userId },
+        { userId: input.userId, friendId: ctx.user.id },
+      ]);
     }),
 
   decline: procedure
     .input(z.object({ userId: UserId }))
     .output(z.void())
     .mutation(async function ({ ctx, input }) {
-      await db
+      await ctx.db
         .delete(friendRequests)
         .where(
           or(

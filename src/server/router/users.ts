@@ -6,7 +6,6 @@ import "server-only";
 import { z } from "zod";
 import { createRouter } from "..";
 import { User, UserId } from "../../schemas/user";
-import { db } from "../db";
 import { comments } from "../db/schema/comments";
 import { friendRequests } from "../db/schema/friendRequests";
 import { friends } from "../db/schema/friends";
@@ -52,18 +51,18 @@ export const usersRouter = createRouter({
 
   deleteCurrent: procedure.output(z.void()).mutation(async function ({ ctx }) {
     await Promise.all([
-      db.delete(wishes).where(eq(wishes.userId, ctx.user.id)),
-      db.update(wishes).set({ reservedById: null }).where(eq(wishes.reservedById, ctx.user.id)),
-      db
+      ctx.db.delete(wishes).where(eq(wishes.userId, ctx.user.id)),
+      ctx.db.update(wishes).set({ reservedById: null }).where(eq(wishes.reservedById, ctx.user.id)),
+      ctx.db
         .delete(friends)
         .where(or(eq(friends.userId, ctx.user.id), eq(friends.friendId, ctx.user.id))),
-      db
+      ctx.db
         .delete(friendRequests)
         .where(
           or(eq(friendRequests.userId, ctx.user.id), eq(friendRequests.friendId, ctx.user.id)),
         ),
       // TODO: anonymize comments instead?
-      db.delete(comments).where(eq(comments.userId, ctx.user.id)),
+      ctx.db.delete(comments).where(eq(comments.userId, ctx.user.id)),
     ]);
 
     await clerkClient.users.deleteUser(ctx.user.id);

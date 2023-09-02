@@ -2,6 +2,7 @@ import { initTRPC } from "@trpc/server";
 import "server-only";
 import SuperJSON from "superjson";
 import type { Context } from "./context";
+import { createDb } from "./db";
 
 const t = initTRPC.context<Context>().create({ transformer: SuperJSON });
 
@@ -29,4 +30,10 @@ const loggerMiddleware = createMiddleware(async function ({ ctx, path, input, ne
   return result;
 });
 
-export const publicProcedure = t.procedure.use(loggerMiddleware);
+const dbMiddleware = createMiddleware(async function ({ ctx, next }) {
+  return createDb(ctx.log).transaction(async function (db) {
+    return next({ ctx: { ...ctx, db } });
+  });
+});
+
+export const publicProcedure = t.procedure.use(loggerMiddleware).use(dbMiddleware);
