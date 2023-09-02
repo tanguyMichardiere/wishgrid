@@ -6,23 +6,14 @@ import type { Route } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { useMemo } from "react";
-import type { User } from "../../schemas/user";
-import { missesNames } from "../../utils/displayNames";
 import { trpc } from "../../utils/trpc/client";
 import Menu from "../Menu";
 
 type Props = {
-  initialCurrentUser: User;
   initialFriendRequestsCount: number;
 };
 
 export default function Links(props: Props): JSX.Element {
-  const currentUser = trpc.users.getCurrent.useQuery(undefined, {
-    initialData: props.initialCurrentUser,
-  });
-
-  const currentUserMissesNames = useMemo(() => missesNames(currentUser.data), [currentUser.data]);
-
   const friendRequestsCount = trpc.friendRequests.count.useQuery(undefined, {
     initialData: props.initialFriendRequestsCount,
   });
@@ -52,12 +43,11 @@ export default function Links(props: Props): JSX.Element {
         },
         {
           key: "settings",
-          className: cx(currentUserMissesNames && "ring ring-primary ring-offset-base-100"),
           children: "Settings",
           href: "/settings",
         },
       ],
-      [currentUserMissesNames, friendRequestsCount.data],
+      [friendRequestsCount.data],
     );
 
   return (
@@ -72,8 +62,7 @@ export default function Links(props: Props): JSX.Element {
       <Menu
         buttonClassName={cx(
           "btn btn-circle btn-ghost md:hidden",
-          (friendRequestsCount.data > 0 || currentUserMissesNames) &&
-            "ring ring-primary ring-offset-base-100",
+          friendRequestsCount.data > 0 && "ring ring-primary ring-offset-base-100",
         )}
         items={links}
         menuClassName="w-52"
