@@ -20,7 +20,7 @@ export default function Error({ reset, ...props }: Props): JSX.Element {
 
   return (
     <div className="flex h-full flex-col items-center justify-center gap-4">
-      <h2>An unexpected error has occurred, it has been reported</h2>
+      <h2 className="text-center">An unexpected error has occurred, it has been reported</h2>
       {props.error.digest !== undefined && <p>Digest: {props.error.digest}</p>}
       <button className="btn" onClick={reset}>
         Try again
