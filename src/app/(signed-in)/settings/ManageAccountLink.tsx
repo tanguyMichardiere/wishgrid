@@ -19,7 +19,7 @@ export default function ManageAccountLink(props: Props): JSX.Element {
   const currentUserMissingNames = useMemo(() => missesNames(currentUser.data), [currentUser.data]);
 
   return (
-    <div className="flex flex-col gap-2 items-center">
+    <div className="flex flex-col items-center gap-2">
       {currentUserMissingNames && (
         <p className="text-center">Please setup a username, or a first and/or last name</p>
       )}

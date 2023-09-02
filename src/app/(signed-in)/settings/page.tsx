@@ -12,7 +12,7 @@ export default async function SettingsPage(): Promise<JSX.Element> {
   const currentUser = await trpc.users.getCurrent.fetch();
 
   return (
-    <div className="flex grow flex-col justify-between gap-16 mx-4">
+    <div className="mx-4 flex grow flex-col justify-between gap-16">
       <div className="flex flex-col items-center gap-8">
         <div className="flex w-full items-center justify-between">
           <p>Theme</p>
