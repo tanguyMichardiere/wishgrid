@@ -1,4 +1,4 @@
-/** @type {import('eslint').Linter.Config} */
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -8,8 +8,8 @@ module.exports = {
   plugins: ["@typescript-eslint", "tsdoc"],
   extends: [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:@typescript-eslint/strict-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked",
     "next/core-web-vitals",
     "prettier",
   ],
@@ -22,6 +22,7 @@ module.exports = {
       },
     },
   ],
+  reportUnusedDisableDirectives: true,
   rules: {
     "arrow-body-style": ["warn", "never"],
     camelcase: "warn",
@@ -32,7 +33,6 @@ module.exports = {
     "no-implicit-coercion": "warn",
     "no-return-assign": "warn",
     "no-return-await": "off",
-    "no-throw-literal": "warn",
     "no-useless-return": "warn",
     "no-void": "warn",
     "react/hook-use-state": "warn",
@@ -52,30 +52,22 @@ module.exports = {
     "react/no-multi-comp": "warn",
     "react/no-namespace": "warn",
     "react/no-unstable-nested-components": "warn",
+    "react/no-unused-prop-types": "warn",
     "react/self-closing-comp": "warn",
     "tsdoc/syntax": "warn",
-    "@typescript-eslint/array-type": ["warn", { default: "generic" }],
-    "@typescript-eslint/consistent-type-assertions": ["warn", { assertionStyle: "never" }],
-    "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
+    "@typescript-eslint/array-type": ["error", { default: "generic" }],
+    "@typescript-eslint/consistent-type-assertions": ["error", { assertionStyle: "never" }],
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
     "@typescript-eslint/consistent-type-exports": [
       "warn",
       { fixMixedExportsWithInlineTypeSpecifier: false },
     ],
     "@typescript-eslint/consistent-type-imports": [
       "warn",
-      { prefer: "type-imports", disallowTypeAnnotations: true },
+      { prefer: "type-imports", fixStyle: "separate-type-imports", disallowTypeAnnotations: true },
     ],
     "@typescript-eslint/explicit-module-boundary-types": "warn",
-    "@typescript-eslint/no-floating-promises": ["warn", { ignoreVoid: true }],
-    "@typescript-eslint/no-misused-promises": [
-      "warn",
-      { checksVoidReturn: { arguments: false, attributes: false } },
-    ],
-    "@typescript-eslint/no-unnecessary-type-constraint": "warn",
     "@typescript-eslint/no-unused-vars": "off",
-    "@typescript-eslint/non-nullable-type-assertion-style": "warn",
-    "@typescript-eslint/prefer-for-of": "warn",
-    "@typescript-eslint/prefer-nullish-coalescing": "warn",
     "@typescript-eslint/return-await": ["warn", "in-try-catch"],
     "@typescript-eslint/strict-boolean-expressions": [
       "warn",

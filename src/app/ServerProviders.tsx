@@ -5,6 +5,6 @@ type Props = {
   children: ReactNode;
 };
 
-export function ServerProviders(props: Props): JSX.Element {
-  return <ClerkProvider>{props.children}</ClerkProvider>;
+export default function ServerProviders(props: Props): JSX.Element {
+  return <ClerkProvider appearance={{ baseTheme: undefined }}>{props.children}</ClerkProvider>;
 }

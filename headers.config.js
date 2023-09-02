@@ -1,4 +1,4 @@
-/** @type {{ headers: import('next/dist/lib/load-custom-routes').Header["headers"] }} */
+/** @type {{ headers: import("next/dist/lib/load-custom-routes").Header["headers"] }} */
 module.exports = {
   headers: [
     {
@@ -34,7 +34,7 @@ module.exports = {
       value: Object.entries({
         "default-src": ["'self'"],
         "connect-src": ["'self'", "*.wishgrid.app", "*.clerk.accounts.dev"],
-        "img-src": ["'self'", "img.clerk.com"],
+        "img-src": ["'self'", "data:", "img.clerk.com", "www.gravatar.com"],
         "script-src": [
           "'self'",
           "'unsafe-eval'",

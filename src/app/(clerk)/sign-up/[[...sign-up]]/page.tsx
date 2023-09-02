@@ -1,7 +1,10 @@
-import { SignUp } from "@clerk/nextjs";
+"use client";
 
-export const runtime = "edge";
+import { SignUp } from "@clerk/nextjs";
+import { useClerkTheme } from "../../../../hooks/useClerkTheme";
 
 export default function SignUpPage(): JSX.Element {
-  return <SignUp />;
+  const theme = useClerkTheme();
+
+  return <SignUp appearance={{ baseTheme: theme }} />;
 }
