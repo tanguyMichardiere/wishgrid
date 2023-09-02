@@ -9,7 +9,7 @@
     "check-format": "prettier --check src",
     "lint": "eslint --max-warnings 0 src",
     "check-types": "tsc",
-    "check-migrations": "drizzle-kit --config=drizzle.config.ts check:pg",
+    "check-migrations": "drizzle-kit check:pg --config=drizzle.config.ts",
     "knip": "knip",
     "analyze-bundle": "ANALYZE=true next build",
     "build": "next build",
