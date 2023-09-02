@@ -39,13 +39,17 @@ export default function SearchPage(): JSX.Element {
       ) : (
         search.isSuccess && (
           <ul className="flex flex-col">
-            {search.data.map((user) => (
-              <li key={user.id}>
-                <Link href={`/user/${user.id}`}>
-                  <UserPreviewCard user={user} />
-                </Link>
-              </li>
-            ))}
+            {search.data.length > 0 ? (
+              search.data.map((user) => (
+                <li key={user.id}>
+                  <Link href={`/user/${user.id}`}>
+                    <UserPreviewCard user={user} />
+                  </Link>
+                </li>
+              ))
+            ) : (
+              <div className="text-center">No results</div>
+            )}
           </ul>
         )
       )}

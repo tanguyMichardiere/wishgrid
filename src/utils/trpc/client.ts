@@ -15,7 +15,7 @@ function getBaseUrl() {
     return `https://${VERCEL_URL}`;
   }
   // assume localhost
-  return `http://localhost:${PORT ?? 3000}`;
+  return `http://localhost:${PORT}`;
 }
 
 export const trpc = createTRPCNext<Router>({

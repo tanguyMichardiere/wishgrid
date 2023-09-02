@@ -6,5 +6,5 @@ type Props = {
 
 export default function FriendIdPage(_props: Props): JSX.Element {
   // TODO
-  return <div />;
+  return <div>TODO</div>;
 }

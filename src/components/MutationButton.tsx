@@ -2,7 +2,7 @@
 
 import type { UseTRPCMutationResult } from "@trpc/react-query/shared";
 import cx from "classix";
-import { type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export type Props<TVariables> = {
   className?: string;

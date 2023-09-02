@@ -22,7 +22,7 @@ export default function AcceptFriendRequestButton(props: Props): JSX.Element {
       const previousFriendsGetStatus = trpcContext.friends.status.getData({ userId });
       const previousFriendRequestsCount = trpcContext.friendRequests.count.getData();
       const previousFriendRequestsList = trpcContext.friendRequests.list.getData();
-      const previousFriendRequestsStatus = trpcContext.friendRequests.status.getData();
+      const previousFriendRequestsStatus = trpcContext.friendRequests.status.getData({ userId });
 
       // update friend status
       trpcContext.friends.status.setData({ userId }, true);

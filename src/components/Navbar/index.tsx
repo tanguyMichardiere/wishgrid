@@ -1,9 +1,11 @@
 import Link from "next/link";
-import { createServerSideHelpers } from "../utils/trpc/server";
-import { NavbarLinks } from "./Navbar.client";
+import { createServerSideHelpers } from "../../utils/trpc/server";
+import Links from "./Links";
 
 export default async function Navbar(): Promise<JSX.Element> {
   const trpc = await createServerSideHelpers();
+
+  const currentUser = await trpc.users.getCurrent.fetch();
 
   const friendRequestsCount = await trpc.friendRequests.count.fetch();
 
@@ -14,7 +16,7 @@ export default async function Navbar(): Promise<JSX.Element> {
           <h1>WishGrid</h1>
         </Link>
       </div>
-      <NavbarLinks initialFriendRequestsCount={friendRequestsCount} />
+      <Links initialCurrentUser={currentUser} initialFriendRequestsCount={friendRequestsCount} />
     </nav>
   );
 }

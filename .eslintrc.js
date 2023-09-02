@@ -64,7 +64,7 @@ module.exports = {
     ],
     "@typescript-eslint/consistent-type-imports": [
       "warn",
-      { prefer: "type-imports", disallowTypeAnnotations: true },
+      { prefer: "type-imports", fixStyle: "separate-type-imports", disallowTypeAnnotations: true },
     ],
     "@typescript-eslint/explicit-module-boundary-types": "warn",
     "@typescript-eslint/no-unused-vars": "off",

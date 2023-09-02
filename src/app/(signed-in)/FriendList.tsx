@@ -5,12 +5,23 @@ import UserPreviewCard from "../../components/UserPreviewCard";
 import type { User } from "../../schemas/user";
 import { trpc } from "../../utils/trpc/client";
 
-type FriendListProps = {
+type Props = {
   initialFriends: Array<User>;
 };
 
-export function FriendList(props: FriendListProps): JSX.Element {
+export default function FriendList(props: Props): JSX.Element {
   const friends = trpc.friends.list.useQuery(undefined, { initialData: props.initialFriends });
+
+  if (friends.data.length === 0) {
+    return (
+      <div className="flex flex-col items-center">
+        <p>No friends</p>
+        <Link className="link" href="/search">
+          Search for your friends
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <>

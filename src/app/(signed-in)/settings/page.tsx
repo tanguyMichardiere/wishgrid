@@ -1,21 +1,24 @@
-import Link from "next/link";
 import DeleteCurrentUserButton from "../../../components/DeleteCurrentUserButton";
 import SignOutButton from "../../../components/SignOutButton";
 import ThemeMenu from "../../../components/ThemeMenu";
+import { createServerSideHelpers } from "../../../utils/trpc/server";
+import ManageAccountLink from "./ManageAccountLink";
 
 export const runtime = "edge";
 
-export default function SettingsPage(): JSX.Element {
+export default async function SettingsPage(): Promise<JSX.Element> {
+  const trpc = await createServerSideHelpers();
+
+  const currentUser = await trpc.users.getCurrent.fetch();
+
   return (
-    <div className="flex grow flex-col justify-between gap-16">
+    <div className="flex grow flex-col justify-between gap-16 mx-4">
       <div className="flex flex-col items-center gap-8">
         <div className="flex w-full items-center justify-between">
           <p>Theme</p>
           <ThemeMenu position="left" />
         </div>
-        <Link className="link" href="/manage-account/">
-          Manage account
-        </Link>
+        <ManageAccountLink initialCurrentUser={currentUser} />
         <SignOutButton />
       </div>
       <div className="flex justify-center">

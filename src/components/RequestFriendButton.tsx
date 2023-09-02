@@ -12,7 +12,7 @@ export default function RequestFriendButton(props: Props): JSX.Element {
 
   const mutation = trpc.friendRequests.create.useMutation({
     async onMutate({ userId }) {
-      await Promise.all([trpcContext.friendRequests.status.cancel({ userId })]);
+      await trpcContext.friendRequests.status.cancel({ userId });
 
       const previousFriendRequestsStatus = trpcContext.friendRequests.status.getData();
 
@@ -29,7 +29,7 @@ export default function RequestFriendButton(props: Props): JSX.Element {
       }
     },
     async onSettled(_data, _error, { userId }) {
-      await Promise.all([trpcContext.friendRequests.status.invalidate({ userId })]);
+      await trpcContext.friendRequests.status.invalidate({ userId });
     },
   });
 

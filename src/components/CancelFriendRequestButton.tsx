@@ -12,9 +12,9 @@ export default function CancelFriendRequestButton(props: Props): JSX.Element {
 
   const mutation = trpc.friendRequests.cancel.useMutation({
     async onMutate({ userId }) {
-      await Promise.all([trpcContext.friendRequests.status.cancel({ userId })]);
+      await trpcContext.friendRequests.status.cancel({ userId });
 
-      const previousFriendRequestsStatus = trpcContext.friendRequests.status.getData();
+      const previousFriendRequestsStatus = trpcContext.friendRequests.status.getData({ userId });
 
       // update friend request status
       trpcContext.friendRequests.status.setData({ userId }, { from: false, to: false });
@@ -27,7 +27,7 @@ export default function CancelFriendRequestButton(props: Props): JSX.Element {
       }
     },
     async onSettled(_data, _error, { userId }) {
-      await Promise.all([trpcContext.friendRequests.status.invalidate({ userId })]);
+      await trpcContext.friendRequests.status.invalidate({ userId });
     },
   });
 

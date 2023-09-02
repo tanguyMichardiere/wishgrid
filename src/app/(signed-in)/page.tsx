@@ -1,5 +1,5 @@
 import { createServerSideHelpers } from "../../utils/trpc/server";
-import { FriendList } from "./page.client";
+import FriendList from "./FriendList";
 
 export const runtime = "edge";
 

@@ -6,12 +6,12 @@ import DeclineFriendRequestButton from "../../../../components/DeclineFriendRequ
 import RequestFriendButton from "../../../../components/RequestFriendButton";
 import { trpc } from "../../../../utils/trpc/client";
 
-type ButtonsProps = {
+type Props = {
   userId: string;
   initialFriendRequestsStatus: { from: boolean; to: boolean };
 };
 
-export function Buttons(props: ButtonsProps): JSX.Element {
+export default function Buttons(props: Props): JSX.Element {
   const friendRequestsStatus = trpc.friendRequests.status.useQuery(
     { userId: props.userId },
     { initialData: props.initialFriendRequestsStatus },
