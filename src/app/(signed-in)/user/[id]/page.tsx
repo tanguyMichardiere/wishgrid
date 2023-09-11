@@ -5,7 +5,7 @@ import { createServerSideHelpers } from "../../../../utils/trpc/server";
 import Buttons from "./Buttons";
 import { Username } from "./Username";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 type Props = {
   params: Params;

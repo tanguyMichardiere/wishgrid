@@ -3,7 +3,7 @@ import DeleteCurrentUserButton from "../../../components/DeleteCurrentUserButton
 import SignOutButton from "../../../components/SignOutButton";
 import ThemeMenu from "../../../components/ThemeMenu";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export default function SettingsPage(): JSX.Element {
   return (

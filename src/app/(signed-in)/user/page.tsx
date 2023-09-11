@@ -1,7 +1,7 @@
 import Avatar from "../../../components/Avatar";
 import { createServerSideHelpers } from "../../../utils/trpc/server";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export default async function UserPage(): Promise<JSX.Element> {
   const trpc = await createServerSideHelpers();

@@ -1,4 +1,4 @@
-import type { Logger as DrizzleLogger } from "drizzle-orm";
+import { type Logger as DrizzleLogger } from "drizzle-orm";
 import type { NeonDatabase } from "drizzle-orm/neon-serverless";
 import { drizzle } from "drizzle-orm/neon-serverless";
 import type { Logger as AxiomLogger } from "next-axiom";

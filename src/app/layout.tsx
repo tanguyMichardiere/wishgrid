@@ -6,7 +6,7 @@ import "../styles.css";
 import ClientProviders from "./ClientProviders";
 import ServerProviders from "./ServerProviders";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export const metadata = {
   title: NEXT_PUBLIC_TITLE,

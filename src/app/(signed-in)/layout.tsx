@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import Navbar from "../../components/Navbar";
 import { createServerSideHelpers } from "../../utils/trpc/server";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 type Props = {
   children: ReactNode;
