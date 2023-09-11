@@ -1,4 +1,4 @@
-import { httpLink } from "@trpc/client";
+import { httpBatchLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
 import "client-only";
 import SuperJSON from "superjson";
@@ -22,7 +22,7 @@ export const trpc = createTRPCNext<Router>({
   config() {
     return {
       links: [
-        httpLink({
+        httpBatchLink({
           url: `${getBaseUrl()}/api`,
         }),
       ],
