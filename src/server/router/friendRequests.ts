@@ -29,12 +29,12 @@ export const friendRequestsRouter = createRouter({
     .output(z.array(User))
     .query(async function ({ ctx }) {
       const rows = await ctx.db.query.friendRequests.findMany({
-        columns: { friendId: true },
+        columns: { userId: true },
         where: eq(friendRequests.friendId, ctx.user.id),
       });
 
       return getUsers(
-        rows.map((row) => row.friendId),
+        rows.map((row) => row.userId),
         ctx,
       );
     }),
