@@ -1,16 +1,21 @@
 import cx from "classix";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
-import { NEXT_PUBLIC_DESCRIPTION, NEXT_PUBLIC_TITLE } from "../env";
 import "../styles.css";
 import ClientProviders from "./ClientProviders";
 import ServerProviders from "./ServerProviders";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export const metadata = {
-  title: NEXT_PUBLIC_TITLE,
-  description: NEXT_PUBLIC_DESCRIPTION,
+  title: "WishGrid",
+  description: "Personal wishlists",
+  icons: [
+    "/favicon.ico",
+    { url: "/favicon-16.png", type: "image/png", sizes: "16x16" },
+    { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+    { url: "/favicon-96.png", type: "image/png", sizes: "96x96" },
+  ],
 };
 
 type Props = {

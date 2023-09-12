@@ -1,5 +1,3 @@
-"use client";
-
 import type { UseTRPCMutationResult } from "@trpc/react-query/shared";
 import cx from "classix";
 import type { ReactNode } from "react";

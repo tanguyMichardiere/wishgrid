@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import UserPreviewCard from "../../components/UserPreviewCard";
-import type { User } from "../../schemas/user";
+import type { User } from "../../server/db/types/user";
 import { trpc } from "../../utils/trpc/client";
 
 type Props = {

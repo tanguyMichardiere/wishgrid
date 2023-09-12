@@ -3,26 +3,30 @@ import { TRPCError } from "@trpc/server";
 import { and, eq, or, sql } from "drizzle-orm";
 import "server-only";
 import { z } from "zod";
-import { createRouter } from "..";
-import { User, UserId } from "../../schemas/user";
+import { createRouter, procedure } from "..";
 import { friends } from "../db/schema/friends";
-import { procedure } from "../procedure";
+import { User, UserId } from "../db/types/user";
+import { httpDb } from "../middleware/httpDb";
 import { getUsers } from "./users";
 
 export const friendsRouter = createRouter({
-  list: procedure.output(z.array(User)).query(async function ({ ctx }) {
-    const friendIds = await ctx.db
-      .select({ id: friends.friendId })
-      .from(friends)
-      .where(eq(friends.userId, ctx.user.id));
+  list: procedure
+    .use(httpDb)
+    .output(z.array(User))
+    .query(async function ({ ctx }) {
+      const friendIds = await ctx.db.query.friends.findMany({
+        columns: { friendId: true },
+        where: eq(friends.userId, ctx.user.id),
+      });
 
-    return getUsers(
-      friendIds.map((row) => row.id),
-      ctx.log,
-    );
-  }),
+      return getUsers(
+        friendIds.map((row) => row.friendId),
+        ctx,
+      );
+    }),
 
   get: procedure
+    .use(httpDb)
     .input(z.object({ userId: UserId }))
     .output(User)
     .query(async function ({ ctx, input }) {
@@ -45,11 +49,12 @@ export const friendsRouter = createRouter({
     }),
 
   status: procedure
+    .use(httpDb)
     .input(z.object({ userId: UserId }))
     .output(z.boolean())
     .query(async function ({ ctx, input }) {
       const rows = await ctx.db
-        .select({})
+        .select({ count: sql<string>`count(*)` })
         .from(friends)
         .where(
           or(
@@ -57,7 +62,10 @@ export const friendsRouter = createRouter({
             and(eq(friends.userId, input.userId), eq(friends.friendId, ctx.user.id)),
           ),
         );
+      // count will always return exactly one row
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const count = parseInt(rows[0]!.count);
 
-      return rows.length === 2;
+      return count === 2;
     }),
 });

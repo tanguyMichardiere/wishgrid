@@ -3,7 +3,7 @@ import { log } from "next-axiom";
 import { createContext } from "../../../server/context";
 import { router } from "../../../server/router";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 async function handler(req: Request): Promise<Response> {
   return fetchRequestHandler({
@@ -11,8 +11,8 @@ async function handler(req: Request): Promise<Response> {
     router,
     req,
     createContext,
-    onError({ ctx, path, input, error }) {
-      (ctx?.log ?? log).error(path ?? "", { input, error });
+    onError({ path, input, error }) {
+      log.error(path ?? "", { input, error });
     },
   });
 }

@@ -2,7 +2,7 @@
 
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { useTheme } from "next-themes";
-import { useCallback, useMemo } from "react";
+import { useMemo } from "react";
 import Menu from "./Menu";
 
 type Props = {
@@ -12,34 +12,31 @@ type Props = {
 export default function ThemeMenu(props: Props): JSX.Element {
   const { theme, setTheme } = useTheme();
 
-  const setSystemTheme = useCallback(
-    function () {
-      setTheme("system");
-    },
-    [setTheme],
-  );
-
-  const setDarkTheme = useCallback(
-    function () {
-      setTheme("dark");
-    },
-    [setTheme],
-  );
-
-  const setLightTheme = useCallback(
-    function () {
-      setTheme("light");
-    },
-    [setTheme],
-  );
-
   const menuItems = useMemo(
     () => [
-      { key: "system", children: "System", onClick: setSystemTheme },
-      { key: "dark", children: "Dark", onClick: setDarkTheme },
-      { key: "light", children: "Light", onClick: setLightTheme },
+      {
+        key: "system",
+        children: "System",
+        onClick() {
+          setTheme("system");
+        },
+      },
+      {
+        key: "dark",
+        children: "Dark",
+        onClick() {
+          setTheme("dark");
+        },
+      },
+      {
+        key: "light",
+        children: "Light",
+        onClick() {
+          setTheme("light");
+        },
+      },
     ],
-    [setSystemTheme, setDarkTheme, setLightTheme],
+    [setTheme],
   );
 
   return (

@@ -1,5 +1,6 @@
-import type { User } from "../schemas/user";
+import type { User } from "../server/db/types/user";
 import Avatar from "./Avatar";
+import Card from "./Card";
 
 type Props = {
   user: User;
@@ -7,11 +8,9 @@ type Props = {
 
 export default function UserPreviewCard(props: Props): JSX.Element {
   return (
-    <div className="@container">
-      <div className="border-base-900 flex max-w-sm flex-grow flex-row items-center gap-4 bg-base-100 px-4 py-2 transition-colors hover:bg-base-200 @sm:mx-2 @sm:mb-2 @sm:rounded-xl @sm:shadow-xl">
-        <Avatar initialUser={props.user} size="small" userId={props.user.id} />
-        {props.user.username}
-      </div>
-    </div>
+    <Card>
+      <Avatar initialUser={props.user} size="small" />
+      {props.user.username}
+    </Card>
   );
 }

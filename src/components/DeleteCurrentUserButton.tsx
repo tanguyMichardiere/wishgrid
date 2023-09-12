@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useCallback, useRef } from "react";
+import { useRef } from "react";
 import { trpc } from "../utils/trpc/client";
 import MutationModal from "./MutationModal";
 
@@ -16,13 +16,13 @@ export default function DeleteCurrentUserButton(): JSX.Element {
 
   const modalRef = useRef<HTMLDialogElement>(null);
 
-  const handleDeleteAccount = useCallback(function () {
+  function showModal() {
     modalRef.current?.showModal();
-  }, []);
+  }
 
   return (
     <>
-      <button className="btn btn-error" onClick={handleDeleteAccount} type="button">
+      <button className="btn btn-error" onClick={showModal} type="button">
         Delete account
       </button>
       <MutationModal
