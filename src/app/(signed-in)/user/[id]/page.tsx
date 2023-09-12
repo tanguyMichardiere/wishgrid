@@ -1,6 +1,6 @@
 import { notFound, redirect } from "next/navigation";
 import Avatar from "../../../../components/Avatar";
-import type { User } from "../../../../schemas/user";
+import type { User } from "../../../../server/db/types/user";
 import { createServerSideHelpers } from "../../../../utils/trpc/server";
 import Buttons from "./Buttons";
 import { Username } from "./Username";
@@ -39,7 +39,7 @@ export default async function UserIdPage(props: Props): Promise<JSX.Element> {
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="flex flex-col items-center gap-2">
-        <Avatar initialUser={user} size="large" userId={user.id} />
+        <Avatar initialUser={user} size="large" />
         <Username initialUser={user} userId={user.id} />
       </div>
       <Buttons initialFriendRequestsStatus={friendRequestsStatus} userId={user.id} />

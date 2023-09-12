@@ -1,5 +1,3 @@
-"use client";
-
 import { Menu as HeadlessUIMenu, Transition } from "@headlessui/react";
 import { cx } from "classix";
 import type { Route } from "next";

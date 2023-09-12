@@ -1,18 +1,15 @@
 import { type Logger as DrizzleLogger } from "drizzle-orm";
-import type { NeonDatabase } from "drizzle-orm/neon-serverless";
-import { drizzle } from "drizzle-orm/neon-serverless";
 import type { Logger as AxiomLogger } from "next-axiom";
 import "server-only";
-import { pool } from "./pool";
 
-class Logger implements DrizzleLogger {
+export class DbLogger implements DrizzleLogger {
   private log: AxiomLogger;
 
   constructor(log: AxiomLogger) {
     this.log = log;
   }
 
-  logQuery(query: string, params: Array<unknown>) {
+  logQuery(query: string, params: Array<unknown>): void {
     this.log.debug(
       query,
       Object.fromEntries(
@@ -21,6 +18,3 @@ class Logger implements DrizzleLogger {
     );
   }
 }
-
-export const createDb = (log: AxiomLogger): NeonDatabase =>
-  drizzle(pool, { logger: new Logger(log) });

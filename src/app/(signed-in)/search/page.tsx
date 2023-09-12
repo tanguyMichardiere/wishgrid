@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { ChangeEvent } from "react";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import Spinner from "../../../components/Spinner";
 import UserPreviewCard from "../../../components/UserPreviewCard";
 import { useDebounce } from "../../../hooks/useDebounce";
@@ -12,9 +12,9 @@ export default function SearchPage(): JSX.Element {
   const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query);
 
-  const handleChange = useCallback(function (event: ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
     setQuery(event.target.value);
-  }, []);
+  }
 
   const search = trpc.users.search.useQuery(
     { query: debouncedQuery },

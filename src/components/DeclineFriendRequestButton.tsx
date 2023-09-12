@@ -7,10 +7,10 @@ type Props = {
   userId: string;
 };
 
-export default function AcceptFriendRequestButton(props: Props): JSX.Element {
+export default function DeclineFriendRequestButton(props: Props): JSX.Element {
   const trpcContext = trpc.useContext();
 
-  const mutation = trpc.friendRequests.decline.useMutation({
+  const declineFriendRequest = trpc.friendRequests.decline.useMutation({
     async onMutate({ userId }) {
       await Promise.all([
         trpcContext.friendRequests.count.cancel(),
@@ -62,7 +62,11 @@ export default function AcceptFriendRequestButton(props: Props): JSX.Element {
   });
 
   return (
-    <MutationButton className="btn-ghost" mutation={mutation} variables={{ userId: props.userId }}>
+    <MutationButton
+      className="btn-ghost"
+      mutation={declineFriendRequest}
+      variables={{ userId: props.userId }}
+    >
       Decline
     </MutationButton>
   );

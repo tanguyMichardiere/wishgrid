@@ -1,0 +1,1 @@
+ALTER TABLE "wishes" ALTER COLUMN "link" SET DATA TYPE varchar(512);
