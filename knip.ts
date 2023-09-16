@@ -5,6 +5,7 @@ export default {
   ignoreDependencies: [
     "@total-typescript/ts-reset",
     "eslint-config-next",
+    "lorem-ipsum",
     "npm-check-updates",
     "vercel",
   ],
