@@ -16,7 +16,16 @@ import Modal from "./Modal";
 const FormSchema = z.object({
   title: WishTitle,
   description: WishDescription,
-  link: WishLink,
+  link: z.preprocess(
+    (arg) =>
+      typeof arg === "string" &&
+      arg.length > 0 &&
+      !arg.startsWith("http://") &&
+      !arg.startsWith("https://")
+        ? `https://${arg}`
+        : arg,
+    WishLink,
+  ),
 });
 
 type Props = {

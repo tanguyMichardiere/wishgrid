@@ -17,7 +17,7 @@ export default function NewWishButton(props: Props): JSX.Element {
 
   return (
     <>
-      <button className="btn justify-center" onClick={showModal} type="button">
+      <button className="btn mx-2 justify-center" onClick={showModal} type="button">
         New Wish
       </button>
       <NewWishModal initialCurrentUser={props.initialCurrentUser} ref={modalRef} />
