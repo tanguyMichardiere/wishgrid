@@ -21,7 +21,8 @@ export default function Links(props: Props): JSX.Element {
   const links: Array<{ key: string; className?: string; children: ReactNode; href: Route }> =
     useMemo(
       () => [
-        { key: "wish-list", children: "Wish list", href: "/user" },
+        { key: "friends", children: "Friends", href: "/" },
+        { key: "my-wishes", children: "My wishes", href: "/user" },
         { key: "search", children: "Search", href: "/search" },
         {
           key: "friend-requests",
@@ -41,18 +42,14 @@ export default function Links(props: Props): JSX.Element {
           ),
           href: "/friend-requests",
         },
-        {
-          key: "settings",
-          children: "Settings",
-          href: "/settings",
-        },
+        { key: "settings", children: "Settings", href: "/settings" },
       ],
       [friendRequestsCount.data],
     );
 
   return (
     <>
-      <ul className="hidden gap-4 md:flex">
+      <ul className="hidden gap-4 lg:flex">
         {links.map((link) => (
           <Link className={cx("btn btn-ghost", link.className)} href={link.href} key={link.key}>
             {link.children}
@@ -61,7 +58,7 @@ export default function Links(props: Props): JSX.Element {
       </ul>
       <Menu
         buttonClassName={cx(
-          "btn btn-circle btn-ghost md:hidden",
+          "btn btn-circle btn-ghost lg:hidden",
           friendRequestsCount.data > 0 && "ring ring-primary ring-offset-base-100",
         )}
         items={links}
