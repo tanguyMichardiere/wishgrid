@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
-npx npm-check-updates -f npm-check-updates -u
 npx npm-check-updates -f @types/node -t minor -u
 npx npm-check-updates -x @types/node -u
 npm install
