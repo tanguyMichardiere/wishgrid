@@ -25,7 +25,7 @@
   "explorer.fileNesting.patterns": {
     ".env": ".env.*",
     "README.md": "LICENSE",
-    "next.config.js": ".eslintrc.js, *.config.js, *.config.ts, knip.ts",
+    "next.config.js": ".eslintrc.js, *.config.js, *.config.ts, i18n.ts, knip.ts",
     "package.json": "package-lock.json"
   },
   "files.associations": {

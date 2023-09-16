@@ -10,7 +10,7 @@ export default function DeleteCurrentUserButton(): JSX.Element {
 
   const deleteCurrentUser = trpc.users.deleteCurrent.useMutation({
     onSettled() {
-      router.replace("/sign-in/");
+      router.replace("/sign-in");
     },
   });
 
