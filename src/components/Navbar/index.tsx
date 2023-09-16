@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "next-intl/link";
 import { createServerSideHelpers } from "../../utils/trpc/server";
 import Links from "./Links";
 

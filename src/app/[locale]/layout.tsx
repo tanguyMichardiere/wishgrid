@@ -34,6 +34,7 @@ const inter = Inter({
 export default function RootLayout(props: Props): JSX.Element {
   const locale = useLocale();
 
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (props.params.locale !== locale) {
     notFound();
   }

@@ -1,5 +1,5 @@
+import Link from "next-intl/link";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import DeleteCurrentUserButton from "../../../../components/DeleteCurrentUserButton";
 import SignOutButton from "../../../../components/SignOutButton";
 

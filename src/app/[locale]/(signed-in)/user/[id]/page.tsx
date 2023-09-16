@@ -1,4 +1,5 @@
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next-intl/server";
+import { notFound } from "next/navigation";
 import Avatar from "../../../../../components/Avatar";
 import type { User } from "../../../../../server/db/types/user";
 import { createServerSideHelpers } from "../../../../../utils/trpc/server";

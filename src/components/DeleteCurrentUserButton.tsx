@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-intl/client";
 import { useRef } from "react";
 import { trpc } from "../utils/trpc/client";
 import MutationModal from "./MutationModal";

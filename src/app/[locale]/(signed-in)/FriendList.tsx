@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "next-intl/link";
 import UserPreviewCard from "../../../components/UserPreviewCard";
 import type { User } from "../../../server/db/types/user";
 import { trpc } from "../../../utils/trpc/client";

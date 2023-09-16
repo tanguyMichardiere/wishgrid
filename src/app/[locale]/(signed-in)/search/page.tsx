@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "next-intl/link";
 import type { ChangeEvent } from "react";
 import { useState } from "react";
 import Spinner from "../../../../components/Spinner";

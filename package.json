@@ -18,6 +18,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@clerk/localizations": "1.25.2",
     "@clerk/nextjs": "4.23.5",
     "@clerk/themes": "1.7.5",
     "@headlessui/react": "1.7.17",

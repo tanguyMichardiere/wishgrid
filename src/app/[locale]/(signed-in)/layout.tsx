@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+import { redirect } from "next-intl/server";
 import type { ReactNode } from "react";
 import Navbar from "../../../components/Navbar";
 import { createServerSideHelpers } from "../../../utils/trpc/server";

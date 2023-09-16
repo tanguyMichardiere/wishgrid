@@ -1,3 +1,3 @@
 export type Params = {
-  locale: "en";
+  locale: Locale;
 };
