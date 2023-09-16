@@ -2,14 +2,13 @@
 
 import { useRef } from "react";
 import type { User } from "../server/db/types/user";
-import Card from "./Card";
 import NewWishModal from "./NewWishModal";
 
 type Props = {
   initialCurrentUser: User;
 };
 
-export default function NewWishCard(props: Props): JSX.Element {
+export default function NewWishButton(props: Props): JSX.Element {
   const modalRef = useRef<HTMLDialogElement>(null);
 
   function showModal() {
@@ -18,8 +17,8 @@ export default function NewWishCard(props: Props): JSX.Element {
 
   return (
     <>
-      <button onClick={showModal}>
-        <Card className="justify-center">New Wish</Card>
+      <button className="btn justify-center" onClick={showModal} type="button">
+        New Wish
       </button>
       <NewWishModal initialCurrentUser={props.initialCurrentUser} ref={modalRef} />
     </>
