@@ -29,6 +29,13 @@
       "when": 1694527203083,
       "tag": "0003_lean_lockjaw",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1694874881453,
+      "tag": "0004_secret_post",
+      "breakpoints": true
     }
   ]
 }

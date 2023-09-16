@@ -4,7 +4,7 @@ import { Comment } from "./comments";
 import { User } from "./user";
 
 export const WishTitle = z.string().min(4).max(32);
-export const WishDescription = z.string().max(256);
+export const WishDescription = z.string().max(512);
 export const WishLink = z.union([z.string().url().max(512), z.string().max(0)]);
 
 export const OwnWish = z.object({
