@@ -66,7 +66,10 @@ export default function CommentInput(props: Props): JSX.Element {
   return (
     <form onSubmit={submit}>
       <input
-        className={cx("input w-72", errors.text !== undefined && "outline outline-error")}
+        className={cx(
+          "input input-bordered w-72",
+          errors.text !== undefined && "outline outline-error",
+        )}
         {...register("text")}
         placeholder="Comment"
       />

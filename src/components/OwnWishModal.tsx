@@ -13,7 +13,7 @@ export default forwardRef<HTMLDialogElement, Props>(function OwnWishModal(props,
       <h1 className="text-xl">{props.wish.title}</h1>
       {props.wish.description.length > 0 && (
         <textarea
-          className="input h-auto w-72 resize-none"
+          className="input input-bordered h-auto w-72 resize-none"
           readOnly
           rows={5}
           value={props.wish.description}

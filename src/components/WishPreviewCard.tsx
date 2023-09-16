@@ -26,7 +26,12 @@ export default function WishPreviewCard(props: Props): JSX.Element {
           <div>{props.wish.title}</div>
           <div className="flex items-center gap-2">
             <span className="badge">{props.wish.comments.length}</span>
-            <input checked={props.wish.reservedBy !== null} className="checkbox" type="checkbox" />
+            <input
+              checked={props.wish.reservedBy !== null}
+              className="checkbox"
+              readOnly
+              type="checkbox"
+            />
           </div>
         </Card>
       </button>
