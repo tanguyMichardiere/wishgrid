@@ -1,5 +1,5 @@
 import Avatar from "../../../components/Avatar";
-import NewWishCard from "../../../components/NewWishCard";
+import NewWishButton from "../../../components/NewWishButton";
 import { createServerSideHelpers } from "../../../utils/trpc/server";
 import OwnWishList from "./OwnWishList";
 
@@ -16,7 +16,7 @@ export default async function UserPage(): Promise<JSX.Element> {
   return (
     <div className="flex flex-col gap-4">
       <Avatar className="self-center" initialUser={currentUser} size="large" />
-      <NewWishCard initialCurrentUser={currentUser} />
+      <NewWishButton initialCurrentUser={currentUser} />
       <ul className="flex flex-col">
         <OwnWishList initialWishes={wishes} />
       </ul>

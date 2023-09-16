@@ -16,7 +16,16 @@ import Modal from "./Modal";
 const FormSchema = z.object({
   title: WishTitle,
   description: WishDescription,
-  link: WishLink,
+  link: z.preprocess(
+    (arg) =>
+      typeof arg === "string" &&
+      arg.length > 0 &&
+      !arg.startsWith("http://") &&
+      !arg.startsWith("https://")
+        ? `https://${arg}`
+        : arg,
+    WishLink,
+  ),
 });
 
 type Props = {
@@ -75,7 +84,10 @@ export default forwardRef<HTMLDialogElement, Props>(function NewWishModal(props,
       <form className="flex flex-col gap-2" onSubmit={submit}>
         <div className="flex flex-col self-center">
           <input
-            className={cx("input w-72", errors.title !== undefined && "outline outline-error")}
+            className={cx(
+              "input input-bordered w-72",
+              errors.title !== undefined && "outline outline-error",
+            )}
             {...register("title")}
             placeholder="Title"
           />
@@ -85,7 +97,7 @@ export default forwardRef<HTMLDialogElement, Props>(function NewWishModal(props,
           <textarea
             {...register("description")}
             className={cx(
-              "input h-auto w-72",
+              "input input-bordered h-auto w-72",
               errors.description !== undefined && "outline outline-error",
             )}
             placeholder="Description"
@@ -95,7 +107,10 @@ export default forwardRef<HTMLDialogElement, Props>(function NewWishModal(props,
         </div>
         <div className="flex flex-col self-center">
           <input
-            className={cx("input w-72", errors.link !== undefined && "outline outline-error")}
+            className={cx(
+              "input input-bordered w-72",
+              errors.link !== undefined && "outline outline-error",
+            )}
             {...register("link")}
             placeholder="Link"
           />

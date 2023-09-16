@@ -7,7 +7,7 @@ export const wishes = pgTable(
   {
     id: uuid("id").primaryKey().defaultRandom(),
     title: varchar("title", { length: 32 }).notNull(),
-    description: varchar("description", { length: 256 }).notNull(),
+    description: varchar("description", { length: 512 }).notNull(),
     link: varchar("link", { length: 512 }).notNull(),
 
     userId: char("user_id", { length: 32 }).notNull(),

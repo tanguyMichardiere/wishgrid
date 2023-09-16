@@ -25,7 +25,7 @@ export default function SearchPage(): JSX.Element {
     <div className="flex flex-col gap-4">
       <input
         autoFocus
-        className="input mx-auto w-full max-w-xs"
+        className="input input-bordered mx-auto w-full max-w-xs"
         maxLength={32}
         minLength={4}
         onChange={handleChange}
