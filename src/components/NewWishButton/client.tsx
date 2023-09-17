@@ -2,9 +2,12 @@
 
 import { useRef } from "react";
 import NewWishModal from "../NewWishModal";
-import type { ClientProps } from "./props";
 
-export default function NewWishButtonClient(props: ClientProps): JSX.Element {
+type Props = {
+  text: string;
+};
+
+export default function NewWishButtonClient(props: Props): JSX.Element {
   const modalRef = useRef<HTMLDialogElement>(null);
 
   function showModal() {

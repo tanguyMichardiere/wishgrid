@@ -3,12 +3,18 @@
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { useTheme } from "next-themes";
 import { useCallback, useMemo } from "react";
+import type { Props as MenuProps } from "../Menu";
 import Menu from "../Menu";
-import type { ClientProps } from "./props";
 
 const themes = ["system", "dark", "light"] as const;
 
-export default function ThemeMenuClient(props: ClientProps): JSX.Element {
+export type Props = Pick<MenuProps, "position"> & {
+  system: string;
+  dark: string;
+  light: string;
+};
+
+export default function ThemeMenuClient(props: Props): JSX.Element {
   const { theme, setTheme } = useTheme();
 
   const themeDisplay = useCallback(

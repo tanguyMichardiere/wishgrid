@@ -4,9 +4,14 @@ import { useRouter } from "next-intl/client";
 import { useRef } from "react";
 import { trpc } from "../../utils/trpc/client";
 import MutationModal from "../MutationModal";
-import type { ClientProps } from "./props";
 
-export default function DeleteCurrentUserButtonClient(props: ClientProps): JSX.Element {
+type Props = {
+  text: string;
+  modalBody: string;
+  modalTitle: string;
+};
+
+export default function DeleteCurrentUserButtonClient(props: Props): JSX.Element {
   const router = useRouter();
 
   const deleteCurrentUser = trpc.users.deleteCurrent.useMutation({

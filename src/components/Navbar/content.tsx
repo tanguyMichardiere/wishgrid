@@ -1,10 +1,12 @@
 import { useTranslations } from "next-intl";
 import Link from "next-intl/link";
 import "server-only";
+import type { Props as LinksProps } from "./client/Links";
 import Links from "./client/Links";
-import type { ContentProps } from "./props";
 
-export default function NavbarContent(props: ContentProps): JSX.Element {
+type Props = Pick<LinksProps, "initialFriendRequestsCount">;
+
+export default function NavbarContent(props: Props): JSX.Element {
   const t = useTranslations("Navbar");
 
   return (
@@ -14,7 +16,14 @@ export default function NavbarContent(props: ContentProps): JSX.Element {
           <h1>{t("title")}</h1>
         </Link>
       </div>
-      <Links initialFriendRequestsCount={props.initialFriendRequestsCount} />
+      <Links
+        friendRequests={t("Links.friend-requests")}
+        friends={t("Links.friends")}
+        initialFriendRequestsCount={props.initialFriendRequestsCount}
+        myWishes={t("Links.my-wishes")}
+        search={t("Links.search")}
+        settings={t("Links.settings")}
+      />
     </nav>
   );
 }

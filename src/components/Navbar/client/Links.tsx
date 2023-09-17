@@ -8,9 +8,17 @@ import type { ReactNode } from "react";
 import { useMemo } from "react";
 import { trpc } from "../../../utils/trpc/client";
 import Menu from "../../Menu";
-import type { LinksProps } from ".././props";
 
-export default function Links(props: LinksProps): JSX.Element {
+export type Props = {
+  initialFriendRequestsCount: number;
+  friends: string;
+  myWishes: string;
+  search: string;
+  friendRequests: string;
+  settings: string;
+};
+
+export default function Links(props: Props): JSX.Element {
   const friendRequestsCount = trpc.friendRequests.count.useQuery(undefined, {
     initialData: props.initialFriendRequestsCount,
   });
@@ -18,15 +26,15 @@ export default function Links(props: LinksProps): JSX.Element {
   const links: Array<{ key: string; className?: string; children: ReactNode; href: Route }> =
     useMemo(
       () => [
-        { key: "friends", children: "Friends", href: "/" },
-        { key: "my-wishes", children: "My wishes", href: "/user" },
-        { key: "search", children: "Search", href: "/search" },
+        { key: "friends", children: props.friends, href: "/" },
+        { key: "my-wishes", children: props.myWishes, href: "/user" },
+        { key: "search", children: props.search, href: "/search" },
         {
           key: "friend-requests",
           className: "justify-between",
           children: (
             <>
-              Friend requests
+              {props.friendRequests}
               <span
                 className={cx(
                   "badge",
@@ -39,9 +47,16 @@ export default function Links(props: LinksProps): JSX.Element {
           ),
           href: "/friend-requests",
         },
-        { key: "settings", children: "Settings", href: "/settings" },
+        { key: "settings", children: props.settings, href: "/settings" },
       ],
-      [friendRequestsCount.data],
+      [
+        friendRequestsCount.data,
+        props.friendRequests,
+        props.friends,
+        props.myWishes,
+        props.search,
+        props.settings,
+      ],
     );
 
   return (

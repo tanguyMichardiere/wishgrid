@@ -38,7 +38,14 @@
     "ok": "OK"
   },
   "Navbar": {
-    "title": "WishGrid"
+    "title": "WishGrid",
+    "Links": {
+      "friends": "Friends",
+      "my-wishes": "My Wishes",
+      "search": "Search",
+      "friend-requests": "Friend Requests",
+      "settings": "Settings"
+    }
   },
   "NewWishButton": {
     "text": "New Wish"
