@@ -24,9 +24,9 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
     ".env": ".env.*",
-    "README.md": "LICENSE",
-    "next.config.js": ".eslintrc.js, *.config.js, *.config.ts, knip.ts",
-    "package.json": "package-lock.json"
+    "next.config.js": ".eslintrc.js, *.config.js, *.config.ts, i18n.ts, knip.ts",
+    "package.json": "package-lock.json",
+    "README.md": "LICENSE"
   },
   "files.associations": {
     "*.css": "tailwindcss"
@@ -36,6 +36,8 @@
   "files.trimTrailingWhitespace": true,
   "git.branchProtection": ["main"],
   "html.format.enable": false,
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.localesPaths": ["messages"],
   "javascript.format.enable": false,
   "json.format.enable": false,
   "tailwindCSS.emmetCompletions": true,

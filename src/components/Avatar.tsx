@@ -1,17 +1,10 @@
 "use client";
 
-import { cx } from "classix";
+import cx from "classix";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import type { User } from "../server/db/types/user";
 import { trpc } from "../utils/trpc/client";
-
-type Size = "small" | "large";
-
-type Props = {
-  className?: string;
-  initialUser: User;
-  size: Size;
-};
 
 const sizes = {
   small: {
@@ -24,7 +17,15 @@ const sizes = {
   },
 };
 
+type Props = {
+  className?: string;
+  size: keyof typeof sizes;
+  initialUser: User;
+};
+
 export default function Avatar(props: Props): JSX.Element {
+  const t = useTranslations("clientComponents.Avatar");
+
   const user = trpc.users.get.useQuery(
     { userId: props.initialUser.id },
     { initialData: props.initialUser },
@@ -34,7 +35,7 @@ export default function Avatar(props: Props): JSX.Element {
     <div className={cx("avatar", props.className)}>
       <div className={cx("rounded-full", sizes[props.size].className)}>
         <Image
-          alt="profile picture"
+          alt={t("altText")}
           height={sizes[props.size].size}
           priority
           src={user.data.imageUrl}

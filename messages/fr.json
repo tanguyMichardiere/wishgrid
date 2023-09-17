@@ -1,0 +1,101 @@
+{
+  "clientComponents": {
+    "AcceptFriendRequestButton": {
+      "text": "Accepter"
+    },
+    "Avatar": {
+      "altText": "photo de profil"
+    },
+    "CancelFriendRequestButton": {
+      "text": "Annuler la demande d'ami"
+    },
+    "DeclineFriendRequestButton": {
+      "text": "Refuser"
+    },
+    "DeleteWishButton": {
+      "text": "Supprimer le vœu"
+    },
+    "Error": {
+      "digest": "Code : {digest}",
+      "title": "Une erreur inattendue a eu lieu, elle a été signalée",
+      "tryAgain": "Réessayer"
+    },
+    "FriendList": {
+      "noFriends": "Aucun ami",
+      "search": "Chercher vos amis"
+    },
+    "FriendRequestList": {
+      "noFriendRequests": "Aucune demande d'ami"
+    },
+    "Modal": {
+      "backdropButtonText": "fermer"
+    },
+    "MutationModal": {
+      "cancel": "Annuler",
+      "ok": "OK"
+    },
+    "NewWishModal": {
+      "cancelButtonText": "Annuler",
+      "createButtonText": "Créer",
+      "descriptionInputPlaceholder": "Description",
+      "linkInputPlaceholder": "Lien",
+      "titleInputPlaceholder": "Titre"
+    },
+    "OwnWishList": {
+      "noWish": "Aucun vœu"
+    },
+    "RequestFriendButton": {
+      "text": "Demander en ami"
+    },
+    "ReserveWishButton": {
+      "text": "Réserver"
+    },
+    "SearchPage": {
+      "inputPlaceholder": "Chercher par nom, email, etc.",
+      "noResults": "Aucun résultat"
+    },
+    "UnreserveWishButton": {
+      "text": "Ne plus réserver"
+    },
+    "UserProfilePage": {
+      "returnToSettings": "Retour aux paramètres"
+    },
+    "WishList": {
+      "noWish": "Aucun vœu"
+    },
+    "WishModal": {
+      "commentInputPlaceholder": "Commentaire",
+      "reservedBy": "Réservé par : "
+    }
+  },
+  "DeleteCurrentUserButton": {
+    "modalBody": "Vos vœux et commentaires seront supprimés, et vous serez retiré de toute liste d'amis.",
+    "modalTitle": "Supprimer votre compte ?",
+    "text": "Supprimer le compte"
+  },
+  "Navbar": {
+    "Links": {
+      "friend-requests": "Demandes d'ami",
+      "friends": "Amis",
+      "myWishes": "Mes vœux",
+      "search": "Chercher",
+      "settings": "Paramètres"
+    },
+    "title": "WishGrid"
+  },
+  "NewWishButton": {
+    "text": "Nouveau vœu"
+  },
+  "SettingsPage": {
+    "manageAccount": "Gestion du compte",
+    "theme": "Thème"
+  },
+  "SignOutButton": {
+    "text": "Déconnexion"
+  },
+  "ThemeMenu": {
+    "dark": "Sombre",
+    "light": "Lumineux",
+    "system": "Système"
+  }
+}

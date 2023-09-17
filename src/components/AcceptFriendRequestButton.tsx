@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { trpc } from "../utils/trpc/client";
 import MutationButton from "./MutationButton";
 
@@ -8,6 +9,8 @@ type Props = {
 };
 
 export default function AcceptFriendRequestButton(props: Props): JSX.Element {
+  const t = useTranslations("clientComponents.AcceptFriendRequestButton");
+
   const trpcContext = trpc.useContext();
 
   const acceptFriendRequest = trpc.friendRequests.accept.useMutation({
@@ -76,7 +79,7 @@ export default function AcceptFriendRequestButton(props: Props): JSX.Element {
       mutation={acceptFriendRequest}
       variables={{ userId: props.userId }}
     >
-      Accept
+      {t("text")}
     </MutationButton>
   );
 }

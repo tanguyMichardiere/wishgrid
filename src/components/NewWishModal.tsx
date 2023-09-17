@@ -3,11 +3,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import cx from "classix";
 import { useLogger } from "next-axiom";
+import { useTranslations } from "next-intl";
 import type { FormEvent } from "react";
 import { forwardRef, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import type { User } from "../server/db/types/user";
+import { useCurrentUser } from "../context/currentUser/hook";
 import { WishDescription, WishLink, WishTitle } from "../server/db/types/wishes";
 import { mergeRefs } from "../utils/mergeRefs";
 import { trpc } from "../utils/trpc/client";
@@ -28,11 +29,9 @@ const FormSchema = z.object({
   ),
 });
 
-type Props = {
-  initialCurrentUser: User;
-};
+export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref): JSX.Element {
+  const t = useTranslations("clientComponents.NewWishModal");
 
-export default forwardRef<HTMLDialogElement, Props>(function NewWishModal(props, ref): JSX.Element {
   const log = useLogger();
 
   const innerRef = useRef<HTMLDialogElement>(null);
@@ -51,9 +50,7 @@ export default forwardRef<HTMLDialogElement, Props>(function NewWishModal(props,
 
   const trpcContext = trpc.useContext();
 
-  const currentUser = trpc.users.getCurrent.useQuery(undefined, {
-    initialData: props.initialCurrentUser,
-  });
+  const currentUser = useCurrentUser();
 
   const createWish = trpc.wishes.create.useMutation({
     // no optimistic update because we don't know the ID yet
@@ -62,7 +59,7 @@ export default forwardRef<HTMLDialogElement, Props>(function NewWishModal(props,
         wishes !== undefined
           ? [
               ...wishes,
-              { id, title, description, link, userId: currentUser.data.id, reservedById: null },
+              { id, title, description, link, userId: currentUser.id, reservedById: null },
             ].toSorted((a, b) => a.title.localeCompare(b.title))
           : undefined,
       );
@@ -84,12 +81,12 @@ export default forwardRef<HTMLDialogElement, Props>(function NewWishModal(props,
       <form className="flex flex-col gap-2" onSubmit={submit}>
         <div className="flex flex-col self-center">
           <input
+            {...register("title")}
             className={cx(
               "input input-bordered w-72",
               errors.title !== undefined && "outline outline-error",
             )}
-            {...register("title")}
-            placeholder="Title"
+            placeholder={t("titleInputPlaceholder")}
           />
           <p className="text-sm">{errors.title?.message}</p>
         </div>
@@ -100,32 +97,32 @@ export default forwardRef<HTMLDialogElement, Props>(function NewWishModal(props,
               "input input-bordered h-auto w-72",
               errors.description !== undefined && "outline outline-error",
             )}
-            placeholder="Description"
+            placeholder={t("descriptionInputPlaceholder")}
             rows={5}
           />
           <p className="text-sm">{errors.description?.message}</p>
         </div>
         <div className="flex flex-col self-center">
           <input
+            {...register("link")}
             className={cx(
               "input input-bordered w-72",
               errors.link !== undefined && "outline outline-error",
             )}
-            {...register("link")}
-            placeholder="Link"
+            placeholder={t("linkInputPlaceholder")}
           />
           <p className="text-sm">{errors.link?.message}</p>
         </div>
         <div className="modal-action">
           <button className="btn btn-ghost" onClick={closeModal} type="button">
-            Cancel
+            {t("cancelButtonText")}
           </button>
           <button
             className={cx("btn", createWish.isLoading && "btn-disabled loading")}
             disabled={createWish.isLoading}
             type="submit"
           >
-            Create
+            {t("createButtonText")}
           </button>
         </div>
       </form>

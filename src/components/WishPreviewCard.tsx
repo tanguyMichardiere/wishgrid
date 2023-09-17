@@ -1,13 +1,11 @@
 "use client";
 
 import { useRef } from "react";
-import type { User } from "../server/db/types/user";
 import type { Wish } from "../server/db/types/wishes";
 import Card from "./Card";
 import WishModal from "./WishModal";
 
 type Props = {
-  initialCurrentUser: User;
   userId: string;
   wish: Wish;
 };
@@ -35,12 +33,7 @@ export default function WishPreviewCard(props: Props): JSX.Element {
           </div>
         </Card>
       </button>
-      <WishModal
-        initialCurrentUser={props.initialCurrentUser}
-        ref={modalRef}
-        userId={props.userId}
-        wish={props.wish}
-      />
+      <WishModal ref={modalRef} userId={props.userId} wish={props.wish} />
     </>
   );
 }

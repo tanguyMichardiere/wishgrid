@@ -7,9 +7,6 @@ const { headers } = require("./headers.config");
 let nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  experimental: {
-    typedRoutes: true,
-  },
   images: {
     domains: ["img.clerk.com"],
   },
@@ -22,6 +19,8 @@ let nextConfig = {
     ]);
   },
 };
+
+nextConfig = require("next-intl/plugin")("./i18n.ts")(nextConfig);
 
 nextConfig = require("next-axiom").withAxiom(nextConfig);
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { trpc } from "../utils/trpc/client";
 import MutationButton from "./MutationButton";
 
@@ -9,6 +10,8 @@ type Props = {
 };
 
 export default function UnreserveWishButton(props: Props): JSX.Element {
+  const t = useTranslations("clientComponents.UnreserveWishButton");
+
   const trpcContext = trpc.useContext();
 
   const unreserveWish = trpc.wishes.unreserve.useMutation({
@@ -41,7 +44,7 @@ export default function UnreserveWishButton(props: Props): JSX.Element {
       mutation={unreserveWish}
       variables={{ id: props.wishId }}
     >
-      Unreserve
+      {t("text")}
     </MutationButton>
   );
 }

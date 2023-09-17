@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { trpc } from "../utils/trpc/client";
 import MutationButton from "./MutationButton";
 
@@ -6,6 +7,8 @@ type Props = {
 };
 
 export default function DeleteWishButton(props: Props): JSX.Element {
+  const t = useTranslations("clientComponents.DeleteWishButton");
+
   const trpcContext = trpc.useContext();
 
   const deleteWish = trpc.wishes.delete.useMutation({
@@ -34,7 +37,7 @@ export default function DeleteWishButton(props: Props): JSX.Element {
 
   return (
     <MutationButton mutation={deleteWish} variables={{ id: props.wishId }}>
-      Delete Wish
+      {t("text")}
     </MutationButton>
   );
 }

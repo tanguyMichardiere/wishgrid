@@ -1,19 +1,19 @@
 "use client";
 
-import type { User } from "../server/db/types/user";
+import { useTranslations } from "next-intl";
+import { useCurrentUser } from "../context/currentUser/hook";
 import { trpc } from "../utils/trpc/client";
 import MutationButton from "./MutationButton";
 
 type Props = {
-  initialCurrentUser: User;
   userId: string;
   wishId: string;
 };
 
 export default function ReserveWishButton(props: Props): JSX.Element {
-  const currentUser = trpc.users.getCurrent.useQuery(undefined, {
-    initialData: props.initialCurrentUser,
-  });
+  const t = useTranslations("clientComponents.ReserveWishButton");
+
+  const currentUser = useCurrentUser();
 
   const trpcContext = trpc.useContext();
 
@@ -27,9 +27,7 @@ export default function ReserveWishButton(props: Props): JSX.Element {
       trpcContext.wishes.list.setData(
         { userId: props.userId },
         (wishes) =>
-          wishes?.map((wish) =>
-            wish.id === id ? { ...wish, reservedBy: currentUser.data } : wish,
-          ),
+          wishes?.map((wish) => (wish.id === id ? { ...wish, reservedBy: currentUser } : wish)),
       );
 
       return { previousWishList };
@@ -46,7 +44,7 @@ export default function ReserveWishButton(props: Props): JSX.Element {
 
   return (
     <MutationButton className="btn-primary" mutation={reserveWish} variables={{ id: props.wishId }}>
-      Reserve
+      {t("text")}
     </MutationButton>
   );
 }
