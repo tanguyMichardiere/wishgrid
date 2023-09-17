@@ -6,16 +6,15 @@ import { useLogger } from "next-axiom";
 import type { FormEvent } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { CommentText } from "../server/db/types/comments";
-import type { User } from "../server/db/types/user";
-import { trpc } from "../utils/trpc/client";
+import { useCurrentUser } from "../../context/currentUser/hook";
+import { CommentText } from "../../server/db/types/comments";
+import { trpc } from "../../utils/trpc/client";
 
 const FormSchema = z.object({
   text: CommentText,
 });
 
 type Props = {
-  initialCurrentUser: User;
   userId: string;
   wishId: string;
 };
@@ -23,9 +22,7 @@ type Props = {
 export default function CommentInput(props: Props): JSX.Element {
   const log = useLogger();
 
-  const currentUser = trpc.users.getCurrent.useQuery(undefined, {
-    initialData: props.initialCurrentUser,
-  });
+  const currentUser = useCurrentUser();
 
   const {
     register,
@@ -45,7 +42,7 @@ export default function CommentInput(props: Props): JSX.Element {
             wish.id === wishId
               ? {
                   ...wish,
-                  comments: [...wish.comments, { id, text, timestamp, user: currentUser.data }],
+                  comments: [...wish.comments, { id, text, timestamp, user: currentUser }],
                 }
               : wish,
           ),

@@ -7,7 +7,7 @@ import type { FormEvent } from "react";
 import { forwardRef, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import type { User } from "../server/db/types/user";
+import { useCurrentUser } from "../context/currentUser/hook";
 import { WishDescription, WishLink, WishTitle } from "../server/db/types/wishes";
 import { mergeRefs } from "../utils/mergeRefs";
 import { trpc } from "../utils/trpc/client";
@@ -28,11 +28,7 @@ const FormSchema = z.object({
   ),
 });
 
-type Props = {
-  initialCurrentUser: User;
-};
-
-export default forwardRef<HTMLDialogElement, Props>(function NewWishModal(props, ref): JSX.Element {
+export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref): JSX.Element {
   const log = useLogger();
 
   const innerRef = useRef<HTMLDialogElement>(null);
@@ -51,9 +47,7 @@ export default forwardRef<HTMLDialogElement, Props>(function NewWishModal(props,
 
   const trpcContext = trpc.useContext();
 
-  const currentUser = trpc.users.getCurrent.useQuery(undefined, {
-    initialData: props.initialCurrentUser,
-  });
+  const currentUser = useCurrentUser();
 
   const createWish = trpc.wishes.create.useMutation({
     // no optimistic update because we don't know the ID yet
@@ -62,7 +56,7 @@ export default forwardRef<HTMLDialogElement, Props>(function NewWishModal(props,
         wishes !== undefined
           ? [
               ...wishes,
-              { id, title, description, link, userId: currentUser.data.id, reservedById: null },
+              { id, title, description, link, userId: currentUser.id, reservedById: null },
             ].toSorted((a, b) => a.title.localeCompare(b.title))
           : undefined,
       );

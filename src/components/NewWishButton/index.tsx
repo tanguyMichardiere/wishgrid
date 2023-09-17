@@ -1,10 +1,9 @@
-import { createServerSideHelpers } from "../../utils/trpc/server";
-import NewWishButtonContent from "./content";
+import { useTranslations } from "next-intl";
+import "server-only";
+import NewWishButtonClient from "./client";
 
-export default async function NewWishButton(): Promise<JSX.Element> {
-  const trpc = await createServerSideHelpers();
+export default function NewWishButton(): JSX.Element {
+  const t = useTranslations("NewWishButton");
 
-  const currentUser = await trpc.users.getCurrent.fetch();
-
-  return <NewWishButtonContent initialCurrentUser={currentUser} />;
+  return <NewWishButtonClient text={t("text")} />;
 }

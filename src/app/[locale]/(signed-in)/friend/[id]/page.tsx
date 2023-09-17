@@ -45,11 +45,7 @@ export default async function FriendIdPage(props: Props): Promise<JSX.Element> {
         <Username initialUser={user} userId={user.id} />
       </div>
       <ul className="flex flex-col">
-        <WishList
-          initialCurrentUser={currentUser}
-          initialWishes={wishes}
-          userId={props.params.id}
-        />
+        <WishList initialWishes={wishes} userId={props.params.id} />
       </ul>
     </div>
   );

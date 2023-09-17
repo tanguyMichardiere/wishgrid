@@ -1,5 +1,5 @@
 import cx from "classix";
-import { useLocale } from "next-intl";
+import { useLocale, useMessages } from "next-intl";
 import { Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
@@ -39,12 +39,16 @@ export default function RootLayout(props: Props): JSX.Element {
     notFound();
   }
 
+  const clientComponentsMessages = useMessages()?.["ClientComponents"];
+
   return (
     <ServerProviders>
       <html className="h-full" lang={locale} suppressHydrationWarning>
         <body className={cx(inter.variable, "h-full font-sans")}>
           {/* @ts-expect-error incorrect types on trpc.withTRPC */}
-          <ClientProviders>{props.children}</ClientProviders>
+          <ClientProviders clientComponentsMessages={clientComponentsMessages}>
+            {props.children}
+          </ClientProviders>
         </body>
       </html>
     </ServerProviders>

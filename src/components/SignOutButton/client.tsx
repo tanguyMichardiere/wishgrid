@@ -3,8 +3,9 @@
 import { useClerk } from "@clerk/nextjs";
 import { useQueryClient } from "@tanstack/react-query";
 import { useLogger } from "next-axiom";
+import type { ClientProps } from "./props";
 
-export default function SignOutButton(): JSX.Element {
+export default function SignOutButtonClient(props: ClientProps): JSX.Element {
   const clerk = useClerk();
   const log = useLogger();
 
@@ -17,7 +18,7 @@ export default function SignOutButton(): JSX.Element {
 
   return (
     <button className="btn" onClick={signOut} type="button">
-      Sign out
+      {props.text}
     </button>
   );
 }

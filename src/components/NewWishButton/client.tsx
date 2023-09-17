@@ -2,11 +2,7 @@
 
 import { useRef } from "react";
 import NewWishModal from "../NewWishModal";
-import type { ContentProps } from "./content";
-
-type ClientProps = ContentProps & {
-  text: string;
-};
+import type { ClientProps } from "./props";
 
 export default function NewWishButtonClient(props: ClientProps): JSX.Element {
   const modalRef = useRef<HTMLDialogElement>(null);
@@ -20,7 +16,7 @@ export default function NewWishButtonClient(props: ClientProps): JSX.Element {
       <button className="btn mx-2 justify-center" onClick={showModal} type="button">
         {props.text}
       </button>
-      <NewWishModal initialCurrentUser={props.initialCurrentUser} ref={modalRef} />
+      <NewWishModal ref={modalRef} />
     </>
   );
 }

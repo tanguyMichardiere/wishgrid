@@ -6,14 +6,11 @@ import type { Route } from "next";
 import Link from "next-intl/link";
 import type { ReactNode } from "react";
 import { useMemo } from "react";
-import { trpc } from "../../utils/trpc/client";
-import Menu from "../Menu";
+import { trpc } from "../../../utils/trpc/client";
+import Menu from "../../Menu";
+import type { LinksProps } from ".././props";
 
-type Props = {
-  initialFriendRequestsCount: number;
-};
-
-export default function Links(props: Props): JSX.Element {
+export default function Links(props: LinksProps): JSX.Element {
   const friendRequestsCount = trpc.friendRequests.count.useQuery(undefined, {
     initialData: props.initialFriendRequestsCount,
   });

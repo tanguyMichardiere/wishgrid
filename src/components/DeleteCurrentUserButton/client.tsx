@@ -2,10 +2,11 @@
 
 import { useRouter } from "next-intl/client";
 import { useRef } from "react";
-import { trpc } from "../utils/trpc/client";
-import MutationModal from "./MutationModal";
+import { trpc } from "../../utils/trpc/client";
+import MutationModal from "../MutationModal";
+import type { ClientProps } from "./props";
 
-export default function DeleteCurrentUserButton(): JSX.Element {
+export default function DeleteCurrentUserButtonClient(props: ClientProps): JSX.Element {
   const router = useRouter();
 
   const deleteCurrentUser = trpc.users.deleteCurrent.useMutation({
@@ -23,13 +24,13 @@ export default function DeleteCurrentUserButton(): JSX.Element {
   return (
     <>
       <button className="btn btn-error" onClick={showModal} type="button">
-        Delete account
+        {props.text}
       </button>
       <MutationModal
-        body="This will also delete all your wishes and comments, and remove you from anyone's friend list."
+        body={props.modalBody}
         mutation={deleteCurrentUser}
         ref={modalRef}
-        title="Delete Account?"
+        title={props.modalTitle}
         variables={undefined}
       />
     </>

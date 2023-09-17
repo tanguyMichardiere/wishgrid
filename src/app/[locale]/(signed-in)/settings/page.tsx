@@ -1,9 +1,7 @@
 import Link from "next-intl/link";
-import dynamic from "next/dynamic";
 import DeleteCurrentUserButton from "../../../../components/DeleteCurrentUserButton";
 import SignOutButton from "../../../../components/SignOutButton";
-
-const ThemeMenu = dynamic(() => import("../../../../components/ThemeMenu"), { ssr: false });
+import ThemeMenu from "../../../../components/ThemeMenu";
 
 export const runtime = "nodejs";
 

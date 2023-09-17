@@ -1,3 +1,4 @@
+import { useClientComponentsMessages } from "../context/clientComponentsMessages/hook";
 import { trpc } from "../utils/trpc/client";
 import MutationButton from "./MutationButton";
 
@@ -6,6 +7,8 @@ type Props = {
 };
 
 export default function DeleteWishButton(props: Props): JSX.Element {
+  const { DeleteWishButton: messages } = useClientComponentsMessages();
+
   const trpcContext = trpc.useContext();
 
   const deleteWish = trpc.wishes.delete.useMutation({
@@ -34,7 +37,7 @@ export default function DeleteWishButton(props: Props): JSX.Element {
 
   return (
     <MutationButton mutation={deleteWish} variables={{ id: props.wishId }}>
-      Delete Wish
+      {messages.text}
     </MutationButton>
   );
 }

@@ -1,5 +1,65 @@
 {
+  "ClientComponents": {
+    "AcceptFriendRequestButton": {
+      "text": "Accept"
+    },
+    "Avatar": {
+      "altText": "profile picture"
+    },
+    "CancelFriendRequestButton": {
+      "text": "Cancel Friend Request"
+    },
+    "DeclineFriendRequestButton": {
+      "text": "Decline"
+    },
+    "DeleteWishButton": {
+      "text": "Delete Wish"
+    },
+    "RequestFriendButton": {
+      "text": "Request Friend"
+    },
+    "ReserveWishButton": {
+      "text": "Reserve"
+    },
+    "UnreserveWishButton": {
+      "text": "Unreserve"
+    }
+  },
+  "DeleteCurrentUserButton": {
+    "modalBody": "This will also delete all your wishes and comments, and remove you from anyone's friend list.",
+    "modalTitle": "Delete Account?",
+    "text": "Delete Account"
+  },
+  "Modal": {
+    "backdropButtonText": "close"
+  },
+  "MutationModal": {
+    "cancel": "Cancel",
+    "ok": "OK"
+  },
+  "Navbar": {
+    "title": "WishGrid"
+  },
   "NewWishButton": {
     "text": "New Wish"
+  },
+  "NewWishModal": {
+    "cancelButtonText": "Cancel",
+    "createButtonText": "Create",
+    "descriptionInputPlaceholder": "Description",
+    "linkInputPlaceholder": "Link",
+    "titleInputPlaceholder": "Title"
+  },
+  "SignOutButton": {
+    "text": "Sign Out"
+  },
+  "ThemeMenu": {
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  },
+  "WishModal": {
+    "commentInputPlaceholder": "Comment",
+    "reservedBy": "ReservedBy: "
   }
 }

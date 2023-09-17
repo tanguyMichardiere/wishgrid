@@ -1,5 +1,6 @@
 "use client";
 
+import { useClientComponentsMessages } from "../context/clientComponentsMessages/hook";
 import { trpc } from "../utils/trpc/client";
 import MutationButton from "./MutationButton";
 
@@ -9,6 +10,8 @@ type Props = {
 };
 
 export default function UnreserveWishButton(props: Props): JSX.Element {
+  const { UnreserveWishButton: messages } = useClientComponentsMessages();
+
   const trpcContext = trpc.useContext();
 
   const unreserveWish = trpc.wishes.unreserve.useMutation({
@@ -41,7 +44,7 @@ export default function UnreserveWishButton(props: Props): JSX.Element {
       mutation={unreserveWish}
       variables={{ id: props.wishId }}
     >
-      Unreserve
+      {messages.text}
     </MutationButton>
   );
 }

@@ -1,18 +1,23 @@
 import { authMiddleware } from "@clerk/nextjs";
-import createMiddleware from "next-intl/middleware";
+import createIntlMiddleware from "next-intl/middleware";
 
-const intlMiddleware = createMiddleware({
+const intlMiddleware = createIntlMiddleware({
   locales: ["en"],
   defaultLocale: "en",
 });
 
 export default authMiddleware({
   beforeAuth(request) {
+    const url = new URL(request.url);
+    if (url.pathname.startsWith("/api")) {
+      // don't apply the i18n middleware on TRPC routes
+      return undefined;
+    }
     return intlMiddleware(request);
   },
 
   // Ensure that locale specific sign-in pages are public
-  publicRoutes: ["/", "/:locale/sign-in"],
+  publicRoutes: ["/:locale/sign-in"],
 });
 
 export const config = {

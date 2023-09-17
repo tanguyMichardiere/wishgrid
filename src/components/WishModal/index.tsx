@@ -1,14 +1,12 @@
 import { forwardRef } from "react";
-import type { User } from "../../server/db/types/user";
 import type { Wish } from "../../server/db/types/wishes";
-import CommentInput from "../CommentInput";
 import Modal from "../Modal";
 import ReserveWishButton from "../ReserveWishButton";
+import CommentInput from "./CommentInput";
 import Comments from "./Comments";
 import ReservedBy from "./ReservedBy";
 
 type Props = {
-  initialCurrentUser: User;
   userId: string;
   wish: Wish;
 };
@@ -25,26 +23,15 @@ export default forwardRef<HTMLDialogElement, Props>(function WishModal(props, re
       )}
       {props.wish.reservedBy !== null ? (
         <ReservedBy
-          initialCurrentUser={props.initialCurrentUser}
           reservedBy={props.wish.reservedBy}
           userId={props.userId}
           wishId={props.wish.id}
         />
       ) : (
-        <ReserveWishButton
-          initialCurrentUser={props.initialCurrentUser}
-          userId={props.userId}
-          wishId={props.wish.id}
-        />
+        <ReserveWishButton userId={props.userId} wishId={props.wish.id} />
       )}
-      {props.wish.comments.length > 0 && (
-        <Comments comments={props.wish.comments} initialCurrentUser={props.initialCurrentUser} />
-      )}
-      <CommentInput
-        initialCurrentUser={props.initialCurrentUser}
-        userId={props.userId}
-        wishId={props.wish.id}
-      />
+      {props.wish.comments.length > 0 && <Comments comments={props.wish.comments} />}
+      <CommentInput userId={props.userId} wishId={props.wish.id} />
     </Modal>
   );
 });

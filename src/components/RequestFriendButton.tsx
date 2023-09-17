@@ -1,5 +1,6 @@
 "use client";
 
+import { useClientComponentsMessages } from "../context/clientComponentsMessages/hook";
 import { trpc } from "../utils/trpc/client";
 import MutationButton from "./MutationButton";
 
@@ -8,6 +9,8 @@ type Props = {
 };
 
 export default function RequestFriendButton(props: Props): JSX.Element {
+  const { RequestFriendButton: messages } = useClientComponentsMessages();
+
   const trpcContext = trpc.useContext();
 
   const requestFriend = trpc.friendRequests.create.useMutation({
@@ -35,7 +38,7 @@ export default function RequestFriendButton(props: Props): JSX.Element {
 
   return (
     <MutationButton mutation={requestFriend} variables={{ userId: props.userId }}>
-      Request Friend
+      {messages.text}
     </MutationButton>
   );
 }
