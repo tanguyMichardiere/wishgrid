@@ -20,7 +20,7 @@ export default function NavbarContent(props: Props): JSX.Element {
         friendRequests={t("Links.friend-requests")}
         friends={t("Links.friends")}
         initialFriendRequestsCount={props.initialFriendRequestsCount}
-        myWishes={t("Links.my-wishes")}
+        myWishes={t("Links.myWishes")}
         search={t("Links.search")}
         settings={t("Links.settings")}
       />

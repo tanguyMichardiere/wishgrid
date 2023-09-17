@@ -1,6 +1,6 @@
 "use client";
 
-import { useClientComponentsMessages } from "../context/clientComponentsMessages/hook";
+import { useTranslations } from "next-intl";
 import { useCurrentUser } from "../context/currentUser/hook";
 import { trpc } from "../utils/trpc/client";
 import MutationButton from "./MutationButton";
@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function ReserveWishButton(props: Props): JSX.Element {
-  const { ReserveWishButton: messages } = useClientComponentsMessages();
+  const t = useTranslations("clientComponents.ReserveWishButton");
 
   const currentUser = useCurrentUser();
 
@@ -44,7 +44,7 @@ export default function ReserveWishButton(props: Props): JSX.Element {
 
   return (
     <MutationButton className="btn-primary" mutation={reserveWish} variables={{ id: props.wishId }}>
-      {messages.text}
+      {t("text")}
     </MutationButton>
   );
 }

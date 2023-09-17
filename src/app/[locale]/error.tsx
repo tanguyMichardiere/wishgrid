@@ -1,6 +1,7 @@
 "use client";
 
 import { useLogger } from "next-axiom";
+import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 
 type Props = {
@@ -9,6 +10,8 @@ type Props = {
 };
 
 export default function Error({ reset, ...props }: Props): JSX.Element {
+  const t = useTranslations("clientComponents.Error");
+
   const log = useLogger();
 
   useEffect(
@@ -20,10 +23,10 @@ export default function Error({ reset, ...props }: Props): JSX.Element {
 
   return (
     <div className="flex h-full flex-col items-center justify-center gap-4">
-      <h2 className="text-center">An unexpected error has occurred, it has been reported</h2>
-      {props.error.digest !== undefined && <p>Digest: {props.error.digest}</p>}
+      <h2 className="text-center">{t("title")}</h2>
+      {props.error.digest !== undefined && <p>{t("digest", { digest: props.error.digest })}</p>}
       <button className="btn" onClick={reset}>
-        Try again
+        {t("tryAgain")}
       </button>
     </div>
   );

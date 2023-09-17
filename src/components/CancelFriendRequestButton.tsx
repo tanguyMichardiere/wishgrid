@@ -1,6 +1,6 @@
 "use client";
 
-import { useClientComponentsMessages } from "../context/clientComponentsMessages/hook";
+import { useTranslations } from "next-intl";
 import { trpc } from "../utils/trpc/client";
 import MutationButton from "./MutationButton";
 
@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function CancelFriendRequestButton(props: Props): JSX.Element {
-  const { CancelFriendRequestButton: messages } = useClientComponentsMessages();
+  const t = useTranslations("clientComponents.CancelFriendRequestButton");
 
   const trpcContext = trpc.useContext();
 
@@ -36,7 +36,7 @@ export default function CancelFriendRequestButton(props: Props): JSX.Element {
 
   return (
     <MutationButton mutation={cancelFriendRequest} variables={{ userId: props.userId }}>
-      {messages.text}
+      {t("text")}
     </MutationButton>
   );
 }

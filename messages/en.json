@@ -1,5 +1,5 @@
 {
-  "ClientComponents": {
+  "clientComponents": {
     "AcceptFriendRequestButton": {
       "text": "Accept"
     },
@@ -15,14 +15,57 @@
     "DeleteWishButton": {
       "text": "Delete Wish"
     },
+    "Error": {
+      "digest": "Digest: {digest}",
+      "title": "An unexpected error has occurred, it has been reported",
+      "tryAgain": "Try Again"
+    },
+    "FriendList": {
+      "noFriends": "No friends",
+      "search": "Search for your friends"
+    },
+    "FriendRequestList": {
+      "noFriendRequests": "No friend requests"
+    },
+    "Modal": {
+      "backdropButtonText": "close"
+    },
+    "MutationModal": {
+      "cancel": "Cancel",
+      "ok": "OK"
+    },
+    "NewWishModal": {
+      "cancelButtonText": "Cancel",
+      "createButtonText": "Create",
+      "descriptionInputPlaceholder": "Description",
+      "linkInputPlaceholder": "Link",
+      "titleInputPlaceholder": "Title"
+    },
+    "OwnWishList": {
+      "noWish": "No wish"
+    },
     "RequestFriendButton": {
       "text": "Request Friend"
     },
     "ReserveWishButton": {
       "text": "Reserve"
     },
+    "SearchPage": {
+      "inputPlaceholder": "Search by name, email, etc.",
+      "noResults": "No results"
+    },
     "UnreserveWishButton": {
       "text": "Unreserve"
+    },
+    "UserProfilePage": {
+      "returnToSettings": "Return to settings"
+    },
+    "WishList": {
+      "noWish": "No wish"
+    },
+    "WishModal": {
+      "commentInputPlaceholder": "Comment",
+      "reservedBy": "ReservedBy: "
     }
   },
   "DeleteCurrentUserButton": {
@@ -30,32 +73,22 @@
     "modalTitle": "Delete Account?",
     "text": "Delete Account"
   },
-  "Modal": {
-    "backdropButtonText": "close"
-  },
-  "MutationModal": {
-    "cancel": "Cancel",
-    "ok": "OK"
-  },
   "Navbar": {
-    "title": "WishGrid",
     "Links": {
-      "friends": "Friends",
-      "my-wishes": "My Wishes",
-      "search": "Search",
       "friend-requests": "Friend Requests",
+      "friends": "Friends",
+      "myWishes": "My Wishes",
+      "search": "Search",
       "settings": "Settings"
-    }
+    },
+    "title": "WishGrid"
   },
   "NewWishButton": {
     "text": "New Wish"
   },
-  "NewWishModal": {
-    "cancelButtonText": "Cancel",
-    "createButtonText": "Create",
-    "descriptionInputPlaceholder": "Description",
-    "linkInputPlaceholder": "Link",
-    "titleInputPlaceholder": "Title"
+  "SettingsPage": {
+    "manageAccount": "Manage account",
+    "theme": "Theme"
   },
   "SignOutButton": {
     "text": "Sign Out"
@@ -64,9 +97,5 @@
     "dark": "Dark",
     "light": "Light",
     "system": "System"
-  },
-  "WishModal": {
-    "commentInputPlaceholder": "Comment",
-    "reservedBy": "ReservedBy: "
   }
 }

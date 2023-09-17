@@ -1,3 +1,6 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import type { ForwardedRef } from "react";
 import { forwardRef } from "react";
 import Modal from "./Modal";
@@ -13,16 +16,18 @@ export default forwardRef(function MutationModal<TVariables>(
   props: Props<TVariables>,
   ref: ForwardedRef<HTMLDialogElement>,
 ): JSX.Element {
+  const t = useTranslations("clientComponents.MutationModal");
+
   return (
     <Modal ref={ref}>
       <h3 className="text-lg font-bold">{props.title}</h3>
       <p className="py-4">{props.body}</p>
       <form className="modal-action" method="dialog">
         <button className="btn btn-ghost" type="submit">
-          Cancel
+          {t("cancel")}
         </button>
         <MutationButton mutation={props.mutation} type="submit" variables={props.variables}>
-          OK
+          {t("ok")}
         </MutationButton>
       </form>
     </Modal>

@@ -17,6 +17,7 @@ const FormSchema = z.object({
 type Props = {
   userId: string;
   wishId: string;
+  placeholder: string;
 };
 
 export default function CommentInput(props: Props): JSX.Element {
@@ -63,12 +64,12 @@ export default function CommentInput(props: Props): JSX.Element {
   return (
     <form onSubmit={submit}>
       <input
+        {...register("text")}
         className={cx(
           "input input-bordered w-72",
           errors.text !== undefined && "outline outline-error",
         )}
-        {...register("text")}
-        placeholder="Comment"
+        placeholder={props.placeholder}
       />
     </form>
   );

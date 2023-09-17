@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import cx from "classix";
 import { useLogger } from "next-axiom";
+import { useTranslations } from "next-intl";
 import type { FormEvent } from "react";
 import { forwardRef, useRef } from "react";
 import { useForm } from "react-hook-form";
@@ -29,6 +30,8 @@ const FormSchema = z.object({
 });
 
 export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref): JSX.Element {
+  const t = useTranslations("clientComponents.NewWishModal");
+
   const log = useLogger();
 
   const innerRef = useRef<HTMLDialogElement>(null);
@@ -78,12 +81,12 @@ export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref):
       <form className="flex flex-col gap-2" onSubmit={submit}>
         <div className="flex flex-col self-center">
           <input
+            {...register("title")}
             className={cx(
               "input input-bordered w-72",
               errors.title !== undefined && "outline outline-error",
             )}
-            {...register("title")}
-            placeholder="Title"
+            placeholder={t("titleInputPlaceholder")}
           />
           <p className="text-sm">{errors.title?.message}</p>
         </div>
@@ -94,32 +97,32 @@ export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref):
               "input input-bordered h-auto w-72",
               errors.description !== undefined && "outline outline-error",
             )}
-            placeholder="Description"
+            placeholder={t("descriptionInputPlaceholder")}
             rows={5}
           />
           <p className="text-sm">{errors.description?.message}</p>
         </div>
         <div className="flex flex-col self-center">
           <input
+            {...register("link")}
             className={cx(
               "input input-bordered w-72",
               errors.link !== undefined && "outline outline-error",
             )}
-            {...register("link")}
-            placeholder="Link"
+            placeholder={t("linkInputPlaceholder")}
           />
           <p className="text-sm">{errors.link?.message}</p>
         </div>
         <div className="modal-action">
           <button className="btn btn-ghost" onClick={closeModal} type="button">
-            Cancel
+            {t("cancelButtonText")}
           </button>
           <button
             className={cx("btn", createWish.isLoading && "btn-disabled loading")}
             disabled={createWish.isLoading}
             type="submit"
           >
-            Create
+            {t("createButtonText")}
           </button>
         </div>
       </form>

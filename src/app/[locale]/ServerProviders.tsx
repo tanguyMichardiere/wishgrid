@@ -1,6 +1,6 @@
 import { enUS, frFR } from "@clerk/localizations";
 import { ClerkProvider } from "@clerk/nextjs";
-import { useLocale } from "next-intl";
+import { NextIntlClientProvider, useLocale, useMessages } from "next-intl";
 import type { ReactNode } from "react";
 
 const localization = {
@@ -14,6 +14,8 @@ type Props = {
 
 export default function ServerProviders(props: Props): JSX.Element {
   const locale = useLocale();
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
+  const clientComponents = useMessages()?.["clientComponents"]!;
 
   return (
     <ClerkProvider
@@ -25,7 +27,9 @@ export default function ServerProviders(props: Props): JSX.Element {
       }}
       localization={localization[locale]}
     >
-      {props.children}
+      <NextIntlClientProvider locale={locale} messages={{ clientComponents }}>
+        {props.children}
+      </NextIntlClientProvider>
     </ClerkProvider>
   );
 }

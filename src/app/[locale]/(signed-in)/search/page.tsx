@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Link from "next-intl/link";
 import type { ChangeEvent } from "react";
 import { useState } from "react";
@@ -9,6 +10,8 @@ import { useDebounce } from "../../../../hooks/useDebounce";
 import { trpc } from "../../../../utils/trpc/client";
 
 export default function SearchPage(): JSX.Element {
+  const t = useTranslations("clientComponents.SearchPage");
+
   const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query);
 
@@ -29,7 +32,7 @@ export default function SearchPage(): JSX.Element {
         maxLength={32}
         minLength={4}
         onChange={handleChange}
-        placeholder="Search by name, email, etc."
+        placeholder={t("inputPlaceholder")}
         value={query}
       />
       {search.isFetching ? (
@@ -48,7 +51,7 @@ export default function SearchPage(): JSX.Element {
                 </li>
               ))
             ) : (
-              <div className="text-center">No results</div>
+              <div className="text-center">{t("noResults")}</div>
             )}
           </ul>
         )

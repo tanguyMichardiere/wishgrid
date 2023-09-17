@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Link from "next-intl/link";
 import UserPreviewCard from "../../../components/UserPreviewCard";
 import type { User } from "../../../server/db/types/user";
@@ -10,14 +11,16 @@ type Props = {
 };
 
 export default function FriendList(props: Props): JSX.Element {
+  const t = useTranslations("clientComponents.FriendList");
+
   const friends = trpc.friends.list.useQuery(undefined, { initialData: props.initialFriends });
 
   if (friends.data.length === 0) {
     return (
       <div className="flex flex-col items-center">
-        <p>No friends</p>
+        <p>{t("noFriends")}</p>
         <Link className="link" href="/search">
-          Search for your friends
+          {t("search")}
         </Link>
       </div>
     );

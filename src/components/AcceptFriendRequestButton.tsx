@@ -1,6 +1,6 @@
 "use client";
 
-import { useClientComponentsMessages } from "../context/clientComponentsMessages/hook";
+import { useTranslations } from "next-intl";
 import { trpc } from "../utils/trpc/client";
 import MutationButton from "./MutationButton";
 
@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function AcceptFriendRequestButton(props: Props): JSX.Element {
-  const { AcceptFriendRequestButton: messages } = useClientComponentsMessages();
+  const t = useTranslations("clientComponents.AcceptFriendRequestButton");
 
   const trpcContext = trpc.useContext();
 
@@ -79,7 +79,7 @@ export default function AcceptFriendRequestButton(props: Props): JSX.Element {
       mutation={acceptFriendRequest}
       variables={{ userId: props.userId }}
     >
-      {messages.text}
+      {t("text")}
     </MutationButton>
   );
 }
