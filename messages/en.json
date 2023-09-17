@@ -65,7 +65,7 @@
     },
     "WishModal": {
       "commentInputPlaceholder": "Comment",
-      "reservedBy": "ReservedBy: "
+      "reservedBy": "Reserved by: "
     }
   },
   "DeleteCurrentUserButton": {

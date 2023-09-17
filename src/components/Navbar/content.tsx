@@ -12,7 +12,7 @@ export default function NavbarContent(props: Props): JSX.Element {
   return (
     <nav className="navbar sticky top-0 z-40 mb-2 bg-base-100 px-4">
       <div className="flex-1">
-        <Link className="btn btn-ghost" href="/en">
+        <Link className="btn btn-ghost" href="/">
           <h1>{t("title")}</h1>
         </Link>
       </div>
