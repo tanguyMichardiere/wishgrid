@@ -1,7 +1,7 @@
 import { createServerSideHelpers } from "../../../utils/trpc/server";
 import FriendList from "./FriendList";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 export default async function HomePage(): Promise<JSX.Element> {
   const trpc = await createServerSideHelpers();

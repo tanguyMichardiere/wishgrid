@@ -7,7 +7,7 @@ import { Username } from "../../user/[id]/Username";
 import WishList from "./WishList";
 import type { Params } from "./params";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 type Props = {
   params: Params;

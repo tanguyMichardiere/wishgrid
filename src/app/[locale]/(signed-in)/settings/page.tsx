@@ -4,7 +4,7 @@ import DeleteCurrentUserButton from "../../../../components/DeleteCurrentUserBut
 import SignOutButton from "../../../../components/SignOutButton";
 import ThemeMenu from "../../../../components/ThemeMenu";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 export default function SettingsPage(): JSX.Element {
   const t = useTranslations("SettingsPage");

@@ -7,7 +7,7 @@ import Buttons from "./Buttons";
 import { Username } from "./Username";
 import type { Params } from "./params";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 type Props = {
   params: Params;
