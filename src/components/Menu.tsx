@@ -13,7 +13,7 @@ export type Props = {
   items: ReadonlyArray<
     { key: string; children: ReactNode; className?: string } & (
       | { onClick: () => void }
-      | { href: Route }
+      | { href: Route; locale?: Locale }
     )
   >;
 };
@@ -49,7 +49,12 @@ export default function Menu(props: Props): JSX.Element {
                   {item.children}
                 </HeadlessUIMenu.Item>
               ) : (
-                <HeadlessUIMenu.Item as={Link} className={item.className} href={item.href}>
+                <HeadlessUIMenu.Item
+                  as={Link}
+                  className={item.className}
+                  href={item.href}
+                  locale={item.locale}
+                >
                   {item.children}
                 </HeadlessUIMenu.Item>
               )}
