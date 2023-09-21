@@ -5,7 +5,7 @@ import CurrentUserContextProvider from "../../../context/currentUser/provider";
 import type { User } from "../../../server/db/types/user";
 import { createServerSideHelpers } from "../../../utils/trpc/server";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 type Props = {
   children: ReactNode;

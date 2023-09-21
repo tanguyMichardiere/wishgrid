@@ -3,7 +3,7 @@ import NewWishButton from "../../../../components/NewWishButton";
 import { createServerSideHelpers } from "../../../../utils/trpc/server";
 import OwnWishList from "./OwnWishList";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 export default async function UserPage(): Promise<JSX.Element> {
   const trpc = await createServerSideHelpers();

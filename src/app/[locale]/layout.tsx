@@ -8,7 +8,7 @@ import ClientProviders from "./ClientProviders";
 import ServerProviders from "./ServerProviders";
 import type { Params } from "./params";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 export const metadata = {
   title: "WishGrid",

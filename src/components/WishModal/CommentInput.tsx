@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useCurrentUser } from "../../context/currentUser/hook";
 import { CommentText } from "../../server/db/types/comments";
+import { useClientTranslations } from "../../utils/translations/client";
 import { trpc } from "../../utils/trpc/client";
 
 const FormSchema = z.object({
@@ -22,6 +23,7 @@ type Props = {
 
 export default function CommentInput(props: Props): JSX.Element {
   const log = useLogger();
+  const t = useClientTranslations("clientComponents.CommentInput");
 
   const currentUser = useCurrentUser();
 
@@ -71,6 +73,13 @@ export default function CommentInput(props: Props): JSX.Element {
         )}
         placeholder={props.placeholder}
       />
+      <p className="text-sm">
+        {errors.text?.type === "too_small"
+          ? t("textTooSmall", { length: 4 })
+          : errors.text?.type === "too_big"
+          ? t("textTooBig", { length: 256 })
+          : errors.text?.message}
+      </p>
     </form>
   );
 }

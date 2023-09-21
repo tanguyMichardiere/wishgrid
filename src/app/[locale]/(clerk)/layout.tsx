@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 type Props = {
   children: ReactNode;

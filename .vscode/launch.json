@@ -7,7 +7,7 @@
       "request": "launch",
       "command": "npm run dev",
       "serverReadyAction": {
-        "pattern": "started server on .+, url: (https?://.+)",
+        "pattern": "- Local:\\s+(https?://\\S+)",
         "uriFormat": "%s",
         "action": "debugWithEdge",
         "webRoot": "${workspaceFolder}"

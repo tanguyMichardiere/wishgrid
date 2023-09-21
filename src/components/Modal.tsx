@@ -1,9 +1,9 @@
 "use client";
 
 import { cx } from "classix";
-import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
+import { useClientTranslations } from "../utils/translations/client";
 
 type Props = {
   className?: string;
@@ -12,7 +12,7 @@ type Props = {
 };
 
 export default forwardRef<HTMLDialogElement, Props>(function Modal(props, ref): JSX.Element {
-  const t = useTranslations("clientComponents.Modal");
+  const t = useClientTranslations("clientComponents.Modal");
 
   return (
     <dialog className="modal" ref={ref}>

@@ -1,5 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import { eq } from "drizzle-orm";
+import "server-only";
 import { z } from "zod";
 import { createRouter, procedure } from "..";
 import { comments } from "../db/schema/comments";

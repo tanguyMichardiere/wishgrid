@@ -1,9 +1,9 @@
 "use client";
 
 import cx from "classix";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import type { User } from "../server/db/types/user";
+import { useClientTranslations } from "../utils/translations/client";
 import { trpc } from "../utils/trpc/client";
 
 const sizes = {
@@ -24,7 +24,7 @@ type Props = {
 };
 
 export default function Avatar(props: Props): JSX.Element {
-  const t = useTranslations("clientComponents.Avatar");
+  const t = useClientTranslations("clientComponents.Avatar");
 
   const user = trpc.users.get.useQuery(
     { userId: props.initialUser.id },

@@ -1,8 +1,8 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import type { ForwardedRef } from "react";
 import { forwardRef } from "react";
+import { useClientTranslations } from "../utils/translations/client";
 import Modal from "./Modal";
 import type { Props as ButtonProps } from "./MutationButton";
 import MutationButton from "./MutationButton";
@@ -16,7 +16,7 @@ export default forwardRef(function MutationModal<TVariables>(
   props: Props<TVariables>,
   ref: ForwardedRef<HTMLDialogElement>,
 ): JSX.Element {
-  const t = useTranslations("clientComponents.MutationModal");
+  const t = useClientTranslations("clientComponents.MutationModal");
 
   return (
     <Modal ref={ref}>

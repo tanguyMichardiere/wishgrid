@@ -1,13 +1,13 @@
-import { useTranslations } from "next-intl";
 import Link from "next-intl/link";
 import DeleteCurrentUserButton from "../../../../components/DeleteCurrentUserButton";
 import SignOutButton from "../../../../components/SignOutButton";
 import ThemeMenu from "../../../../components/ThemeMenu";
+import { useServerTranslations } from "../../../../utils/translations/server";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 export default function SettingsPage(): JSX.Element {
-  const t = useTranslations("SettingsPage");
+  const t = useServerTranslations("SettingsPage");
 
   return (
     <div className="mx-4 flex grow flex-col justify-between gap-16">

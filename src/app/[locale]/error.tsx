@@ -1,8 +1,8 @@
 "use client";
 
 import { useLogger } from "next-axiom";
-import { useTranslations } from "next-intl";
 import { useEffect } from "react";
+import { useClientTranslations } from "../../utils/translations/client";
 
 type Props = {
   error: Error & { digest?: string };
@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function Error({ reset, ...props }: Props): JSX.Element {
-  const t = useTranslations("clientComponents.Error");
+  const t = useClientTranslations("clientComponents.Error");
 
   const log = useLogger();
 

@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import cx from "classix";
 import { useLogger } from "next-axiom";
-import { useTranslations } from "next-intl";
 import type { FormEvent } from "react";
 import { forwardRef, useRef } from "react";
 import { useForm } from "react-hook-form";
@@ -11,6 +10,7 @@ import { z } from "zod";
 import { useCurrentUser } from "../context/currentUser/hook";
 import { WishDescription, WishLink, WishTitle } from "../server/db/types/wishes";
 import { mergeRefs } from "../utils/mergeRefs";
+import { useClientTranslations } from "../utils/translations/client";
 import { trpc } from "../utils/trpc/client";
 import Modal from "./Modal";
 
@@ -30,7 +30,7 @@ const FormSchema = z.object({
 });
 
 export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref): JSX.Element {
-  const t = useTranslations("clientComponents.NewWishModal");
+  const t = useClientTranslations("clientComponents.NewWishModal");
 
   const log = useLogger();
 
@@ -88,7 +88,13 @@ export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref):
             )}
             placeholder={t("titleInputPlaceholder")}
           />
-          <p className="text-sm">{errors.title?.message}</p>
+          <p className="text-sm">
+            {errors.title?.type === "too_small"
+              ? t("titleTooShort", { length: 4 })
+              : errors.title?.type === "too_big"
+              ? t("titleTooBig", { length: 32 })
+              : errors.title?.message}
+          </p>
         </div>
         <div className="flex flex-col self-center">
           <textarea
@@ -100,7 +106,11 @@ export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref):
             placeholder={t("descriptionInputPlaceholder")}
             rows={5}
           />
-          <p className="text-sm">{errors.description?.message}</p>
+          <p className="text-sm">
+            {errors.description?.type === "too_big"
+              ? t("descriptionTooBig", { length: 512 })
+              : errors.description?.message}
+          </p>
         </div>
         <div className="flex flex-col self-center">
           <input
@@ -111,7 +121,13 @@ export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref):
             )}
             placeholder={t("linkInputPlaceholder")}
           />
-          <p className="text-sm">{errors.link?.message}</p>
+          <p className="text-sm">
+            {errors.link?.type === "invalid_string"
+              ? t("invalidUrl")
+              : errors.link?.type === "too_big"
+              ? t("linkTooBig", { length: 512 })
+              : errors.link?.message}
+          </p>
         </div>
         <div className="modal-action">
           <button className="btn btn-ghost" onClick={closeModal} type="button">

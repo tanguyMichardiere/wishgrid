@@ -17,9 +17,9 @@ export default authMiddleware({
   },
 
   // Ensure that locale specific sign-in pages are public
-  publicRoutes: ["/:locale/sign-in", "/:locale/sign-up"],
+  publicRoutes: ["/:locale/sign-in(.*)", "/:locale/sign-up(.*)"],
 });
 
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api)(.*)"],
+  matcher: ["/((?!.+\\.[\\w]+$|_next|_axiom).*)", "/", "/(api)(.*)"],
 };

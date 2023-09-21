@@ -1,11 +1,11 @@
 "use client";
 
 import cx from "classix";
-import { useTranslations } from "next-intl";
 import { forwardRef } from "react";
 import { useCurrentUser } from "../../context/currentUser/hook";
 import type { Wish } from "../../server/db/types/wishes";
 import { formatTimestamp } from "../../utils/formatTimestamp";
+import { useClientTranslations } from "../../utils/translations/client";
 import Avatar from "../Avatar";
 import Modal from "../Modal";
 import ReserveWishButton from "../ReserveWishButton";
@@ -18,7 +18,7 @@ type Props = {
 };
 
 export default forwardRef<HTMLDialogElement, Props>(function WishModal(props, ref) {
-  const t = useTranslations("clientComponents.WishModal");
+  const t = useClientTranslations("clientComponents.WishModal");
 
   const currentUser = useCurrentUser();
 

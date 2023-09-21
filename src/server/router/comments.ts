@@ -1,3 +1,4 @@
+import "server-only";
 import { z } from "zod";
 import { createRouter, procedure } from "..";
 import { comments } from "../db/schema/comments";
