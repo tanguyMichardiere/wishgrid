@@ -1,12 +1,13 @@
 "use client";
 
 import { UserProfile } from "@clerk/nextjs";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import Link from "next-intl/link";
 import { useClerkTheme } from "../../../../../hooks/useClerkTheme";
+import { useClientTranslations } from "../../../../../utils/translations/client";
 
 export default function UserProfilePage(): JSX.Element {
-  const t = useTranslations("clientComponents.UserProfilePage");
+  const t = useClientTranslations("clientComponents.UserProfilePage");
 
   const locale = useLocale();
 

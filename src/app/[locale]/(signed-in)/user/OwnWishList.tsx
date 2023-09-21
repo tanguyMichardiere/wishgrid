@@ -1,8 +1,8 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import OwnWishPreviewCard from "../../../../components/OwnWishPreviewCard";
 import type { OwnWish } from "../../../../server/db/types/wishes";
+import { useClientTranslations } from "../../../../utils/translations/client";
 import { trpc } from "../../../../utils/trpc/client";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function OwnWishList(props: Props): JSX.Element {
-  const t = useTranslations("clientComponents.OwnWishList");
+  const t = useClientTranslations("clientComponents.OwnWishList");
 
   const wishes = trpc.wishes.listOwn.useQuery(undefined, { initialData: props.initialWishes });
 

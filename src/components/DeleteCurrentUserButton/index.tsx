@@ -1,9 +1,8 @@
-import { useTranslations } from "next-intl";
-import "server-only";
+import { useServerTranslations } from "../../utils/translations/server";
 import DeleteCurrentUserButtonClient from "./client";
 
 export default function DeleteCurrentUserButton(): JSX.Element {
-  const t = useTranslations("DeleteCurrentUserButton");
+  const t = useServerTranslations("DeleteCurrentUserButton");
 
   return (
     <DeleteCurrentUserButtonClient

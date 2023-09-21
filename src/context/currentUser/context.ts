@@ -1,3 +1,4 @@
+import "client-only";
 import { createContext } from "react";
 import type { User } from "../../server/db/types/user";
 

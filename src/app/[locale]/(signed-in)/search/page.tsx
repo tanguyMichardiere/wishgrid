@@ -1,16 +1,16 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import Link from "next-intl/link";
 import type { ChangeEvent } from "react";
 import { useState } from "react";
 import Spinner from "../../../../components/Spinner";
 import UserPreviewCard from "../../../../components/UserPreviewCard";
 import { useDebounce } from "../../../../hooks/useDebounce";
+import { useClientTranslations } from "../../../../utils/translations/client";
 import { trpc } from "../../../../utils/trpc/client";
 
 export default function SearchPage(): JSX.Element {
-  const t = useTranslations("clientComponents.SearchPage");
+  const t = useClientTranslations("clientComponents.SearchPage");
 
   const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query);

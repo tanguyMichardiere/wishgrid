@@ -1,7 +1,7 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { useCurrentUser } from "../context/currentUser/hook";
+import { useClientTranslations } from "../utils/translations/client";
 import { trpc } from "../utils/trpc/client";
 import MutationButton from "./MutationButton";
 
@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function ReserveWishButton(props: Props): JSX.Element {
-  const t = useTranslations("clientComponents.ReserveWishButton");
+  const t = useClientTranslations("clientComponents.ReserveWishButton");
 
   const currentUser = useCurrentUser();
 

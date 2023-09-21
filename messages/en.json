@@ -9,6 +9,10 @@
     "CancelFriendRequestButton": {
       "text": "Cancel Friend Request"
     },
+    "CommentInput": {
+      "textTooBig": "Comment must be at most {length} characters",
+      "textTooSmall": "Comment must be at least {length} characters"
+    },
     "DeclineFriendRequestButton": {
       "text": "Decline"
     },
@@ -38,8 +42,13 @@
       "cancelButtonText": "Cancel",
       "createButtonText": "Create",
       "descriptionInputPlaceholder": "Description",
+      "descriptionTooBig": "Description must be at most {length} characters",
+      "invalidUrl": "Invalid URL",
       "linkInputPlaceholder": "Link",
-      "titleInputPlaceholder": "Title"
+      "linkTooBig": "Link must be at most {length} characters",
+      "titleInputPlaceholder": "Title",
+      "titleTooBig": "Title must be at most {length} characters",
+      "titleTooShort": "Title must be at least {length} characters"
     },
     "OwnWishList": {
       "noWish": "No wish"

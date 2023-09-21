@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useClientTranslations } from "../utils/translations/client";
 import { trpc } from "../utils/trpc/client";
 import MutationButton from "./MutationButton";
 
@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function RequestFriendButton(props: Props): JSX.Element {
-  const t = useTranslations("clientComponents.RequestFriendButton");
+  const t = useClientTranslations("clientComponents.RequestFriendButton");
 
   const trpcContext = trpc.useContext();
 

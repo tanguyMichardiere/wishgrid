@@ -1,8 +1,8 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import FriendRequestsCard from "../../../../components/FriendRequestCard";
 import type { User } from "../../../../server/db/types/user";
+import { useClientTranslations } from "../../../../utils/translations/client";
 import { trpc } from "../../../../utils/trpc/client";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function FriendRequestList(props: Props): JSX.Element {
-  const t = useTranslations("clientComponents.FriendRequestList");
+  const t = useClientTranslations("clientComponents.FriendRequestList");
 
   const friendRequests = trpc.friendRequests.list.useQuery(undefined, {
     initialData: props.initialFriendRequests,

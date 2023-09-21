@@ -1,6 +1,5 @@
-import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import "server-only";
+import { useServerTranslations } from "../../utils/translations/server";
 import type { Props as ClientProps } from "./client";
 
 const ThemeMenuClient = dynamic(() => import("./client"), {
@@ -10,7 +9,7 @@ const ThemeMenuClient = dynamic(() => import("./client"), {
 type Props = Pick<ClientProps, "position">;
 
 export default function ThemeMenu(props: Props): JSX.Element {
-  const t = useTranslations("ThemeMenu");
+  const t = useServerTranslations("ThemeMenu");
 
   return (
     <ThemeMenuClient
