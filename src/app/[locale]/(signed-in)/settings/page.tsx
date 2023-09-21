@@ -1,5 +1,6 @@
 import Link from "next-intl/link";
 import DeleteCurrentUserButton from "../../../../components/DeleteCurrentUserButton";
+import LanguageMenu from "../../../../components/LanguageMenu";
 import SignOutButton from "../../../../components/SignOutButton";
 import ThemeMenu from "../../../../components/ThemeMenu";
 import { useServerTranslations } from "../../../../utils/translations/server";
@@ -15,6 +16,10 @@ export default function SettingsPage(): JSX.Element {
         <div className="flex w-full items-center justify-between">
           <p>{t("theme")}</p>
           <ThemeMenu position="left" />
+        </div>
+        <div className="flex w-full items-center justify-between">
+          <p>{t("language")}</p>
+          <LanguageMenu href="/settings" position="left" />
         </div>
         <Link className="link" href="/manage-account">
           {t("manageAccount")}

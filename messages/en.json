@@ -96,6 +96,7 @@
     "text": "New Wish"
   },
   "SettingsPage": {
+    "language": "Language",
     "manageAccount": "Manage account",
     "theme": "Theme"
   },
