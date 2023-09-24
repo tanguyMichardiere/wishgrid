@@ -18,13 +18,14 @@ export default function MutationButton<TVariables>({
 }: Props<TVariables>): JSX.Element {
   return (
     <button
-      className={cx("btn", props.mutation.isLoading && "btn-disabled loading", props.className)}
+      className={cx("btn", props.className)}
       disabled={props.mutation.isLoading}
       onClick={function () {
         props.mutation.mutate(props.variables);
       }}
       type={type}
     >
+      {props.mutation.isLoading && <span className="loading loading-spinner" />}
       {props.children}
     </button>
   );

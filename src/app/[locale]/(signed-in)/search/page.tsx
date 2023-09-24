@@ -3,7 +3,6 @@
 import Link from "next-intl/link";
 import type { ChangeEvent } from "react";
 import { useState } from "react";
-import Spinner from "../../../../components/Spinner";
 import UserPreviewCard from "../../../../components/UserPreviewCard";
 import { useDebounce } from "../../../../hooks/useDebounce";
 import { useClientTranslations } from "../../../../utils/translations/client";
@@ -37,7 +36,7 @@ export default function SearchPage(): JSX.Element {
       />
       {search.isFetching ? (
         <div className="flex justify-center">
-          <Spinner />
+          <span className="loading loading-spinner" />
         </div>
       ) : (
         search.isSuccess && (

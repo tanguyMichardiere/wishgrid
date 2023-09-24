@@ -1,10 +1,6 @@
-import dynamic from "next/dynamic";
 import { useServerTranslations } from "../../utils/translations/server";
 import type { Props as ClientProps } from "./client";
-
-const ThemeMenuClient = dynamic(() => import("./client"), {
-  ssr: false,
-});
+import ThemeMenuClient from "./client";
 
 type Props = Pick<ClientProps, "position">;
 

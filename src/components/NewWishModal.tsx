@@ -133,11 +133,8 @@ export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref):
           <button className="btn btn-ghost" onClick={closeModal} type="button">
             {t("cancelButtonText")}
           </button>
-          <button
-            className={cx("btn", createWish.isLoading && "btn-disabled loading")}
-            disabled={createWish.isLoading}
-            type="submit"
-          >
+          <button className="btn" disabled={createWish.isLoading} type="submit">
+            {createWish.isLoading && <span className="loading loading-spinner" />}
             {t("createButtonText")}
           </button>
         </div>
