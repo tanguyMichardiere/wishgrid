@@ -8,6 +8,7 @@ import { Fragment } from "react";
 export type Props = {
   position: "left" | "right";
   children: ReactNode;
+  disabled?: boolean;
   buttonClassName?: string;
   menuClassName?: string;
   items: ReadonlyArray<
@@ -21,7 +22,7 @@ export type Props = {
 export default function Menu(props: Props): JSX.Element {
   return (
     <HeadlessUIMenu as="div" className="relative inline-block">
-      <HeadlessUIMenu.Button className={props.buttonClassName}>
+      <HeadlessUIMenu.Button className={props.buttonClassName} disabled={props.disabled}>
         {props.children}
       </HeadlessUIMenu.Button>
       <Transition

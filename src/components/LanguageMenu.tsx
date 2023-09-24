@@ -1,8 +1,8 @@
 "use client";
 
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import type { Route } from "next";
 import { useLocale } from "next-intl";
+import { usePathname } from "next-intl/client";
 import { useMemo } from "react";
 import type { Props as MenuProps } from "./Menu";
 import Menu from "./Menu";
@@ -12,20 +12,19 @@ const localeDisplay = {
   fr: "Français",
 };
 
-type Props = Pick<MenuProps, "position"> & {
-  href: Route;
-};
+type Props = Pick<MenuProps, "position">;
 
 export default function LanguageMenu(props: Props): JSX.Element {
   const locale = useLocale();
+  const pathname = usePathname();
 
   const menuItems = useMemo(
     () =>
       [
-        { key: "en", children: localeDisplay.en, href: props.href, locale: "en" },
-        { key: "fr", children: localeDisplay.fr, href: props.href, locale: "fr" },
+        { key: "en", children: localeDisplay.en, href: pathname, locale: "en" },
+        { key: "fr", children: localeDisplay.fr, href: pathname, locale: "fr" },
       ] as const,
-    [props.href],
+    [pathname],
   );
 
   return (

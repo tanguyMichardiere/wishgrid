@@ -19,7 +19,7 @@ export default function SettingsPage(): JSX.Element {
         </div>
         <div className="flex w-full items-center justify-between">
           <p>{t("language")}</p>
-          <LanguageMenu href="/settings" position="left" />
+          <LanguageMenu position="left" />
         </div>
         <Link className="link" href="/manage-account">
           {t("manageAccount")}
