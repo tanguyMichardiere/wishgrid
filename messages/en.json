@@ -16,6 +16,11 @@
     "DeclineFriendRequestButton": {
       "text": "Decline"
     },
+    "DeleteCurrentUserButton": {
+      "modalBody": "This will also delete all your wishes and comments, and remove you from anyone's friend list.",
+      "modalTitle": "Delete Account?",
+      "text": "Delete Account"
+    },
     "DeleteWishButton": {
       "text": "Delete Wish"
     },
@@ -82,11 +87,6 @@
       "notReservedTooltip": "Not reserved",
       "reservedTooltip": "Reserved"
     }
-  },
-  "DeleteCurrentUserButton": {
-    "modalBody": "This will also delete all your wishes and comments, and remove you from anyone's friend list.",
-    "modalTitle": "Delete Account?",
-    "text": "Delete Account"
   },
   "Navbar": {
     "Links": {

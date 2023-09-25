@@ -1,16 +1,13 @@
 "use client";
 
 import { useRef } from "react";
-import { useDeleteCurrentUserMutation } from "../../hooks/mutations/users/deleteCurrent";
-import MutationModal from "../MutationModal";
+import { useDeleteCurrentUserMutation } from "../hooks/mutations/users/deleteCurrent";
+import { useClientTranslations } from "../utils/translations/client";
+import MutationModal from "./MutationModal";
 
-type Props = {
-  text: string;
-  modalBody: string;
-  modalTitle: string;
-};
+export default function DeleteCurrentUserButton(): JSX.Element {
+  const t = useClientTranslations("clientComponents.DeleteCurrentUserButton");
 
-export default function DeleteCurrentUserButtonClient(props: Props): JSX.Element {
   const modalRef = useRef<HTMLDialogElement>(null);
 
   function showModal() {
@@ -22,13 +19,13 @@ export default function DeleteCurrentUserButtonClient(props: Props): JSX.Element
   return (
     <>
       <button className="btn btn-error" onClick={showModal} type="button">
-        {props.text}
+        {t("text")}
       </button>
       <MutationModal
-        body={props.modalBody}
+        body={t("modalBody")}
         mutation={deleteCurrentUser}
         ref={modalRef}
-        title={props.modalTitle}
+        title={t("modalTitle")}
         variables={undefined}
       />
     </>
