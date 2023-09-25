@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import Avatar from "../../../../../components/Avatar";
 import type { User } from "../../../../../server/db/types/user";
 import { createServerSideHelpers } from "../../../../../utils/trpc/server";
-import { Username } from "../../user/[id]/Username";
 import WishList from "./WishList";
 import type { Params } from "./params";
 
@@ -41,8 +40,8 @@ export default async function FriendIdPage(props: Props): Promise<JSX.Element> {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col items-center gap-2 self-center">
-        <Avatar initialUser={user} size="large" />
-        <Username initialUser={user} userId={user.id} />
+        <Avatar size="large" user={user} />
+        <h3 className="text-lg">{user.username}</h3>
       </div>
       <ul className="flex flex-col">
         <WishList initialWishes={wishes} userId={props.params.id} />

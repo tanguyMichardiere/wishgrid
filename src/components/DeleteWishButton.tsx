@@ -1,5 +1,5 @@
+import { useDeleteWishMutation } from "../hooks/mutations/wishes/delete";
 import { useClientTranslations } from "../utils/translations/client";
-import { trpc } from "../utils/trpc/client";
 import MutationButton from "./MutationButton";
 
 type Props = {
@@ -9,31 +9,7 @@ type Props = {
 export default function DeleteWishButton(props: Props): JSX.Element {
   const t = useClientTranslations("clientComponents.DeleteWishButton");
 
-  const trpcContext = trpc.useContext();
-
-  const deleteWish = trpc.wishes.delete.useMutation({
-    async onMutate({ id }) {
-      await trpcContext.wishes.listOwn.cancel();
-
-      const previousOwnWishesList = trpcContext.wishes.listOwn.getData();
-
-      // update own wishes list
-      trpcContext.wishes.listOwn.setData(
-        undefined,
-        (wishes) => wishes?.filter((wish) => wish.id !== id),
-      );
-
-      return { previousOwnWishesList };
-    },
-    onError(_error, _variables, context) {
-      if (context?.previousOwnWishesList !== undefined) {
-        trpcContext.wishes.listOwn.setData(undefined, context.previousOwnWishesList);
-      }
-    },
-    async onSettled() {
-      await trpcContext.wishes.listOwn.invalidate();
-    },
-  });
+  const deleteWish = useDeleteWishMutation();
 
   return (
     <MutationButton mutation={deleteWish} variables={{ id: props.wishId }}>

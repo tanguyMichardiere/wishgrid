@@ -17,8 +17,10 @@ const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     DATABASE_URL: process.env["DATABASE_URL"],
     CLERK_SECRET_KEY: process.env["CLERK_SECRET_KEY"],
+
     PORT: process.env["PORT"],
     VERCEL_URL: process.env["VERCEL_URL"],
+
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env["NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"],
   },
 });

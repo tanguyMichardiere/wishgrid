@@ -4,7 +4,7 @@ import Link from "next-intl/link";
 import type { ChangeEvent } from "react";
 import { useState } from "react";
 import UserPreviewCard from "../../../../components/UserPreviewCard";
-import { useDebounce } from "../../../../hooks/useDebounce";
+import { useDebounce } from "../../../../hooks/debounce";
 import { useClientTranslations } from "../../../../utils/translations/client";
 import { trpc } from "../../../../utils/trpc/client";
 

@@ -4,7 +4,6 @@ import Avatar from "../../../../../components/Avatar";
 import type { User } from "../../../../../server/db/types/user";
 import { createServerSideHelpers } from "../../../../../utils/trpc/server";
 import Buttons from "./Buttons";
-import { Username } from "./Username";
 import type { Params } from "./params";
 
 export const runtime = "edge";
@@ -41,8 +40,8 @@ export default async function UserIdPage(props: Props): Promise<JSX.Element> {
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="flex flex-col items-center gap-2">
-        <Avatar initialUser={user} size="large" />
-        <Username initialUser={user} userId={user.id} />
+        <Avatar size="large" user={user} />
+        <h3 className="text-lg">{user.username}</h3>
       </div>
       <Buttons initialFriendRequestsStatus={friendRequestsStatus} userId={user.id} />
     </div>

@@ -7,6 +7,14 @@ const { headers } = require("./headers.config");
 let nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  typescript: {
+    // type checking is done in CI
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    // linting is done in CI
+    ignoreDuringBuilds: true,
+  },
   images: {
     domains: ["img.clerk.com"],
   },

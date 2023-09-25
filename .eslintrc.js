@@ -27,6 +27,7 @@ module.exports = {
     "arrow-body-style": ["warn", "never"],
     camelcase: "warn",
     "func-style": ["warn", "declaration", { allowArrowFunctions: true }],
+    "max-lines": ["warn", { max: 100, skipBlankLines: true, skipComments: true }],
     "no-alert": "warn",
     "no-console": "warn",
     "no-else-return": "warn",

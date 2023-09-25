@@ -74,7 +74,13 @@
     },
     "WishModal": {
       "commentInputPlaceholder": "Commentaire",
-      "reservedBy": "Réservé par : "
+      "reservedBy": "Réservé par : ",
+      "you": "vous"
+    },
+    "WishPreviewCard": {
+      "commentsTooltip": "{count, plural, =0 {Aucun commentaire} =1 {1 commentaire} other {# commentaires}}",
+      "notReservedTooltip": "Pas réservé",
+      "reservedTooltip": "Réservé"
     }
   },
   "DeleteCurrentUserButton": {

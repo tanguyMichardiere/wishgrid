@@ -5,15 +5,10 @@ import cx from "classix";
 import { useLogger } from "next-axiom";
 import type { FormEvent } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { useCurrentUser } from "../../context/currentUser/hook";
-import { CommentText } from "../../server/db/types/comments";
-import { useClientTranslations } from "../../utils/translations/client";
-import { trpc } from "../../utils/trpc/client";
-
-const FormSchema = z.object({
-  text: CommentText,
-});
+import type { z } from "zod";
+import { useCreateCommentMutation } from "../../../hooks/mutations/comments/create";
+import { useClientTranslations } from "../../../utils/translations/client";
+import { FormSchema } from "./formSchema";
 
 type Props = {
   userId: string;
@@ -22,10 +17,8 @@ type Props = {
 };
 
 export default function CommentInput(props: Props): JSX.Element {
-  const log = useLogger();
   const t = useClientTranslations("clientComponents.CommentInput");
-
-  const currentUser = useCurrentUser();
+  const log = useLogger();
 
   const {
     register,
@@ -34,33 +27,13 @@ export default function CommentInput(props: Props): JSX.Element {
     reset,
   } = useForm<z.infer<typeof FormSchema>>({ resolver: zodResolver(FormSchema) });
 
-  const trpcContext = trpc.useContext();
-
-  const createComment = trpc.comments.create.useMutation({
-    onSuccess({ id, timestamp }, { text, wishId }) {
-      trpcContext.wishes.list.setData(
-        { userId: props.userId },
-        (wishes) =>
-          wishes?.map((wish) =>
-            wish.id === wishId
-              ? {
-                  ...wish,
-                  comments: [...wish.comments, { id, text, timestamp, user: currentUser }],
-                }
-              : wish,
-          ),
-      );
-    },
-    async onSettled() {
-      await trpcContext.wishes.list.invalidate({ userId: props.userId });
-    },
-  });
+  const createComment = useCreateCommentMutation(props.userId);
 
   function submit(event: FormEvent<HTMLFormElement>) {
     handleSubmit(function (data) {
       createComment.mutate({ ...data, wishId: props.wishId });
+      reset();
     })(event).catch(log.error);
-    reset();
   }
 
   return (

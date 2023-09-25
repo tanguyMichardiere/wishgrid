@@ -2,12 +2,11 @@
 
 import { SignUp } from "@clerk/nextjs";
 import { useLocale } from "next-intl";
-import { useClerkTheme } from "../../../../../hooks/useClerkTheme";
+import { useClerkTheme } from "../../../../../hooks/clerkTheme";
 
 export default function SignUpPage(): JSX.Element {
-  const locale = useLocale();
-
   const theme = useClerkTheme();
+  const locale = useLocale();
 
   return (
     <SignUp

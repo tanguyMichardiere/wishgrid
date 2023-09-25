@@ -11,7 +11,7 @@ export default authMiddleware({
     const url = new URL(request.url);
     if (url.pathname.startsWith("/api")) {
       // don't apply the i18n middleware on TRPC routes
-      return undefined;
+      return;
     }
     return intlMiddleware(request);
   },

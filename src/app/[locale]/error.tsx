@@ -11,7 +11,6 @@ type Props = {
 
 export default function Error({ reset, ...props }: Props): JSX.Element {
   const t = useClientTranslations("clientComponents.Error");
-
   const log = useLogger();
 
   useEffect(

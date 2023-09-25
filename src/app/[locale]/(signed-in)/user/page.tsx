@@ -15,7 +15,7 @@ export default async function UserPage(): Promise<JSX.Element> {
 
   return (
     <div className="flex flex-col gap-4">
-      <Avatar className="self-center" initialUser={currentUser} size="large" />
+      <Avatar className="self-center" size="large" user={currentUser} />
       <NewWishButton />
       <ul className="flex flex-col">
         <OwnWishList initialWishes={wishes} />

@@ -5,8 +5,6 @@ import SignOutButton from "../../../../components/SignOutButton";
 import ThemeMenu from "../../../../components/ThemeMenu";
 import { useServerTranslations } from "../../../../utils/translations/server";
 
-export const runtime = "edge";
-
 export default function SettingsPage(): JSX.Element {
   const t = useServerTranslations("SettingsPage");
 
