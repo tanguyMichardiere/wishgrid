@@ -17,7 +17,7 @@ export default function DeleteCurrentUserButtonClient(props: Props): JSX.Element
     modalRef.current?.showModal();
   }
 
-  const deleteCurrentUser = useDeleteCurrentUserMutation()
+  const deleteCurrentUser = useDeleteCurrentUserMutation();
 
   return (
     <>
