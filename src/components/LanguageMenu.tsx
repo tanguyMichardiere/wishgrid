@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useLocale } from "next-intl";
 import { usePathname } from "next-intl/client";
 import { useMemo } from "react";

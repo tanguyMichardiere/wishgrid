@@ -9,7 +9,7 @@ type Props = {
 export default function UserPreviewCard(props: Props): JSX.Element {
   return (
     <Card>
-      <Avatar initialUser={props.user} size="small" />
+      <Avatar size="small" user={props.user} />
       {props.user.username}
     </Card>
   );

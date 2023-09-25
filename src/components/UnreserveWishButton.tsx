@@ -1,5 +1,6 @@
 "use client";
 
+import { LockOpenIcon } from "@heroicons/react/24/outline";
 import { useClientTranslations } from "../utils/translations/client";
 import { trpc } from "../utils/trpc/client";
 import MutationButton from "./MutationButton";
@@ -44,6 +45,7 @@ export default function UnreserveWishButton(props: Props): JSX.Element {
       mutation={unreserveWish}
       variables={{ id: props.wishId }}
     >
+      <LockOpenIcon className="h-6 w-6" />
       {t("text")}
     </MutationButton>
   );

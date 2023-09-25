@@ -1,7 +1,9 @@
 "use client";
 
+import { LockClosedIcon, LockOpenIcon } from "@heroicons/react/24/outline";
 import { useRef } from "react";
 import type { Wish } from "../server/db/types/wishes";
+import { useClientTranslations } from "../utils/translations/client";
 import Card from "./Card";
 import WishModal from "./WishModal";
 
@@ -11,6 +13,8 @@ type Props = {
 };
 
 export default function WishPreviewCard(props: Props): JSX.Element {
+  const t = useClientTranslations("clientComponents.WishPreviewCard");
+
   const modalRef = useRef<HTMLDialogElement>(null);
 
   function showModal() {
@@ -23,13 +27,21 @@ export default function WishPreviewCard(props: Props): JSX.Element {
         <Card className="justify-between">
           <div>{props.wish.title}</div>
           <div className="flex items-center gap-2">
-            <span className="badge">{props.wish.comments.length}</span>
-            <input
-              checked={props.wish.reservedBy !== null}
-              className="checkbox"
-              readOnly
-              type="checkbox"
-            />
+            <div
+              className="tooltip"
+              data-tip={t("commentsTooltip", { count: props.wish.comments.length })}
+            >
+              <span className="badge">{props.wish.comments.length}</span>
+            </div>
+            {props.wish.reservedBy !== null ? (
+              <div className="tooltip" data-tip={t("reservedTooltip")}>
+                <LockClosedIcon className="h-6 w-6" />
+              </div>
+            ) : (
+              <div className="tooltip" data-tip={t("notReservedTooltip")}>
+                <LockOpenIcon className="h-6 w-6" />
+              </div>
+            )}
           </div>
         </Card>
       </button>

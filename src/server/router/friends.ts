@@ -19,10 +19,14 @@ export const friendsRouter = createRouter({
         where: eq(friends.userId, ctx.user.id),
       });
 
-      return getUsers(
+      const users = await getUsers(
         friendIds.map((row) => row.friendId),
         ctx,
       );
+
+      // username is required in Clerk config
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      return users.sort((a, b) => a.username!.localeCompare(b.username!));
     }),
 
   get: procedure

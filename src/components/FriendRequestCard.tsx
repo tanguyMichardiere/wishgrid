@@ -12,7 +12,7 @@ export default function FriendRequestsCard(props: Props): JSX.Element {
   return (
     <Card>
       <div className="flex flex-row items-center gap-4">
-        <Avatar initialUser={props.user} size="small" />
+        <Avatar size="small" user={props.user} />
         {props.user.username}
       </div>
       <div className="flex flex-row items-center gap-4">

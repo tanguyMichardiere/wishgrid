@@ -35,12 +35,18 @@ export async function getUsers(
     users = await clerkClient.users.getUserList({ userId });
   }
   if (!map && unique) {
+    // case unique: true, map: false
+    // return the list from getUserList, which has no duplicates
     return users;
   }
   const usersById = Object.fromEntries(users.map((user) => [user.id, user]));
   if (map) {
+    // case map: true
+    // return the mapping { [userId]: user }, with no duplicates
     return usersById;
   }
+  // case unique: false, map: false
+  // return a list built from the list of IDs, with possible duplicates
   return userId
     .map((userId) => usersById[userId])
     .filter((user): user is ClerkUser => user !== undefined);

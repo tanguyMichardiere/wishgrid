@@ -41,7 +41,7 @@ export default async function FriendIdPage(props: Props): Promise<JSX.Element> {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col items-center gap-2 self-center">
-        <Avatar initialUser={user} size="large" />
+        <Avatar size="large" user={user} />
         <Username initialUser={user} userId={user.id} />
       </div>
       <ul className="flex flex-col">

@@ -27,7 +27,12 @@ export default function ServerProviders(props: Props): JSX.Element {
       }}
       localization={localization[locale]}
     >
-      <NextIntlClientProvider locale={locale} messages={{ clientComponents }}>
+      <NextIntlClientProvider
+        locale={locale}
+        messages={{ clientComponents }}
+        now={new Date()}
+        timeZone="Europe/Paris"
+      >
         {props.children}
       </NextIntlClientProvider>
     </ClerkProvider>

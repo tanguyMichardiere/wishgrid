@@ -1,16 +1,14 @@
 "use client";
 
-import cx from "classix";
 import { forwardRef } from "react";
 import { useCurrentUser } from "../../context/currentUser/hook";
 import type { Wish } from "../../server/db/types/wishes";
-import { formatTimestamp } from "../../utils/formatTimestamp";
 import { useClientTranslations } from "../../utils/translations/client";
-import Avatar from "../Avatar";
 import Modal from "../Modal";
 import ReserveWishButton from "../ReserveWishButton";
 import UnreserveWishButton from "../UnreserveWishButton";
 import CommentInput from "./CommentInput";
+import Comments from "./Comments";
 
 type Props = {
   userId: string;
@@ -36,7 +34,7 @@ export default forwardRef<HTMLDialogElement, Props>(function WishModal(props, re
           <p>
             {t("reservedBy")}
             <span className="font-semibold">{props.wish.reservedBy.username}</span>
-            {props.wish.reservedBy.id === currentUser.id && " (You)"}
+            {props.wish.reservedBy.id === currentUser.id && ` (${t("you")})`}
           </p>
           {props.wish.reservedBy.id === currentUser.id && (
             <UnreserveWishButton userId={props.userId} wishId={props.wish.id} />
@@ -45,21 +43,7 @@ export default forwardRef<HTMLDialogElement, Props>(function WishModal(props, re
       ) : (
         <ReserveWishButton userId={props.userId} wishId={props.wish.id} />
       )}
-      {props.wish.comments.length > 0 && (
-        <ul className="w-72">
-          {props.wish.comments.map((comment) => (
-            <li
-              className={cx("chat", comment.user.id === currentUser.id ? "chat-end" : "chat-start")}
-              key={comment.id}
-            >
-              <Avatar className="chat-image" initialUser={comment.user} size="small" />
-              <div className="chat-header">{comment.user.username}</div>
-              <div className="chat-bubble break-words">{comment.text}</div>
-              <div className="chat-footer opacity-50">{formatTimestamp(comment.timestamp)}</div>
-            </li>
-          ))}
-        </ul>
-      )}
+      <Comments comments={props.wish.comments} />
       <CommentInput
         placeholder={t("commentInputPlaceholder")}
         userId={props.userId}
