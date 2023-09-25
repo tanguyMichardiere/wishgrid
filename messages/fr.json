@@ -16,6 +16,11 @@
     "DeclineFriendRequestButton": {
       "text": "Refuser"
     },
+    "DeleteCurrentUserButton": {
+      "modalBody": "Vos vœux et commentaires seront supprimés, et vous serez retiré de toute liste d'amis.",
+      "modalTitle": "Supprimer votre compte ?",
+      "text": "Supprimer le compte"
+    },
     "DeleteWishButton": {
       "text": "Supprimer le vœu"
     },
@@ -82,11 +87,6 @@
       "notReservedTooltip": "Pas réservé",
       "reservedTooltip": "Réservé"
     }
-  },
-  "DeleteCurrentUserButton": {
-    "modalBody": "Vos vœux et commentaires seront supprimés, et vous serez retiré de toute liste d'amis.",
-    "modalTitle": "Supprimer votre compte ?",
-    "text": "Supprimer le compte"
   },
   "Navbar": {
     "Links": {
