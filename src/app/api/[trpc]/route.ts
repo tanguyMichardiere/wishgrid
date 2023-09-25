@@ -3,7 +3,7 @@ import { log } from "next-axiom";
 import { createContext } from "../../../server/context";
 import { router } from "../../../server/router";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 async function handler(req: Request): Promise<Response> {
   return fetchRequestHandler({
