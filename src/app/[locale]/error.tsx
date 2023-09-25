@@ -21,7 +21,7 @@ export default function Error({ reset, ...props }: Props): JSX.Element {
   );
 
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-4">
+    <div className="mt-48 flex flex-col items-center gap-4">
       <h2 className="text-center">{t("title")}</h2>
       {props.error.digest !== undefined && <p>{t("digest", { digest: props.error.digest })}</p>}
       <button className="btn" onClick={reset}>

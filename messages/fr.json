@@ -64,15 +64,8 @@
     "ReserveWishButton": {
       "text": "Réserver"
     },
-    "SearchPage": {
-      "inputPlaceholder": "Chercher par nom, email, etc.",
-      "noResults": "Aucun résultat"
-    },
     "UnreserveWishButton": {
       "text": "Ne plus réserver"
-    },
-    "UserProfilePage": {
-      "returnToSettings": "Retour aux paramètres"
     },
     "WishList": {
       "noWish": "Aucun vœu"
@@ -88,6 +81,9 @@
       "reservedTooltip": "Réservé"
     }
   },
+  "ManageAccountPage": {
+    "returnToSettings": "Retour aux paramètres"
+  },
   "Navbar": {
     "Links": {
       "friend-requests": "Demandes d'ami",
@@ -100,6 +96,10 @@
   },
   "NewWishButton": {
     "text": "Nouveau vœu"
+  },
+  "SearchPage": {
+    "inputPlaceholder": "Chercher par nom, email, etc.",
+    "noResults": "Aucun résultat"
   },
   "SettingsPage": {
     "language": "Langue",
