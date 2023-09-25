@@ -21,15 +21,15 @@ export const metadata = {
   ],
 };
 
-type Props = {
-  params: Params;
-  children: ReactNode;
-};
-
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
+
+type Props = {
+  params: Params;
+  children: ReactNode;
+};
 
 export default function RootLayout(props: Props): JSX.Element {
   const locale = useLocale();
@@ -40,8 +40,8 @@ export default function RootLayout(props: Props): JSX.Element {
 
   return (
     <ServerProviders>
-      <html className="h-full" lang={locale} suppressHydrationWarning>
-        <body className={cx(inter.variable, "h-full font-sans")}>
+      <html lang={locale} suppressHydrationWarning>
+        <body className={cx(inter.variable, "font-sans")}>
           {/* @ts-expect-error incorrect types on trpc.withTRPC */}
           <ClientProviders>{props.children}</ClientProviders>
         </body>

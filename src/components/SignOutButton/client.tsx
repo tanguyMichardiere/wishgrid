@@ -11,7 +11,6 @@ type Props = {
 export default function SignOutButtonClient(props: Props): JSX.Element {
   const clerk = useClerk();
   const log = useLogger();
-
   const queryClient = useQueryClient();
 
   function signOut() {

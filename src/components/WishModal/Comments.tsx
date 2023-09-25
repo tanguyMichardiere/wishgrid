@@ -1,52 +1,56 @@
 "use client";
 
 import cx from "classix";
-import type { DateTimeFormatOptions } from "next-intl";
 import { useFormatter, useNow } from "next-intl";
+import { useMemo } from "react";
 import { useCurrentUser } from "../../context/currentUser/hook";
 import type { Comment } from "../../server/db/types/comments";
 import Avatar from "../Avatar";
-
-const dateTimeFormatOptions: DateTimeFormatOptions = {
-  day: "2-digit",
-  month: "2-digit",
-  year: "numeric",
-  hour: "2-digit",
-  minute: "2-digit",
-};
 
 type Props = {
   comments: Array<Comment>;
 };
 
-export default function Comments(props: Props): JSX.Element | null {
+export default function Comments(props: Props): JSX.Element {
+  const format = useFormatter();
+  const now = useNow();
+
   const currentUser = useCurrentUser();
 
-  const now = useNow();
-  const format = useFormatter();
-
-  if (props.comments.length === 0) {
-    return null;
-  }
+  const todayTimestamp = useMemo(
+    () => new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime(),
+    [now],
+  );
 
   return (
-    <ul className="w-72">
-      {props.comments.map(function (comment, index, comments) {
-        const previousComment = comments[index - 1];
-        const collapsedWithPrevious =
-          previousComment !== undefined &&
-          previousComment.user.id === comment.user.id &&
-          previousComment.timestamp.getDate() === comment.timestamp.getDate() &&
-          previousComment.timestamp.getMonth() === comment.timestamp.getMonth() &&
-          previousComment.timestamp.getFullYear() === comment.timestamp.getFullYear();
-        const nextComment = comments[index + 1];
-        const collapsedWithNext =
-          nextComment !== undefined &&
-          nextComment.user.id === comment.user.id &&
-          nextComment.timestamp.getDate() === comment.timestamp.getDate() &&
-          nextComment.timestamp.getMonth() === comment.timestamp.getMonth() &&
-          nextComment.timestamp.getFullYear() === comment.timestamp.getFullYear();
-        return (
+    <ul className="flex max-h-72 w-72 flex-col-reverse overflow-y-scroll">
+      {props.comments
+        .map((comment) => ({
+          ...comment,
+          dayTimestamp: new Date(
+            comment.timestamp.getFullYear(),
+            comment.timestamp.getMonth(),
+            comment.timestamp.getDate(),
+          ).getTime(),
+        }))
+        .map((comment, index, comments) => ({
+          comment,
+          // comments are in reverse chronological order (newest first)
+          previousComment: comments[index + 1],
+          nextComment: comments[index - 1],
+        }))
+        .map(({ comment, previousComment, nextComment }) => ({
+          comment,
+          collapsedWithPrevious:
+            previousComment !== undefined &&
+            previousComment.user.id === comment.user.id &&
+            previousComment.dayTimestamp === comment.dayTimestamp,
+          collapsedWithNext:
+            nextComment !== undefined &&
+            nextComment.user.id === comment.user.id &&
+            nextComment.dayTimestamp === comment.dayTimestamp,
+        }))
+        .map(({ comment, collapsedWithPrevious, collapsedWithNext }) => (
           <li
             className={cx("chat", comment.user.id === currentUser.id ? "chat-end" : "chat-start")}
             key={comment.id}
@@ -55,18 +59,17 @@ export default function Comments(props: Props): JSX.Element | null {
             {!collapsedWithPrevious && <div className="chat-header">{comment.user.username}</div>}
             <div className="chat-bubble break-words">{comment.text}</div>
             {!collapsedWithNext && now.getTime() - comment.timestamp.getTime() > 60000 && (
-              <div
-                className="tooltip"
-                data-tip={format.dateTime(comment.timestamp, dateTimeFormatOptions)}
-              >
-                <div className="chat-footer opacity-50">
-                  {format.relativeTime(comment.timestamp, now)}
+              <div className="chat-footer">
+                <div
+                  className={cx(comment.dayTimestamp !== todayTimestamp && "tooltip")}
+                  data-tip={format.dateTime(comment.timestamp)}
+                >
+                  <span className="opacity-50">{format.relativeTime(comment.timestamp, now)}</span>
                 </div>
               </div>
             )}
           </li>
-        );
-      })}
+        ))}
     </ul>
   );
 }

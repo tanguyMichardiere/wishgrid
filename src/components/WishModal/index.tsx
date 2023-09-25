@@ -43,7 +43,7 @@ export default forwardRef<HTMLDialogElement, Props>(function WishModal(props, re
       ) : (
         <ReserveWishButton userId={props.userId} wishId={props.wish.id} />
       )}
-      <Comments comments={props.wish.comments} />
+      {props.wish.comments.length > 0 && <Comments comments={props.wish.comments} />}
       <CommentInput
         placeholder={t("commentInputPlaceholder")}
         userId={props.userId}

@@ -24,9 +24,7 @@ export default async function SignedInLayout(props: Props): Promise<JSX.Element>
   return (
     <CurrentUserContextProvider initialCurrentUser={currentUser}>
       <Navbar />
-      <div className="mx-auto flex min-h-[calc(100%-72px)] max-w-sm flex-col pb-20">
-        {props.children}
-      </div>
+      <div className="mx-auto flex max-w-sm flex-col pb-20">{props.children}</div>
     </CurrentUserContextProvider>
   );
 }

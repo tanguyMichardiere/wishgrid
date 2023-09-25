@@ -6,32 +6,15 @@ import { useLogger } from "next-axiom";
 import type { FormEvent } from "react";
 import { forwardRef, useRef } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { useCurrentUser } from "../context/currentUser/hook";
-import { WishDescription, WishLink, WishTitle } from "../server/db/types/wishes";
-import { mergeRefs } from "../utils/mergeRefs";
-import { useClientTranslations } from "../utils/translations/client";
-import { trpc } from "../utils/trpc/client";
-import Modal from "./Modal";
-
-const FormSchema = z.object({
-  title: WishTitle,
-  description: WishDescription,
-  link: z.preprocess(
-    (arg) =>
-      typeof arg === "string" &&
-      arg.length > 0 &&
-      !arg.startsWith("http://") &&
-      !arg.startsWith("https://")
-        ? `https://${arg}`
-        : arg,
-    WishLink,
-  ),
-});
+import type { z } from "zod";
+import { useCreateWishMutation } from "../../hooks/mutations/wishes/create";
+import { mergeRefs } from "../../utils/mergeRefs";
+import { useClientTranslations } from "../../utils/translations/client";
+import Modal from "../Modal";
+import { FormSchema } from "./formSchema";
 
 export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref): JSX.Element {
   const t = useClientTranslations("clientComponents.NewWishModal");
-
   const log = useLogger();
 
   const innerRef = useRef<HTMLDialogElement>(null);
@@ -48,31 +31,12 @@ export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref):
     reset();
   }
 
-  const trpcContext = trpc.useContext();
-
-  const currentUser = useCurrentUser();
-
-  const createWish = trpc.wishes.create.useMutation({
-    // no optimistic update because we don't know the ID yet
-    onSuccess(id, { title, description, link }) {
-      trpcContext.wishes.listOwn.setData(undefined, (wishes) =>
-        wishes !== undefined
-          ? [
-              ...wishes,
-              { id, title, description, link, userId: currentUser.id, reservedById: null },
-            ].toSorted((a, b) => a.title.localeCompare(b.title))
-          : undefined,
-      );
-      closeModal();
-    },
-    async onSettled() {
-      await trpcContext.wishes.listOwn.invalidate();
-    },
-  });
+  const createWish = useCreateWishMutation();
 
   function submit(event: FormEvent<HTMLFormElement>) {
-    handleSubmit(function (data) {
-      createWish.mutate(data);
+    handleSubmit(async function (data) {
+      await createWish.mutateAsync(data);
+      closeModal();
     })(event).catch(log.error);
   }
 
@@ -100,7 +64,7 @@ export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref):
           <textarea
             {...register("description")}
             className={cx(
-              "input input-bordered h-auto w-72",
+              "textarea textarea-bordered w-72",
               errors.description !== undefined && "outline outline-error",
             )}
             placeholder={t("descriptionInputPlaceholder")}

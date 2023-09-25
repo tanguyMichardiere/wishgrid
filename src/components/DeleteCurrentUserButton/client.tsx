@@ -1,8 +1,7 @@
 "use client";
 
-import { useRouter } from "next-intl/client";
 import { useRef } from "react";
-import { trpc } from "../../utils/trpc/client";
+import { useDeleteCurrentUserMutation } from "../../hooks/mutations/users/deleteCurrent";
 import MutationModal from "../MutationModal";
 
 type Props = {
@@ -12,19 +11,13 @@ type Props = {
 };
 
 export default function DeleteCurrentUserButtonClient(props: Props): JSX.Element {
-  const router = useRouter();
-
-  const deleteCurrentUser = trpc.users.deleteCurrent.useMutation({
-    onSettled() {
-      router.replace("/sign-in");
-    },
-  });
-
   const modalRef = useRef<HTMLDialogElement>(null);
 
   function showModal() {
     modalRef.current?.showModal();
   }
+
+  const deleteCurrentUser = useDeleteCurrentUserMutation()
 
   return (
     <>

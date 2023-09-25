@@ -15,7 +15,7 @@ export default trpc.withTRPC(function ClientProviders(props: Props): JSX.Element
     <ThemeProvider attribute="data-theme" disableTransitionOnChange>
       <AxiomWebVitals />
       {props.children}
-      <ReactQueryDevtools initialIsOpen />
+      <ReactQueryDevtools />
     </ThemeProvider>
   );
 });

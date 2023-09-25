@@ -3,15 +3,13 @@
 import { UserProfile } from "@clerk/nextjs";
 import { useLocale } from "next-intl";
 import Link from "next-intl/link";
-import { useClerkTheme } from "../../../../../hooks/useClerkTheme";
+import { useClerkTheme } from "../../../../../hooks/clerkTheme";
 import { useClientTranslations } from "../../../../../utils/translations/client";
 
 export default function UserProfilePage(): JSX.Element {
-  const t = useClientTranslations("clientComponents.UserProfilePage");
-
-  const locale = useLocale();
-
   const theme = useClerkTheme();
+  const t = useClientTranslations("clientComponents.UserProfilePage");
+  const locale = useLocale();
 
   return (
     <div className="flex flex-col items-center gap-10">
