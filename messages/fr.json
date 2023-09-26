@@ -97,6 +97,10 @@
   "NewWishButton": {
     "text": "Nouveau vœu"
   },
+  "NotFound": {
+    "returnHome": "Retour à la page d'accueil",
+    "title": "Page inexistante"
+  },
   "SearchPage": {
     "inputPlaceholder": "Chercher par nom, email, etc.",
     "noResults": "Aucun résultat"

@@ -97,6 +97,10 @@
   "NewWishButton": {
     "text": "New Wish"
   },
+  "NotFound": {
+    "returnHome": "Return to Home Page",
+    "title": "Page Not Found"
+  },
   "SearchPage": {
     "inputPlaceholder": "Search by name, email, etc.",
     "noResults": "No results"
