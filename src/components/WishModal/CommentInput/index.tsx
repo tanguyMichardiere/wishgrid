@@ -1,5 +1,6 @@
 "use client";
 
+import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import cx from "classix";
 import { useLogger } from "next-axiom";
@@ -13,7 +14,6 @@ import { FormSchema } from "./formSchema";
 type Props = {
   userId: string;
   wishId: string;
-  placeholder: string;
 };
 
 export default function CommentInput(props: Props): JSX.Element {
@@ -38,14 +38,19 @@ export default function CommentInput(props: Props): JSX.Element {
 
   return (
     <form onSubmit={submit}>
-      <input
-        {...register("text")}
-        className={cx(
-          "input input-bordered w-72",
-          errors.text !== undefined && "outline outline-error",
-        )}
-        placeholder={props.placeholder}
-      />
+      <div className="flex items-center gap-2">
+        <input
+          {...register("text")}
+          className={cx(
+            "input input-bordered grow",
+            errors.text !== undefined && "outline outline-error",
+          )}
+          placeholder={t("placeholder")}
+        />
+        <button className="btn btn-square btn-primary" type="submit">
+          <PaperAirplaneIcon className="h-6 w-6" />
+        </button>
+      </div>
       <p className="text-sm">
         {errors.text?.type === "too_small"
           ? t("textTooSmall", { length: 4 })

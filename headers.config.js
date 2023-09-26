@@ -1,3 +1,18 @@
+const contentSecurityPolicy = {
+  "default-src": ["'self'"],
+  "connect-src": ["'self'", "*.wishgrid.app", "*.clerk.accounts.dev"],
+  "img-src": ["'self'", "data:", "img.clerk.com"],
+  "script-src": [
+    "'self'",
+    "'unsafe-eval'",
+    "'unsafe-inline'",
+    "*.wishgrid.app",
+    "*.clerk.accounts.dev",
+  ],
+  "worker-src": ["'self'", "blob:"],
+  "style-src": ["'self'", "'unsafe-inline'"],
+};
+
 /** @type {{ headers: import("next/dist/lib/load-custom-routes").Header["headers"] }} */
 module.exports = {
   headers: [
@@ -31,20 +46,7 @@ module.exports = {
         process.env.NODE_ENV === "production"
           ? "Content-Security-Policy"
           : "Content-Security-Policy-Report-Only",
-      value: Object.entries({
-        "default-src": ["'self'"],
-        "connect-src": ["'self'", "*.wishgrid.app", "*.clerk.accounts.dev"],
-        "img-src": ["'self'", "data:", "img.clerk.com"],
-        "script-src": [
-          "'self'",
-          "'unsafe-eval'",
-          "'unsafe-inline'",
-          "*.wishgrid.app",
-          "*.clerk.accounts.dev",
-        ],
-        "worker-src": ["'self'", "blob:"],
-        "style-src": ["'self'", "'unsafe-inline'"],
-      })
+      value: Object.entries(contentSecurityPolicy)
         .map(([key, value]) => `${key} ${value.join(" ")}`)
         .join("; "),
     },

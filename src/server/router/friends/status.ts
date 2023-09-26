@@ -20,7 +20,6 @@ export const status = procedure
           and(eq(friends.userId, input.userId), eq(friends.friendId, ctx.user.id)),
         ),
       );
-    // count will always return exactly one row
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const count = parseInt(rows[0]!.count);
 

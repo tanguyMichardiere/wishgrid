@@ -23,7 +23,7 @@ export default function Comments(props: Props): JSX.Element {
   );
 
   return (
-    <ul className="flex max-h-72 w-72 flex-col-reverse overflow-y-scroll">
+    <ul className="flex max-h-72 flex-col-reverse overflow-y-scroll">
       {props.comments
         .map((comment) => ({
           ...comment,
