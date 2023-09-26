@@ -1,5 +1,7 @@
 "use client";
 
+import cx from "classix";
+import type { ReactNode } from "react";
 import { forwardRef } from "react";
 import { useCurrentUser } from "../../context/currentUser/hook";
 import type { Wish } from "../../server/db/types/wishes";
@@ -9,6 +11,8 @@ import ReserveWishButton from "../ReserveWishButton";
 import UnreserveWishButton from "../UnreserveWishButton";
 import CommentInput from "./CommentInput";
 import Comments from "./Comments";
+
+const bold = (chunks: ReactNode) => <span className="font-semibold">{chunks}</span>;
 
 type Props = {
   userId: string;
@@ -32,9 +36,11 @@ export default forwardRef<HTMLDialogElement, Props>(function WishModal(props, re
       {props.wish.reservedBy !== null ? (
         <>
           <p>
-            {t("reservedBy")}
-            <span className="font-semibold">{props.wish.reservedBy.username}</span>
-            {props.wish.reservedBy.id === currentUser.id && ` (${t("you")})`}
+            {t.rich("reservedBy", {
+              name: props.wish.reservedBy.username,
+              you: props.wish.reservedBy.id === currentUser.id,
+              bold,
+            })}
           </p>
           {props.wish.reservedBy.id === currentUser.id && (
             <UnreserveWishButton userId={props.userId} wishId={props.wish.id} />
@@ -43,12 +49,15 @@ export default forwardRef<HTMLDialogElement, Props>(function WishModal(props, re
       ) : (
         <ReserveWishButton userId={props.userId} wishId={props.wish.id} />
       )}
-      {props.wish.comments.length > 0 && <Comments comments={props.wish.comments} />}
-      <CommentInput
-        placeholder={t("commentInputPlaceholder")}
-        userId={props.userId}
-        wishId={props.wish.id}
-      />
+      <div
+        className={cx(
+          "flex w-72 flex-col gap-2 rounded-2xl p-2 pt-0",
+          props.wish.comments.length > 0 && "bg-base-300",
+        )}
+      >
+        {props.wish.comments.length > 0 && <Comments comments={props.wish.comments} />}
+        <CommentInput userId={props.userId} wishId={props.wish.id} />
+      </div>
     </Modal>
   );
 });

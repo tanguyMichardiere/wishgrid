@@ -10,6 +10,7 @@
       "text": "Annuler la demande d'ami"
     },
     "CommentInput": {
+      "placeholder": "Commentaire",
       "textTooBig": "Un commentaire doit faire au plus {length} caractères",
       "textTooSmall": "Un commentaire doit faire au moins {length} caractères"
     },
@@ -71,9 +72,7 @@
       "noWish": "Aucun vœu"
     },
     "WishModal": {
-      "commentInputPlaceholder": "Commentaire",
-      "reservedBy": "Réservé par : ",
-      "you": "vous"
+      "reservedBy": "Réservé par : <bold>{name}</bold>{you, select, true { (vous)} other {}}"
     },
     "WishPreviewCard": {
       "commentsTooltip": "{count, plural, =0 {Aucun commentaire} =1 {1 commentaire} other {# commentaires}}",

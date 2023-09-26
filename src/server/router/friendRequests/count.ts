@@ -13,7 +13,6 @@ export const count = procedure
       .select({ count: sql<string>`count(*)` })
       .from(friendRequests)
       .where(eq(friendRequests.friendId, ctx.user.id));
-    // count will always return exactly one row
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return parseInt(rows[0]!.count);
   });

@@ -10,6 +10,7 @@
       "text": "Cancel Friend Request"
     },
     "CommentInput": {
+      "placeholder": "Comment",
       "textTooBig": "Comment must be at most {length} characters",
       "textTooSmall": "Comment must be at least {length} characters"
     },
@@ -71,9 +72,7 @@
       "noWish": "No wish"
     },
     "WishModal": {
-      "commentInputPlaceholder": "Comment",
-      "reservedBy": "Reserved by: ",
-      "you": "you"
+      "reservedBy": "Reserved by: <bold>{name}</bold>{you, select, true { (you)} other {}}"
     },
     "WishPreviewCard": {
       "commentsTooltip": "{count, plural, =0 {No comment yet} =1 {1 comment} other {# comments}}",
