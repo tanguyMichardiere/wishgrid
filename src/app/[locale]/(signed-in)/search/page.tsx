@@ -1,8 +1,6 @@
 import { useServerTranslations } from "../../../../utils/translations/server";
 import Search from "./Search";
 
-export const runtime = "edge";
-
 export default function SearchPage(): JSX.Element {
   const t = useServerTranslations("SearchPage");
 

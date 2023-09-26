@@ -14,6 +14,7 @@ type Props = {
 
 export default function ServerProviders(props: Props): JSX.Element {
   const locale = useLocale();
+
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
   const clientComponents = useMessages()?.["clientComponents"]!;
 
