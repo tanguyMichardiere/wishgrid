@@ -1,8 +1,6 @@
 import { useLocale } from "next-intl";
 import SignIn from "./SignIn";
 
-export const runtime = "edge";
-
 export default function SignInPage(): JSX.Element {
   const locale = useLocale();
 

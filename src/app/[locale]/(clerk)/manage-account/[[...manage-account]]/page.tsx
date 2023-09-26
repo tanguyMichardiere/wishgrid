@@ -4,8 +4,6 @@ import DeleteCurrentUserButton from "../../../../../components/DeleteCurrentUser
 import { useServerTranslations } from "../../../../../utils/translations/server";
 import UserProfile from "./UserProfile";
 
-export const runtime = "edge";
-
 export default function ManageAccountPage(): JSX.Element {
   const locale = useLocale();
   const t = useServerTranslations("ManageAccountPage");

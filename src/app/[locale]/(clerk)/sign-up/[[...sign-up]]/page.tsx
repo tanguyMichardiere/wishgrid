@@ -1,8 +1,6 @@
 import { useLocale } from "next-intl";
 import SignUp from "./SignUp";
 
-export const runtime = "edge";
-
 export default function SignUpPage(): JSX.Element {
   const locale = useLocale();
 

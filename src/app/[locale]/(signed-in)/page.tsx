@@ -1,12 +1,8 @@
-import { createServerSideHelpers } from "../../../utils/trpc/server";
+import { getFriendsList } from "../../../utils/serverQueries/friends/list";
 import FriendList from "./FriendList";
 
-export const runtime = "edge";
-
 export default async function HomePage(): Promise<JSX.Element> {
-  const trpc = await createServerSideHelpers();
-
-  const friends = await trpc.friends.list.fetch();
+  const friends = await getFriendsList();
 
   return (
     <ul className="flex flex-col">
