@@ -4,6 +4,7 @@ import "server-only";
 import { z } from "zod";
 import { procedure } from "../..";
 import { comments } from "../../db/schema/comments";
+import { wishViews } from "../../db/schema/wishViews";
 import { wishes } from "../../db/schema/wishes";
 import { UserId } from "../../db/types/user";
 import { Wish } from "../../db/types/wishes";
@@ -25,6 +26,9 @@ export const list = procedure
           columns: { id: true, text: true, timestamp: true, userId: true },
           orderBy: [desc(comments.timestamp)],
         },
+        wishViews: {
+          where: eq(wishViews.userId, ctx.user.id),
+        },
       },
       where: eq(wishes.userId, input.userId),
       orderBy: [asc(wishes.title)],
@@ -43,5 +47,6 @@ export const list = procedure
       reservedBy: row.reservedById !== null ? users[row.reservedById]! : null,
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       comments: row.comments.map((comment) => ({ ...comment, user: users[comment.userId]! })),
+      viewed: row.wishViews.length === 1,
     }));
   });

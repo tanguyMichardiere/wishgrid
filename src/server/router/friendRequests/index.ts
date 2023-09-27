@@ -9,11 +9,13 @@ import { list } from "./list";
 import { status } from "./status";
 
 export const friendRequests = createRouter({
+  // queries
   count,
   list,
   status,
-  create,
-  cancel,
+  // mutations
   accept,
+  cancel,
+  create,
   decline,
 });

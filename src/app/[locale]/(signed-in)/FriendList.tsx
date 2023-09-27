@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next-intl/link";
-import UserPreviewCard from "../../../components/UserPreviewCard";
-import type { User } from "../../../server/db/types/user";
+import FriendPreviewCard from "../../../components/FriendPreviewCard";
+import type { Friend } from "../../../server/db/types/user";
 import { useClientTranslations } from "../../../utils/translations/client";
 import { trpc } from "../../../utils/trpc/client";
 
 type Props = {
-  initialFriends: Array<User>;
+  initialFriends: Array<Friend>;
 };
 
 export default function FriendList(props: Props): JSX.Element {
@@ -28,10 +28,10 @@ export default function FriendList(props: Props): JSX.Element {
 
   return (
     <>
-      {friends.data.map((user) => (
-        <li key={user.id}>
-          <Link href={`/friend/${user.id}`}>
-            <UserPreviewCard user={user} />
+      {friends.data.map((friend) => (
+        <li key={friend.id}>
+          <Link href={`/friend/${friend.id}`}>
+            <FriendPreviewCard friend={friend} />
           </Link>
         </li>
       ))}

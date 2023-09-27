@@ -2,9 +2,10 @@
 
 import cx from "classix";
 import type { ReactNode } from "react";
-import { forwardRef } from "react";
+import { forwardRef, useRef } from "react";
 import { useCurrentUser } from "../../context/currentUser/hook";
 import type { Wish } from "../../server/db/types/wishes";
+import { mergeRefs } from "../../utils/refs";
 import { useClientTranslations } from "../../utils/translations/client";
 import Modal from "../Modal";
 import ReserveWishButton from "../ReserveWishButton";
@@ -22,10 +23,24 @@ type Props = {
 export default forwardRef<HTMLDialogElement, Props>(function WishModal(props, ref) {
   const t = useClientTranslations("clientComponents.WishModal");
 
+  const innerRef = useRef<HTMLDialogElement>(null);
+  const commentInputRef = useRef<{ reset: () => void }>(null);
+
   const currentUser = useCurrentUser();
 
+  function closeModal() {
+    innerRef.current?.close();
+    setTimeout(function () {
+      commentInputRef.current?.reset();
+    }, 200);
+  }
+
   return (
-    <Modal className="flex flex-col items-center gap-4" ref={ref}>
+    <Modal
+      className="flex flex-col items-center gap-4"
+      close={closeModal}
+      ref={mergeRefs(ref, innerRef)}
+    >
       <h1 className="text-xl">{props.wish.title}</h1>
       {props.wish.description.length > 0 && <p className="break-words">{props.wish.description}</p>}
       {props.wish.link.length > 0 && (
@@ -56,7 +71,7 @@ export default forwardRef<HTMLDialogElement, Props>(function WishModal(props, re
         )}
       >
         {props.wish.comments.length > 0 && <Comments comments={props.wish.comments} />}
-        <CommentInput userId={props.userId} wishId={props.wish.id} />
+        <CommentInput ref={commentInputRef} userId={props.userId} wishId={props.wish.id} />
       </div>
     </Modal>
   );

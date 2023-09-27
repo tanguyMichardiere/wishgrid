@@ -1,0 +1,233 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "id": "28d31528-686d-4683-a2fe-2a76bbfb4ee1",
+  "prevId": "ff4f06c5-7ee1-4cdb-a17b-c23f2f380f7c",
+  "tables": {
+    "comments": {
+      "name": "comments",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "text": {
+          "name": "text",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "timestamp": {
+          "name": "timestamp",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "char(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "wish_id": {
+          "name": "wish_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "comments_wish_id_wishes_id_fk": {
+          "name": "comments_wish_id_wishes_id_fk",
+          "tableFrom": "comments",
+          "tableTo": "wishes",
+          "columnsFrom": [
+            "wish_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "friend_requests": {
+      "name": "friend_requests",
+      "schema": "",
+      "columns": {
+        "user_id": {
+          "name": "user_id",
+          "type": "char(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "friend_id": {
+          "name": "friend_id",
+          "type": "char(32)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "friend_requests_user_id_friend_id": {
+          "name": "friend_requests_user_id_friend_id",
+          "columns": [
+            "user_id",
+            "friend_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "friends": {
+      "name": "friends",
+      "schema": "",
+      "columns": {
+        "user_id": {
+          "name": "user_id",
+          "type": "char(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "friend_id": {
+          "name": "friend_id",
+          "type": "char(32)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "friends_user_id_friend_id": {
+          "name": "friends_user_id_friend_id",
+          "columns": [
+            "user_id",
+            "friend_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "wishes": {
+      "name": "wishes",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "varchar(512)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "link": {
+          "name": "link",
+          "type": "varchar(512)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "char(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reserved_by_id": {
+          "name": "reserved_by_id",
+          "type": "char(32)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "wishes_user_id_title_unique": {
+          "name": "wishes_user_id_title_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "user_id",
+            "title"
+          ]
+        }
+      }
+    },
+    "wish_views": {
+      "name": "wish_views",
+      "schema": "",
+      "columns": {
+        "user_id": {
+          "name": "user_id",
+          "type": "char(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "wish_id": {
+          "name": "wish_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "wish_views_wish_id_wishes_id_fk": {
+          "name": "wish_views_wish_id_wishes_id_fk",
+          "tableFrom": "wish_views",
+          "tableTo": "wishes",
+          "columnsFrom": [
+            "wish_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "wish_views_user_id_wish_id": {
+          "name": "wish_views_user_id_wish_id",
+          "columns": [
+            "user_id",
+            "wish_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {
+      "\"wishViews\"": "\"wish_views\""
+    },
+    "columns": {}
+  }
+}

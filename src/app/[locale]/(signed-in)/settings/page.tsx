@@ -17,6 +17,9 @@ export default function SettingsPage(): JSX.Element {
         <p>{t("language")}</p>
         <LanguageMenu position="left" />
       </div>
+      <Link className="link" href="/about">
+        {t("about")}
+      </Link>
       <Link className="link" href="/manage-account">
         {t("manageAccount")}
       </Link>
