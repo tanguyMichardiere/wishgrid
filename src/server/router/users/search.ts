@@ -8,6 +8,6 @@ export const search = procedure
   .input(z.object({ query: z.string().min(4).max(32) }))
   .output(z.array(User))
   .query(async function ({ ctx, input }) {
-    ctx.log.debug(`searching users with '${input.query}'`, { query: input.query });
+    ctx.logger.debug({ query: input.query }, `searching users with '${input.query}'`);
     return clerkClient.users.getUserList({ query: input.query });
   });

@@ -8,6 +8,6 @@ export const get = procedure
   .input(z.object({ userId: UserId }))
   .output(User)
   .query(async function ({ ctx, input }) {
-    ctx.log.debug(`retrieving ${input.userId}`, { userId: input.userId });
+    ctx.logger.debug({ userId: input.userId }, `retrieving ${input.userId}`);
     return clerkClient.users.getUser(input.userId);
   });

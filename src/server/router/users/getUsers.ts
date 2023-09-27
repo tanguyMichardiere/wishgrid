@@ -1,25 +1,25 @@
 import type { User as ClerkUser } from "@clerk/backend";
 import { clerkClient } from "@clerk/nextjs";
-import type { Logger } from "next-axiom";
+import type { Logger } from "pino";
 import "server-only";
 
 export async function getUsers(
   userId: Array<string>,
-  ctx: { log: Logger },
+  ctx: { logger: Logger },
   options?: { unique?: boolean; map?: false },
 ): Promise<Array<ClerkUser>>;
 export async function getUsers(
   userId: Array<string>,
-  ctx: { log: Logger },
+  ctx: { logger: Logger },
   options?: { map?: true },
 ): Promise<Record<string, ClerkUser>>;
 export async function getUsers(
   userId: Array<string>,
-  ctx: { log: Logger },
+  ctx: { logger: Logger },
   { unique = true, map = false }: { unique?: boolean; map?: boolean } = {},
 ): Promise<Array<ClerkUser> | Record<string, ClerkUser>> {
   const uniqueUserId = userId.filter((value, index, array) => array.indexOf(value) === index);
-  ctx.log.debug(`retrieving ${uniqueUserId.length} users`, { userId: uniqueUserId });
+  ctx.logger.debug({ userId: uniqueUserId }, `retrieving ${uniqueUserId.length} users`);
   // clerkClient.users.getUserList returns all users if called with { userId: [] }
   let users: Array<ClerkUser> = [];
   if (userId.length > 0) {

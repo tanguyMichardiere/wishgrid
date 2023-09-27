@@ -1,6 +1,6 @@
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
-import { log } from "next-axiom";
 import { createContext } from "../../../server/context";
+import { logger } from "../../../server/logger";
 import { router } from "../../../server/router";
 
 // export const runtime = "edge";
@@ -12,7 +12,7 @@ async function handler(req: Request): Promise<Response> {
     req,
     createContext,
     onError({ path, input, error }) {
-      log.error(path ?? "", { input, error });
+      logger.error({ input, error }, path);
     },
   });
 }

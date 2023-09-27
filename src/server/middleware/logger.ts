@@ -1,6 +1,6 @@
 import { experimental_standaloneMiddleware as standaloneMiddleware } from "@trpc/server";
-import { Logger } from "next-axiom";
 import "server-only";
+import { logger as baseLogger } from "../logger";
 
 export const logger = standaloneMiddleware().create(async function ({
   ctx,
@@ -9,14 +9,7 @@ export const logger = standaloneMiddleware().create(async function ({
   rawInput,
   next,
 }) {
-  const log = new Logger({ args: { type, path, input: rawInput } });
-  log.debug(`${type.toUpperCase()} ${path}`);
-  const result = await next({ ctx: { ...ctx, log } });
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    await log.flush();
-  } catch {
-    // ignore
-  }
-  return result;
+  const logger = baseLogger.child({ type, path, input: rawInput });
+  logger.debug(`${type.toUpperCase()} ${path}`);
+  return next({ ctx: { ...ctx, logger } });
 });

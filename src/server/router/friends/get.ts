@@ -20,10 +20,10 @@ export const get = procedure
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const count = parseInt(rows[0]!.count);
     if (count === 0) {
-      ctx.log.info(`users ${ctx.user.id} and ${input.userId} are not friends`, {
-        currentUserId: ctx.user.id,
-        userId: input.userId,
-      });
+      ctx.logger.info(
+        { currentUserId: ctx.user.id, userId: input.userId },
+        `users ${ctx.user.id} and ${input.userId} are not friends`,
+      );
       throw new TRPCError({ code: "NOT_FOUND" });
     }
 

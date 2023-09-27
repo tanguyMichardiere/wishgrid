@@ -1,7 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useLogger } from "next-axiom";
 import type { FormEvent } from "react";
 import { forwardRef, useRef } from "react";
 import { useForm } from "react-hook-form";
@@ -16,7 +15,6 @@ import { FormSchema } from "./formSchema";
 
 export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref) {
   const t = useClientTranslations("clientComponents.NewWishModal");
-  const log = useLogger();
 
   const innerRef = useRef<HTMLDialogElement>(null);
 
@@ -35,10 +33,10 @@ export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref) 
   const createWish = useCreateWishMutation();
 
   function submit(event: FormEvent<HTMLFormElement>) {
-    handleSubmit(async function (data) {
+    void handleSubmit(async function (data) {
       await createWish.mutateAsync(data);
       closeModal();
-    })(event).catch(log.error);
+    })(event);
   }
 
   return (

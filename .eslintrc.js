@@ -35,7 +35,7 @@ module.exports = {
     "no-return-assign": "warn",
     "no-return-await": "off",
     "no-useless-return": "warn",
-    "no-void": "warn",
+    "no-void": ["warn", { allowAsStatement: true }],
     "react/hook-use-state": "warn",
     "react/jsx-boolean-value": ["warn", "never"],
     "react/jsx-curly-brace-presence": [

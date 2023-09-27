@@ -1,7 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useLogger } from "next-axiom";
 import type { FormEvent } from "react";
 import { forwardRef, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -21,7 +20,6 @@ type Props = {
 
 export default forwardRef<HTMLDialogElement, Props>(function OwnWishModal(props, ref) {
   const t = useClientTranslations("clientComponents.OwnWishModal");
-  const log = useLogger();
 
   const innerRef = useRef<HTMLDialogElement>(null);
   const deleteWishButtonRef = useRef<{ reset: () => void }>(null);
@@ -61,10 +59,10 @@ export default forwardRef<HTMLDialogElement, Props>(function OwnWishModal(props,
   const updateWish = useUpdateWishMutation();
 
   function submit(event: FormEvent<HTMLFormElement>) {
-    handleSubmit(function (data) {
+    void handleSubmit(function (data) {
       updateWish.mutate({ id: props.wish.id, ...data });
       setUpdating(false);
-    })(event).catch(log.error);
+    })(event);
   }
 
   return (

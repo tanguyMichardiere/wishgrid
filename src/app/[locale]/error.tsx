@@ -1,7 +1,5 @@
 "use client";
 
-import { useLogger } from "next-axiom";
-import { useEffect } from "react";
 import { useClientTranslations } from "../../utils/translations/client";
 
 type Props = {
@@ -11,14 +9,8 @@ type Props = {
 
 export default function Error(props: Props): JSX.Element {
   const t = useClientTranslations("clientComponents.Error");
-  const log = useLogger();
 
-  useEffect(
-    function () {
-      log.error("client error", { error: props.error });
-    },
-    [props.error, log],
-  );
+  // TODO: report error
 
   return (
     <div className="flex flex-col items-center gap-4 pt-48">

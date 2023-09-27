@@ -26,11 +26,12 @@ let nextConfig = {
       },
     ]);
   },
+  experimental: {
+    serverComponentsExternalPackages: ["pino"],
+  },
 };
 
 nextConfig = require("next-intl/plugin")("./i18n.ts")(nextConfig);
-
-nextConfig = require("next-axiom").withAxiom(nextConfig);
 
 nextConfig = require("@next/bundle-analyzer")({
   enabled: process.env["ANALYZE"] === "true",
