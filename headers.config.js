@@ -1,6 +1,6 @@
 const contentSecurityPolicy = {
   "default-src": ["'self'"],
-  "connect-src": ["'self'", "*.wishgrid.app", "*.clerk.accounts.dev"],
+  "connect-src": ["'self'", "*.wishgrid.app", "*.clerk.accounts.dev", "vitals.vercel-insights.com"],
   "img-src": ["'self'", "data:", "img.clerk.com"],
   "script-src": [
     "'self'",
