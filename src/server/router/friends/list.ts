@@ -36,18 +36,16 @@ export const list = procedure
 
     // TODO: optimize with aggregate
     const viewedWishes = await ctx.db.query.wishViews.findMany({
-      columns: { wishId: true },
+      columns: {},
       with: { wish: { columns: { userId: true } } },
       where: eq(wishViews.userId, ctx.user.id),
     });
-    const viewedWishCountByUserId = viewedWishes.reduce<Record<string, number>>(
-      (viewedWishCountByUserId, { wish: { userId } }) =>
-        userId in viewedWishCountByUserId
-          ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            { ...viewedWishCountByUserId, [userId]: viewedWishCountByUserId[userId]! + 1 }
-          : { ...viewedWishCountByUserId, [userId]: 1 },
-      {},
-    );
+    const viewedWishCountByUserId = new Map<string, number>();
+    for (const {
+      wish: { userId },
+    } of viewedWishes) {
+      viewedWishCountByUserId.set(userId, (viewedWishCountByUserId.get(userId) ?? 0) + 1);
+    }
 
     return (
       users
@@ -56,10 +54,9 @@ export const list = procedure
         .sort((a, b) => a.username!.localeCompare(b.username!))
         .map((user) => ({
           ...user,
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          wishCount: wishCountByUserId[user.id]!,
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          newWishCount: wishCountByUserId[user.id]! - (viewedWishCountByUserId[user.id] ?? 0),
+          wishCount: wishCountByUserId[user.id] ?? 0,
+          newWishCount:
+            (wishCountByUserId[user.id] ?? 0) - (viewedWishCountByUserId.get(user.id) ?? 0),
         }))
     );
   });
