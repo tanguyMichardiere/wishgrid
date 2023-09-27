@@ -27,6 +27,7 @@
       "text": "Supprimer le compte"
     },
     "DeleteWishButton": {
+      "confirmationText": "Êtes-vous sûr ?",
       "text": "Supprimer"
     },
     "Error": {

@@ -24,6 +24,7 @@ export default forwardRef<HTMLDialogElement, Props>(function OwnWishModal(props,
   const log = useLogger();
 
   const innerRef = useRef<HTMLDialogElement>(null);
+  const deleteWishButtonRef = useRef<{ reset: () => void }>(null);
 
   const [updating, setUpdating] = useState(false);
 
@@ -37,7 +38,12 @@ export default forwardRef<HTMLDialogElement, Props>(function OwnWishModal(props,
     defaultValues: { description: props.wish.description, link: props.wish.link },
   });
 
+  function cancelDeleting() {
+    deleteWishButtonRef.current?.reset();
+  }
+
   function startUpdating() {
+    cancelDeleting();
     setUpdating(true);
   }
 
@@ -49,6 +55,7 @@ export default forwardRef<HTMLDialogElement, Props>(function OwnWishModal(props,
   function closeModal() {
     innerRef.current?.close();
     setTimeout(cancelUpdating, 200);
+    setTimeout(cancelDeleting, 200);
   }
 
   const updateWish = useUpdateWishMutation();
@@ -95,7 +102,7 @@ export default forwardRef<HTMLDialogElement, Props>(function OwnWishModal(props,
             <button className="btn" onClick={startUpdating} type="button">
               {t("updateButtonText")}
             </button>
-            <DeleteWishButton wishId={props.wish.id} />
+            <DeleteWishButton ref={deleteWishButtonRef} wishId={props.wish.id} />
           </div>
         )}
       </form>

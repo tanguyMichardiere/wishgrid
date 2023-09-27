@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 export type Props<TVariables> = {
   className?: string;
   type?: "reset" | "button" | "submit";
+  disabled?: boolean;
   mutation: UseTRPCMutationResult<void, unknown, TVariables, unknown>;
   variables: TVariables;
   children: ReactNode;
@@ -18,7 +19,7 @@ export default function MutationButton<TVariables>({
   return (
     <button
       className={cx("btn", props.className)}
-      disabled={props.mutation.isLoading}
+      disabled={props.mutation.isLoading || props.disabled === true}
       onClick={function () {
         props.mutation.mutate(props.variables);
       }}
