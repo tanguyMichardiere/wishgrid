@@ -7,9 +7,11 @@ import { getMany } from "./getMany";
 import { search } from "./search";
 
 export const users = createRouter({
-  search,
-  getCurrent,
+  // queries
   get,
+  getCurrent,
   getMany,
+  search,
+  // mutations
   deleteCurrent,
 });

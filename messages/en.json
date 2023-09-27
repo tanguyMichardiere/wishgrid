@@ -1,4 +1,8 @@
 {
+  "About": {
+    "subtitle": "A platform to share gift ideas with your friends",
+    "title": "WishGrid"
+  },
   "clientComponents": {
     "AcceptFriendRequestButton": {
       "text": "Accept"
@@ -23,7 +27,7 @@
       "text": "Delete Account"
     },
     "DeleteWishButton": {
-      "text": "Delete Wish"
+      "text": "Delete"
     },
     "Error": {
       "digest": "Digest: {digest}",
@@ -34,11 +38,15 @@
       "noFriends": "No friends",
       "search": "Search for your friends"
     },
+    "FriendPreviewCard": {
+      "newWishCountTooltip": "{count} wishes of which {newCount} new ones",
+      "wishCountTooltip": "{count} wishes"
+    },
     "FriendRequestList": {
       "noFriendRequests": "No friend requests"
     },
     "Modal": {
-      "backdropButtonText": "close"
+      "closeButtonText": "close"
     },
     "MutationModal": {
       "cancel": "Cancel",
@@ -46,18 +54,14 @@
     },
     "NewWishModal": {
       "cancelButtonText": "Cancel",
-      "createButtonText": "Create",
-      "descriptionInputPlaceholder": "Description",
-      "descriptionTooBig": "Description must be at most {length} characters",
-      "invalidUrl": "Invalid URL",
-      "linkInputPlaceholder": "Link",
-      "linkTooBig": "Link must be at most {length} characters",
-      "titleInputPlaceholder": "Title",
-      "titleTooBig": "Title must be at most {length} characters",
-      "titleTooShort": "Title must be at least {length} characters"
+      "createButtonText": "Create"
     },
     "OwnWishList": {
       "noWish": "No wish"
+    },
+    "OwnWishModal": {
+      "cancelButtonText": "Cancel",
+      "updateButtonText": "Update"
     },
     "RequestFriendButton": {
       "text": "Request Friend"
@@ -67,6 +71,15 @@
     },
     "UnreserveWishButton": {
       "text": "Unreserve"
+    },
+    "WishDescriptionFormInput": {
+      "placeholder": "Description",
+      "tooBig": "Description must be at most {length} characters"
+    },
+    "WishLinkFormInput": {
+      "invalid": "Invalid URL",
+      "placeholder": "Link",
+      "tooBig": "Link must be at most {length} characters"
     },
     "WishList": {
       "noWish": "No wish"
@@ -78,6 +91,11 @@
       "commentsTooltip": "{count, plural, =0 {No comment yet} =1 {1 comment} other {# comments}}",
       "notReservedTooltip": "Not reserved",
       "reservedTooltip": "Reserved"
+    },
+    "WishTitleFormInput": {
+      "placeholder": "Title",
+      "tooBig": "Title must be at most {length} characters",
+      "tooShort": "Title must be at least {length} characters"
     }
   },
   "ManageAccountPage": {
@@ -105,6 +123,7 @@
     "noResults": "No results"
   },
   "SettingsPage": {
+    "about": "About",
     "language": "Language",
     "manageAccount": "Manage account",
     "theme": "Theme"

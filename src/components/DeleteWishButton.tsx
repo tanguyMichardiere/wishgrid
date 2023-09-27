@@ -1,3 +1,5 @@
+"use client";
+
 import { useDeleteWishMutation } from "../hooks/mutations/wishes/delete";
 import { useClientTranslations } from "../utils/translations/client";
 import MutationButton from "./MutationButton";
@@ -12,7 +14,7 @@ export default function DeleteWishButton(props: Props): JSX.Element {
   const deleteWish = useDeleteWishMutation();
 
   return (
-    <MutationButton mutation={deleteWish} variables={{ id: props.wishId }}>
+    <MutationButton className="btn-error" mutation={deleteWish} variables={{ id: props.wishId }}>
       {t("text")}
     </MutationButton>
   );

@@ -1,6 +1,7 @@
 import { relations } from "drizzle-orm";
 import { char, pgTable, unique, uuid, varchar } from "drizzle-orm/pg-core";
 import { comments } from "./comments";
+import { wishViews } from "./wishViews";
 
 export const wishes = pgTable(
   "wishes",
@@ -20,4 +21,5 @@ export const wishes = pgTable(
 
 export const wishesRelations = relations(wishes, ({ many }) => ({
   comments: many(comments),
+  wishViews: many(wishViews),
 }));

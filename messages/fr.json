@@ -1,4 +1,8 @@
 {
+  "About": {
+    "subtitle": "Une plateforme pour partager des idées de cadeaux avec ses amis",
+    "title": "WishGrid"
+  },
   "clientComponents": {
     "AcceptFriendRequestButton": {
       "text": "Accepter"
@@ -23,7 +27,7 @@
       "text": "Supprimer le compte"
     },
     "DeleteWishButton": {
-      "text": "Supprimer le vœu"
+      "text": "Supprimer"
     },
     "Error": {
       "digest": "Code : {digest}",
@@ -34,11 +38,15 @@
       "noFriends": "Aucun ami",
       "search": "Chercher vos amis"
     },
+    "FriendPreviewCard": {
+      "newWishCountTooltip": "{count} vœux dont {newCount} nouveaux",
+      "wishCountTooltip": "{count} vœux"
+    },
     "FriendRequestList": {
       "noFriendRequests": "Aucune demande d'ami"
     },
     "Modal": {
-      "backdropButtonText": "fermer"
+      "closeButtonText": "fermer"
     },
     "MutationModal": {
       "cancel": "Annuler",
@@ -46,18 +54,14 @@
     },
     "NewWishModal": {
       "cancelButtonText": "Annuler",
-      "createButtonText": "Créer",
-      "descriptionInputPlaceholder": "Description",
-      "descriptionTooBig": "La description doit faire au plus {length} caractères",
-      "invalidUrl": "URL invalide",
-      "linkInputPlaceholder": "Lien",
-      "linkTooBig": "Le lien doit faire au plus {length} caractères",
-      "titleInputPlaceholder": "Titre",
-      "titleTooBig": "Le titre doit faire au plus {length} caractères",
-      "titleTooShort": "Le titre doit faire au moins {length} caractères"
+      "createButtonText": "Créer"
     },
     "OwnWishList": {
       "noWish": "Aucun vœu"
+    },
+    "OwnWishModal": {
+      "cancelButtonText": "Annuler",
+      "updateButtonText": "Modifier"
     },
     "RequestFriendButton": {
       "text": "Demander en ami"
@@ -67,6 +71,15 @@
     },
     "UnreserveWishButton": {
       "text": "Ne plus réserver"
+    },
+    "WishDescriptionFormInput": {
+      "placeholder": "Description",
+      "tooBig": "La description doit faire au plus {length} caractères"
+    },
+    "WishLinkFormInput": {
+      "invalid": "URL invalide",
+      "placeholder": "Lien",
+      "tooBig": "Le lien doit faire au plus {length} caractères"
     },
     "WishList": {
       "noWish": "Aucun vœu"
@@ -78,6 +91,11 @@
       "commentsTooltip": "{count, plural, =0 {Aucun commentaire} =1 {1 commentaire} other {# commentaires}}",
       "notReservedTooltip": "Pas réservé",
       "reservedTooltip": "Réservé"
+    },
+    "WishTitleFormInput": {
+      "placeholder": "Titre",
+      "tooBig": "Le titre doit faire au plus {length} caractères",
+      "tooShort": "Le titre doit faire au moins {length} caractères"
     }
   },
   "ManageAccountPage": {
@@ -105,6 +123,7 @@
     "noResults": "Aucun résultat"
   },
   "SettingsPage": {
+    "about": "À propos",
     "language": "Langue",
     "manageAccount": "Gestion du compte",
     "theme": "Thème"

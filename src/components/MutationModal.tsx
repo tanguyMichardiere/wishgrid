@@ -1,5 +1,6 @@
 "use client";
 
+import "client-only";
 import type { ForwardedRef } from "react";
 import { forwardRef } from "react";
 import { useClientTranslations } from "../utils/translations/client";
@@ -15,7 +16,7 @@ type Props<TVariables> = {
 export default forwardRef(function MutationModal<TVariables>(
   props: Props<TVariables>,
   ref: ForwardedRef<HTMLDialogElement>,
-): JSX.Element {
+) {
   const t = useClientTranslations("clientComponents.MutationModal");
 
   return (
