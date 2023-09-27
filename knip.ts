@@ -2,5 +2,11 @@ import type { KnipConfig } from "knip";
 
 export default {
   ignore: ["i18n.ts", "src/types/messagesAssertions.ts"],
-  ignoreDependencies: ["eslint-config-next", "lorem-ipsum", "npm-check-updates", "vercel"],
+  ignoreDependencies: [
+    "eslint-config-next",
+    "lorem-ipsum",
+    "npm-check-updates",
+    "pino-pretty",
+    "vercel",
+  ],
 } satisfies KnipConfig;

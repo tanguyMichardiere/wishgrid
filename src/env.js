@@ -6,6 +6,9 @@ const env = createEnv({
     NODE_ENV: z.enum(["development", "production", "test"]),
     DATABASE_URL: z.string().url(),
     CLERK_SECRET_KEY: z.string(),
+    LOG_LEVEL: z
+      .enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"])
+      .default("info"),
 
     PORT: z.coerce.number().int().positive().default(3000),
     VERCEL_URL: z.string().optional(),
@@ -17,6 +20,7 @@ const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     DATABASE_URL: process.env["DATABASE_URL"],
     CLERK_SECRET_KEY: process.env["CLERK_SECRET_KEY"],
+    LOG_LEVEL: process.env["LOG_LEVEL"],
 
     PORT: process.env["PORT"],
     VERCEL_URL: process.env["VERCEL_URL"],

@@ -3,7 +3,6 @@
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import cx from "classix";
-import { useLogger } from "next-axiom";
 import { forwardRef, type FormEvent } from "react";
 import { useForm } from "react-hook-form";
 import { useCreateCommentMutation } from "../../../hooks/mutations/comments/create";
@@ -18,7 +17,6 @@ type Props = {
 
 export default forwardRef<{ reset: () => void }, Props>(function CommentInput(props, ref) {
   const t = useClientTranslations("clientComponents.CommentInput");
-  const log = useLogger();
 
   const {
     register,
@@ -32,10 +30,10 @@ export default forwardRef<{ reset: () => void }, Props>(function CommentInput(pr
   const createComment = useCreateCommentMutation(props.userId);
 
   function submit(event: FormEvent<HTMLFormElement>) {
-    handleSubmit(function (data) {
+    void handleSubmit(function (data) {
       createComment.mutate({ ...data, wishId: props.wishId });
       reset();
-    })(event).catch(log.error);
+    })(event);
   }
 
   return (

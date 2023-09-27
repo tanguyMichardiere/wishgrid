@@ -2,7 +2,6 @@
 
 import { useClerk } from "@clerk/nextjs";
 import { useQueryClient } from "@tanstack/react-query";
-import { useLogger } from "next-axiom";
 
 type Props = {
   text: string;
@@ -10,11 +9,10 @@ type Props = {
 
 export default function SignOutButtonClient(props: Props): JSX.Element {
   const clerk = useClerk();
-  const log = useLogger();
   const queryClient = useQueryClient();
 
   function signOut() {
-    clerk.signOut().catch(log.error);
+    void clerk.signOut();
     queryClient.removeQueries();
   }
 

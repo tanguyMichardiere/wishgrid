@@ -1,20 +1,20 @@
 import { type Logger as DrizzleLogger } from "drizzle-orm";
-import type { Logger as AxiomLogger } from "next-axiom";
+import type { Logger as PinoLogger } from "pino";
 import "server-only";
 
 export class DbLogger implements DrizzleLogger {
-  private log: AxiomLogger;
+  private logger: PinoLogger;
 
-  constructor(log: AxiomLogger) {
-    this.log = log;
+  constructor(logger: PinoLogger) {
+    this.logger = logger;
   }
 
   logQuery(query: string, params: Array<unknown>): void {
-    this.log.debug(
-      query,
+    this.logger.debug(
       Object.fromEntries(
         Object.entries(params).map(([key, value]) => [`$${Number(key) + 1}`, value]),
       ),
+      query,
     );
   }
 }
