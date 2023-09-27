@@ -27,6 +27,7 @@
       "text": "Delete Account"
     },
     "DeleteWishButton": {
+      "confirmationText": "Are you sure?",
       "text": "Delete"
     },
     "Error": {
