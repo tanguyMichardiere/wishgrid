@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import type { ReactNode } from "react";
 import "../styles.css";
 
@@ -19,5 +20,10 @@ type Props = {
 };
 
 export default function RootLayout(props: Props): JSX.Element {
-  return <>{props.children}</>;
+  return (
+    <>
+      <Analytics />
+      {props.children}
+    </>
+  );
 }
