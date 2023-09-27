@@ -13,33 +13,36 @@ export const list = procedure
   .use(serverlessDb)
   .output(z.array(Friend))
   .query(async function ({ ctx }) {
-    const friendIds = await ctx.db.query.friends
+    const friendIdsPromise = ctx.db.query.friends
       .findMany({
         columns: { friendId: true },
         where: eq(friends.userId, ctx.user.id),
       })
       .then((friendIds) => friendIds.map((row) => row.friendId));
 
-    const users = await getUsers(friendIds, ctx);
+    const [users, wishCount, viewedWishes] = await Promise.all([
+      friendIdsPromise.then((friendIds) => getUsers(friendIds, ctx)),
+      friendIdsPromise.then((friendIds) =>
+        friendIds.length > 0
+          ? ctx.db
+              .select({ userId: wishes.userId, wishCount: sql<string>`count(*)` })
+              .from(wishes)
+              .where(inArray(wishes.userId, friendIds))
+              .groupBy(wishes.userId)
+          : [],
+      ),
+      // TODO: optimize with aggregate
+      ctx.db.query.wishViews.findMany({
+        columns: {},
+        with: { wish: { columns: { userId: true } } },
+        where: eq(wishViews.userId, ctx.user.id),
+      }),
+    ]);
 
-    const wishCount =
-      friendIds.length > 0
-        ? await ctx.db
-            .select({ userId: wishes.userId, wishCount: sql<string>`count(*)` })
-            .from(wishes)
-            .where(inArray(wishes.userId, friendIds))
-            .groupBy(wishes.userId)
-        : [];
     const wishCountByUserId = Object.fromEntries(
       wishCount.map(({ userId, wishCount }) => [userId, parseInt(wishCount)]),
     );
 
-    // TODO: optimize with aggregate
-    const viewedWishes = await ctx.db.query.wishViews.findMany({
-      columns: {},
-      with: { wish: { columns: { userId: true } } },
-      where: eq(wishViews.userId, ctx.user.id),
-    });
     const viewedWishCountByUserId = new Map<string, number>();
     for (const {
       wish: { userId },
