@@ -40,8 +40,9 @@
       "search": "Search for your friends"
     },
     "FriendPreviewCard": {
-      "newWishCountTooltip": "{count} wishes of which {newCount} new ones",
-      "wishCountTooltip": "{count} wishes"
+      "newWishCountTooltip": "{count} wishes of which {newCount, plural, =1 {one new one} other {# new ones}}",
+      "onlyNewWishCountTooltip": "{count, plural, =1 {one new wish} other {# new wishes}}",
+      "wishCountTooltip": "{count, plural, =0 {no wish} =1 {one wish} other {# wishes}}"
     },
     "FriendRequestList": {
       "friendRequests": "Friend requests"
