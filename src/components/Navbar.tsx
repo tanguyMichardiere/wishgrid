@@ -12,7 +12,6 @@ export default function Navbar(): JSX.Element {
   const links: Array<{ key: string; className?: string; children: ReactNode; href: Route }> = [
     { key: "friends", children: t("friends"), href: "/" },
     { key: "my-wishes", children: t("myWishes"), href: "/user" },
-    { key: "search", children: t("search"), href: "/search" },
     { key: "settings", children: t("settings"), href: "/settings" },
   ];
 
@@ -23,7 +22,7 @@ export default function Navbar(): JSX.Element {
           <h1>{t("title")}</h1>
         </Link>
       </div>
-      <ul className="hidden gap-4 md:flex">
+      <ul className="hidden gap-4 sm:flex">
         {links.map((link) => (
           <Link className={cx("btn btn-ghost", link.className)} href={link.href} key={link.key}>
             {link.children}
@@ -31,7 +30,7 @@ export default function Navbar(): JSX.Element {
         ))}
       </ul>
       <Menu
-        buttonClassName="btn btn-circle btn-ghost md:hidden"
+        buttonClassName="btn btn-circle btn-ghost sm:hidden"
         items={links}
         menuClassName="w-52"
         position="left"

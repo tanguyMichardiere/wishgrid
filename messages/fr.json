@@ -35,10 +35,6 @@
       "title": "Une erreur inattendue a eu lieu, elle a été signalée",
       "tryAgain": "Réessayer"
     },
-    "FriendList": {
-      "noFriends": "Aucun ami",
-      "search": "Chercher vos amis"
-    },
     "FriendPreviewCard": {
       "newWishCountTooltip": "{count} vœux dont {newCount, plural, =1 {un nouveau} other {# nouveaux}}",
       "onlyNewWishCountTooltip": "{count, plural, =1 {un nouveau vœu} other {# nouveaux vœux}}",
@@ -70,6 +66,10 @@
     },
     "ReserveWishButton": {
       "text": "Réserver"
+    },
+    "SearchUserModal": {
+      "inputPlaceholder": "Chercher par nom, email, etc.",
+      "noResults": "Aucun résultat"
     },
     "UnreserveWishButton": {
       "text": "Ne plus réserver"
@@ -117,9 +117,8 @@
     "returnHome": "Retour à la page d'accueil",
     "title": "Page inexistante"
   },
-  "SearchPage": {
-    "inputPlaceholder": "Chercher par nom, email, etc.",
-    "noResults": "Aucun résultat"
+  "SearchUserButton": {
+    "text": "Ajouter des amis"
   },
   "SettingsPage": {
     "about": "À propos",

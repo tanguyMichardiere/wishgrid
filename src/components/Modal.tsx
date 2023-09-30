@@ -17,7 +17,7 @@ export default forwardRef<HTMLDialogElement, Props>(function Modal(props, ref) {
 
   return (
     <dialog className="modal modal-bottom sm:modal-middle" ref={ref}>
-      <div className={cx("modal-box", props.className)}>
+      <div className={cx("modal-box pt-12", props.className)}>
         {props.close !== undefined ? (
           <button
             aria-label={t("closeButtonText")}

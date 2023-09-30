@@ -35,10 +35,6 @@
       "title": "An unexpected error has occurred, it has been reported",
       "tryAgain": "Try Again"
     },
-    "FriendList": {
-      "noFriends": "No friends",
-      "search": "Search for your friends"
-    },
     "FriendPreviewCard": {
       "newWishCountTooltip": "{count} wishes of which {newCount, plural, =1 {one new one} other {# new ones}}",
       "onlyNewWishCountTooltip": "{count, plural, =1 {one new wish} other {# new wishes}}",
@@ -70,6 +66,10 @@
     },
     "ReserveWishButton": {
       "text": "Reserve"
+    },
+    "SearchUserModal": {
+      "inputPlaceholder": "Search by name, email, etc.",
+      "noResults": "No results"
     },
     "UnreserveWishButton": {
       "text": "Unreserve"
@@ -117,9 +117,8 @@
     "returnHome": "Return to Home Page",
     "title": "Page Not Found"
   },
-  "SearchPage": {
-    "inputPlaceholder": "Search by name, email, etc.",
-    "noResults": "No results"
+  "SearchUserButton": {
+    "text": "Add friends"
   },
   "SettingsPage": {
     "about": "About",
