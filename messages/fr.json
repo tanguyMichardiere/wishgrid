@@ -44,7 +44,7 @@
       "wishCountTooltip": "{count} vœux"
     },
     "FriendRequestList": {
-      "noFriendRequests": "Aucune demande d'ami"
+      "friendRequests": "Demandes d'ami"
     },
     "Modal": {
       "closeButtonText": "fermer"
@@ -103,13 +103,10 @@
     "returnToSettings": "Retour aux paramètres"
   },
   "Navbar": {
-    "Links": {
-      "friend-requests": "Demandes d'ami",
-      "friends": "Amis",
-      "myWishes": "Mes vœux",
-      "search": "Chercher",
-      "settings": "Paramètres"
-    },
+    "friends": "Amis",
+    "myWishes": "Mes vœux",
+    "search": "Chercher",
+    "settings": "Paramètres",
     "title": "WishGrid"
   },
   "NewWishButton": {

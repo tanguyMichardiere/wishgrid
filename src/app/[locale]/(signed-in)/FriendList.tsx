@@ -27,7 +27,7 @@ export default function FriendList(props: Props): JSX.Element {
   }
 
   return (
-    <>
+    <ul className="flex flex-col">
       {friends.data.map((friend) => (
         <li key={friend.id}>
           <Link href={`/friend/${friend.id}`}>
@@ -35,6 +35,6 @@ export default function FriendList(props: Props): JSX.Element {
           </Link>
         </li>
       ))}
-    </>
+    </ul>
   );
 }

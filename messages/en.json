@@ -44,7 +44,7 @@
       "wishCountTooltip": "{count} wishes"
     },
     "FriendRequestList": {
-      "noFriendRequests": "No friend requests"
+      "friendRequests": "Friend requests"
     },
     "Modal": {
       "closeButtonText": "close"
@@ -103,13 +103,10 @@
     "returnToSettings": "Return to settings"
   },
   "Navbar": {
-    "Links": {
-      "friend-requests": "Friend Requests",
-      "friends": "Friends",
-      "myWishes": "My Wishes",
-      "search": "Search",
-      "settings": "Settings"
-    },
+    "friends": "Friends",
+    "myWishes": "My Wishes",
+    "search": "Search",
+    "settings": "Settings",
     "title": "WishGrid"
   },
   "NewWishButton": {
