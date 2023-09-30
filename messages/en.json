@@ -35,16 +35,13 @@
       "title": "An unexpected error has occurred, it has been reported",
       "tryAgain": "Try Again"
     },
-    "FriendList": {
-      "noFriends": "No friends",
-      "search": "Search for your friends"
-    },
     "FriendPreviewCard": {
-      "newWishCountTooltip": "{count} wishes of which {newCount} new ones",
-      "wishCountTooltip": "{count} wishes"
+      "newWishCountTooltip": "{count} wishes of which {newCount, plural, =1 {one new one} other {# new ones}}",
+      "onlyNewWishCountTooltip": "{count, plural, =1 {one new wish} other {# new wishes}}",
+      "wishCountTooltip": "{count, plural, =0 {no wish} =1 {one wish} other {# wishes}}"
     },
     "FriendRequestList": {
-      "noFriendRequests": "No friend requests"
+      "friendRequests": "Friend requests"
     },
     "Modal": {
       "closeButtonText": "close"
@@ -69,6 +66,10 @@
     },
     "ReserveWishButton": {
       "text": "Reserve"
+    },
+    "SearchUserModal": {
+      "inputPlaceholder": "Search by name, email, etc.",
+      "noResults": "No results"
     },
     "UnreserveWishButton": {
       "text": "Unreserve"
@@ -103,13 +104,10 @@
     "returnToSettings": "Return to settings"
   },
   "Navbar": {
-    "Links": {
-      "friend-requests": "Friend Requests",
-      "friends": "Friends",
-      "myWishes": "My Wishes",
-      "search": "Search",
-      "settings": "Settings"
-    },
+    "friends": "Friends",
+    "myWishes": "My Wishes",
+    "search": "Search",
+    "settings": "Settings",
     "title": "WishGrid"
   },
   "NewWishButton": {
@@ -119,9 +117,8 @@
     "returnHome": "Return to Home Page",
     "title": "Page Not Found"
   },
-  "SearchPage": {
-    "inputPlaceholder": "Search by name, email, etc.",
-    "noResults": "No results"
+  "SearchUserButton": {
+    "text": "Add friends"
   },
   "SettingsPage": {
     "about": "About",

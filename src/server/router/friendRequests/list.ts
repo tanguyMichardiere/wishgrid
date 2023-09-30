@@ -16,8 +16,12 @@ export const list = procedure
       where: eq(friendRequests.friendId, ctx.user.id),
     });
 
-    return getUsers(
+    const users = await getUsers(
       rows.map((row) => row.userId),
       ctx,
     );
+
+    // username is required in Clerk config
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return users.sort((a, b) => a.username!.localeCompare(b.username!));
   });

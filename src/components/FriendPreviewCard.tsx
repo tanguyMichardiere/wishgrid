@@ -21,10 +21,12 @@ export default function FriendPreviewCard(props: Props): JSX.Element {
         className="tooltip tooltip-left"
         data-tip={
           props.friend.newWishCount > 0
-            ? t("newWishCountTooltip", {
-                count: props.friend.wishCount,
-                newCount: props.friend.newWishCount,
-              })
+            ? props.friend.wishCount === props.friend.newWishCount
+              ? t("onlyNewWishCountTooltip", { count: props.friend.newWishCount })
+              : t("newWishCountTooltip", {
+                  count: props.friend.wishCount,
+                  newCount: props.friend.newWishCount,
+                })
             : t("wishCountTooltip", { count: props.friend.wishCount })
         }
       >

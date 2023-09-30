@@ -34,7 +34,7 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
-  "git.branchProtection": ["main"],
+  "git.branchProtection": ["production"],
   "html.format.enable": false,
   "i18n-ally.keystyle": "nested",
   "i18n-ally.localesPaths": ["messages"],

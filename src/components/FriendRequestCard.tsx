@@ -10,7 +10,7 @@ type Props = {
 
 export default function FriendRequestsCard(props: Props): JSX.Element {
   return (
-    <Card>
+    <Card className="flex-col @sm:flex-row">
       <div className="flex flex-row items-center gap-4">
         <Avatar size="small" user={props.user} />
         {props.user.username}

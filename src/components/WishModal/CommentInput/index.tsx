@@ -42,7 +42,7 @@ export default forwardRef<{ reset: () => void }, Props>(function CommentInput(pr
         <input
           {...register("text")}
           className={cx(
-            "input input-bordered grow",
+            "input input-bordered min-w-0 grow",
             errors.text !== undefined && "outline outline-error",
           )}
           placeholder={t("placeholder")}
