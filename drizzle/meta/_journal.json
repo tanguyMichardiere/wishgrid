@@ -50,6 +50,13 @@
       "when": 1695801829460,
       "tag": "0006_fresh_proemial_gods",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1696248871649,
+      "tag": "0007_lucky_makkari",
+      "breakpoints": true
     }
   ]
 }
