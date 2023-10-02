@@ -1,9 +1,11 @@
-import { relations } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import { char, pgTable, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
 import { wishes } from "./wishes";
 
 export const comments = pgTable("comments", {
-  id: uuid("id").primaryKey().defaultRandom(),
+  id: uuid("id")
+    .primaryKey()
+    .default(sql`uuid_generate_v7()`),
   text: varchar("text", { length: 256 }).notNull(),
   timestamp: timestamp("timestamp", { mode: "date" }).notNull().defaultNow(),
 

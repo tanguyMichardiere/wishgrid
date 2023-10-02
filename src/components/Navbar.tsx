@@ -24,9 +24,11 @@ export default function Navbar(): JSX.Element {
       </div>
       <ul className="hidden gap-4 sm:flex">
         {links.map((link) => (
-          <Link className={cx("btn btn-ghost", link.className)} href={link.href} key={link.key}>
-            {link.children}
-          </Link>
+          <li key={link.key}>
+            <Link className={cx("btn btn-ghost", link.className)} href={link.href}>
+              {link.children}
+            </Link>
+          </li>
         ))}
       </ul>
       <Menu
