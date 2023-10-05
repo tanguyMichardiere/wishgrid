@@ -2,7 +2,7 @@ import { Analytics } from "@vercel/analytics/react";
 import type { ReactNode } from "react";
 import "../styles.css";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export const metadata = {
   title: "WishGrid",
