@@ -1,3 +1,4 @@
+import { track } from "@vercel/analytics";
 import "client-only";
 import { create } from "zustand";
 
@@ -34,9 +35,16 @@ if (typeof window !== "undefined") {
       }
       const start = Date.now();
       const response = await Reflect.apply(fetch, thisArg, argArray);
-      console.log(argArray[0].substring(5).split("?")[0], Date.now() - start);
+      const duration = Date.now() - start;
+      track("fetchDuration", {
+        procedure: argArray[0].substring(
+          5,
+          argArray[0].includes("?") ? argArray[0].indexOf("?") : undefined,
+        ),
+        duration,
+      });
       if (response.ok) {
-        recordDuration(Date.now() - start);
+        recordDuration(duration);
       } else {
         recordError();
       }
@@ -52,6 +60,6 @@ export function useOptimisticUpdates(): boolean {
   return (
     !hasErrored &&
     durations.length > 0 &&
-    durations.reduce((p, c) => p + c) / durations.length < 100
+    durations.reduce((p, c) => p + c) / durations.length < 500
   );
 }
