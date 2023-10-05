@@ -29,6 +29,13 @@ if (typeof window !== "undefined") {
 
   window.fetch = new Proxy(window.fetch, {
     async apply(fetch, thisArg, argArray: Parameters<typeof window.fetch>) {
+      const url =
+        argArray[0] instanceof URL
+          ? argArray[0]
+          : new URL(argArray[0] instanceof Request ? argArray[0].url : argArray[0]);
+      if (url.hostname !== location.hostname || !url.pathname.startsWith("/api")) {
+        return Reflect.apply(fetch, thisArg, argArray);
+      }
       const start = Date.now();
       const response = await Reflect.apply(fetch, thisArg, argArray);
       console.log(
