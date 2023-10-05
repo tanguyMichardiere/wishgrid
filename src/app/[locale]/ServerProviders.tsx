@@ -15,7 +15,7 @@ type Props = {
 export default function ServerProviders(props: Props): JSX.Element {
   const locale = useLocale();
 
-  const { clientComponents } = useMessages();
+  const { client } = useMessages();
 
   return (
     <ClerkProvider
@@ -29,7 +29,7 @@ export default function ServerProviders(props: Props): JSX.Element {
     >
       <NextIntlClientProvider
         locale={locale}
-        messages={{ clientComponents }}
+        messages={{ client }}
         now={new Date()}
         timeZone="Europe/Paris"
       >

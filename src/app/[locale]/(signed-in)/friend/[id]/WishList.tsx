@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function WishList(props: Props): JSX.Element {
-  const t = useClientTranslations("clientComponents.WishList");
+  const t = useClientTranslations("client.WishList");
 
   const wishes = trpc.wishes.list.useQuery(
     { userId: props.userId },

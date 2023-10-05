@@ -15,7 +15,7 @@ type Props = {
 };
 
 export default function WishPreviewCard(props: Props): JSX.Element {
-  const t = useClientTranslations("clientComponents.WishPreviewCard");
+  const t = useClientTranslations("client.WishPreviewCard");
 
   const modalRef = useRef<HTMLDialogElement>(null);
 

@@ -6,7 +6,7 @@ import { useClientTranslations } from "../utils/translations/client";
 import MutationModal from "./MutationModal";
 
 export default function DeleteCurrentUserButton(): JSX.Element {
-  const t = useClientTranslations("clientComponents.DeleteCurrentUserButton");
+  const t = useClientTranslations("client.DeleteCurrentUserButton");
 
   const modalRef = useRef<HTMLDialogElement>(null);
 

@@ -11,7 +11,7 @@ import Modal from "./Modal";
 import UserPreviewCard from "./UserPreviewCard";
 
 export default forwardRef<HTMLDialogElement>(function SearchModal(_props, ref) {
-  const t = useClientTranslations("clientComponents.SearchUserModal");
+  const t = useClientTranslations("client.SearchUserModal");
 
   const innerRef = useRef<HTMLDialogElement>(null);
 

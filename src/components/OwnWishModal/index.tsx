@@ -19,7 +19,7 @@ type Props = {
 };
 
 export default forwardRef<HTMLDialogElement, Props>(function OwnWishModal(props, ref) {
-  const t = useClientTranslations("clientComponents.OwnWishModal");
+  const t = useClientTranslations("client.OwnWishModal");
 
   const innerRef = useRef<HTMLDialogElement>(null);
   const deleteWishButtonRef = useRef<{ reset: () => void }>(null);
@@ -56,12 +56,15 @@ export default forwardRef<HTMLDialogElement, Props>(function OwnWishModal(props,
     setTimeout(cancelDeleting, 200);
   }
 
-  const updateWish = useUpdateWishMutation();
+  const updateWish = useUpdateWishMutation({
+    onSuccess() {
+      setUpdating(false);
+    },
+  });
 
   function submit(event: FormEvent<HTMLFormElement>) {
     void handleSubmit(function (data) {
       updateWish.mutate({ id: props.wish.id, ...data });
-      setUpdating(false);
     })(event);
   }
 

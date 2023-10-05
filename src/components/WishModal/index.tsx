@@ -21,7 +21,7 @@ type Props = {
 };
 
 export default forwardRef<HTMLDialogElement, Props>(function WishModal(props, ref) {
-  const t = useClientTranslations("clientComponents.WishModal");
+  const t = useClientTranslations("client.WishModal");
 
   const innerRef = useRef<HTMLDialogElement>(null);
   const commentInputRef = useRef<{ reset: () => void }>(null);

@@ -16,8 +16,6 @@ export default authMiddleware({
     return intlMiddleware(request);
   },
 
-  clockSkewInMs: 10000,
-
   // Ensure that locale specific sign-in pages are public
   publicRoutes: ["/:locale/sign-in(.*)", "/:locale/sign-up(.*)"],
 });

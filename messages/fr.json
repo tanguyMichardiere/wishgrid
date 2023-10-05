@@ -3,7 +3,7 @@
     "subtitle": "Une plateforme pour partager des idées de cadeaux avec ses amis",
     "title": "WishGrid"
   },
-  "clientComponents": {
+  "client": {
     "AcceptFriendRequestButton": {
       "text": "Accepter"
     },
@@ -49,6 +49,52 @@
     "MutationModal": {
       "cancel": "Annuler",
       "ok": "OK"
+    },
+    "mutations": {
+      "comments": {
+        "create": {
+          "errorText": "Une erreur a eu lieu, merci de réessayer"
+        }
+      },
+      "friendRequests": {
+        "accept": {
+          "errorText": "Une erreur a eu lieu, merci de réessayer"
+        },
+        "cancel": {
+          "errorText": "Une erreur a eu lieu, merci de réessayer"
+        },
+        "create": {
+          "errorText": "Une erreur a eu lieu, merci de réessayer"
+        },
+        "decline": {
+          "errorText": "Une erreur a eu lieu, merci de réessayer"
+        }
+      },
+      "users": {
+        "deleteCurrent": {
+          "errorText": "Une erreur a eu lieu, merci de réessayer"
+        }
+      },
+      "wishes": {
+        "create": {
+          "errorText": "Une erreur a eu lieu, merci de réessayer"
+        },
+        "delete": {
+          "errorText": "Une erreur a eu lieu, merci de réessayer"
+        },
+        "reserve": {
+          "errorText": "Une erreur a eu lieu, merci de réessayer"
+        },
+        "setViewed": {
+          "errorText": "Une erreur a eu lieu, merci de réessayer"
+        },
+        "unreserve": {
+          "errorText": "Une erreur a eu lieu, merci de réessayer"
+        },
+        "update": {
+          "errorText": "Une erreur a eu lieu, merci de réessayer"
+        }
+      }
     },
     "NewWishModal": {
       "cancelButtonText": "Annuler",

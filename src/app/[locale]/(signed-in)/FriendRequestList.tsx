@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function FriendRequestList(props: Props): JSX.Element {
-  const t = useClientTranslations("clientComponents.FriendRequestList");
+  const t = useClientTranslations("client.FriendRequestList");
 
   const friendRequests = trpc.friendRequests.list.useQuery(undefined, {
     initialData: props.initialFriendRequests,

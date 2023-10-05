@@ -8,7 +8,7 @@ type Props = {
 };
 
 export default function Error(props: Props): JSX.Element {
-  const t = useClientTranslations("clientComponents.Error");
+  const t = useClientTranslations("client.Error");
 
   // TODO: report error
 

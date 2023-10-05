@@ -17,7 +17,7 @@ export default forwardRef(function MutationModal<TVariables>(
   props: Props<TVariables>,
   ref: ForwardedRef<HTMLDialogElement>,
 ) {
-  const t = useClientTranslations("clientComponents.MutationModal");
+  const t = useClientTranslations("client.MutationModal");
 
   return (
     <Modal ref={ref}>

@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function ReserveWishButton(props: Props): JSX.Element {
-  const t = useClientTranslations("clientComponents.ReserveWishButton");
+  const t = useClientTranslations("client.ReserveWishButton");
 
   const reserveWish = useReserveWishMutation(props.userId);
 

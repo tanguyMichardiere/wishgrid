@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default forwardRef<{ reset: () => void }, Props>(function DeleteWishButton(props, ref) {
-  const t = useClientTranslations("clientComponents.DeleteWishButton");
+  const t = useClientTranslations("client.DeleteWishButton");
 
   const [confirming, setConfirming] = useState(false);
   const [canConfirm, setCanConfirm] = useState(false);

@@ -1,3 +1,5 @@
+const { NODE_ENV } = require("./src/env");
+
 const contentSecurityPolicy = {
   "default-src": ["'self'"],
   "connect-src": ["'self'", "*.wishgrid.app", "*.clerk.accounts.dev", "vitals.vercel-insights.com"],
@@ -12,6 +14,10 @@ const contentSecurityPolicy = {
   "worker-src": ["'self'", "blob:"],
   "style-src": ["'self'", "'unsafe-inline'"],
 };
+
+if (NODE_ENV === "development") {
+  contentSecurityPolicy["script-src"].push("va.vercel-scripts.com");
+}
 
 /** @type {{ headers: import("next/dist/lib/load-custom-routes").Header["headers"] }} */
 module.exports = {

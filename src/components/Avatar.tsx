@@ -21,7 +21,7 @@ type Props = {
 };
 
 export default function Avatar(props: Props): JSX.Element {
-  const t = useClientTranslations("clientComponents.Avatar");
+  const t = useClientTranslations("client.Avatar");
 
   return (
     <div className={cx("avatar", props.className)}>

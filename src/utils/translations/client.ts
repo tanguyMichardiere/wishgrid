@@ -3,6 +3,6 @@ import { useTranslations } from "next-intl";
 
 export function useClientTranslations<
   NS extends NamespaceKeys<IntlMessages, NestedKeyOf<IntlMessages>>,
->(namespace: NS & `clientComponents.${string}`): ReturnType<typeof useTranslations<NS>> {
+>(namespace: NS & `client.${string}`): ReturnType<typeof useTranslations<NS>> {
   return useTranslations(namespace);
 }

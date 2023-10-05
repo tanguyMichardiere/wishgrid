@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function UnreserveWishButton(props: Props): JSX.Element {
-  const t = useClientTranslations("clientComponents.UnreserveWishButton");
+  const t = useClientTranslations("client.UnreserveWishButton");
 
   const unreserveWish = useUnreserveWishMutation(props.userId);
 

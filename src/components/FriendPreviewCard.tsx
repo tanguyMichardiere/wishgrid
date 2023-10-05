@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function FriendPreviewCard(props: Props): JSX.Element {
-  const t = useClientTranslations("clientComponents.FriendPreviewCard");
+  const t = useClientTranslations("client.FriendPreviewCard");
 
   return (
     <Card className="justify-between">
