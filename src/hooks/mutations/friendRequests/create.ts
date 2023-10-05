@@ -1,31 +1,73 @@
 import "client-only";
+import type { Router, RouterOutputs } from "../../../server/router";
+import { useOptimisticUpdates } from "../../../state/optimisticUpdates";
+import { toast } from "../../../utils/toast";
+import { useClientTranslations } from "../../../utils/translations/client";
 import { trpc } from "../../../utils/trpc/client";
+import type { OptimisticRelatedProcedures } from "../relatedProcedures";
 
-export function useCreateFriendRequestMutation(): ReturnType<
-  typeof trpc.friendRequests.create.useMutation
+function useRelatedProcedures(): OptimisticRelatedProcedures<
+  Router["friendRequests"]["create"],
+  { friendRequestsStatus: RouterOutputs["friendRequests"]["status"] }
 > {
   const trpcContext = trpc.useContext();
 
-  return trpc.friendRequests.create.useMutation({
-    async onMutate({ userId }) {
+  return {
+    async cancel({ userId }) {
       await trpcContext.friendRequests.status.cancel({ userId });
-
-      const previousFriendRequestsStatus = trpcContext.friendRequests.status.getData();
-
-      // update friend request status
+    },
+    getData({ userId }) {
+      return {
+        friendRequestsStatus: trpcContext.friendRequests.status.getData({ userId }),
+      };
+    },
+    setData({ userId }) {
       trpcContext.friendRequests.status.setData({ userId }, (friendRequestStatus) =>
         friendRequestStatus !== undefined ? { ...friendRequestStatus, to: true } : undefined,
       );
-
-      return { previousFriendRequestsStatus };
     },
-    onError(_error, { userId }, context) {
-      if (context?.previousFriendRequestsStatus !== undefined) {
-        trpcContext.friendRequests.status.setData({ userId }, context.previousFriendRequestsStatus);
+    revertData({ userId }, context) {
+      if (context?.friendRequestsStatus !== undefined) {
+        trpcContext.friendRequests.status.setData({ userId }, context.friendRequestsStatus);
       }
     },
-    async onSettled(_data, _error, { userId }) {
+    async invalidate({ userId }) {
       await trpcContext.friendRequests.status.invalidate({ userId });
+    },
+  };
+}
+
+export function useCreateFriendRequestMutation({
+  onSuccess,
+}: { onSuccess?: () => void } = {}): ReturnType<typeof trpc.friendRequests.create.useMutation> {
+  const t = useClientTranslations("client.mutations.friendRequests.create");
+
+  const relatedProcedures = useRelatedProcedures();
+
+  const optimisticUpdates = useOptimisticUpdates();
+
+  return trpc.friendRequests.create.useMutation({
+    async onMutate(variables) {
+      if (optimisticUpdates) {
+        await relatedProcedures.cancel(variables);
+        const context = relatedProcedures.getData(variables);
+        relatedProcedures.setData(variables);
+        return context;
+      }
+      return undefined;
+    },
+    onSuccess(_data, variables) {
+      if (!optimisticUpdates) {
+        relatedProcedures.setData(variables);
+      }
+      onSuccess?.();
+    },
+    onError(_error, variables, context) {
+      toast.error(t("errorText"));
+      relatedProcedures.revertData(variables, context);
+    },
+    async onSettled(_data, _error, variables) {
+      await relatedProcedures.invalidate(variables);
     },
   });
 }

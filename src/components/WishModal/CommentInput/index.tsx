@@ -16,7 +16,7 @@ type Props = {
 };
 
 export default forwardRef<{ reset: () => void }, Props>(function CommentInput(props, ref) {
-  const t = useClientTranslations("clientComponents.CommentInput");
+  const t = useClientTranslations("client.CommentInput");
 
   const {
     register,
@@ -27,12 +27,11 @@ export default forwardRef<{ reset: () => void }, Props>(function CommentInput(pr
 
   setRef(ref, { reset });
 
-  const createComment = useCreateCommentMutation(props.userId);
+  const createComment = useCreateCommentMutation(props.userId, { onSuccess: reset });
 
   function submit(event: FormEvent<HTMLFormElement>) {
     void handleSubmit(function (data) {
       createComment.mutate({ ...data, wishId: props.wishId });
-      reset();
     })(event);
   }
 

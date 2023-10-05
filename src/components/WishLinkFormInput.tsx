@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function WishLinkFormInput(props: Props): JSX.Element {
-  const t = useClientTranslations("clientComponents.WishLinkFormInput");
+  const t = useClientTranslations("client.WishLinkFormInput");
 
   return (
     <div className="flex flex-col self-center">

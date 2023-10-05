@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function DeclineFriendRequestButton(props: Props): JSX.Element {
-  const t = useClientTranslations("clientComponents.DeclineFriendRequestButton");
+  const t = useClientTranslations("client.DeclineFriendRequestButton");
 
   const declineFriendRequest = useDeclineFriendRequestMutation();
 

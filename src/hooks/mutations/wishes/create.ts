@@ -1,15 +1,18 @@
 import "client-only";
 import { useCurrentUser } from "../../../context/currentUser/hook";
+import type { Router } from "../../../server/router";
+import { toast } from "../../../utils/toast";
+import { useClientTranslations } from "../../../utils/translations/client";
 import { trpc } from "../../../utils/trpc/client";
+import type { RelatedProcedures } from "../relatedProcedures";
 
-export function useCreateWishMutation(): ReturnType<typeof trpc.wishes.create.useMutation> {
+function useRelatedProcedures(): RelatedProcedures<Router["wishes"]["create"]> {
   const currentUser = useCurrentUser();
 
   const trpcContext = trpc.useContext();
 
-  return trpc.wishes.create.useMutation({
-    // no optimistic update because we don't know the ID yet
-    onSuccess(id, { title, description, link }) {
+  return {
+    setData({ title, description, link }, id) {
       trpcContext.wishes.listOwn.setData(undefined, (wishes) =>
         wishes !== undefined
           ? [
@@ -19,8 +22,29 @@ export function useCreateWishMutation(): ReturnType<typeof trpc.wishes.create.us
           : undefined,
       );
     },
-    async onSettled() {
+    async invalidate() {
       await trpcContext.wishes.listOwn.invalidate();
+    },
+  };
+}
+
+export function useCreateWishMutation({ onSuccess }: { onSuccess?: () => void } = {}): ReturnType<
+  typeof trpc.wishes.create.useMutation
+> {
+  const t = useClientTranslations("client.mutations.wishes.create");
+
+  const relatedProcedures = useRelatedProcedures();
+
+  return trpc.wishes.create.useMutation({
+    onSuccess(data, variables) {
+      relatedProcedures.setData(variables, data);
+      onSuccess?.();
+    },
+    onError() {
+      toast.error(t("errorText"));
+    },
+    async onSettled(_data, _error, variables) {
+      await relatedProcedures.invalidate(variables);
     },
   });
 }

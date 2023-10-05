@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default forwardRef<HTMLDialogElement, Props>(function Modal(props, ref) {
-  const t = useClientTranslations("clientComponents.Modal");
+  const t = useClientTranslations("client.Modal");
 
   return (
     <dialog className="modal modal-bottom sm:modal-middle" ref={ref}>

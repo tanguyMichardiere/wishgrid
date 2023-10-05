@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function OwnWishList(props: Props): JSX.Element {
-  const t = useClientTranslations("clientComponents.OwnWishList");
+  const t = useClientTranslations("client.OwnWishList");
 
   const wishes = trpc.wishes.listOwn.useQuery(undefined, { initialData: props.initialWishes });
 

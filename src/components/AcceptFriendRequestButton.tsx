@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function AcceptFriendRequestButton(props: Props): JSX.Element {
-  const t = useClientTranslations("clientComponents.AcceptFriendRequestButton");
+  const t = useClientTranslations("client.AcceptFriendRequestButton");
 
   const acceptFriendRequest = useAcceptFriendRequestMutation();
 

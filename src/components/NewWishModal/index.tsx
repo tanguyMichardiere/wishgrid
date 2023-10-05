@@ -14,7 +14,7 @@ import WishTitleFormInput from "../WishTitleFormInput";
 import { FormSchema } from "./formSchema";
 
 export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref) {
-  const t = useClientTranslations("clientComponents.NewWishModal");
+  const t = useClientTranslations("client.NewWishModal");
 
   const innerRef = useRef<HTMLDialogElement>(null);
 
@@ -30,12 +30,11 @@ export default forwardRef<HTMLDialogElement>(function NewWishModal(_props, ref) 
     setTimeout(reset, 200);
   }
 
-  const createWish = useCreateWishMutation();
+  const createWish = useCreateWishMutation({ onSuccess: closeModal });
 
   function submit(event: FormEvent<HTMLFormElement>) {
-    void handleSubmit(async function (data) {
-      await createWish.mutateAsync(data);
-      closeModal();
+    void handleSubmit(function (data) {
+      createWish.mutate(data);
     })(event);
   }
 

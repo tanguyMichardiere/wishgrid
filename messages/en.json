@@ -3,7 +3,7 @@
     "subtitle": "A platform to share gift ideas with your friends",
     "title": "WishGrid"
   },
-  "clientComponents": {
+  "client": {
     "AcceptFriendRequestButton": {
       "text": "Accept"
     },
@@ -49,6 +49,52 @@
     "MutationModal": {
       "cancel": "Cancel",
       "ok": "OK"
+    },
+    "mutations": {
+      "comments": {
+        "create": {
+          "errorText": "An error has occurred, please try again"
+        }
+      },
+      "friendRequests": {
+        "accept": {
+          "errorText": "An error has occurred, please try again"
+        },
+        "cancel": {
+          "errorText": "An error has occurred, please try again"
+        },
+        "create": {
+          "errorText": "An error has occurred, please try again"
+        },
+        "decline": {
+          "errorText": "An error has occurred, please try again"
+        }
+      },
+      "users": {
+        "deleteCurrent": {
+          "errorText": "An error has occurred, please try again"
+        }
+      },
+      "wishes": {
+        "create": {
+          "errorText": "An error has occurred, please try again"
+        },
+        "delete": {
+          "errorText": "An error has occurred, please try again"
+        },
+        "reserve": {
+          "errorText": "An error has occurred, please try again"
+        },
+        "setViewed": {
+          "errorText": "An error has occurred, please try again"
+        },
+        "unreserve": {
+          "errorText": "An error has occurred, please try again"
+        },
+        "update": {
+          "errorText": "An error has occurred, please try again"
+        }
+      }
     },
     "NewWishModal": {
       "cancelButtonText": "Cancel",

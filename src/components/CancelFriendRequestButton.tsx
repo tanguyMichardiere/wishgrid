@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function CancelFriendRequestButton(props: Props): JSX.Element {
-  const t = useClientTranslations("clientComponents.CancelFriendRequestButton");
+  const t = useClientTranslations("client.CancelFriendRequestButton");
 
   const cancelFriendRequest = useCancelFriendRequestMutation();
 
