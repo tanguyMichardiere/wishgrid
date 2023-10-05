@@ -1,5 +1,3 @@
-import type { inferReactQueryProcedureOptions } from "@trpc/react-query";
-import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import "server-only";
 import { createRouter } from "..";
 import { comments } from "./comments";
@@ -17,7 +15,3 @@ export const router = createRouter({
 });
 
 export type Router = typeof router;
-
-export type ReactQueryOptions = inferReactQueryProcedureOptions<Router>;
-export type RouterInputs = inferRouterInputs<Router>;
-export type RouterOutputs = inferRouterOutputs<Router>;

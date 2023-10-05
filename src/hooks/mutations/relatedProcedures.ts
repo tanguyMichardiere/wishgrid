@@ -1,12 +1,22 @@
-import type { AnyMutationProcedure, inferProcedureInput, inferProcedureOutput } from "@trpc/server";
+import type {
+  AnyMutationProcedure,
+  AnyQueryProcedure,
+  inferProcedureInput,
+  inferProcedureOutput,
+} from "@trpc/server";
 
 export type OptimisticRelatedProcedures<
   Procedure extends AnyMutationProcedure,
-  Context extends object | undefined = undefined,
+  Queries extends Array<AnyQueryProcedure> | undefined = undefined,
 > = RelatedProcedures<Procedure> & {
   cancel: (variables: inferProcedureInput<Procedure>) => Promise<void>;
-  getData: (variables: inferProcedureInput<Procedure>) => Partial<Context>;
-  revertData: (variables: inferProcedureInput<Procedure>, context?: Partial<Context>) => void;
+  getData: (variables: inferProcedureInput<Procedure>) => {
+    [key in keyof Queries]: inferProcedureOutput<Queries[key]> | undefined;
+  };
+  revertData: (
+    variables: inferProcedureInput<Procedure>,
+    context: { [key in keyof Queries]: inferProcedureOutput<Queries[key]> | undefined },
+  ) => void;
 };
 
 export type RelatedProcedures<Procedure extends AnyMutationProcedure> = {

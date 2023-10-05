@@ -1,5 +1,5 @@
 import "client-only";
-import type { Router, RouterOutputs } from "../../../server/router";
+import type { Router } from "../../../server/router";
 import { useOptimisticUpdates } from "../../../state/optimisticUpdates";
 import { toast } from "../../../utils/toast";
 import { useClientTranslations } from "../../../utils/translations/client";
@@ -10,7 +10,7 @@ function useRelatedProcedures(
   userId: string,
 ): OptimisticRelatedProcedures<
   Router["wishes"]["setViewed"],
-  { friendList: RouterOutputs["friends"]["list"]; wishList: RouterOutputs["wishes"]["list"] }
+  [Router["friends"]["list"], Router["wishes"]["list"]]
 > {
   const trpcContext = trpc.useContext();
 
@@ -22,10 +22,7 @@ function useRelatedProcedures(
       ]);
     },
     getData() {
-      return {
-        friendList: trpcContext.friends.list.getData(),
-        wishList: trpcContext.wishes.list.getData({ userId }),
-      };
+      return [trpcContext.friends.list.getData(), trpcContext.wishes.list.getData({ userId })];
     },
     setData({ id }) {
       trpcContext.friends.list.setData(
@@ -41,11 +38,11 @@ function useRelatedProcedures(
       );
     },
     revertData(_variables, context) {
-      if (context?.friendList !== undefined) {
-        trpcContext.friends.list.setData(undefined, context.friendList);
+      if (context[0] !== undefined) {
+        trpcContext.friends.list.setData(undefined, context[0]);
       }
-      if (context?.wishList !== undefined) {
-        trpcContext.wishes.list.setData({ userId }, context.wishList);
+      if (context[1] !== undefined) {
+        trpcContext.wishes.list.setData({ userId }, context[1]);
       }
     },
     async invalidate() {
@@ -85,7 +82,9 @@ export function useSetWishViewedMutation(
     },
     onError(_error, variables, context) {
       toast.error(t("errorText"));
-      relatedProcedures.revertData(variables, context);
+      if (context !== undefined) {
+        relatedProcedures.revertData(variables, context);
+      }
     },
     async onSettled(_data, _error, variables) {
       await relatedProcedures.invalidate(variables);

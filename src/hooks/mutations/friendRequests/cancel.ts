@@ -1,5 +1,5 @@
 import "client-only";
-import type { Router, RouterOutputs } from "../../../server/router";
+import type { Router } from "../../../server/router";
 import { useOptimisticUpdates } from "../../../state/optimisticUpdates";
 import { toast } from "../../../utils/toast";
 import { useClientTranslations } from "../../../utils/translations/client";
@@ -8,7 +8,7 @@ import type { OptimisticRelatedProcedures } from "../relatedProcedures";
 
 function useRelatedProcedures(): OptimisticRelatedProcedures<
   Router["friendRequests"]["cancel"],
-  { friendRequestsStatus: RouterOutputs["friendRequests"]["status"] }
+  [Router["friendRequests"]["status"]]
 > {
   const trpcContext = trpc.useContext();
 
@@ -17,16 +17,14 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
       await trpcContext.friendRequests.status.cancel({ userId });
     },
     getData({ userId }) {
-      return {
-        friendRequestsStatus: trpcContext.friendRequests.status.getData({ userId }),
-      };
+      return [trpcContext.friendRequests.status.getData({ userId })];
     },
     setData({ userId }) {
       trpcContext.friendRequests.status.setData({ userId }, { from: false, to: false });
     },
     revertData({ userId }, context) {
-      if (context?.friendRequestsStatus !== undefined) {
-        trpcContext.friendRequests.status.setData({ userId }, context.friendRequestsStatus);
+      if (context[0] !== undefined) {
+        trpcContext.friendRequests.status.setData({ userId }, context[0]);
       }
     },
     async invalidate({ userId }) {
@@ -62,7 +60,9 @@ export function useCancelFriendRequestMutation({
     },
     onError(_error, variables, context) {
       toast.error(t("errorText"));
-      relatedProcedures.revertData(variables, context);
+      if (context !== undefined) {
+        relatedProcedures.revertData(variables, context);
+      }
     },
     async onSettled(_data, _error, variables) {
       await relatedProcedures.invalidate(variables);

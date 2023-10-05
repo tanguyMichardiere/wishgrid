@@ -1,5 +1,5 @@
 import "client-only";
-import type { Router, RouterOutputs } from "../../../server/router";
+import type { Router } from "../../../server/router";
 import { useOptimisticUpdates } from "../../../state/optimisticUpdates";
 import { toast } from "../../../utils/toast";
 import { useClientTranslations } from "../../../utils/translations/client";
@@ -8,7 +8,7 @@ import type { OptimisticRelatedProcedures } from "../relatedProcedures";
 
 function useRelatedProcedures(): OptimisticRelatedProcedures<
   Router["wishes"]["update"],
-  { ownWishesList: RouterOutputs["wishes"]["listOwn"] }
+  [Router["wishes"]["listOwn"]]
 > {
   const trpcContext = trpc.useContext();
 
@@ -17,9 +17,7 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
       await trpcContext.wishes.listOwn.cancel();
     },
     getData() {
-      return {
-        ownWishesList: trpcContext.wishes.listOwn.getData(),
-      };
+      return [trpcContext.wishes.listOwn.getData()];
     },
     setData({ id, description, link }) {
       trpcContext.wishes.listOwn.setData(
@@ -28,8 +26,8 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
       );
     },
     revertData(_variables, context) {
-      if (context?.ownWishesList !== undefined) {
-        trpcContext.wishes.listOwn.setData(undefined, context.ownWishesList);
+      if (context[0] !== undefined) {
+        trpcContext.wishes.listOwn.setData(undefined, context[0]);
       }
     },
     async invalidate() {
@@ -65,7 +63,9 @@ export function useUpdateWishMutation({ onSuccess }: { onSuccess?: () => void } 
     },
     onError(_error, variables, context) {
       toast.error(t("errorText"));
-      relatedProcedures.revertData(variables, context);
+      if (context !== undefined) {
+        relatedProcedures.revertData(variables, context);
+      }
     },
     async onSettled(_data, _error, variables) {
       await relatedProcedures.invalidate(variables);

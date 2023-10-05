@@ -1,5 +1,5 @@
 import "client-only";
-import type { Router, RouterOutputs } from "../../../server/router";
+import type { Router } from "../../../server/router";
 import { useOptimisticUpdates } from "../../../state/optimisticUpdates";
 import { toast } from "../../../utils/toast";
 import { useClientTranslations } from "../../../utils/translations/client";
@@ -8,11 +8,11 @@ import type { OptimisticRelatedProcedures } from "../relatedProcedures";
 
 function useRelatedProcedures(): OptimisticRelatedProcedures<
   Router["friendRequests"]["accept"],
-  {
-    friendsGetStatus: RouterOutputs["friends"]["status"];
-    friendRequestsList: RouterOutputs["friendRequests"]["list"];
-    friendRequestsStatus: RouterOutputs["friendRequests"]["status"];
-  }
+  [
+    Router["friends"]["status"],
+    Router["friendRequests"]["list"],
+    Router["friendRequests"]["status"],
+  ]
 > {
   const trpcContext = trpc.useContext();
 
@@ -25,11 +25,11 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
       ]);
     },
     getData({ userId }) {
-      return {
-        friendsGetStatus: trpcContext.friends.status.getData({ userId }),
-        friendRequestsList: trpcContext.friendRequests.list.getData(),
-        friendRequestsStatus: trpcContext.friendRequests.status.getData({ userId }),
-      };
+      return [
+        trpcContext.friends.status.getData({ userId }),
+        trpcContext.friendRequests.list.getData(),
+        trpcContext.friendRequests.status.getData({ userId }),
+      ];
     },
     setData({ userId }) {
       trpcContext.friends.status.setData({ userId }, true);
@@ -41,14 +41,14 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
       trpcContext.friendRequests.status.setData({ userId }, { from: false, to: false });
     },
     revertData({ userId }, context) {
-      if (context?.friendsGetStatus !== undefined) {
-        trpcContext.friends.status.setData({ userId }, context.friendsGetStatus);
+      if (context[0] !== undefined) {
+        trpcContext.friends.status.setData({ userId }, context[0]);
       }
-      if (context?.friendRequestsList !== undefined) {
-        trpcContext.friendRequests.list.setData(undefined, context.friendRequestsList);
+      if (context[1] !== undefined) {
+        trpcContext.friendRequests.list.setData(undefined, context[1]);
       }
-      if (context?.friendRequestsStatus !== undefined) {
-        trpcContext.friendRequests.status.setData({ userId }, context.friendRequestsStatus);
+      if (context[2] !== undefined) {
+        trpcContext.friendRequests.status.setData({ userId }, context[2]);
       }
     },
     async invalidate({ userId }) {
@@ -88,7 +88,9 @@ export function useAcceptFriendRequestMutation({
     },
     onError(_error, variables, context) {
       toast.error(t("errorText"));
-      relatedProcedures.revertData(variables, context);
+      if (context !== undefined) {
+        relatedProcedures.revertData(variables, context);
+      }
     },
     async onSettled(_data, _error, variables) {
       await relatedProcedures.invalidate(variables);

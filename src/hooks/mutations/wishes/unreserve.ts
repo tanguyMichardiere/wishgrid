@@ -1,5 +1,5 @@
 import "client-only";
-import type { Router, RouterOutputs } from "../../../server/router";
+import type { Router } from "../../../server/router";
 import { useOptimisticUpdates } from "../../../state/optimisticUpdates";
 import { toast } from "../../../utils/toast";
 import { useClientTranslations } from "../../../utils/translations/client";
@@ -8,10 +8,7 @@ import type { OptimisticRelatedProcedures } from "../relatedProcedures";
 
 function useRelatedProcedures(
   userId: string,
-): OptimisticRelatedProcedures<
-  Router["wishes"]["unreserve"],
-  { wishList: RouterOutputs["wishes"]["list"] }
-> {
+): OptimisticRelatedProcedures<Router["wishes"]["unreserve"], [Router["wishes"]["list"]]> {
   const trpcContext = trpc.useContext();
 
   return {
@@ -19,9 +16,7 @@ function useRelatedProcedures(
       await trpcContext.wishes.list.cancel({ userId });
     },
     getData() {
-      return {
-        wishList: trpcContext.wishes.list.getData({ userId }),
-      };
+      return [trpcContext.wishes.list.getData({ userId })];
     },
     setData({ id }) {
       trpcContext.wishes.list.setData(
@@ -30,8 +25,8 @@ function useRelatedProcedures(
       );
     },
     revertData(_variables, context) {
-      if (context?.wishList !== undefined) {
-        trpcContext.wishes.list.setData({ userId }, context.wishList);
+      if (context[0] !== undefined) {
+        trpcContext.wishes.list.setData({ userId }, context[0]);
       }
     },
     async invalidate() {
@@ -68,7 +63,9 @@ export function useUnreserveWishMutation(
     },
     onError(_error, variables, context) {
       toast.error(t("errorText"));
-      relatedProcedures.revertData(variables, context);
+      if (context !== undefined) {
+        relatedProcedures.revertData(variables, context);
+      }
     },
     async onSettled(_data, _error, variables) {
       await relatedProcedures.invalidate(variables);
