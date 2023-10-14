@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 
-function assertEn(messages: typeof import("../../messages/en.json")) {
+type En = typeof import("../../messages/en.json");
+type Fr = typeof import("../../messages/fr.json");
+
+function assertEn(messages: En) {
   assertFr(messages);
 }
 
-function assertFr(messages: typeof import("../../messages/fr.json")) {
+function assertFr(messages: Fr) {
   assertEn(messages);
 }
