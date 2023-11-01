@@ -8,7 +8,7 @@ export const wishViews = pgTable(
     userId: char("user_id", { length: 32 }).notNull(),
     wishId: uuid("wish_id")
       .notNull()
-      .references(() => wishes.id),
+      .references(() => wishes.id, { onDelete: "cascade" }),
   },
   (table) => ({
     primaryKey: primaryKey(table.userId, table.wishId),

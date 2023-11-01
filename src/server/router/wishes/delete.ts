@@ -3,7 +3,6 @@ import { eq } from "drizzle-orm";
 import "server-only";
 import { z } from "zod";
 import { procedure } from "../..";
-import { comments } from "../../db/schema/comments";
 import { wishes } from "../../db/schema/wishes";
 import { Id } from "../../db/types";
 import { serverlessDb } from "../../middleware/serverlessDb";
@@ -23,6 +22,5 @@ export const deleteWish = procedure
     if (wish.userId !== ctx.user.id) {
       throw new TRPCError({ code: "FORBIDDEN" });
     }
-    await ctx.db.delete(comments).where(eq(comments.wishId, input.id));
     await ctx.db.delete(wishes).where(eq(wishes.id, input.id));
   });
