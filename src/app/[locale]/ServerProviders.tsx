@@ -3,7 +3,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { NextIntlClientProvider, useLocale, useMessages } from "next-intl";
 import type { ReactNode } from "react";
 
-const localization = {
+const clerkLocalization = {
   en: enUS,
   fr: frFR,
 };
@@ -25,7 +25,7 @@ export default function ServerProviders(props: Props): JSX.Element {
           formFieldInput: "dark:bg-[rgba(70,90,126,0.4)]",
         },
       }}
-      localization={localization[locale]}
+      localization={clerkLocalization[locale]}
     >
       <NextIntlClientProvider
         locale={locale}
