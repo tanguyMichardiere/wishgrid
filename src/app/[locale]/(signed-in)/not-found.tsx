@@ -1,4 +1,4 @@
-import Link from "next-intl/link";
+import { Link } from "../../../navigation";
 import { useServerTranslations } from "../../../utils/translations/server";
 
 export default function NotFound(): JSX.Element {

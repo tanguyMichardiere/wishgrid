@@ -31,7 +31,7 @@ let nextConfig = {
   },
 };
 
-nextConfig = require("next-intl/plugin")("./i18n.ts")(nextConfig);
+nextConfig = require("next-intl/plugin")()(nextConfig);
 
 nextConfig = require("@next/bundle-analyzer")({
   enabled: process.env["ANALYZE"] === "true",

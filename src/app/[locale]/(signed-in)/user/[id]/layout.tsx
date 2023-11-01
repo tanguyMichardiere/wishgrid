@@ -1,5 +1,5 @@
-import { redirect } from "next-intl/server";
 import type { ReactNode } from "react";
+import { redirect } from "../../../../../navigation";
 import { getFriendsStatus } from "../../../../../utils/serverQueries/friends/status";
 import { getCurrentUser } from "../../../../../utils/serverQueries/users/getCurrent";
 import type { Params } from "./params";

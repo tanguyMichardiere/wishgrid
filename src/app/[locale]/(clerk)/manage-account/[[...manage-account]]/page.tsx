@@ -1,6 +1,6 @@
 import { useLocale } from "next-intl";
-import Link from "next-intl/link";
 import DeleteCurrentUserButton from "../../../../../components/DeleteCurrentUserButton";
+import { Link } from "../../../../../navigation";
 import { useServerTranslations } from "../../../../../utils/translations/server";
 import UserProfile from "./UserProfile";
 

@@ -1,7 +1,7 @@
-import Link from "next-intl/link";
 import LanguageMenu from "../../../../components/LanguageMenu";
 import SignOutButton from "../../../../components/SignOutButton";
 import ThemeMenu from "../../../../components/ThemeMenu";
+import { Link } from "../../../../navigation";
 import { useServerTranslations } from "../../../../utils/translations/server";
 
 export default function SettingsPage(): JSX.Element {

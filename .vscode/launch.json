@@ -7,11 +7,26 @@
       "request": "launch",
       "command": "npm run dev",
       "serverReadyAction": {
-        "pattern": "- Local:\\s+(https?://\\S+)",
-        "uriFormat": "%s",
-        "action": "debugWithEdge",
-        "webRoot": "${workspaceFolder}"
-      }
+        "pattern": "- Local:\\s+http://localhost:3000",
+        "action": "startDebugging",
+        "name": "Launch Debug Browser (port 3000)",
+        "killOnServerStop": true
+      },
+      "cascadeTerminateToConfigurations": ["Launch Debug Browser (port 3000)"]
+    },
+    // TODO: move to user settings
+    // https://github.com/microsoft/vscode/issues/109083
+    {
+      "name": "Launch Debug Browser (port 3000)",
+      "presentation": {
+        "hidden": true
+      },
+      "request": "launch",
+      "runtimeExecutable": "/opt/homebrew/bin/chromium",
+      "type": "chrome",
+      "url": "http://localhost:3000",
+      "userDataDir": false,
+      "webRoot": "${workspaceFolder}"
     }
   ]
 }

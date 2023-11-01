@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next-intl/link";
 import FriendPreviewCard from "../../../components/FriendPreviewCard";
+import { Link } from "../../../navigation";
 import type { Friend } from "../../../server/db/types/user";
 import { trpc } from "../../../utils/trpc/client";
 

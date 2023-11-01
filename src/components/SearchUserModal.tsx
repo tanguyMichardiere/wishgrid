@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next-intl/link";
 import type { ChangeEvent } from "react";
 import { forwardRef, useRef, useState } from "react";
 import { useDebounce } from "../hooks/debounce";
+import { Link } from "../navigation";
 import { mergeRefs } from "../utils/refs";
 import { useClientTranslations } from "../utils/translations/client";
 import { trpc } from "../utils/trpc/client";

@@ -1,5 +1,5 @@
 import "client-only";
-import { useRouter } from "next-intl/client";
+import { useRouter } from "../../../navigation";
 import { toast } from "../../../utils/toast";
 import { useClientTranslations } from "../../../utils/translations/client";
 import { trpc } from "../../../utils/trpc/client";
