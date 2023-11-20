@@ -25,8 +25,8 @@ export default function WishTitleFormInput(props: Props): JSX.Element {
         {props.error?.type === "too_small"
           ? t("tooShort", { length: 4 })
           : props.error?.type === "too_big"
-          ? t("tooBig", { length: 32 })
-          : props.error?.message}
+            ? t("tooBig", { length: 32 })
+            : props.error?.message}
       </p>
     </div>
   );

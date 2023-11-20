@@ -25,8 +25,8 @@ export default function WishLinkFormInput(props: Props): JSX.Element {
         {props.error?.type === "invalid_string"
           ? t("invalid")
           : props.error?.type === "too_big"
-          ? t("tooBig", { length: 512 })
-          : props.error?.message}
+            ? t("tooBig", { length: 512 })
+            : props.error?.message}
       </p>
     </div>
   );

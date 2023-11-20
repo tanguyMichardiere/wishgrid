@@ -54,8 +54,8 @@ export default forwardRef<{ reset: () => void }, Props>(function CommentInput(pr
         {errors.text?.type === "too_small"
           ? t("textTooSmall", { length: 4 })
           : errors.text?.type === "too_big"
-          ? t("textTooBig", { length: 256 })
-          : errors.text?.message}
+            ? t("textTooBig", { length: 256 })
+            : errors.text?.message}
       </p>
     </form>
   );

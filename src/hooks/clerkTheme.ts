@@ -12,10 +12,10 @@ export function useClerkTheme(): BaseThemeTaggedType | undefined {
       theme === "dark"
         ? dark
         : theme === "light"
-        ? undefined
-        : systemTheme === "dark"
-        ? dark
-        : undefined,
+          ? undefined
+          : systemTheme === "dark"
+            ? dark
+            : undefined,
     [theme, systemTheme],
   );
 }
