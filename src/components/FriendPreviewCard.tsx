@@ -1,5 +1,5 @@
 import cx from "classix";
-import type { Friend } from "../server/db/types/user";
+import type { Friend } from "../server/database/types/user";
 import { useClientTranslations } from "../utils/translations/client";
 import Avatar from "./Avatar";
 import Card from "./Card";
@@ -15,7 +15,7 @@ export default function FriendPreviewCard(props: Props): JSX.Element {
     <Card className="justify-between">
       <div className="flex items-center gap-4">
         <Avatar size="small" user={props.friend} />
-        {props.friend.username}
+        {props.friend.name}
       </div>
       <div
         className="tooltip tooltip-left"

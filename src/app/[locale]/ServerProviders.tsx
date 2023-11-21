@@ -1,32 +1,20 @@
-import { enUS, frFR } from "@clerk/localizations";
-import { ClerkProvider } from "@clerk/nextjs";
-import { NextIntlClientProvider, useLocale, useMessages } from "next-intl";
+import { SessionProvider } from "next-auth/react";
+import { NextIntlClientProvider, useLocale } from "next-intl";
+import { getMessages } from "next-intl/server";
 import type { ReactNode } from "react";
-
-const clerkLocalization = {
-  en: enUS,
-  fr: frFR,
-};
+import { auth } from "../../auth";
 
 type Props = {
   children: ReactNode;
 };
 
-export default function ServerProviders(props: Props): JSX.Element {
+export default async function ServerProviders(props: Props): Promise<JSX.Element> {
+  const session = await auth();
   const locale = useLocale();
-
-  const { client } = useMessages();
+  const { client } = await getMessages();
 
   return (
-    <ClerkProvider
-      appearance={{
-        elements: {
-          // fix for white on white text in form input fields in dark mode
-          formFieldInput: "dark:bg-[rgba(70,90,126,0.4)]",
-        },
-      }}
-      localization={clerkLocalization[locale]}
-    >
+    <SessionProvider session={session}>
       <NextIntlClientProvider
         locale={locale}
         messages={{ client }}
@@ -35,6 +23,6 @@ export default function ServerProviders(props: Props): JSX.Element {
       >
         {props.children}
       </NextIntlClientProvider>
-    </ClerkProvider>
+    </SessionProvider>
   );
 }

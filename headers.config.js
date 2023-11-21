@@ -2,15 +2,9 @@ const { NODE_ENV } = require("./src/env");
 
 const contentSecurityPolicy = {
   "default-src": ["'self'"],
-  "connect-src": ["'self'", "*.wishgrid.app", "*.clerk.accounts.dev", "vitals.vercel-insights.com"],
-  "img-src": ["'self'", "data:", "img.clerk.com"],
-  "script-src": [
-    "'self'",
-    "'unsafe-eval'",
-    "'unsafe-inline'",
-    "*.wishgrid.app",
-    "*.clerk.accounts.dev",
-  ],
+  "connect-src": ["'self'", "*.wishgrid.app", "vitals.vercel-insights.com"],
+  "img-src": ["'self'", "data:"],
+  "script-src": ["'self'", "'unsafe-eval'", "'unsafe-inline'", "*.wishgrid.app"],
   "worker-src": ["'self'", "blob:"],
   "style-src": ["'self'", "'unsafe-inline'"],
 };
@@ -22,31 +16,13 @@ if (NODE_ENV === "development") {
 /** @type {{ headers: import("next/dist/lib/load-custom-routes").Header["headers"] }} */
 module.exports = {
   headers: [
-    {
-      key: "X-DNS-Prefetch-Control",
-      value: "on",
-    },
-    {
-      key: "X-XSS-Protection",
-      value: "1; mode=block",
-    },
-    {
-      key: "X-Frame-Options",
-      value: "DENY",
-    },
-    {
-      // https://www.w3.org/TR/permissions-policy-1/
-      key: "Permissions-Policy",
-      value: "",
-    },
-    {
-      key: "X-Content-Type-Options",
-      value: "nosniff",
-    },
-    {
-      key: "Referrer-Policy",
-      value: "origin-when-cross-origin",
-    },
+    { key: "X-DNS-Prefetch-Control", value: "on" },
+    { key: "X-XSS-Protection", value: "1; mode=block" },
+    { key: "X-Frame-Options", value: "DENY" },
+    // https://www.w3.org/TR/permissions-policy-1/
+    { key: "Permissions-Policy", value: "" },
+    { key: "X-Content-Type-Options", value: "nosniff" },
+    { key: "Referrer-Policy", value: "origin-when-cross-origin" },
     {
       key:
         process.env.NODE_ENV === "production"

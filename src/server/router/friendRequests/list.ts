@@ -1,27 +1,12 @@
-import { eq } from "drizzle-orm";
 import "server-only";
 import { z } from "zod";
 import { procedure } from "../..";
-import { friendRequests } from "../../db/schema/friendRequests";
-import { User } from "../../db/types/user";
-import { httpDb } from "../../middleware/httpDb";
-import { getUsers } from "../users/getUsers";
+import { User } from "../../database/types/user";
 
-export const list = procedure
-  .use(httpDb)
-  .output(z.array(User))
-  .query(async function ({ ctx }) {
-    const rows = await ctx.db.query.friendRequests.findMany({
-      columns: { userId: true },
-      where: eq(friendRequests.friendId, ctx.user.id),
-    });
-
-    const users = await getUsers(
-      rows.map((row) => row.userId),
-      ctx,
-    );
-
-    // username is required in Clerk config
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return users.sort((a, b) => a.username!.localeCompare(b.username!));
+export const list = procedure.output(z.array(User)).query(async function ({ ctx }) {
+  const { friendRequests } = await ctx.db.user.findUniqueOrThrow({
+    include: { friendRequests: { select: { id: true, name: true, image: true } } },
+    where: { id: ctx.user.id },
   });
+  return friendRequests;
+});

@@ -10,41 +10,41 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
   Router["friendRequests"]["decline"],
   [Router["friendRequests"]["list"], Router["friendRequests"]["status"]]
 > {
-  const trpcContext = trpc.useContext();
+  const trpcUtils = trpc.useUtils();
 
   return {
     async cancel({ userId }) {
       await Promise.all([
-        trpcContext.friendRequests.list.cancel(),
-        trpcContext.friendRequests.status.cancel({ userId }),
+        trpcUtils.friendRequests.list.cancel(),
+        trpcUtils.friendRequests.status.cancel({ userId }),
       ]);
     },
     getData({ userId }) {
       return [
-        trpcContext.friendRequests.list.getData(),
-        trpcContext.friendRequests.status.getData({ userId }),
+        trpcUtils.friendRequests.list.getData(),
+        trpcUtils.friendRequests.status.getData({ userId }),
       ];
     },
     setData({ userId }) {
-      trpcContext.friendRequests.list.setData(undefined, (friendRequests) =>
+      trpcUtils.friendRequests.list.setData(undefined, (friendRequests) =>
         friendRequests !== undefined
           ? friendRequests.filter((user) => user.id !== userId)
           : undefined,
       );
-      trpcContext.friendRequests.status.setData({ userId }, { from: false, to: false });
+      trpcUtils.friendRequests.status.setData({ userId }, { from: false, to: false });
     },
     revertData({ userId }, context) {
       if (context[0] !== undefined) {
-        trpcContext.friendRequests.list.setData(undefined, context[0]);
+        trpcUtils.friendRequests.list.setData(undefined, context[0]);
       }
       if (context[1] !== undefined) {
-        trpcContext.friendRequests.status.setData({ userId }, context[1]);
+        trpcUtils.friendRequests.status.setData({ userId }, context[1]);
       }
     },
     async invalidate({ userId }) {
       await Promise.all([
-        trpcContext.friendRequests.list.invalidate(),
-        trpcContext.friendRequests.status.invalidate({ userId }),
+        trpcUtils.friendRequests.list.invalidate(),
+        trpcUtils.friendRequests.status.invalidate({ userId }),
       ]);
     },
   };

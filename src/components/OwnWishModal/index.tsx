@@ -5,7 +5,7 @@ import type { FormEvent } from "react";
 import { forwardRef, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useUpdateWishMutation } from "../../hooks/mutations/wishes/update";
-import { type OwnWish } from "../../server/db/types/wishes";
+import { type OwnWish } from "../../server/database/types/wishes";
 import { mergeRefs } from "../../utils/refs";
 import { useClientTranslations } from "../../utils/translations/client";
 import DeleteWishButton from "../DeleteWishButton";

@@ -1,8 +1,14 @@
+import { signOut } from "../../auth";
 import { useServerTranslations } from "../../utils/translations/server";
 import SignOutButtonClient from "./client";
 
 export default function SignOutButton(): JSX.Element {
   const t = useServerTranslations("SignOutButton");
 
-  return <SignOutButtonClient text={t("text")} />;
+  async function signOutAction() {
+    "use server";
+    await signOut();
+  }
+
+  return <SignOutButtonClient signOutAction={signOutAction} text={t("text")} />;
 }

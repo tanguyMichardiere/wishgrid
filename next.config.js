@@ -7,28 +7,15 @@ const { headers } = require("./headers.config");
 let nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  typescript: {
-    // type checking is done in CI
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    // linting is done in CI
-    ignoreDuringBuilds: true,
-  },
-  images: {
-    domains: ["img.clerk.com"],
-  },
+  // type checking is done in CI
+  typescript: { ignoreBuildErrors: true },
+  // linting is done in CI
+  eslint: { ignoreDuringBuilds: true },
+  images: { domains: ["cdn.discordapp.com"] },
   headers() {
-    return Promise.resolve([
-      {
-        source: "/:path*",
-        headers,
-      },
-    ]);
+    return Promise.resolve([{ source: "/:path*", headers }]);
   },
-  experimental: {
-    serverComponentsExternalPackages: ["pino"],
-  },
+  experimental: { serverComponentsExternalPackages: ["pino"] },
 };
 
 nextConfig = require("next-intl/plugin")()(nextConfig);

@@ -12,7 +12,7 @@ export default function WishDescriptionFormInput(props: Props): JSX.Element {
   const t = useClientTranslations("client.WishDescriptionFormInput");
 
   return (
-    <div className="flex flex-col self-center">
+    <div className="form-control self-center">
       <textarea
         {...props.register}
         className={cx(
@@ -22,9 +22,11 @@ export default function WishDescriptionFormInput(props: Props): JSX.Element {
         placeholder={t("placeholder")}
         rows={5}
       />
-      <p className="text-sm">
-        {props.error?.type === "too_big" ? t("tooBig", { length: 512 }) : props.error?.message}
-      </p>
+      <label className="label">
+        <span className="label-text-alt">
+          {props.error?.type === "too_big" ? t("tooBig", { length: 512 }) : props.error?.message}
+        </span>
+      </label>
     </div>
   );
 }

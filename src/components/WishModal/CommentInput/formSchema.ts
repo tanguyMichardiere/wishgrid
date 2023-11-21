@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CommentText } from "../../../server/db/types/comments";
+import { CommentText } from "../../../server/database/types/comments";
 
 export const FormSchema = z.object({
   text: CommentText,

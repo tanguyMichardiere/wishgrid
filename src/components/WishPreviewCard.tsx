@@ -4,7 +4,7 @@ import { ChatBubbleLeftRightIcon, LockClosedIcon, LockOpenIcon } from "@heroicon
 import cx from "classix";
 import { useRef } from "react";
 import { useSetWishViewedMutation } from "../hooks/mutations/wishes/setViewed";
-import type { Wish } from "../server/db/types/wishes";
+import type { Wish } from "../server/database/types/wishes";
 import { useClientTranslations } from "../utils/translations/client";
 import Card from "./Card";
 import WishModal from "./WishModal";

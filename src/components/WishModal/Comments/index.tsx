@@ -4,7 +4,7 @@ import cx from "classix";
 import { useFormatter, useNow } from "next-intl";
 import { useMemo } from "react";
 import { useCurrentUser } from "../../../context/currentUser/hook";
-import type { Comment } from "../../../server/db/types/comments";
+import type { Comment } from "../../../server/database/types/comments";
 import { extractDay } from "../../../utils/dates";
 import Avatar from "../../Avatar";
 import { useCollapsedComments } from "./collapsedComments";
@@ -31,7 +31,7 @@ export default function Comments(props: Props): JSX.Element {
           key={comment.id}
         >
           <Avatar className="chat-image" size="small" user={comment.user} />
-          {!collapsedWithPrevious && <div className="chat-header">{comment.user.username}</div>}
+          {!collapsedWithPrevious && <div className="chat-header">{comment.user.name}</div>}
           <div className="chat-bubble break-words">{comment.text}</div>
           {!collapsedWithNext && now.getTime() - comment.timestamp.getTime() > 60000 && (
             <div className="chat-footer">

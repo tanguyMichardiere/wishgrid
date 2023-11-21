@@ -1,27 +1,25 @@
 import { TRPCError } from "@trpc/server";
-import { eq } from "drizzle-orm";
 import "server-only";
 import { z } from "zod";
 import { procedure } from "../..";
-import { wishViews } from "../../db/schema/wishViews";
-import { wishes } from "../../db/schema/wishes";
-import { Id } from "../../db/types";
-import { serverlessDb } from "../../middleware/serverlessDb";
+import { Id } from "../../database/types";
 
 export const setViewed = procedure
-  .use(serverlessDb)
   .input(z.object({ id: Id }))
   .output(z.void())
   .mutation(async function ({ ctx, input }) {
-    const wish = await ctx.db.query.wishes.findFirst({
-      columns: { userId: true },
-      where: eq(wishes.id, input.id),
+    const wish = await ctx.db.wish.findUnique({
+      select: { userId: true },
+      where: { id: input.id },
     });
-    if (wish === undefined) {
+    if (wish === null) {
       throw new TRPCError({ code: "NOT_FOUND" });
     }
     if (wish.userId === ctx.user.id) {
       throw new TRPCError({ code: "FORBIDDEN" });
     }
-    await ctx.db.insert(wishViews).values({ userId: ctx.user.id, wishId: input.id });
+    await ctx.db.user.update({
+      data: { viewedWishes: { connect: { id: input.id } } },
+      where: { id: ctx.user.id },
+    });
   });

@@ -1,4 +1,4 @@
-import type { User } from "../server/db/types/user";
+import type { User } from "../server/database/types/user";
 import Avatar from "./Avatar";
 import Card from "./Card";
 
@@ -10,7 +10,7 @@ export default function UserPreviewCard(props: Props): JSX.Element {
   return (
     <Card>
       <Avatar size="small" user={props.user} />
-      {props.user.username}
+      {props.user.name}
     </Card>
   );
 }

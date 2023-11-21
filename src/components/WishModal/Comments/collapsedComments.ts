@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import type { Comment } from "../../../server/db/types/comments";
+import type { Comment } from "../../../server/database/types/comments";
 import { extractDay } from "../../../utils/dates";
 
 export function useCollapsedComments(comments: Array<Comment>): Array<{
