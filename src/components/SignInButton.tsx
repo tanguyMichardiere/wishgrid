@@ -1,12 +1,25 @@
+import cx from "classix";
 import { useLocale } from "next-intl";
+import Image from "next/image";
 import { redirect } from "next/navigation";
 import "server-only";
 import { signIn } from "../auth";
 import { useServerTranslations } from "../utils/translations/server";
 
 const providers = {
-  discord: { icon: <div />, name: "Discord" },
-  mock: { icon: <div />, name: "Mock" },
+  discord: {
+    buttonClassName: "bg-[#5865F2] text-white hover:bg-[rgba(88,101,242,0.8)]",
+    icon: (
+      <Image
+        alt="discord"
+        height={24}
+        src="https://authjs.dev/img/providers/discord.svg"
+        width={24}
+      />
+    ),
+    name: "Discord",
+  },
+  mock: { buttonClassName: "btn-ghost", icon: <div />, name: "Mock" },
 };
 
 type Props = {
@@ -31,7 +44,10 @@ export default function SignInButton(props: Props): JSX.Element {
   return (
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <form action={signInAction}>
-      <button className="btn">{t("text", { provider: providers[props.provider].name })}</button>
+      <button className={cx("btn", providers[props.provider].buttonClassName)}>
+        {providers[props.provider].icon}
+        {t("text", { provider: providers[props.provider].name })}
+      </button>
     </form>
   );
 }

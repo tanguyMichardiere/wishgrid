@@ -181,7 +181,7 @@
     "theme": "Thème"
   },
   "SignInButton": {
-    "text": "Connection avec {provider}"
+    "text": "Connexion avec {provider}"
   },
   "SignOutButton": {
     "text": "Déconnexion"

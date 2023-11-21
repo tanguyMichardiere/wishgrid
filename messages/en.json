@@ -181,10 +181,10 @@
     "theme": "Theme"
   },
   "SignInButton": {
-    "text": "Sign In with {provider}"
+    "text": "Sign in with {provider}"
   },
   "SignOutButton": {
-    "text": "Sign Out"
+    "text": "Sign out"
   },
   "ThemeMenu": {
     "dark": "Dark",
