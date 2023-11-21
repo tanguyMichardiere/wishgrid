@@ -3,7 +3,7 @@ const { NODE_ENV } = require("./src/env");
 const contentSecurityPolicy = {
   "default-src": ["'self'"],
   "connect-src": ["'self'", "*.wishgrid.app", "vitals.vercel-insights.com"],
-  "img-src": ["'self'", "data:"],
+  "img-src": ["'self'", "data:", "authjs.dev", "cdn.discordapp.com"],
   "script-src": ["'self'", "'unsafe-eval'", "'unsafe-inline'", "*.wishgrid.app"],
   "worker-src": ["'self'", "blob:"],
   "style-src": ["'self'", "'unsafe-inline'"],
