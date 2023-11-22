@@ -11,8 +11,8 @@ type Props = {
   id: string;
 };
 
-export default function UserLinkButtons(props: Props): JSX.Element {
-  const t = useClientTranslations("client.UserLinkButtons");
+export default function ShareUserLinkButton(props: Props): JSX.Element {
+  const t = useClientTranslations("client.ShareUserLinkButton");
 
   const url = new URL(`/user/${props.id}`, location.href).href;
 
@@ -45,7 +45,7 @@ export default function UserLinkButtons(props: Props): JSX.Element {
         {t("buttonText")}
       </button>
       <Modal className="flex flex-col items-center gap-4" ref={modalRef}>
-        <h3 className="text-lg">{t("modalTitle")}</h3>
+        <h3 className="text-center text-lg">{t("modalTitle")}</h3>
         <QRCodeSVG includeMargin size={320} value={url} />
         <form className="modal-action" method="dialog">
           <button className="btn" onClick={copyLink} type="submit">

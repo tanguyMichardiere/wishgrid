@@ -132,6 +132,11 @@
     "ReserveWishButton": {
       "text": "Reserve"
     },
+    "ShareUserLinkButton": {
+      "buttonText": "Share my link",
+      "modalTitle": "Share your link to allow others to send you friend requests",
+      "toastMessage": "Link copied to clipboard"
+    },
     "UnreserveWishButton": {
       "text": "Unreserve"
     },
@@ -142,11 +147,6 @@
       "nameTooBig": "Name must be at most {length} characters",
       "nameTooSmall": "Name must be at least {length} characters",
       "submitButtonText": "Submit"
-    },
-    "UserLinkButtons": {
-      "buttonText": "Share my link",
-      "modalTitle": "Share your link to allow others to send you friend requests",
-      "toastMessage": "Link copied to clipboard"
     },
     "WishDescriptionFormInput": {
       "placeholder": "Description",

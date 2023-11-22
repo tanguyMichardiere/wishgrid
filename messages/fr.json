@@ -132,6 +132,11 @@
     "ReserveWishButton": {
       "text": "Réserver"
     },
+    "ShareUserLinkButton": {
+      "buttonText": "Copier mon lien",
+      "modalTitle": "Partagez votre lien pour permettre à d'autres utilisateurs de vous envoyer des demandes d'ami",
+      "toastMessage": "Lien copié dans le presse-papier"
+    },
     "UnreserveWishButton": {
       "text": "Ne plus réserver"
     },
@@ -142,11 +147,6 @@
       "nameTooBig": "Le nom doit faire au plus {length} caractères",
       "nameTooSmall": "Le nom doit faire au moins {length} caractères",
       "submitButtonText": "Valider"
-    },
-    "UserLinkButtons": {
-      "buttonText": "Copier mon lien",
-      "modalTitle": "Partagez votre lien pour permettre à d'autres utilisateurs de vous envoyer des demandes d'ami",
-      "toastMessage": "Lien copié dans le presse-papier"
     },
     "WishDescriptionFormInput": {
       "placeholder": "Description",
