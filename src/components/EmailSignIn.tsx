@@ -2,7 +2,6 @@ import { useLocale } from "next-intl";
 import { redirect } from "next/navigation";
 import "server-only";
 import { signIn } from "../auth";
-import { VERCEL_URL } from "../env";
 import { logger } from "../server/logger";
 import { useServerTranslations } from "../utils/translations/server";
 
@@ -17,7 +16,7 @@ export default function EmailSignIn(): JSX.Element {
     const url = (await signIn("email", {
       email: formData.get("email"),
       redirect: false,
-      redirectTo: `${VERCEL_URL}/${locale !== "en" ? `${locale}` : ""}`,
+      // redirectTo: `/${locale !== "en" ? `${locale}` : ""}`,
     })) as string;
     logger.warn(url);
     // TODO: wait for fix in next-auth
