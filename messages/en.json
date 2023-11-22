@@ -47,6 +47,10 @@
       "title": "An unexpected error has occurred, it has been reported",
       "tryAgain": "Try Again"
     },
+    "FriendList": {
+      "link": "or share yours",
+      "text": "To send friend requests, ask your friends to share their link"
+    },
     "FriendPreviewCard": {
       "newWishCountTooltip": "{count} wishes of which {newCount, plural, =1 {one new one} other {# new ones}}",
       "onlyNewWishCountTooltip": "{count, plural, =1 {one new wish} other {# new wishes}}",
@@ -128,9 +132,10 @@
     "ReserveWishButton": {
       "text": "Reserve"
     },
-    "SearchUserModal": {
-      "inputPlaceholder": "Search by name, email, etc.",
-      "noResults": "No results"
+    "ShareUserLinkButton": {
+      "buttonText": "Share my link",
+      "modalTitle": "Share your link to allow others to send you friend requests",
+      "toastMessage": "Link copied to clipboard"
     },
     "UnreserveWishButton": {
       "text": "Unreserve"
@@ -186,9 +191,6 @@
   "NotFound": {
     "returnHome": "Return to Home Page",
     "title": "Page Not Found"
-  },
-  "SearchUserButton": {
-    "text": "Add friends"
   },
   "SettingsPage": {
     "about": "About",
