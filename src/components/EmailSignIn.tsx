@@ -2,6 +2,7 @@ import { useLocale } from "next-intl";
 import { redirect } from "next/navigation";
 import "server-only";
 import { signIn } from "../auth";
+import { logger } from "../server/logger";
 import { useServerTranslations } from "../utils/translations/server";
 
 export default function EmailSignIn(): JSX.Element {
@@ -17,6 +18,7 @@ export default function EmailSignIn(): JSX.Element {
       redirect: false,
       redirectTo: `/${locale !== "en" ? `${locale}` : ""}`,
     })) as string;
+    logger.warn(url);
     // TODO: wait for fix in next-auth
     redirect(url.replace("//verify-request", "/api/auth/verify-request"));
   }
