@@ -1,9 +1,8 @@
-import type { ErrorPageParam } from "@auth/core/types";
 import { Link } from "../../../../../navigation";
 import { useServerTranslations } from "../../../../../utils/translations/server";
 
 type Props = {
-  searchParams: { error: ErrorPageParam };
+  searchParams: { error?: string };
 };
 
 export default function AuthErrorPage(props: Props): JSX.Element {
@@ -17,7 +16,7 @@ export default function AuthErrorPage(props: Props): JSX.Element {
           <p className="text-center">{t("Verification.body")}</p>
         </>
       ) : (
-        <h1>{t("default.title")}</h1>
+        <h1>{t("defaultTitle")}</h1>
       )}
       <Link className="link" href="/sign-in">
         {t("signInLinkText")}
