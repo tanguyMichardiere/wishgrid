@@ -41,7 +41,7 @@ export default forwardRef<HTMLDialogElement>(function SearchModal(_props, ref) {
       ref={mergeRefs(ref, innerRef)}
     >
       <input
-        autoFocus
+        // TODO: focus when modal opens
         className="input input-bordered w-full max-w-xs"
         maxLength={32}
         minLength={4}

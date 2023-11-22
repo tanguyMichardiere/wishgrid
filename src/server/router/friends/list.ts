@@ -6,7 +6,7 @@ import { Friend } from "../../database/types/user";
 export const list = procedure.output(z.array(Friend)).query(async function ({ ctx }) {
   const { friends, viewedWishes } = await ctx.db.user.findUniqueOrThrow({
     include: {
-      friends: { include: { wishes: { select: { id: true } } } },
+      friends: { include: { wishes: { select: { id: true } } }, orderBy: { name: "asc" } },
       viewedWishes: { select: { id: true } },
     },
     where: { id: ctx.user.id },

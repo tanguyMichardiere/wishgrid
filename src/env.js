@@ -8,7 +8,7 @@ const env = createEnv({
       .enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"])
       .default("info"),
     PORT: z.coerce.number().int().positive().default(3000),
-    VERCEL_URL: z.string().optional(),
+    VERCEL_URL: z.string().url(),
 
     AUTH_SECRET: z.string().regex(/[0-9a-f]{64}/),
     AUTH_DISCORD_ID: z.string(),
