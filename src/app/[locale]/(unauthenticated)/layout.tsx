@@ -6,8 +6,8 @@ type Props = {
 
 export default function ClerkLayout(props: Props): JSX.Element {
   return (
-    <div className="flex justify-center pt-[clamp(2rem,10vw,5rem)]">
-      <div className="mb-20">{props.children}</div>
+    <div className="mx-auto flex max-w-sm justify-center pb-20 pt-[clamp(2rem,10vw,5rem)]">
+      {props.children}
     </div>
   );
 }

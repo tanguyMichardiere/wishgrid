@@ -11,7 +11,7 @@ let nextConfig = {
   typescript: { ignoreBuildErrors: true },
   // linting is done in CI
   eslint: { ignoreDuringBuilds: true },
-  images: { domains: ["authjs.dev", "cdn.discordapp.com"] },
+  images: { domains: ["cdn.discordapp.com"] },
   headers() {
     return Promise.resolve([{ source: "/:path*", headers }]);
   },

@@ -7,8 +7,6 @@ const env = createEnv({
     LOG_LEVEL: z
       .enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"])
       .default("info"),
-    PORT: z.coerce.number().int().positive().default(3000),
-    VERCEL_URL: z.string().optional(),
 
     AUTH_SECRET: z.string().regex(/[0-9a-f]{64}/),
     AUTH_DISCORD_ID: z.string(),
@@ -16,20 +14,19 @@ const env = createEnv({
     AUTH_EMAIL_SERVER: z
       .string()
       .url()
+      .startsWith("smtp://")
       // @ts-expect-error crashes immediately if incorrect
-      .default(process.env.NODE_ENV === "development" ? process.env["VERCEL_URL"] : undefined),
+      .default(process.env.NODE_ENV === "development" ? "smtp://" : undefined),
     // @ts-expect-error crashes immediately if incorrect
     AUTH_EMAIL_FROM: z.string().default(process.env.NODE_ENV === "development" ? "" : undefined),
 
-    DATABASE_URL: z.string().url(),
-    DATABASE_DIRECT_URL: z.string().url(),
+    DATABASE_URL: z.string().url().startsWith("postgresql://"),
+    DATABASE_DIRECT_URL: z.string().url().startsWith("postgresql://"),
   },
   client: {},
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     LOG_LEVEL: process.env["LOG_LEVEL"],
-    PORT: process.env["PORT"],
-    VERCEL_URL: process.env["VERCEL_URL"],
 
     AUTH_SECRET: process.env["AUTH_SECRET"],
     AUTH_DISCORD_ID: process.env["AUTH_DISCORD_ID"],

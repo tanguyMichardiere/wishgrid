@@ -1,22 +1,15 @@
 import cx from "classix";
 import { useLocale } from "next-intl";
-import Image from "next/image";
 import { redirect } from "next/navigation";
 import "server-only";
-import { signIn } from "../auth";
-import { useServerTranslations } from "../utils/translations/server";
+import { signIn } from "../../auth";
+import { useServerTranslations } from "../../utils/translations/server";
+import DiscordIcon from "./DiscordIcon";
 
 const providers = {
   discord: {
     buttonClassName: "bg-[#5865F2] text-white hover:bg-[rgba(88,101,242,0.8)]",
-    icon: (
-      <Image
-        alt="discord"
-        height={24}
-        src="https://authjs.dev/img/providers/discord.svg"
-        width={24}
-      />
-    ),
+    icon: <DiscordIcon />,
     name: "Discord",
   },
 };

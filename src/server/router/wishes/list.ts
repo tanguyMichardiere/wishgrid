@@ -24,6 +24,7 @@ export const list = procedure
                   orderBy: { timestamp: "desc" },
                 },
               },
+              orderBy: { title: "asc" },
             },
           },
           where: { id: input.userId },

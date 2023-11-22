@@ -3,6 +3,18 @@
     "subtitle": "Une plateforme pour partager des idées de cadeaux avec ses amis",
     "title": "WishGrid"
   },
+  "AuthErrorPage": {
+    "defaultTitle": "Erreur d'authentification",
+    "signInLinkText": "Connexion",
+    "Verification": {
+      "body": "Le lien de connexion n'est plus valide. Il a peut-être déjà été utilisé, ou il a expiré.",
+      "title": "Connexion impossible"
+    }
+  },
+  "AuthVerifyRequestPage": {
+    "body": "Un lien de connexion a été envoyé à votre adresse email.",
+    "title": "Vérifiez votre email"
+  },
   "client": {
     "AcceptFriendRequestButton": {
       "text": "Accepter"

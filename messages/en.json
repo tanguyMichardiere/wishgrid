@@ -3,6 +3,18 @@
     "subtitle": "A platform to share gift ideas with your friends",
     "title": "WishGrid"
   },
+  "AuthErrorPage": {
+    "defaultTitle": "Authentication error",
+    "signInLinkText": "Sign in",
+    "Verification": {
+      "body": "The sign in link is no longer valid. It may have been used already or it may have expired.",
+      "title": "Unable to sign in"
+    }
+  },
+  "AuthVerifyRequestPage": {
+    "body": "A sign in link has been sent to your email address.",
+    "title": "Check your email"
+  },
   "client": {
     "AcceptFriendRequestButton": {
       "text": "Accept"

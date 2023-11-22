@@ -19,6 +19,12 @@ adapter.createUser = async (data) =>
 const nextAuth = NextAuth({
   adapter,
   providers: [Discord, NODE_ENV === "development" ? Mock : Email],
+  pages: {
+    signIn: "/",
+    signOut: "/",
+    error: "/auth/error",
+    verifyRequest: "/auth/verify-request",
+  },
   callbacks: {
     session({ session, user }) {
       // eslint-disable-next-line @typescript-eslint/consistent-type-assertions

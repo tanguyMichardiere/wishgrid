@@ -10,5 +10,6 @@ export const search = procedure
     return ctx.db.user.findMany({
       select: { id: true, name: true, image: true },
       where: { name: { contains: input.query, mode: "insensitive" } },
+      orderBy: { name: "asc" },
     });
   });
