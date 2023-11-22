@@ -30,11 +30,6 @@
       "textTooBig": "Un commentaire doit faire au plus {length} caractères",
       "textTooSmall": "Un commentaire doit faire au moins {length} caractères"
     },
-    "CopyUserLinkButton": {
-      "buttonText": "Copier mon lien",
-      "toastMessage": "Lien copié dans le presse-papier",
-      "tooltip": "Partagez votre lien pour permettre à d'autres utilisateurs de vous envoyer des demandes d'ami"
-    },
     "DeclineFriendRequestButton": {
       "text": "Refuser"
     },
@@ -51,6 +46,10 @@
       "digest": "Code : {digest}",
       "title": "Une erreur inattendue a eu lieu, elle a été signalée",
       "tryAgain": "Réessayer"
+    },
+    "FriendList": {
+      "link": "ou partagez le vôtre",
+      "text": "Pour envoyer des demandes d'ami, demandez à vos amis de partager leur lien"
     },
     "FriendPreviewCard": {
       "newWishCountTooltip": "{count} vœux dont {newCount, plural, =1 {un nouveau} other {# nouveaux}}",
@@ -133,10 +132,6 @@
     "ReserveWishButton": {
       "text": "Réserver"
     },
-    "SearchUserModal": {
-      "inputPlaceholder": "Chercher par nom, email, etc.",
-      "noResults": "Aucun résultat"
-    },
     "UnreserveWishButton": {
       "text": "Ne plus réserver"
     },
@@ -147,6 +142,11 @@
       "nameTooBig": "Le nom doit faire au plus {length} caractères",
       "nameTooSmall": "Le nom doit faire au moins {length} caractères",
       "submitButtonText": "Valider"
+    },
+    "UserLinkButtons": {
+      "buttonText": "Copier mon lien",
+      "toastMessage": "Lien copié dans le presse-papier",
+      "tooltip": "Partagez votre lien pour permettre à d'autres utilisateurs de vous envoyer des demandes d'ami"
     },
     "WishDescriptionFormInput": {
       "placeholder": "Description",
@@ -191,9 +191,6 @@
   "NotFound": {
     "returnHome": "Retour à la page d'accueil",
     "title": "Page inexistante"
-  },
-  "SearchUserButton": {
-    "text": "Ajouter des amis"
   },
   "SettingsPage": {
     "about": "À propos",

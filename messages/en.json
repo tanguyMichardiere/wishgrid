@@ -30,11 +30,6 @@
       "textTooBig": "Comment must be at most {length} characters",
       "textTooSmall": "Comment must be at least {length} characters"
     },
-    "CopyUserLinkButton": {
-      "buttonText": "Copy my link",
-      "toastMessage": "Link copied to clipboard",
-      "tooltip": "Share your link to allow others to send you friend requests"
-    },
     "DeclineFriendRequestButton": {
       "text": "Decline"
     },
@@ -51,6 +46,10 @@
       "digest": "Digest: {digest}",
       "title": "An unexpected error has occurred, it has been reported",
       "tryAgain": "Try Again"
+    },
+    "FriendList": {
+      "link": "or share yours",
+      "text": "To send friend requests, ask your friends to share their link"
     },
     "FriendPreviewCard": {
       "newWishCountTooltip": "{count} wishes of which {newCount, plural, =1 {one new one} other {# new ones}}",
@@ -133,10 +132,6 @@
     "ReserveWishButton": {
       "text": "Reserve"
     },
-    "SearchUserModal": {
-      "inputPlaceholder": "Search by name, email, etc.",
-      "noResults": "No results"
-    },
     "UnreserveWishButton": {
       "text": "Unreserve"
     },
@@ -147,6 +142,11 @@
       "nameTooBig": "Name must be at most {length} characters",
       "nameTooSmall": "Name must be at least {length} characters",
       "submitButtonText": "Submit"
+    },
+    "UserLinkButtons": {
+      "buttonText": "Share my link",
+      "toastMessage": "Link copied to clipboard",
+      "tooltip": "Share your link to allow others to send you friend requests"
     },
     "WishDescriptionFormInput": {
       "placeholder": "Description",
@@ -191,9 +191,6 @@
   "NotFound": {
     "returnHome": "Return to Home Page",
     "title": "Page Not Found"
-  },
-  "SearchUserButton": {
-    "text": "Add friends"
   },
   "SettingsPage": {
     "about": "About",
