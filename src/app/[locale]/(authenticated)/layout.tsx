@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import Navbar from "../../../components/Navbar";
 import CurrentUserContextProvider from "../../../context/currentUser/provider";
-import { logger } from "../../../server/logger";
 import { getCurrentUser } from "../../../utils/serverQueries/users/getCurrent";
 
 type Props = {
@@ -10,7 +9,6 @@ type Props = {
 
 export default async function SignedInLayout(props: Props): Promise<JSX.Element> {
   const currentUser = await getCurrentUser();
-  logger.warn(JSON.stringify(currentUser));
 
   return (
     <CurrentUserContextProvider initialCurrentUser={currentUser}>

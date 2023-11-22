@@ -1,3 +1,4 @@
+import "client-only";
 import { z } from "zod";
 import { UserName } from "../../../../server/database/types/user";
 

@@ -157,6 +157,10 @@
       "tooSmall": "Le titre doit faire au moins {length} caractères"
     }
   },
+  "EmailSignIn": {
+    "buttonText": "Connexion par Email",
+    "placeholder": "Email"
+  },
   "Navbar": {
     "friends": "Amis",
     "myWishes": "Mes vœux",
@@ -182,6 +186,9 @@
   },
   "SignInButton": {
     "text": "Connexion avec {provider}"
+  },
+  "SignInPage": {
+    "or": "ou"
   },
   "SignOutButton": {
     "text": "Déconnexion"

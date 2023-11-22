@@ -13,7 +13,13 @@ const env = createEnv({
     AUTH_SECRET: z.string().regex(/[0-9a-f]{64}/),
     AUTH_DISCORD_ID: z.string(),
     AUTH_DISCORD_SECRET: z.string(),
-    // SENDGRID_API_KEY: z.string(),
+    AUTH_EMAIL_SERVER: z
+      .string()
+      .url()
+      // @ts-expect-error crashes immediately if incorrect
+      .default(process.env.NODE_ENV === "development" ? process.env["VERCEL_URL"] : undefined),
+    // @ts-expect-error crashes immediately if incorrect
+    AUTH_EMAIL_FROM: z.string().default(process.env.NODE_ENV === "development" ? "" : undefined),
 
     DATABASE_URL: z.string().url(),
     DATABASE_DIRECT_URL: z.string().url(),
@@ -28,7 +34,8 @@ const env = createEnv({
     AUTH_SECRET: process.env["AUTH_SECRET"],
     AUTH_DISCORD_ID: process.env["AUTH_DISCORD_ID"],
     AUTH_DISCORD_SECRET: process.env["AUTH_DISCORD_SECRET"],
-    // SENDGRID_API_KEY: process.env["SENDGRID_API_KEY"],
+    AUTH_EMAIL_SERVER: process.env["AUTH_EMAIL_SERVER"],
+    AUTH_EMAIL_FROM: process.env["AUTH_EMAIL_FROM"],
 
     DATABASE_URL: process.env["DATABASE_URL"],
     DATABASE_DIRECT_URL: process.env["DATABASE_DIRECT_URL"],

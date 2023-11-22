@@ -7,7 +7,7 @@ datasource db {
 
 generator client {
     provider        = "prisma-client-js"
-    previewFeatures = ["postgresqlExtensions", "driverAdapters"]
+    previewFeatures = ["postgresqlExtensions"]
 }
 
 model Account {
@@ -44,7 +44,7 @@ model User {
     id String @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
 
     name          String    @db.VarChar(32)
-    email         String?   @unique
+    email         String    @unique
     emailVerified DateTime?
     image         String?
 

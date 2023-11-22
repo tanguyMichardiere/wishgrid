@@ -157,6 +157,10 @@
       "tooSmall": "Title must be at least {length} characters"
     }
   },
+  "EmailSignIn": {
+    "buttonText": "Sign in with Email",
+    "placeholder": "Email"
+  },
   "Navbar": {
     "friends": "Friends",
     "myWishes": "My Wishes",
@@ -182,6 +186,9 @@
   },
   "SignInButton": {
     "text": "Sign in with {provider}"
+  },
+  "SignInPage": {
+    "or": "or"
   },
   "SignOutButton": {
     "text": "Sign out"

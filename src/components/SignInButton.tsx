@@ -19,7 +19,6 @@ const providers = {
     ),
     name: "Discord",
   },
-  mock: { buttonClassName: "btn-ghost", icon: <div />, name: "Mock" },
 };
 
 type Props = {
@@ -38,6 +37,7 @@ export default function SignInButton(props: Props): JSX.Element {
       redirect: false,
       redirectTo: `/${locale !== "en" ? `${locale}` : ""}`,
     })) as string;
+    // TODO: wait for fix in next-auth
     redirect(url.replace("%2F%2Fcallback%2F", "%2Fapi%2Fauth%2Fcallback%2F"));
   }
 

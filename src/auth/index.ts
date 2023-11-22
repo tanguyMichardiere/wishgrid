@@ -1,24 +1,24 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import type { User } from "@prisma/client";
-import type { NextAuthConfig } from "next-auth";
 import NextAuth from "next-auth";
-import type { Provider } from "next-auth/providers";
 import Discord from "next-auth/providers/discord";
 import { NODE_ENV } from "../env";
 import { createDatabaseClient } from "../server/database/createClient";
 import { logger } from "../server/logger";
-import { mockProvider } from "./mockProvider";
+import Email from "./providers/email";
+import Mock from "./providers/mock";
 
-const adapter = PrismaAdapter(createDatabaseClient(logger));
+const databaseClient = createDatabaseClient(logger);
+const adapter = PrismaAdapter(databaseClient);
+adapter.createUser = async (data) =>
+  databaseClient.user.create({
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    data: { ...data, name: data.name ?? data.email.split("@", 2)[0]! },
+  });
 
-const providers: Array<Provider> = [Discord];
-if (NODE_ENV === "development") {
-  providers.push(mockProvider);
-}
-
-export const nextAuthConfig = {
+const nextAuth = NextAuth({
   adapter,
-  providers,
+  providers: [Discord, NODE_ENV === "development" ? Mock : Email],
   callbacks: {
     session({ session, user }) {
       // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
@@ -26,9 +26,7 @@ export const nextAuthConfig = {
       return session;
     },
   },
-} satisfies NextAuthConfig;
-
-const nextAuth = NextAuth(nextAuthConfig);
+});
 
 export const { handlers, auth } = nextAuth;
 export const signIn = nextAuth.signIn.bind(nextAuth);
