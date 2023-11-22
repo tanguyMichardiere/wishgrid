@@ -145,8 +145,8 @@
     },
     "UserLinkButtons": {
       "buttonText": "Copier mon lien",
-      "toastMessage": "Lien copié dans le presse-papier",
-      "tooltip": "Partagez votre lien pour permettre à d'autres utilisateurs de vous envoyer des demandes d'ami"
+      "modalTitle": "Partagez votre lien pour permettre à d'autres utilisateurs de vous envoyer des demandes d'ami",
+      "toastMessage": "Lien copié dans le presse-papier"
     },
     "WishDescriptionFormInput": {
       "placeholder": "Description",

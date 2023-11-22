@@ -41,13 +41,12 @@ export default function UserLinkButtons(props: Props): JSX.Element {
 
   return (
     <>
-      <div className="tooltip flex gap-2 self-center" data-tip={t("tooltip")}>
-        <button className="btn" onClick={showModal}>
-          {t("buttonText")}
-        </button>
-      </div>
+      <button className="btn self-center" onClick={showModal}>
+        {t("buttonText")}
+      </button>
       <Modal className="flex flex-col items-center gap-4" ref={modalRef}>
-        <QRCodeSVG size={320} value={url} />
+        <h3 className="text-lg">{t("modalTitle")}</h3>
+        <QRCodeSVG includeMargin size={320} value={url} />
         <form className="modal-action" method="dialog">
           <button className="btn" onClick={copyLink} type="submit">
             <ClipboardDocumentIcon className="h-6 w-6" />
