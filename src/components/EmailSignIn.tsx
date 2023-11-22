@@ -15,8 +15,8 @@ export default function EmailSignIn(): JSX.Element {
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     const url = (await signIn("email", {
       email: formData.get("email"),
-      redirect: false,
-      redirectTo: `/${locale !== "en" ? `${locale}` : ""}`,
+      // redirect: false,
+      // redirectTo: `/${locale !== "en" ? `${locale}` : ""}`,
     })) as string;
     logger.warn(url);
     // TODO: wait for fix in next-auth
