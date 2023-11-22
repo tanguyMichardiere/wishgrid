@@ -30,6 +30,11 @@
       "textTooBig": "Comment must be at most {length} characters",
       "textTooSmall": "Comment must be at least {length} characters"
     },
+    "CopyUserLinkButton": {
+      "buttonText": "Copy my link",
+      "toastMessage": "Link copied to clipboard",
+      "tooltip": "Share your link to allow others to send you friend requests"
+    },
     "DeclineFriendRequestButton": {
       "text": "Decline"
     },

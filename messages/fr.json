@@ -30,6 +30,11 @@
       "textTooBig": "Un commentaire doit faire au plus {length} caractères",
       "textTooSmall": "Un commentaire doit faire au moins {length} caractères"
     },
+    "CopyUserLinkButton": {
+      "buttonText": "Copier mon lien",
+      "toastMessage": "Lien copié dans le presse-papier",
+      "tooltip": "Partagez votre lien pour permettre à d'autres utilisateurs de vous envoyer des demandes d'ami"
+    },
     "DeclineFriendRequestButton": {
       "text": "Refuser"
     },

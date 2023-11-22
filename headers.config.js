@@ -20,7 +20,7 @@ module.exports = {
     { key: "X-XSS-Protection", value: "1; mode=block" },
     { key: "X-Frame-Options", value: "DENY" },
     // https://www.w3.org/TR/permissions-policy-1/
-    { key: "Permissions-Policy", value: "" },
+    { key: "Permissions-Policy", value: "web-share=self" },
     { key: "X-Content-Type-Options", value: "nosniff" },
     { key: "Referrer-Policy", value: "origin-when-cross-origin" },
     {
