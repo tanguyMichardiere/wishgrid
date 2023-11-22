@@ -1,6 +1,6 @@
-import { redirect } from "next-intl/server";
 import { cache } from "react";
 import "server-only";
+import { redirect } from "../../../navigation";
 import { createServerSideHelpers } from "../../trpc/server";
 
 async function fn() {
@@ -9,7 +9,8 @@ async function fn() {
   try {
     return await trpc.wishes.listOwn.fetch();
   } catch {
-    redirect("/sign-in");
+    // TODO: why do we have to return?
+    return redirect("/sign-in");
   }
 }
 

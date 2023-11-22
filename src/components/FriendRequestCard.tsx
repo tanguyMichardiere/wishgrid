@@ -1,4 +1,4 @@
-import type { User } from "../server/db/types/user";
+import type { User } from "../server/database/types/user";
 import AcceptFriendRequestButton from "./AcceptFriendRequestButton";
 import Avatar from "./Avatar";
 import Card from "./Card";
@@ -13,7 +13,7 @@ export default function FriendRequestsCard(props: Props): JSX.Element {
     <Card className="flex-col @sm:flex-row">
       <div className="flex flex-row items-center gap-4">
         <Avatar size="small" user={props.user} />
-        {props.user.username}
+        {props.user.name}
       </div>
       <div className="flex flex-row items-center gap-4">
         <DeclineFriendRequestButton userId={props.user.id} />

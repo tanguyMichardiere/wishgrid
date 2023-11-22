@@ -9,11 +9,11 @@ import type { RelatedProcedures } from "../relatedProcedures";
 function useRelatedProcedures(userId: string): RelatedProcedures<Router["comments"]["create"]> {
   const currentUser = useCurrentUser();
 
-  const trpcContext = trpc.useContext();
+  const trpcUtils = trpc.useUtils();
 
   return {
     setData({ text, wishId }, { id, timestamp }) {
-      trpcContext.wishes.list.setData(
+      trpcUtils.wishes.list.setData(
         { userId },
         (wishes) =>
           wishes?.map((wish) =>
@@ -27,7 +27,7 @@ function useRelatedProcedures(userId: string): RelatedProcedures<Router["comment
       );
     },
     async invalidate() {
-      await trpcContext.wishes.list.invalidate({ userId });
+      await trpcUtils.wishes.list.invalidate({ userId });
     },
   };
 }

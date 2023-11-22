@@ -12,43 +12,43 @@ function useRelatedProcedures(
   Router["wishes"]["setViewed"],
   [Router["friends"]["list"], Router["wishes"]["list"]]
 > {
-  const trpcContext = trpc.useContext();
+  const trpcUtils = trpc.useUtils();
 
   return {
     async cancel() {
       await Promise.all([
-        trpcContext.friends.list.cancel(),
-        trpcContext.wishes.list.cancel({ userId }),
+        trpcUtils.friends.list.cancel(),
+        trpcUtils.wishes.list.cancel({ userId }),
       ]);
     },
     getData() {
-      return [trpcContext.friends.list.getData(), trpcContext.wishes.list.getData({ userId })];
+      return [trpcUtils.friends.list.getData(), trpcUtils.wishes.list.getData({ userId })];
     },
     setData({ id }) {
-      trpcContext.friends.list.setData(
+      trpcUtils.friends.list.setData(
         undefined,
         (friends) =>
           friends?.map((friend) =>
             friend.id === userId ? { ...friend, newWishCount: friend.newWishCount - 1 } : friend,
           ),
       );
-      trpcContext.wishes.list.setData(
+      trpcUtils.wishes.list.setData(
         { userId },
         (wishes) => wishes?.map((wish) => (wish.id === id ? { ...wish, viewed: true } : wish)),
       );
     },
     revertData(_variables, context) {
       if (context[0] !== undefined) {
-        trpcContext.friends.list.setData(undefined, context[0]);
+        trpcUtils.friends.list.setData(undefined, context[0]);
       }
       if (context[1] !== undefined) {
-        trpcContext.wishes.list.setData({ userId }, context[1]);
+        trpcUtils.wishes.list.setData({ userId }, context[1]);
       }
     },
     async invalidate() {
       await Promise.all([
-        trpcContext.friends.list.invalidate(),
-        trpcContext.wishes.list.invalidate({ userId }),
+        trpcUtils.friends.list.invalidate(),
+        trpcUtils.wishes.list.invalidate({ userId }),
       ]);
     },
   };

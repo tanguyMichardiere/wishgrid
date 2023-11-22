@@ -73,6 +73,9 @@
       "users": {
         "deleteCurrent": {
           "errorText": "An error has occurred, please try again"
+        },
+        "update": {
+          "errorText": "An error has occurred, please try again"
         }
       },
       "wishes": {
@@ -120,6 +123,14 @@
     "UnreserveWishButton": {
       "text": "Unreserve"
     },
+    "UpdateUser": {
+      "imageLabel": "Change image",
+      "nameLabel": "Change name",
+      "namePlaceholder": "Name",
+      "nameTooBig": "Name must be at most {length} characters",
+      "nameTooSmall": "Name must be at least {length} characters",
+      "submitButtonText": "Submit"
+    },
     "WishDescriptionFormInput": {
       "placeholder": "Description",
       "tooBig": "Description must be at most {length} characters"
@@ -143,11 +154,12 @@
     "WishTitleFormInput": {
       "placeholder": "Title",
       "tooBig": "Title must be at most {length} characters",
-      "tooShort": "Title must be at least {length} characters"
+      "tooSmall": "Title must be at least {length} characters"
     }
   },
-  "ManageAccountPage": {
-    "returnToSettings": "Return to settings"
+  "EmailSignIn": {
+    "buttonText": "Sign in with Email",
+    "placeholder": "Email"
   },
   "Navbar": {
     "friends": "Friends",
@@ -172,8 +184,14 @@
     "manageAccount": "Manage account",
     "theme": "Theme"
   },
+  "SignInButton": {
+    "text": "Sign in with {provider}"
+  },
+  "SignInPage": {
+    "or": "or"
+  },
   "SignOutButton": {
-    "text": "Sign Out"
+    "text": "Sign out"
   },
   "ThemeMenu": {
     "dark": "Dark",

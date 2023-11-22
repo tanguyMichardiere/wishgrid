@@ -3,9 +3,9 @@
 import { Menu as HeadlessUIMenu, Transition } from "@headlessui/react";
 import { cx } from "classix";
 import type { Route } from "next";
-import Link from "next-intl/link";
 import type { ReactNode } from "react";
 import { Fragment } from "react";
+import { Link } from "../navigation";
 
 export type Props = {
   position: "left" | "right";

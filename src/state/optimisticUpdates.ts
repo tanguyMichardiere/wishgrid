@@ -53,13 +53,13 @@ if (typeof window !== "undefined") {
   });
 }
 
-export function useOptimisticUpdates(): boolean {
+export function useOptimisticUpdates(threshold = 500): boolean {
   const durations = useOptimisticUpdatesStore((state) => state.durations);
   const hasErrored = useOptimisticUpdatesStore((state) => state.hasErrored);
 
   return (
     !hasErrored &&
     durations.length > 0 &&
-    durations.reduce((p, c) => p + c) / durations.length < 500
+    durations.reduce((p, c) => p + c, 0) / durations.length < threshold
   );
 }

@@ -73,6 +73,9 @@
       "users": {
         "deleteCurrent": {
           "errorText": "Une erreur a eu lieu, merci de réessayer"
+        },
+        "update": {
+          "errorText": "Une erreur a eu lieu, merci de réessayer"
         }
       },
       "wishes": {
@@ -120,6 +123,14 @@
     "UnreserveWishButton": {
       "text": "Ne plus réserver"
     },
+    "UpdateUser": {
+      "imageLabel": "Changer l'image",
+      "nameLabel": "Changer le nom",
+      "namePlaceholder": "Nom",
+      "nameTooBig": "Le nom doit faire au plus {length} caractères",
+      "nameTooSmall": "Le nom doit faire au moins {length} caractères",
+      "submitButtonText": "Valider"
+    },
     "WishDescriptionFormInput": {
       "placeholder": "Description",
       "tooBig": "La description doit faire au plus {length} caractères"
@@ -143,11 +154,12 @@
     "WishTitleFormInput": {
       "placeholder": "Titre",
       "tooBig": "Le titre doit faire au plus {length} caractères",
-      "tooShort": "Le titre doit faire au moins {length} caractères"
+      "tooSmall": "Le titre doit faire au moins {length} caractères"
     }
   },
-  "ManageAccountPage": {
-    "returnToSettings": "Retour aux paramètres"
+  "EmailSignIn": {
+    "buttonText": "Connexion par Email",
+    "placeholder": "Email"
   },
   "Navbar": {
     "friends": "Amis",
@@ -171,6 +183,12 @@
     "language": "Langue",
     "manageAccount": "Gestion du compte",
     "theme": "Thème"
+  },
+  "SignInButton": {
+    "text": "Connexion avec {provider}"
+  },
+  "SignInPage": {
+    "or": "ou"
   },
   "SignOutButton": {
     "text": "Déconnexion"

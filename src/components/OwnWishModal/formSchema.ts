@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { PreprocessedWishLink, WishDescription } from "../../server/db/types/wishes";
+import { PreprocessedWishLink, WishDescription } from "../../server/database/types/wishes";
 
 export const FormSchema = z.object({
   description: WishDescription,

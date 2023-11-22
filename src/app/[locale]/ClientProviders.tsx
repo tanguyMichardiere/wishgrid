@@ -10,7 +10,7 @@ type Props = {
   children: ReactNode;
 };
 
-export default trpc.withTRPC(function ClientProviders(props: Props): JSX.Element {
+export default trpc.withTRPC(function ClientProviders(props: Props) {
   return (
     <ThemeProvider attribute="data-theme" disableTransitionOnChange>
       <Toaster position="top-center" />

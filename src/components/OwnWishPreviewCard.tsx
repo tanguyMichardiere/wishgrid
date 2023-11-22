@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import type { OwnWish } from "../server/db/types/wishes";
+import type { OwnWish } from "../server/database/types/wishes";
 import Card from "./Card";
 import OwnWishModal from "./OwnWishModal";
 

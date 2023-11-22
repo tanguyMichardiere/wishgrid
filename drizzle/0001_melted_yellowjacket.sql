@@ -1,1 +1,0 @@
-ALTER TABLE "wishes" ADD CONSTRAINT "wishes_user_id_title_unique" UNIQUE("user_id","title");

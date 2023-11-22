@@ -4,7 +4,7 @@ import cx from "classix";
 import type { ReactNode } from "react";
 import { forwardRef, useRef } from "react";
 import { useCurrentUser } from "../../context/currentUser/hook";
-import type { Wish } from "../../server/db/types/wishes";
+import type { Wish } from "../../server/database/types/wishes";
 import { mergeRefs } from "../../utils/refs";
 import { useClientTranslations } from "../../utils/translations/client";
 import Modal from "../Modal";
@@ -52,7 +52,7 @@ export default forwardRef<HTMLDialogElement, Props>(function WishModal(props, re
         <>
           <p>
             {t.rich("reservedBy", {
-              name: props.wish.reservedBy.username,
+              name: props.wish.reservedBy.name,
               you: props.wish.reservedBy.id === currentUser.id,
               bold,
             })}

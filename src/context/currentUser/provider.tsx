@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import type { User } from "../../server/db/types/user";
+import type { User } from "../../server/database/types/user";
 import { trpc } from "../../utils/trpc/client";
 import { currentUserContext } from "./context";
 

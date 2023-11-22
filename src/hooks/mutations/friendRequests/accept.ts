@@ -14,48 +14,49 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
     Router["friendRequests"]["status"],
   ]
 > {
-  const trpcContext = trpc.useContext();
+  const trpcUtils = trpc.useUtils();
 
   return {
     async cancel({ userId }) {
       await Promise.all([
-        trpcContext.friends.status.cancel({ userId }),
-        trpcContext.friendRequests.list.cancel(),
-        trpcContext.friendRequests.status.cancel({ userId }),
+        trpcUtils.friends.status.cancel({ userId }),
+        trpcUtils.friendRequests.list.cancel(),
+        trpcUtils.friendRequests.status.cancel({ userId }),
       ]);
     },
     getData({ userId }) {
       return [
-        trpcContext.friends.status.getData({ userId }),
-        trpcContext.friendRequests.list.getData(),
-        trpcContext.friendRequests.status.getData({ userId }),
+        trpcUtils.friends.status.getData({ userId }),
+        trpcUtils.friendRequests.list.getData(),
+        trpcUtils.friendRequests.status.getData({ userId }),
       ];
     },
     setData({ userId }) {
-      trpcContext.friends.status.setData({ userId }, true);
-      trpcContext.friendRequests.list.setData(undefined, (friendRequests) =>
+      trpcUtils.friends.status.setData({ userId }, true);
+      trpcUtils.friendRequests.list.setData(undefined, (friendRequests) =>
         friendRequests !== undefined
           ? friendRequests.filter((user) => user.id !== userId)
           : undefined,
       );
-      trpcContext.friendRequests.status.setData({ userId }, { from: false, to: false });
+      trpcUtils.friendRequests.status.setData({ userId }, { from: false, to: false });
     },
     revertData({ userId }, context) {
       if (context[0] !== undefined) {
-        trpcContext.friends.status.setData({ userId }, context[0]);
+        trpcUtils.friends.status.setData({ userId }, context[0]);
       }
       if (context[1] !== undefined) {
-        trpcContext.friendRequests.list.setData(undefined, context[1]);
+        trpcUtils.friendRequests.list.setData(undefined, context[1]);
       }
       if (context[2] !== undefined) {
-        trpcContext.friendRequests.status.setData({ userId }, context[2]);
+        trpcUtils.friendRequests.status.setData({ userId }, context[2]);
       }
     },
     async invalidate({ userId }) {
       await Promise.all([
-        trpcContext.friends.status.invalidate({ userId }),
-        trpcContext.friendRequests.list.invalidate(),
-        trpcContext.friendRequests.status.invalidate({ userId }),
+        trpcUtils.friends.list.invalidate(),
+        trpcUtils.friends.status.invalidate({ userId }),
+        trpcUtils.friendRequests.list.invalidate(),
+        trpcUtils.friendRequests.status.invalidate({ userId }),
       ]);
     },
   };

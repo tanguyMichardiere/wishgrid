@@ -1,13 +1,20 @@
-import { clerkClient } from "@clerk/nextjs";
+import { TRPCError } from "@trpc/server";
 import "server-only";
 import { z } from "zod";
 import { procedure } from "../..";
-import { User, UserId } from "../../db/types/user";
+import { Id } from "../../database/types";
+import { User } from "../../database/types/user";
 
 export const get = procedure
-  .input(z.object({ userId: UserId }))
+  .input(z.object({ userId: Id }))
   .output(User)
   .query(async function ({ ctx, input }) {
-    ctx.logger.debug({ userId: input.userId }, `retrieving ${input.userId}`);
-    return clerkClient.users.getUser(input.userId);
+    const user = await ctx.db.user.findUnique({
+      select: { id: true, name: true, image: true },
+      where: { id: input.userId },
+    });
+    if (user === null) {
+      throw new TRPCError({ code: "NOT_FOUND" });
+    }
+    return user;
   });

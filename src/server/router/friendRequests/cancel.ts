@@ -1,19 +1,14 @@
-import { and, eq } from "drizzle-orm";
 import "server-only";
 import { z } from "zod";
 import { procedure } from "../..";
-import { friendRequests } from "../../db/schema/friendRequests";
-import { UserId } from "../../db/types/user";
-import { httpDb } from "../../middleware/httpDb";
+import { Id } from "../../database/types";
 
 export const cancel = procedure
-  .use(httpDb)
-  .input(z.object({ userId: UserId }))
+  .input(z.object({ userId: Id }))
   .output(z.void())
   .mutation(async function ({ ctx, input }) {
-    await ctx.db
-      .delete(friendRequests)
-      .where(
-        and(eq(friendRequests.userId, ctx.user.id), eq(friendRequests.friendId, input.userId)),
-      );
+    await ctx.db.user.update({
+      data: { outFriendRequests: { disconnect: { id: input.userId } } },
+      where: { id: ctx.user.id },
+    });
   });

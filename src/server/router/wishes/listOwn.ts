@@ -1,18 +1,12 @@
-import { asc, eq } from "drizzle-orm";
 import "server-only";
 import { z } from "zod";
 import { procedure } from "../..";
-import { wishes } from "../../db/schema/wishes";
-import { OwnWish } from "../../db/types/wishes";
-import { httpDb } from "../../middleware/httpDb";
+import { OwnWish } from "../../database/types/wishes";
 
-export const listOwn = procedure
-  .use(httpDb)
-  .output(z.array(OwnWish))
-  .query(async function ({ ctx }) {
-    return ctx.db.query.wishes.findMany({
-      columns: { id: true, title: true, description: true, link: true },
-      where: eq(wishes.userId, ctx.user.id),
-      orderBy: [asc(wishes.title)],
-    });
+export const listOwn = procedure.output(z.array(OwnWish)).query(async function ({ ctx }) {
+  const { wishes } = await ctx.db.user.findUniqueOrThrow({
+    include: { wishes: { select: { id: true, title: true, description: true, link: true } } },
+    where: { id: ctx.user.id },
   });
+  return wishes;
+});

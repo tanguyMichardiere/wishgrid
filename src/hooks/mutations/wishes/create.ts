@@ -9,11 +9,11 @@ import type { RelatedProcedures } from "../relatedProcedures";
 function useRelatedProcedures(): RelatedProcedures<Router["wishes"]["create"]> {
   const currentUser = useCurrentUser();
 
-  const trpcContext = trpc.useContext();
+  const trpcUtils = trpc.useUtils();
 
   return {
     setData({ title, description, link }, id) {
-      trpcContext.wishes.listOwn.setData(undefined, (wishes) =>
+      trpcUtils.wishes.listOwn.setData(undefined, (wishes) =>
         wishes !== undefined
           ? [
               ...wishes,
@@ -23,7 +23,7 @@ function useRelatedProcedures(): RelatedProcedures<Router["wishes"]["create"]> {
       );
     },
     async invalidate() {
-      await trpcContext.wishes.listOwn.invalidate();
+      await trpcUtils.wishes.listOwn.invalidate();
     },
   };
 }

@@ -10,28 +10,28 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
   Router["wishes"]["update"],
   [Router["wishes"]["listOwn"]]
 > {
-  const trpcContext = trpc.useContext();
+  const trpcUtils = trpc.useUtils();
 
   return {
     async cancel() {
-      await trpcContext.wishes.listOwn.cancel();
+      await trpcUtils.wishes.listOwn.cancel();
     },
     getData() {
-      return [trpcContext.wishes.listOwn.getData()];
+      return [trpcUtils.wishes.listOwn.getData()];
     },
     setData({ id, description, link }) {
-      trpcContext.wishes.listOwn.setData(
+      trpcUtils.wishes.listOwn.setData(
         undefined,
         (wishes) => wishes?.map((wish) => (wish.id === id ? { ...wish, description, link } : wish)),
       );
     },
     revertData(_variables, context) {
       if (context[0] !== undefined) {
-        trpcContext.wishes.listOwn.setData(undefined, context[0]);
+        trpcUtils.wishes.listOwn.setData(undefined, context[0]);
       }
     },
     async invalidate() {
-      await trpcContext.wishes.listOwn.invalidate();
+      await trpcUtils.wishes.listOwn.invalidate();
     },
   };
 }

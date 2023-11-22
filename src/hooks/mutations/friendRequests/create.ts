@@ -10,27 +10,27 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
   Router["friendRequests"]["create"],
   [Router["friendRequests"]["status"]]
 > {
-  const trpcContext = trpc.useContext();
+  const trpcUtils = trpc.useUtils();
 
   return {
     async cancel({ userId }) {
-      await trpcContext.friendRequests.status.cancel({ userId });
+      await trpcUtils.friendRequests.status.cancel({ userId });
     },
     getData({ userId }) {
-      return [trpcContext.friendRequests.status.getData({ userId })];
+      return [trpcUtils.friendRequests.status.getData({ userId })];
     },
     setData({ userId }) {
-      trpcContext.friendRequests.status.setData({ userId }, (friendRequestStatus) =>
+      trpcUtils.friendRequests.status.setData({ userId }, (friendRequestStatus) =>
         friendRequestStatus !== undefined ? { ...friendRequestStatus, to: true } : undefined,
       );
     },
     revertData({ userId }, context) {
       if (context[0] !== undefined) {
-        trpcContext.friendRequests.status.setData({ userId }, context[0]);
+        trpcUtils.friendRequests.status.setData({ userId }, context[0]);
       }
     },
     async invalidate({ userId }) {
-      await trpcContext.friendRequests.status.invalidate({ userId });
+      await trpcUtils.friendRequests.status.invalidate({ userId });
     },
   };
 }

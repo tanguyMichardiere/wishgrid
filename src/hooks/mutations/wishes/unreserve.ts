@@ -9,28 +9,28 @@ import type { OptimisticRelatedProcedures } from "../relatedProcedures";
 function useRelatedProcedures(
   userId: string,
 ): OptimisticRelatedProcedures<Router["wishes"]["unreserve"], [Router["wishes"]["list"]]> {
-  const trpcContext = trpc.useContext();
+  const trpcUtils = trpc.useUtils();
 
   return {
     async cancel() {
-      await trpcContext.wishes.list.cancel({ userId });
+      await trpcUtils.wishes.list.cancel({ userId });
     },
     getData() {
-      return [trpcContext.wishes.list.getData({ userId })];
+      return [trpcUtils.wishes.list.getData({ userId })];
     },
     setData({ id }) {
-      trpcContext.wishes.list.setData(
+      trpcUtils.wishes.list.setData(
         { userId },
         (wishes) => wishes?.map((wish) => (wish.id === id ? { ...wish, reservedBy: null } : wish)),
       );
     },
     revertData(_variables, context) {
       if (context[0] !== undefined) {
-        trpcContext.wishes.list.setData({ userId }, context[0]);
+        trpcUtils.wishes.list.setData({ userId }, context[0]);
       }
     },
     async invalidate() {
-      await trpcContext.wishes.list.invalidate({ userId });
+      await trpcUtils.wishes.list.invalidate({ userId });
     },
   };
 }

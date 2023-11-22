@@ -1,32 +1,27 @@
 import { TRPCError } from "@trpc/server";
-import { and, eq } from "drizzle-orm";
 import "server-only";
 import { z } from "zod";
 import { procedure } from "../..";
-import { friendRequests } from "../../db/schema/friendRequests";
-import { friends } from "../../db/schema/friends";
-import { UserId } from "../../db/types/user";
-import { serverlessDb } from "../../middleware/serverlessDb";
+import { Id } from "../../database/types";
 
 export const accept = procedure
-  .use(serverlessDb)
-  .input(z.object({ userId: UserId }))
+  .input(z.object({ userId: Id }))
   .output(z.void())
   .mutation(async function ({ ctx, input }) {
-    const rows = await ctx.db
-      .delete(friendRequests)
-      .where(and(eq(friendRequests.userId, input.userId), eq(friendRequests.friendId, ctx.user.id)))
-      .returning();
-    if (rows.length === 0) {
+    const { friendRequests } = await ctx.db.user.findUniqueOrThrow({
+      include: { friendRequests: { select: { id: true } } },
+      where: { id: ctx.user.id },
+    });
+    if (!friendRequests.map(({ id }) => id).includes(input.userId)) {
       throw new TRPCError({ code: "NOT_FOUND" });
     }
-    await ctx.db
-      .delete(friendRequests)
-      .where(
-        and(eq(friendRequests.userId, input.userId), eq(friendRequests.friendId, ctx.user.id)),
-      );
-    await ctx.db.insert(friends).values([
-      { userId: ctx.user.id, friendId: input.userId },
-      { userId: input.userId, friendId: ctx.user.id },
-    ]);
+    await ctx.db.user.update({
+      data: {
+        friendRequests: { disconnect: { id: input.userId } },
+        outFriendRequests: { disconnect: { id: input.userId } },
+        friends: { connect: { id: input.userId } },
+        outFriends: { connect: { id: input.userId } },
+      },
+      where: { id: ctx.user.id },
+    });
   });
