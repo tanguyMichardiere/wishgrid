@@ -16,6 +16,12 @@ let nextConfig = {
     return Promise.resolve([{ source: "/:path*", headers }]);
   },
   experimental: { serverComponentsExternalPackages: ["pino"] },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.devtool = "source-map";
+    }
+    return config;
+  },
 };
 
 nextConfig = require("next-intl/plugin")()(nextConfig);
