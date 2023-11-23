@@ -133,7 +133,7 @@
       "text": "Réserver"
     },
     "ShareUserLinkButton": {
-      "buttonText": "Copier mon lien",
+      "buttonText": "Partager mon lien",
       "modalTitle": "Partagez votre lien pour permettre à d'autres utilisateurs de vous envoyer des demandes d'ami",
       "toastMessage": "Lien copié dans le presse-papier"
     },
@@ -202,6 +202,13 @@
     "text": "Connexion avec {provider}"
   },
   "SignInPage": {
+    "error": {
+      "defaultTitle": "Erreur d'authentification",
+      "OAuthAccountNotLinked": {
+        "body": "Merci de vous connecter avec votre compte original",
+        "title": "Le compte OAuth n'est pas lié"
+      }
+    },
     "or": "ou"
   },
   "SignOutButton": {

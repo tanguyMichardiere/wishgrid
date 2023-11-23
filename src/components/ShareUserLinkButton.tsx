@@ -52,7 +52,7 @@ export default function ShareUserLinkButton(props: Props): JSX.Element {
             <ClipboardDocumentIcon className="h-6 w-6" />
           </button>
           {canShare && (
-            <button className="btn" onClick={shareLink} type="button">
+            <button className="btn" onClick={shareLink} type="submit">
               <ShareIcon className="h-6 w-6" />
             </button>
           )}
