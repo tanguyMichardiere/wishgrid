@@ -20,7 +20,7 @@ const nextAuth = NextAuth({
   adapter,
   providers: [Discord, NODE_ENV === "development" ? Mock : Email],
   pages: {
-    signIn: "/",
+    signIn: "/sign-in",
     signOut: "/",
     error: "/auth/error",
     verifyRequest: "/auth/verify-request",
