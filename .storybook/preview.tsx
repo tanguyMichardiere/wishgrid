@@ -1,5 +1,7 @@
 import type { Preview } from "@storybook/react";
 import cx from "classix";
+import { NextIntlClientProvider } from "next-intl";
+import { client } from "../messages/en.json";
 import { variable } from "../src/app/font";
 import "../src/styles.css";
 
@@ -15,9 +17,11 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <div className={cx(variable, "font-sans")}>
-        <Story />
-      </div>
+      <NextIntlClientProvider locale="en" messages={{ client }}>
+        <div className={cx(variable, "font-sans")}>
+          <Story />
+        </div>
+      </NextIntlClientProvider>
     ),
   ],
 };
