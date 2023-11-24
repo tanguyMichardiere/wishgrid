@@ -7,8 +7,8 @@ const env = createEnv({
     LOG_LEVEL: z
       .enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"])
       .default("info"),
-    VERCEL_URL: z.string().url(),
 
+    NEXTAUTH_URL: z.string().url(),
     AUTH_SECRET: z.string().regex(/[0-9a-f]{64}/),
     AUTH_DISCORD_ID: z.string(),
     AUTH_DISCORD_SECRET: z.string(),
@@ -28,8 +28,8 @@ const env = createEnv({
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     LOG_LEVEL: process.env["LOG_LEVEL"],
-    VERCEL_URL: process.env["VERCEL_URL"],
 
+    NEXTAUTH_URL: process.env["NEXTAUTH_URL"],
     AUTH_SECRET: process.env["AUTH_SECRET"],
     AUTH_DISCORD_ID: process.env["AUTH_DISCORD_ID"],
     AUTH_DISCORD_SECRET: process.env["AUTH_DISCORD_SECRET"],
