@@ -17,4 +17,4 @@
 /tsconfig.tsbuildinfo
 
 # local env file
-/.env
+/.env*

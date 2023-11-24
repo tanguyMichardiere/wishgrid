@@ -18,6 +18,10 @@ module.exports = {
         "tsdoc/syntax": "off",
       },
     },
+    {
+      files: ["src/**/*.stories.tsx"],
+      extends: ["plugin:storybook/recommended"],
+    },
   ],
   reportUnusedDisableDirectives: true,
   rules: {

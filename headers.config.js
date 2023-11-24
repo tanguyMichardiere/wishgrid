@@ -5,7 +5,6 @@ const contentSecurityPolicy = {
   "connect-src": ["'self'", "*.wishgrid.app", "vitals.vercel-insights.com"],
   "img-src": ["'self'", "data:", "cdn.discordapp.com"],
   "script-src": ["'self'", "'unsafe-eval'", "'unsafe-inline'", "*.wishgrid.app"],
-  "worker-src": ["'self'", "blob:"],
   "style-src": ["'self'", "'unsafe-inline'"],
 };
 
