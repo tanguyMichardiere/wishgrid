@@ -1,5 +1,4 @@
 import { useLocale } from "next-intl";
-import { redirect } from "next/navigation";
 import "server-only";
 import { signIn } from "../auth";
 import { useServerTranslations } from "../utils/translations/server";
@@ -11,14 +10,10 @@ export default function EmailSignIn(): JSX.Element {
   async function signInAction(formData: FormData) {
     "use server";
 
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-    const url = (await signIn("email", {
+    await signIn("email", {
       email: formData.get("email"),
-      redirect: false,
       redirectTo: `/${locale !== "en" ? `${locale}` : ""}`,
-    })) as string;
-    // TODO: wait for fix in next-auth
-    redirect(url.replace("//verify-request", "/api/auth/verify-request"));
+    });
   }
 
   return (

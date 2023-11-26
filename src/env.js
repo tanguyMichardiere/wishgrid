@@ -39,6 +39,7 @@ const env = createEnv({
     DATABASE_URL: process.env["DATABASE_URL"],
     DATABASE_DIRECT_URL: process.env["DATABASE_DIRECT_URL"],
   },
+  emptyStringAsUndefined: true,
 });
 
 module.exports = {
