@@ -1,0 +1,3 @@
+# Vercel complains that .npmrc has 'use-node-version'
+# instead we use 'engines' in package.json
+/.npmrc
