@@ -8,7 +8,7 @@
   "scripts": {
     "postinstall": "prisma generate",
     "update-dependencies": "sh scripts/update-dependencies.sh",
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "storybook": "storybook dev",
     "format": "prettier -w src",
     "check-format": "prettier --check src",
@@ -40,6 +40,7 @@
     "@vercel/analytics": "1.1.1",
     "classix": "2.1.35",
     "client-only": "0.0.1",
+    "csv-stringify": "6.4.4",
     "daisyui": "4.4.9",
     "next": "14.0.3",
     "next-auth": "5.0.0-beta.3",

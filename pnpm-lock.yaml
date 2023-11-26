@@ -62,6 +62,9 @@ dependencies:
   client-only:
     specifier: 0.0.1
     version: 0.0.1
+  csv-stringify:
+    specifier: 6.4.4
+    version: 6.4.4
   daisyui:
     specifier: 4.4.9
     version: 4.4.9(postcss@8.4.31)
@@ -7071,6 +7074,10 @@ packages:
 
   /csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
+
+  /csv-stringify@6.4.4:
+    resolution: {integrity: sha512-NDshLupGa7gp4UG4sSNIqwYJqgSwvds0SvENntxoVoVvTzXcrHvd5gG2MWpbRpSNvk59dlmIe1IwNvSxN4IVmg==}
+    dev: false
 
   /culori@3.3.0:
     resolution: {integrity: sha512-pHJg+jbuFsCjz9iclQBqyL3B2HLCBF71BwVNujUYEvCeQMvV97R59MNK3R2+jgJ3a1fcZgI9B3vYgz8lzr/BFQ==}

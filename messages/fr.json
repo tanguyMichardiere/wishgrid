@@ -47,6 +47,9 @@
       "title": "Une erreur inattendue a eu lieu, elle a été signalée",
       "tryAgain": "Réessayer"
     },
+    "ExportMenu": {
+      "export": "Export"
+    },
     "FriendList": {
       "link": "ou partagez le vôtre",
       "text": "Pour envoyer des demandes d'ami, demandez à vos amis de partager leur lien"
@@ -218,5 +221,10 @@
     "dark": "Sombre",
     "light": "Lumineux",
     "system": "Système"
+  },
+  "wish-export": {
+    "description": "description",
+    "link": "lien",
+    "title": "titre"
   }
 }

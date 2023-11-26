@@ -47,6 +47,9 @@
       "title": "An unexpected error has occurred, it has been reported",
       "tryAgain": "Try Again"
     },
+    "ExportMenu": {
+      "export": "Export"
+    },
     "FriendList": {
       "link": "or share yours",
       "text": "To send friend requests, ask your friends to share their link"
@@ -218,5 +221,10 @@
     "dark": "Dark",
     "light": "Light",
     "system": "System"
+  },
+  "wish-export": {
+    "description": "description",
+    "link": "link",
+    "title": "title"
   }
 }
