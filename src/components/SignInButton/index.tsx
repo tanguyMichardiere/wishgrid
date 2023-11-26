@@ -1,6 +1,5 @@
 import cx from "classix";
 import { useLocale } from "next-intl";
-import { redirect } from "next/navigation";
 import "server-only";
 import { signIn } from "../../auth";
 import { useServerTranslations } from "../../utils/translations/server";
@@ -25,13 +24,7 @@ export default function SignInButton(props: Props): JSX.Element {
   async function signInAction() {
     "use server";
 
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-    const url = (await signIn(props.provider, {
-      redirect: false,
-      redirectTo: `/${locale !== "en" ? `${locale}` : ""}`,
-    })) as string;
-    // TODO: wait for fix in next-auth
-    redirect(url.replace("%2F%2Fcallback%2F", "%2Fapi%2Fauth%2Fcallback%2F"));
+    await signIn(props.provider, { redirectTo: `/${locale !== "en" ? `${locale}` : ""}` });
   }
 
   return (

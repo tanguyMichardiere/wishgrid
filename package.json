@@ -1,10 +1,14 @@
 {
   "name": "wishgrid",
   "private": true,
+  "engines": {
+    "node": "20.10.0",
+    "pnpm": "8"
+  },
   "scripts": {
     "postinstall": "prisma generate",
     "update-dependencies": "sh scripts/update-dependencies.sh",
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "storybook": "storybook dev",
     "format": "prettier -w src",
     "check-format": "prettier --check src",
