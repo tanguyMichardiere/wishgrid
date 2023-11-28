@@ -6,12 +6,13 @@ import { z } from "zod";
 import { auth } from "../../../../../../auth";
 import { createDatabaseClient } from "../../../../../../server/database/createClient";
 import { logger as baseLogger } from "../../../../../../server/logger";
+import { generateDocx } from "./generateDocx";
+import { generatePdf } from "./generatePdf";
 import { Params } from "./params";
 
 const Params = z.object({
   locale: z.enum(["en", "fr"]),
-  // TODO: docx, pdf
-  format: z.enum(["json", "csv"]),
+  format: z.enum(["json", "csv", "docx", "pdf"]),
 });
 
 export async function GET(
@@ -39,6 +40,7 @@ export async function GET(
       wishes: {
         select: { title: true, description: true, link: true },
         where: { reservedById: null },
+        orderBy: { title: "asc" },
       },
     },
     where: { id: session.user.id },
@@ -55,5 +57,10 @@ export async function GET(
       return new NextResponse(JSON.stringify(localizedWishes, undefined, 2));
     case "csv":
       return new NextResponse(CSV.stringify(localizedWishes, { header: true }));
+    case "docx":
+      return new NextResponse(await generateDocx(wishes));
+    case "pdf": {
+      return new NextResponse(await generatePdf(wishes));
+    }
   }
 }

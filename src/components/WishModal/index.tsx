@@ -42,7 +42,12 @@ export default forwardRef<HTMLDialogElement, Props>(function WishModal(props, re
       ref={mergeRefs(ref, innerRef)}
     >
       <h1 className="text-xl">{props.wish.title}</h1>
-      {props.wish.description.length > 0 && <p className="break-words">{props.wish.description}</p>}
+      {props.wish.description.length > 0 &&
+        props.wish.description.split("\n").map((line) => (
+          <p className="break-words" key={line}>
+            {line}
+          </p>
+        ))}
       {props.wish.link.length > 0 && (
         <a className="link break-all" href={props.wish.link} rel="noreferrer" target="_blank">
           {props.wish.link}

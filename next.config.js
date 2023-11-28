@@ -15,7 +15,7 @@ let nextConfig = {
   headers() {
     return Promise.resolve([{ source: "/:path*", headers }]);
   },
-  experimental: { serverComponentsExternalPackages: ["pino"] },
+  experimental: { serverComponentsExternalPackages: ["docx", "pdfkit", "pino"] },
 };
 
 nextConfig = require("next-intl/plugin")()(nextConfig);

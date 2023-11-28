@@ -21,15 +21,27 @@ export default function ExportMenu(props: Props): JSX.Element {
       [
         {
           key: "json",
-          children: "JSON",
+          children: "json",
           href: `/${locale}/user/wish-export/json`,
           download: `${currentUser.name}.json`,
         },
         {
           key: "csv",
-          children: "CSV",
+          children: "csv",
           href: `/${locale}/user/wish-export/csv`,
           download: `${currentUser.name}.csv`,
+        },
+        {
+          key: "docx",
+          children: "docx",
+          href: `/${locale}/user/wish-export/docx`,
+          download: `${currentUser.name}.docx`,
+        },
+        {
+          key: "pdf",
+          children: "pdf",
+          href: `/${locale}/user/wish-export/pdf`,
+          download: `${currentUser.name}.pdf`,
         },
       ] as const,
     [locale, currentUser.name],

@@ -75,9 +75,12 @@ export default forwardRef<HTMLDialogElement, Props>(function OwnWishModal(props,
         {updating ? (
           <WishDescriptionFormInput error={errors.description} register={register("description")} />
         ) : (
-          props.wish.description.length > 0 && (
-            <p className="break-words">{props.wish.description}</p>
-          )
+          props.wish.description.length > 0 &&
+          props.wish.description.split("\n").map((line) => (
+            <p className="break-words" key={line}>
+              {line}
+            </p>
+          ))
         )}
         {updating ? (
           <WishLinkFormInput error={errors.link} register={register("link")} />
