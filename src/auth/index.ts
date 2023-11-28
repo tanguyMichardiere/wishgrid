@@ -18,7 +18,6 @@ adapter.createUser = async (data) =>
 
 const nextAuth = NextAuth({
   adapter,
-  // @ts-expect-error wrong types?
   providers: [Discord, NODE_ENV === "development" ? Mock : Email],
   pages: {
     signIn: "/sign-in",
