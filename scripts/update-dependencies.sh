@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
-ONLY_MINOR="@types/node,@tanstack/react-query,@tanstack/react-query-devtools"
-pnpx npm-check-updates -f $ONLY_MINOR -t minor -u
-pnpx npm-check-updates -x $ONLY_MINOR -u
+EXCLUDE="@types/node"
+ONLY_MINOR="@tanstack/react-query,@tanstack/react-query-devtools"
+pnpm exec npm-check-updates -f "$ONLY_MINOR" -t minor -u
+pnpm exec npm-check-updates -x "$EXCLUDE,$ONLY_MINOR" -u
 pnpm install
 pnpm update
