@@ -12,6 +12,9 @@ import DeleteWishButton from "../DeleteWishButton";
 import Modal from "../Modal";
 import WishDescriptionFormInput from "../WishDescriptionFormInput";
 import WishLinkFormInput from "../WishLinkFormInput";
+import Description from "../WishModal/Description";
+import Link from "../WishModal/Link";
+import Title from "../WishModal/Title";
 import { FormSchema } from "./formSchema";
 
 type Props = {
@@ -71,22 +74,16 @@ export default forwardRef<HTMLDialogElement, Props>(function OwnWishModal(props,
   return (
     <Modal close={closeModal} ref={mergeRefs(ref, innerRef)}>
       <form className="flex flex-col gap-2" onSubmit={submit}>
-        <h2 className="text-center text-xl">{props.wish.title}</h2>
+        <Title title={props.wish.title} />
         {updating ? (
           <WishDescriptionFormInput error={errors.description} register={register("description")} />
         ) : (
-          props.wish.description.length > 0 && (
-            <p className="break-words">{props.wish.description}</p>
-          )
+          <Description description={props.wish.description} />
         )}
         {updating ? (
           <WishLinkFormInput error={errors.link} register={register("link")} />
         ) : (
-          props.wish.link.length > 0 && (
-            <a className="link break-all" href={props.wish.link} rel="noreferrer" target="_blank">
-              {props.wish.link}
-            </a>
-          )
+          <Link link={props.wish.link} />
         )}
         {updating ? (
           <div className="modal-action">

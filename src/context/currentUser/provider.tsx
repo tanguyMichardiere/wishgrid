@@ -10,7 +10,7 @@ type Props = {
   initialCurrentUser: User;
 };
 
-export default function CurrentUserContextProviderClient(props: Props): JSX.Element {
+export default function CurrentUserContextProvider(props: Props): JSX.Element {
   const currentUser = trpc.users.getCurrent.useQuery(undefined, {
     initialData: props.initialCurrentUser,
   });

@@ -16,6 +16,7 @@ export type Props = {
   items: ReadonlyArray<
     { key: string; children: ReactNode; className?: string } & (
       | { onClick: () => void }
+      | { href: Route; download: string }
       | { href: Route; locale?: Locale }
     )
   >;
@@ -49,6 +50,15 @@ export default function Menu(props: Props): JSX.Element {
             <li key={item.key}>
               {"onClick" in item ? (
                 <HeadlessUIMenu.Item as="button" className={item.className} onClick={item.onClick}>
+                  {item.children}
+                </HeadlessUIMenu.Item>
+              ) : "download" in item ? (
+                <HeadlessUIMenu.Item
+                  as="a"
+                  className={item.className}
+                  download={item.download}
+                  href={item.href}
+                >
                   {item.children}
                 </HeadlessUIMenu.Item>
               ) : (

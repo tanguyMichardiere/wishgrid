@@ -12,6 +12,9 @@ import ReserveWishButton from "../ReserveWishButton";
 import UnreserveWishButton from "../UnreserveWishButton";
 import CommentInput from "./CommentInput";
 import Comments from "./Comments";
+import Description from "./Description";
+import Link from "./Link";
+import Title from "./Title";
 
 const bold = (chunks: ReactNode) => <span className="font-semibold">{chunks}</span>;
 
@@ -41,13 +44,9 @@ export default forwardRef<HTMLDialogElement, Props>(function WishModal(props, re
       close={closeModal}
       ref={mergeRefs(ref, innerRef)}
     >
-      <h1 className="text-xl">{props.wish.title}</h1>
-      {props.wish.description.length > 0 && <p className="break-words">{props.wish.description}</p>}
-      {props.wish.link.length > 0 && (
-        <a className="link break-all" href={props.wish.link} rel="noreferrer" target="_blank">
-          {props.wish.link}
-        </a>
-      )}
+      <Title title={props.wish.title} />
+      <Description description={props.wish.description} />
+      <Link link={props.wish.link} />
       {props.wish.reservedBy !== null ? (
         <>
           <p>
