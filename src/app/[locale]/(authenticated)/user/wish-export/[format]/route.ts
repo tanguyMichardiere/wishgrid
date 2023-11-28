@@ -56,7 +56,17 @@ export async function GET(
     case "json":
       return new NextResponse(JSON.stringify(localizedWishes, undefined, 2));
     case "csv":
-      return new NextResponse(CSV.stringify(localizedWishes, { header: true }));
+      return new NextResponse(
+        CSV.stringify(localizedWishes, {
+          columns: [t("title"), t("description"), t("link")],
+          header: true,
+          cast: {
+            string(value) {
+              return value.replaceAll("\n", "\\n");
+            },
+          },
+        }),
+      );
     case "docx":
       return new NextResponse(await generateDocx(wishes));
     case "pdf": {
