@@ -23,7 +23,7 @@ function getRequestPathname(): string | undefined {
         const { pathname } = new URL(url);
         // TODO: something (next-intl?) removes "fr" at the start of "friends"
         if (pathname.startsWith("/iend/") || pathname.startsWith("/fr/iend/")) {
-          pathname.replace("/iend/", "/friend/");
+          return pathname.replace("/iend/", "/friend/");
         }
         return pathname;
       }
