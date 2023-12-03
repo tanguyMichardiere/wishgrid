@@ -39,7 +39,6 @@ export async function GET(
     include: {
       wishes: {
         select: { title: true, description: true, link: true },
-        where: { reservedById: null },
         orderBy: { title: "asc" },
       },
     },
