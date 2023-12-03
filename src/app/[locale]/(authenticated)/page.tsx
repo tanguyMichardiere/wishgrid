@@ -5,7 +5,6 @@ import FriendRequestList from "./FriendRequestList";
 
 export default async function HomePage(): Promise<JSX.Element> {
   const friends = await getFriendsList();
-
   const friendRequests = await getFriendRequestsList();
 
   return (

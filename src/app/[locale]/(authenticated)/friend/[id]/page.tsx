@@ -9,10 +9,8 @@ type Props = {
 };
 
 export default async function FriendIdPage(props: Props): Promise<JSX.Element> {
-  const [friend, wishes] = await Promise.all([
-    getFriend(props.params.id),
-    getWishesList(props.params.id),
-  ]);
+  const friend = await getFriend(props.params.id);
+  const wishes = await getWishesList(props.params.id);
 
   return (
     <div className="flex flex-col gap-4">

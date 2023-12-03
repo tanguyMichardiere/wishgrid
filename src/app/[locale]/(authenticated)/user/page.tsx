@@ -7,7 +7,8 @@ import ExportMenu from "./ExportMenu";
 import OwnWishList from "./OwnWishList";
 
 export default async function UserPage(): Promise<JSX.Element> {
-  const [currentUser, wishes] = await Promise.all([getCurrentUser(), getWishesListOwn()]);
+  const currentUser = await getCurrentUser();
+  const wishes = await getWishesListOwn();
 
   return (
     <div className="flex flex-col gap-4">
