@@ -1,11 +1,4 @@
-import { cache } from "react";
 import "server-only";
-import { createServerSideHelpers } from "../../trpc/server";
+import { serverQuery } from "..";
 
-async function fn() {
-  const trpc = await createServerSideHelpers();
-
-  return trpc.friendRequests.list.fetch();
-}
-
-export const getFriendRequestsList = cache(fn);
+export const getFriendRequestsList = serverQuery((trpc) => trpc.friendRequests.list.fetch());

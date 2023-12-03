@@ -1,17 +1,4 @@
-import { cache } from "react";
 import "server-only";
-import { redirect } from "../../../navigation";
-import { createServerSideHelpers } from "../../trpc/server";
+import { serverQuery } from "..";
 
-async function fn() {
-  const trpc = await createServerSideHelpers();
-
-  try {
-    return await trpc.users.getCurrent.fetch();
-  } catch {
-    // TODO: why do we have to return?
-    return redirect("/sign-in");
-  }
-}
-
-export const getCurrentUser = cache(fn);
+export const getCurrentUser = serverQuery((trpc) => trpc.users.getCurrent.fetch());
