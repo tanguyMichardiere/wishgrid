@@ -1,5 +1,4 @@
 import cx from "classix";
-import { useLocale } from "next-intl";
 import "server-only";
 import { signIn } from "../../auth";
 import { useServerTranslations } from "../../utils/translations/server";
@@ -15,16 +14,16 @@ const providers = {
 
 type Props = {
   provider: keyof typeof providers;
+  redirectTo: string;
 };
 
 export default function SignInButton(props: Props): JSX.Element {
-  const locale = useLocale();
   const t = useServerTranslations("SignInButton");
 
   async function signInAction() {
     "use server";
 
-    await signIn(props.provider, { redirectTo: `/${locale !== "en" ? `${locale}` : ""}` });
+    await signIn(props.provider, { redirectTo: props.redirectTo });
   }
 
   return (
