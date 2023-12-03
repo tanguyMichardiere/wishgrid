@@ -1,16 +1,8 @@
 import { notFound } from "next/navigation";
-import { cache } from "react";
 import "server-only";
-import { createServerSideHelpers } from "../../trpc/server";
+import { serverQuery } from "..";
 
-async function fn(userId: string) {
-  const trpc = await createServerSideHelpers();
-
-  try {
-    return await trpc.friends.status.fetch({ userId });
-  } catch {
-    notFound();
-  }
-}
-
-export const getFriendsStatus = cache(fn);
+export const getFriendsStatus = serverQuery(
+  (trpc, userId: string) => trpc.friends.status.fetch({ userId }),
+  { NOT_FOUND: notFound },
+);

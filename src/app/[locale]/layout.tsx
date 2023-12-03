@@ -14,7 +14,6 @@ type Props = {
 
 export default function LocaleLayout(props: Props): JSX.Element {
   const locale = useLocale();
-
   if (props.params.locale !== locale) {
     notFound();
   }

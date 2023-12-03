@@ -1,19 +1,18 @@
-import { useLocale } from "next-intl";
 import "server-only";
 import { signIn } from "../auth";
 import { useServerTranslations } from "../utils/translations/server";
 
-export default function EmailSignIn(): JSX.Element {
-  const locale = useLocale();
+type Props = {
+  redirectTo: string;
+};
+
+export default function EmailSignIn(props: Props): JSX.Element {
   const t = useServerTranslations("EmailSignIn");
 
   async function signInAction(formData: FormData) {
     "use server";
 
-    await signIn("email", {
-      email: formData.get("email"),
-      redirectTo: `/${locale !== "en" ? `${locale}` : ""}`,
-    });
+    await signIn("email", { email: formData.get("email"), redirectTo: props.redirectTo });
   }
 
   return (

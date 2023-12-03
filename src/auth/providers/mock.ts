@@ -3,6 +3,6 @@ import { logger } from "../../server/logger";
 
 export default Email({
   sendVerificationRequest({ url }) {
-    logger.debug(url);
+    logger.info(url);
   },
 });

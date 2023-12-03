@@ -1,14 +1,24 @@
+import { useLocale } from "next-intl";
 import About from "../../../../../components/About";
 import EmailSignIn from "../../../../../components/EmailSignIn";
 import SignInButton from "../../../../../components/SignInButton";
 import { useServerTranslations } from "../../../../../utils/translations/server";
 
 type Props = {
-  searchParams: { error?: string };
+  searchParams: {
+    redirectTo?: string;
+    error?: string;
+  };
 };
 
 export default function SignInPage(props: Props): JSX.Element {
+  const locale = useLocale();
   const t = useServerTranslations("SignInPage");
+
+  const redirectTo =
+    props.searchParams.redirectTo !== undefined
+      ? decodeURIComponent(props.searchParams.redirectTo)
+      : `/${locale !== "en" ? `${locale}` : ""}`;
 
   return (
     <div className="flex flex-col items-center gap-8">
@@ -26,9 +36,9 @@ export default function SignInPage(props: Props): JSX.Element {
         </div>
       )}
       <div className="flex flex-col items-center gap-2">
-        <SignInButton provider="discord" />
+        <SignInButton provider="discord" redirectTo={redirectTo} />
         <div className="divider">{t("or")}</div>
-        <EmailSignIn />
+        <EmailSignIn redirectTo={redirectTo} />
       </div>
     </div>
   );
