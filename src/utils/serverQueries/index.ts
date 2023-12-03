@@ -20,7 +20,12 @@ function getRequestPathname(): string | undefined {
       // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
       const { url, hreflang } = match.groups as LinkRegexGroups;
       if (hreflang === locale) {
-        return new URL(url).pathname;
+        const { pathname } = new URL(url);
+        // TODO: something (next-intl?) removes "fr" at the start of "friends"
+        if (pathname.startsWith("/iend/") || pathname.startsWith("/fr/iend/")) {
+          pathname.replace("/iend/", "/friend/");
+        }
+        return pathname;
       }
     }
     return undefined;
