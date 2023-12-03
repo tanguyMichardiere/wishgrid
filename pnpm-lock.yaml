@@ -3739,7 +3739,7 @@ packages:
       '@storybook/preview': 7.6.3
       '@storybook/preview-api': 7.6.3
       '@swc/core': 1.3.100
-      '@types/node': 18.19.1
+      '@types/node': 18.19.2
       '@types/semver': 7.5.6
       babel-loader: 9.1.3(@babel/core@7.23.5)(webpack@5.89.0)
       browser-assert: 1.2.1
@@ -3903,7 +3903,7 @@ packages:
       '@storybook/node-logger': 7.6.3
       '@storybook/types': 7.6.3
       '@types/find-cache-dir': 3.2.1
-      '@types/node': 18.19.1
+      '@types/node': 18.19.2
       '@types/node-fetch': 2.6.9
       '@types/pretty-hrtime': 1.0.3
       chalk: 4.1.2
@@ -3952,7 +3952,7 @@ packages:
       '@storybook/telemetry': 7.6.3
       '@storybook/types': 7.6.3
       '@types/detect-port': 1.3.5
-      '@types/node': 18.19.1
+      '@types/node': 18.19.2
       '@types/pretty-hrtime': 1.0.3
       '@types/semver': 7.5.6
       better-opn: 3.0.2
@@ -3990,7 +3990,7 @@ packages:
       '@storybook/core-common': 7.6.3
       '@storybook/node-logger': 7.6.3
       '@storybook/types': 7.6.3
-      '@types/node': 18.19.1
+      '@types/node': 18.19.2
       ts-dedent: 2.2.0
     transitivePeerDependencies:
       - encoding
@@ -4127,7 +4127,7 @@ packages:
       '@storybook/preset-react-webpack': 7.6.3(@babel/core@7.23.5)(@swc/core@1.3.100)(esbuild@0.18.20)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.2)
       '@storybook/preview-api': 7.6.3
       '@storybook/react': 7.6.3(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.2)
-      '@types/node': 18.19.1
+      '@types/node': 18.19.2
       css-loader: 6.8.1(webpack@5.89.0)
       find-up: 5.0.0
       fs-extra: 11.2.0
@@ -4203,7 +4203,7 @@ packages:
       '@storybook/node-logger': 7.6.3
       '@storybook/react': 7.6.3(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.2)
       '@storybook/react-docgen-typescript-plugin': 1.0.6--canary.9.0c3f3b7.0(typescript@5.3.2)(webpack@5.89.0)
-      '@types/node': 18.19.1
+      '@types/node': 18.19.2
       '@types/semver': 7.5.6
       babel-plugin-add-react-displayname: 0.0.5
       fs-extra: 11.2.0
@@ -4302,7 +4302,7 @@ packages:
       '@storybook/types': 7.6.3
       '@types/escodegen': 0.0.6
       '@types/estree': 0.0.51
-      '@types/node': 18.19.1
+      '@types/node': 18.19.2
       acorn: 7.4.1
       acorn-jsx: 5.3.2(acorn@7.4.1)
       acorn-walk: 7.2.0
@@ -4902,8 +4902,8 @@ packages:
     resolution: {integrity: sha512-qelS/Ra6sacc4loe/3MSjXNL1dNQ/GjxNHVzuChwMfmk7HuycRLVQN2qNY3XahK+fZc5E2szqQSKUyAF0E+2bg==}
     dev: true
 
-  /@types/node@18.19.1:
-    resolution: {integrity: sha512-mZJ9V11gG5Vp0Ox2oERpeFDl+JvCwK24PGy76vVY/UgBtjwJWc5rYBThFxmbnYOm9UPZNm6wEl/sxHt2SU7x9A==}
+  /@types/node@18.19.2:
+    resolution: {integrity: sha512-6wzfBdbWpe8QykUkXBjtmO3zITA0A3FIjoy+in0Y2K4KrCiRhNYJIdwAPDffZ3G6GnaKaSLSEa9ZuORLfEoiwg==}
     dependencies:
       undici-types: 5.26.5
     dev: true
