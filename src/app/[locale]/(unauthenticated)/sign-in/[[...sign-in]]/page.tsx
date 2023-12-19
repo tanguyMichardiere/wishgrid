@@ -18,7 +18,7 @@ export default function SignInPage(props: Props): JSX.Element {
   const redirectTo =
     props.searchParams.redirectTo !== undefined
       ? decodeURIComponent(props.searchParams.redirectTo)
-      : `/${locale !== "en" ? `${locale}` : ""}`;
+      : `/${locale !== "en" ? locale : ""}`;
 
   return (
     <div className="flex flex-col items-center gap-8">
