@@ -2,7 +2,7 @@
   "name": "wishgrid",
   "private": true,
   "engines": {
-    "node": "20.5.1",
+    "node": "20.9.0",
     "pnpm": "8"
   },
   "scripts": {
@@ -71,7 +71,7 @@
     "@storybook/react": "7.6.6",
     "@total-typescript/ts-reset": "0.5.1",
     "@types/eslint": "8.56.0",
-    "@types/node": "20.5.1",
+    "@types/node": "20.9.0",
     "@types/pdfkit": "0.13.3",
     "@types/prettier": "2.7.3",
     "@types/react": "18.2.45",
