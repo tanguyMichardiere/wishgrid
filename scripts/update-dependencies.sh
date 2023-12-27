@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 
-# TODO: remove sharp once it works
-EXCLUDE="@types/node,sharp"
+EXCLUDE="@types/node"
 ONLY_MINOR="@tanstack/react-query,@tanstack/react-query-devtools"
 
 pnpm exec npm-check-updates -f "$ONLY_MINOR" -t minor -u
