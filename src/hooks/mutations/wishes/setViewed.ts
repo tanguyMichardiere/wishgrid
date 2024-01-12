@@ -25,16 +25,13 @@ function useRelatedProcedures(
       return [trpcUtils.friends.list.getData(), trpcUtils.wishes.list.getData({ userId })];
     },
     setData({ id }) {
-      trpcUtils.friends.list.setData(
-        undefined,
-        (friends) =>
-          friends?.map((friend) =>
-            friend.id === userId ? { ...friend, newWishCount: friend.newWishCount - 1 } : friend,
-          ),
+      trpcUtils.friends.list.setData(undefined, (friends) =>
+        friends?.map((friend) =>
+          friend.id === userId ? { ...friend, newWishCount: friend.newWishCount - 1 } : friend,
+        ),
       );
-      trpcUtils.wishes.list.setData(
-        { userId },
-        (wishes) => wishes?.map((wish) => (wish.id === id ? { ...wish, viewed: true } : wish)),
+      trpcUtils.wishes.list.setData({ userId }, (wishes) =>
+        wishes?.map((wish) => (wish.id === id ? { ...wish, viewed: true } : wish)),
       );
     },
     revertData(_variables, context) {

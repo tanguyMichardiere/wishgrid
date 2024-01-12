@@ -13,17 +13,15 @@ function useRelatedProcedures(userId: string): RelatedProcedures<Router["comment
 
   return {
     setData({ text, wishId }, { id, timestamp }) {
-      trpcUtils.wishes.list.setData(
-        { userId },
-        (wishes) =>
-          wishes?.map((wish) =>
-            wish.id === wishId
-              ? {
-                  ...wish,
-                  comments: [{ id, text, timestamp, user: currentUser }, ...wish.comments],
-                }
-              : wish,
-          ),
+      trpcUtils.wishes.list.setData({ userId }, (wishes) =>
+        wishes?.map((wish) =>
+          wish.id === wishId
+            ? {
+                ...wish,
+                comments: [{ id, text, timestamp, user: currentUser }, ...wish.comments],
+              }
+            : wish,
+        ),
       );
     },
     async invalidate() {

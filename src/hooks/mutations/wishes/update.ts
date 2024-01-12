@@ -20,9 +20,8 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
       return [trpcUtils.wishes.listOwn.getData()];
     },
     setData({ id, description, link }) {
-      trpcUtils.wishes.listOwn.setData(
-        undefined,
-        (wishes) => wishes?.map((wish) => (wish.id === id ? { ...wish, description, link } : wish)),
+      trpcUtils.wishes.listOwn.setData(undefined, (wishes) =>
+        wishes?.map((wish) => (wish.id === id ? { ...wish, description, link } : wish)),
       );
     },
     revertData(_variables, context) {

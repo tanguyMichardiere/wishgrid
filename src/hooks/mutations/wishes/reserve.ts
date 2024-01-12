@@ -22,10 +22,8 @@ function useRelatedProcedures(
       return [trpcUtils.wishes.list.getData({ userId })];
     },
     setData({ id }) {
-      trpcUtils.wishes.list.setData(
-        { userId },
-        (wishes) =>
-          wishes?.map((wish) => (wish.id === id ? { ...wish, reservedBy: currentUser } : wish)),
+      trpcUtils.wishes.list.setData({ userId }, (wishes) =>
+        wishes?.map((wish) => (wish.id === id ? { ...wish, reservedBy: currentUser } : wish)),
       );
     },
     revertData(_variables, context) {
