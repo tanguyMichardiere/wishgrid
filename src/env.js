@@ -12,14 +12,8 @@ const env = createEnv({
     AUTH_SECRET: z.string().regex(/[0-9a-f]{64}/),
     AUTH_DISCORD_ID: z.string(),
     AUTH_DISCORD_SECRET: z.string(),
-    AUTH_EMAIL_SERVER: z
-      .string()
-      .url()
-      .startsWith("smtp://")
-      // @ts-expect-error crashes immediately if incorrect
-      .default(process.env.NODE_ENV === "development" ? "smtp://" : undefined),
-    // @ts-expect-error crashes immediately if incorrect
-    AUTH_EMAIL_FROM: z.string().default(process.env.NODE_ENV === "development" ? "" : undefined),
+    AUTH_EMAIL_SERVER: z.string().url().startsWith("smtp://"),
+    AUTH_EMAIL_FROM: z.string(),
 
     DATABASE_URL: z.string().url().startsWith("postgresql://"),
     DATABASE_DIRECT_URL: z.string().url().startsWith("postgresql://"),
