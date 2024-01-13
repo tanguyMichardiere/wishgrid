@@ -23,11 +23,11 @@ export default function MutationButton<TVariables>({
   return (
     <button
       className={cx("btn", props.className)}
-      disabled={props.mutation.isLoading || props.disabled === true}
+      disabled={props.mutation.isPending || props.disabled === true}
       onClick={mutate}
       type={type}
     >
-      {props.mutation.isLoading && <span className="loading loading-spinner" />}
+      {props.mutation.isPending && <span className="loading loading-spinner" />}
       {props.children}
     </button>
   );
