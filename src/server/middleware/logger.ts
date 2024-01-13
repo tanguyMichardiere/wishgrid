@@ -6,10 +6,10 @@ export const logger = standaloneMiddleware().create(async function ({
   ctx,
   type,
   path,
-  rawInput,
+  getRawInput,
   next,
 }) {
-  const logger = baseLogger.child({ type, path, input: rawInput });
+  const logger = baseLogger.child({ type, path, input: await getRawInput() });
   logger.debug(`${type.toUpperCase()} ${path}`);
   return next({ ctx: { ...ctx, logger } });
 });

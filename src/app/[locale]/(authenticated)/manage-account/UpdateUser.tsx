@@ -73,8 +73,8 @@ export default function UpdateUser(): JSX.Element {
           </span>
         </label>
       </div>
-      <button className="btn btn-primary" disabled={updateUser.isLoading} type="submit">
-        {updateUser.isLoading && <span className="loading loading-spinner" />}
+      <button className="btn btn-primary" disabled={updateUser.isPending} type="submit">
+        {updateUser.isPending && <span className="loading loading-spinner" />}
         {t("submitButtonText")}
       </button>
     </form>

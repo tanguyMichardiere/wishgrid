@@ -1,4 +1,5 @@
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { ReactNode } from "react";
 import "../styles.css";
 
@@ -20,8 +21,9 @@ type Props = {
 export default function RootLayout(props: Props): JSX.Element {
   return (
     <>
-      <Analytics />
       {props.children}
+      <Analytics />
+      <SpeedInsights />
     </>
   );
 }
