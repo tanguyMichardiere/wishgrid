@@ -1,8 +1,8 @@
-import { experimental_standaloneMiddleware as standaloneMiddleware } from "@trpc/server";
+import { experimental_trpcMiddleware as trpcMiddleware } from "@trpc/server";
 import "server-only";
 import { logger as baseLogger } from "../logger";
 
-export const logger = standaloneMiddleware().create(async function ({
+export const logger = trpcMiddleware().create(async function ({
   ctx,
   type,
   path,
