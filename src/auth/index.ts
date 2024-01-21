@@ -1,5 +1,6 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import type { User } from "@prisma/client";
+import type { Session } from "next-auth";
 import NextAuth from "next-auth";
 import Discord from "next-auth/providers/discord";
 import { NODE_ENV } from "../env";
@@ -26,9 +27,9 @@ const nextAuth = NextAuth({
     verifyRequest: "/auth/verify-request",
   },
   callbacks: {
-    session({ session, user }) {
-      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-      session.user = user as User;
+    // @ts-expect-error in database mode we always have `user` and not `token`
+    session({ session, user }: { session: Session; user: User }) {
+      session.user = user;
       return session;
     },
   },
