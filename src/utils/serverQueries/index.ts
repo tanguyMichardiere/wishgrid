@@ -21,7 +21,7 @@ function getRequestPathname(): string | undefined {
       const { url, hreflang } = match.groups as LinkRegexGroups;
       if (hreflang === locale) {
         const { pathname } = new URL(url);
-        // TODO: something (next-intl?) removes "fr" at the start of "friends"
+        // TODO: something (next-intl?) removes "fr" at the start of "friend"
         if (pathname.startsWith("/iend/") || pathname.startsWith("/fr/iend/")) {
           return pathname.replace("/iend/", "/friend/");
         }

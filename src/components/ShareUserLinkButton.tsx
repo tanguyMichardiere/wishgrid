@@ -2,10 +2,38 @@
 
 import { ClipboardDocumentIcon, ShareIcon } from "@heroicons/react/24/outline";
 import { QRCodeSVG } from "qrcode.react";
-import { useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "../utils/toast";
 import { useClientTranslations } from "../utils/translations/client";
 import Modal from "./Modal";
+
+function useShareLink(url: string): [boolean, () => void] {
+  const [supportsSharing, setSupportsSharing] = useState(false);
+
+  useEffect(
+    function () {
+      setSupportsSharing(
+        navigator.share instanceof Function &&
+          navigator.canShare instanceof Function &&
+          navigator.canShare({ url }),
+      );
+    },
+    [url],
+  );
+
+  const shareLink = useCallback(
+    function () {
+      if (supportsSharing) {
+        navigator.share({ url }).catch(function () {
+          // probably just cancelled
+        });
+      }
+    },
+    [supportsSharing, url],
+  );
+
+  return [supportsSharing, shareLink];
+}
 
 type Props = {
   id: string;
@@ -22,16 +50,7 @@ export default function ShareUserLinkButton(props: Props): JSX.Element {
     });
   }
 
-  const canShare =
-    navigator.share instanceof Function &&
-    navigator.canShare instanceof Function &&
-    navigator.canShare({ url });
-
-  function shareLink() {
-    navigator.share({ url }).catch(function () {
-      // probably just cancelled
-    });
-  }
+  const [canShare, shareLink] = useShareLink(url);
 
   const modalRef = useRef<HTMLDialogElement>(null);
 
