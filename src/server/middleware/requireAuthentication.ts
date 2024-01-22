@@ -1,8 +1,8 @@
-import { TRPCError, experimental_standaloneMiddleware as standaloneMiddleware } from "@trpc/server";
+import { TRPCError, experimental_trpcMiddleware as trpcMiddleware } from "@trpc/server";
 import "server-only";
 import { auth } from "../../auth";
 
-export const requireAuthentication = standaloneMiddleware().create(async function ({ ctx, next }) {
+export const requireAuthentication = trpcMiddleware().create(async function ({ ctx, next }) {
   const session = await auth();
   if (session?.user === undefined) {
     throw new TRPCError({ code: "UNAUTHORIZED" });

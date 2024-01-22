@@ -1,15 +1,37 @@
 const { NODE_ENV } = require("./src/env");
 
+const self = "'self'";
+const data = "data:";
+const unsafeEval = "'unsafe-eval'";
+const unsafeInline = "'unsafe-inline'";
+
+/** @type {Record<string, string[]>} */
 const contentSecurityPolicy = {
-  "default-src": ["'self'"],
-  "connect-src": ["'self'", "*.wishgrid.app", "vitals.vercel-insights.com"],
-  "img-src": ["'self'", "data:", "cdn.discordapp.com"],
-  "script-src": ["'self'", "'unsafe-eval'", "'unsafe-inline'", "*.wishgrid.app"],
-  "style-src": ["'self'", "'unsafe-inline'"],
+  "default-src": [self],
+  "connect-src": [self, "*.wishgrid.app", "vitals.vercel-insights.com"],
+  "img-src": [self, data, "cdn.discordapp.com"],
+  "script-src": [self, unsafeEval, unsafeInline, "*.wishgrid.app"],
+  "style-src": [self, unsafeInline],
 };
 
+/**
+ * @param {string} key
+ * @param {string} value
+ */
+function addSrc(key, value) {
+  if (key in contentSecurityPolicy) {
+    // @ts-expect-error checked the line above
+    contentSecurityPolicy[key].push(value);
+  } else {
+    contentSecurityPolicy[key] = [self, value];
+  }
+}
+
 if (NODE_ENV === "development") {
-  contentSecurityPolicy["script-src"].push("va.vercel-scripts.com");
+  // fonts are fetched in development but replaced by static files in production
+  addSrc("font-src", "fonts.gstatic.com");
+  // mock script used only in development
+  addSrc("script-src", "va.vercel-scripts.com");
 }
 
 /** @type {{ headers: import("next/dist/lib/load-custom-routes").Header["headers"] }} */
