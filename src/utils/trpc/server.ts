@@ -5,12 +5,11 @@ import { createContext } from "../../server/context";
 import type { Router } from "../../server/router";
 import { router } from "../../server/router";
 
-export async function createServerSideHelpers(): Promise<
+export const createServerSideHelpers = async (): Promise<
   ReturnType<typeof _createServerSideHelpers<Router>>
-> {
-  return _createServerSideHelpers({
+> =>
+  _createServerSideHelpers({
     router: router,
     ctx: await createContext(),
     transformer: SuperJSON,
   });
-}

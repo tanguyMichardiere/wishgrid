@@ -46,7 +46,7 @@ module.exports = {
     { key: "Referrer-Policy", value: "origin-when-cross-origin" },
     {
       key:
-        process.env.NODE_ENV === "production"
+        NODE_ENV === "production"
           ? "Content-Security-Policy"
           : "Content-Security-Policy-Report-Only",
       value: Object.entries(contentSecurityPolicy)
