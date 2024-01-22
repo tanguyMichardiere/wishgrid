@@ -57,8 +57,8 @@ dependencies:
     specifier: 1.1.2
     version: 1.1.2
   '@vercel/speed-insights':
-    specifier: 1.0.6
-    version: 1.0.6(next@14.1.0)(react@18.2.0)
+    specifier: 1.0.7
+    version: 1.0.7(next@14.1.0)(react@18.2.0)
   classix:
     specifier: 2.1.35
     version: 2.1.35
@@ -197,11 +197,8 @@ devDependencies:
     specifier: 0.2.17
     version: 0.2.17
   knip:
-    specifier: 4.2.0
-    version: 4.2.0(@types/node@20.9.0)(typescript@5.3.3)
-  lorem-ipsum:
-    specifier: 2.0.8
-    version: 2.0.8
+    specifier: 4.2.1
+    version: 4.2.1(@types/node@20.9.0)(typescript@5.3.3)
   npm-check-updates:
     specifier: 16.14.12
     version: 16.14.12
@@ -5313,11 +5310,11 @@ packages:
     resolution: {integrity: sha512-EpZyfF6wFGzFDmubFIh/EZtYpKindmXx/69xSfKEBTVU0afgljyOOICbyZePe5tvigfOEBLSLgrt/2nN+MlLtA==}
     dev: true
 
-  /@vercel/speed-insights@1.0.6(next@14.1.0)(react@18.2.0):
-    resolution: {integrity: sha512-T+6AxPhGMqj4hwY7t1kjtsPFI/alOfakNgzTfB0ujGAddQLqjAlvhWmNgWHcYWqcYoG3r53efzQEnXyjqgmKSg==}
+  /@vercel/speed-insights@1.0.7(next@14.1.0)(react@18.2.0):
+    resolution: {integrity: sha512-1XYZO/OlrAco8QPoXXIOPoMrj0O+slB9k6poRo1drQJ+DWTbdUUT18Mtm4ybA8KMj4mGEMEgbw0BKR/yq/VPhA==}
     requiresBuild: true
     peerDependencies:
-      '@sveltejs/kit': ^1
+      '@sveltejs/kit': ^1 || ^2
       next: '>= 13'
       react: ^18 || ^19
       svelte: ^4
@@ -6663,11 +6660,6 @@ packages:
   /commander@8.3.0:
     resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
     engines: {node: '>= 12'}
-    dev: true
-
-  /commander@9.5.0:
-    resolution: {integrity: sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==}
-    engines: {node: ^12.20.0 || >=14}
     dev: true
 
   /comment-parser@1.4.1:
@@ -10103,8 +10095,8 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
-  /knip@4.2.0(@types/node@20.9.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-2VieMncQBIwuUIgNncUphhfafl2fRBLHeri3Rnx/tedwT1mKZ668mSIyTqb+keuElp0S5wgYRcZPYHqDmIQeCw==}
+  /knip@4.2.1(@types/node@20.9.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-KG++YCus11YyQQeiBxhXxv6NCJzol4AYER9q1kwZGFw+gwDzG/0Q6MN87McYFN74nGRX4O2xM5CA3TTPcbpn5A==}
     engines: {node: '>=18.6.0'}
     hasBin: true
     peerDependencies:
@@ -10299,14 +10291,6 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
-
-  /lorem-ipsum@2.0.8:
-    resolution: {integrity: sha512-5RIwHuCb979RASgCJH0VKERn9cQo/+NcAi2BMe9ddj+gp7hujl6BI+qdOG4nVsLDpwWEJwTVYXNKP6BGgbcoGA==}
-    engines: {node: '>= 8.x', npm: '>= 5.x'}
-    hasBin: true
-    dependencies:
-      commander: 9.5.0
-    dev: true
 
   /lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}

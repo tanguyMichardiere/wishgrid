@@ -3,7 +3,7 @@ import type { User } from "@prisma/client";
 import type { Session } from "next-auth";
 import NextAuth from "next-auth";
 import Discord from "next-auth/providers/discord";
-import { NODE_ENV } from "../env";
+import { LOG_LEVEL, NODE_ENV } from "../env";
 import { createDatabaseClient } from "../server/database/createClient";
 import { logger } from "../server/logger";
 import Email from "./providers/email";
@@ -33,6 +33,7 @@ const nextAuth = NextAuth({
       return session;
     },
   },
+  debug: ["debug", "trace"].includes(LOG_LEVEL),
 });
 
 export const { handlers, auth } = nextAuth;
