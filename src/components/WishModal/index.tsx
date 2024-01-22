@@ -50,6 +50,7 @@ export default forwardRef<HTMLDialogElement, Props>(function WishModal(props, re
       {props.wish.reservedBy !== null ? (
         <>
           <p>
+            {/* TODO: check if it doesn't nest p elements */}
             {t.rich("reservedBy", {
               name: props.wish.reservedBy.name,
               you: props.wish.reservedBy.id === currentUser.id,
