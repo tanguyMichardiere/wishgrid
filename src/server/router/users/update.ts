@@ -16,12 +16,12 @@ export const update = procedure
     if (input.image !== undefined) {
       const imageBuffer = await sharp(Buffer.from(input.image, "base64"))
         .resize(96)
-        .png()
+        .webp()
         .toBuffer();
       await ctx.db.user.update({
         data: {
           name: input.name,
-          image: `data:image/png;base64,${imageBuffer.toString("base64")}`,
+          image: `data:image/webp;base64,${imageBuffer.toString("base64")}`,
         },
         where: { id: ctx.user.id },
       });
