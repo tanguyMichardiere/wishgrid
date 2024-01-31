@@ -44,7 +44,7 @@ const themes = [
   "sunset",
 ];
 
-export type Props = Pick<MenuProps, "position">;
+type Props = Pick<MenuProps, "position">;
 
 export default function ThemeMenu(props: Props): JSX.Element {
   // `theme` will be undefined on server and a string on client
