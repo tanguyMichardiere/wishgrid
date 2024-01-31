@@ -217,11 +217,6 @@
   "SignOutButton": {
     "text": "Déconnexion"
   },
-  "ThemeMenu": {
-    "dark": "Sombre",
-    "light": "Lumineux",
-    "system": "Système"
-  },
   "wish-export": {
     "description": "description",
     "link": "lien",

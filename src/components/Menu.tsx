@@ -40,7 +40,7 @@ export default function Menu(props: Props): JSX.Element {
         <HeadlessUIMenu.Items
           as="ul"
           className={cx(
-            "menu absolute z-50 mt-2 rounded-md bg-base-100 shadow-md",
+            "menu absolute z-50 mt-2 max-h-72 flex-nowrap overflow-y-scroll rounded-md bg-base-100 shadow-md",
             props.position === "left" && "right-0",
             props.position === "right" && "left-0",
             props.menuClassName,
