@@ -2,7 +2,7 @@ import cx from "classix";
 import Image from "next/image";
 import type { User } from "../../server/database/types/user";
 import { useClientTranslations } from "../../utils/translations/client";
-import DefaultAvatar from "./default.png";
+import DefaultAvatar from "./default.webp";
 
 const sizes = {
   small: {
