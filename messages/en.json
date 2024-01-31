@@ -217,11 +217,6 @@
   "SignOutButton": {
     "text": "Sign out"
   },
-  "ThemeMenu": {
-    "dark": "Dark",
-    "light": "Light",
-    "system": "System"
-  },
   "wish-export": {
     "description": "description",
     "link": "link",
