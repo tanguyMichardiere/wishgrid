@@ -1,5 +1,6 @@
 "use client";
 
+import type { JSX } from "react";
 import WishPreviewCard from "../../../../../components/WishPreviewCard";
 import type { Wish } from "../../../../../server/database/types/wishes";
 import { useClientTranslations } from "../../../../../utils/translations/client";

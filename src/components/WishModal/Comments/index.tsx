@@ -2,6 +2,7 @@
 
 import cx from "classix";
 import { useFormatter, useNow } from "next-intl";
+import type { JSX } from "react";
 import { useMemo } from "react";
 import { useCurrentUser } from "../../../context/currentUser/hook";
 import type { Comment } from "../../../server/database/types/comments";

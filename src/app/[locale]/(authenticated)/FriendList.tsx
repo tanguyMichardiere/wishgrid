@@ -1,5 +1,6 @@
 "use client";
 
+import type { JSX } from "react";
 import FriendPreviewCard from "../../../components/FriendPreviewCard";
 import { Link } from "../../../navigation";
 import type { Friend } from "../../../server/database/types/user";

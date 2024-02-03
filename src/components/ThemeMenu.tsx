@@ -2,6 +2,7 @@
 
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useTheme } from "next-themes";
+import type { JSX } from "react";
 import { useMemo } from "react";
 import { usePreviousValue } from "../hooks/previousValue";
 import { capitalize } from "../utils/strings";

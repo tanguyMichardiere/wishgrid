@@ -3,7 +3,7 @@
 import { Menu as HeadlessUIMenu, Transition } from "@headlessui/react";
 import { cx } from "classix";
 import type { Route } from "next";
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import { Fragment } from "react";
 import { Link } from "../navigation";
 

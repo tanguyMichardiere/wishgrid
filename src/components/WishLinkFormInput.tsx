@@ -1,5 +1,6 @@
 import cx from "classix";
 import "client-only";
+import type { JSX } from "react";
 import type { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import { useClientTranslations } from "../utils/translations/client";
 

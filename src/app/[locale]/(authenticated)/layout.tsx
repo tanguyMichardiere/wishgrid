@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import Navbar from "../../../components/Navbar";
 import CurrentUserContextProvider from "../../../context/currentUser/provider";
 import { getCurrentUser } from "../../../utils/serverQueries/users/getCurrent";

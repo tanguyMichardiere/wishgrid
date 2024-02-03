@@ -1,7 +1,7 @@
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import cx from "classix";
 import type { Route } from "next";
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import { Link } from "../navigation";
 import { useServerTranslations } from "../utils/translations/server";
 import Menu from "./Menu";

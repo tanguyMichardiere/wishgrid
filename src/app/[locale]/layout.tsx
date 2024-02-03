@@ -2,7 +2,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { useLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import { variable } from "../font";
 import ClientProviders from "./ClientProviders";
 import ServerProviders from "./ServerProviders";

@@ -1,6 +1,7 @@
 "use client";
 
 import { useQueryClient } from "@tanstack/react-query";
+import type { JSX } from "react";
 
 type Props = {
   text: string;

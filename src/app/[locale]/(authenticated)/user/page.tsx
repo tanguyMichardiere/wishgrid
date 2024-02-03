@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import Avatar from "../../../../components/Avatar";
 import NewWishButton from "../../../../components/NewWishButton";
 import ShareUserLinkButton from "../../../../components/ShareUserLinkButton";

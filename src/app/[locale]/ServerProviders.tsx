@@ -1,7 +1,7 @@
 import { SessionProvider } from "next-auth/react";
 import { NextIntlClientProvider, useLocale } from "next-intl";
 import { getMessages } from "next-intl/server";
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
 import { auth } from "../../auth";
 

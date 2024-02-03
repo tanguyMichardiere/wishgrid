@@ -1,5 +1,6 @@
 "use client";
 
+import type { JSX } from "react";
 import AcceptFriendRequestButton from "../../../../../components/AcceptFriendRequestButton";
 import CancelFriendRequestButton from "../../../../../components/CancelFriendRequestButton";
 import DeclineFriendRequestButton from "../../../../../components/DeclineFriendRequestButton";

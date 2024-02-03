@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import LanguageMenu from "../../../../components/LanguageMenu";
 import SignOutButton from "../../../../components/SignOutButton";
 import ThemeMenu from "../../../../components/ThemeMenu";

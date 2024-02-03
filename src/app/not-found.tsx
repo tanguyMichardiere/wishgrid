@@ -1,5 +1,6 @@
 import cx from "classix";
 import Link from "next/link";
+import type { JSX } from "react";
 import { variable } from "./font";
 
 export default function NotFound(): JSX.Element {

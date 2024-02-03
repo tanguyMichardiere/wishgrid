@@ -1,5 +1,6 @@
 "use client";
 
+import type { JSX } from "react";
 import { useAcceptFriendRequestMutation } from "../hooks/mutations/friendRequests/accept";
 import { useClientTranslations } from "../utils/translations/client";
 import MutationButton from "./MutationButton";

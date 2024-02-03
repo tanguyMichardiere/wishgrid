@@ -1,5 +1,6 @@
 "use client";
 
+import type { JSX } from "react";
 import { useRef } from "react";
 import { useDeleteCurrentUserMutation } from "../hooks/mutations/users/deleteCurrent";
 import { useClientTranslations } from "../utils/translations/client";

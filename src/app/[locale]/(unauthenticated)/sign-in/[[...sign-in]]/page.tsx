@@ -1,4 +1,5 @@
 import { useLocale } from "next-intl";
+import type { JSX } from "react";
 import About from "../../../../../components/About";
 import EmailSignIn from "../../../../../components/EmailSignIn";
 import SignInButton from "../../../../../components/SignInButton";

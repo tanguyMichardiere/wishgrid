@@ -1,5 +1,5 @@
 import cx from "classix";
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 
 type Props = {
   className?: string;
