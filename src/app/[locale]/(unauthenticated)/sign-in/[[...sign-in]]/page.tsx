@@ -3,6 +3,7 @@ import type { JSX } from "react";
 import About from "../../../../../components/About";
 import EmailSignIn from "../../../../../components/EmailSignIn";
 import SignInButton from "../../../../../components/SignInButton";
+import { defaultLocale } from "../../../../../navigation";
 import { useServerTranslations } from "../../../../../utils/translations/server";
 
 type Props = {
@@ -19,7 +20,7 @@ export default function SignInPage(props: Props): JSX.Element {
   const redirectTo =
     props.searchParams.redirectTo !== undefined
       ? decodeURIComponent(props.searchParams.redirectTo)
-      : `/${locale !== "en" ? locale : ""}`;
+      : `/${locale !== defaultLocale ? locale : ""}`;
 
   return (
     <div className="flex flex-col items-center gap-8">
