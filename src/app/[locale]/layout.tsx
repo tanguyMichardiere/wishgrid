@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import cx from "classix";
 import { useLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import type { JSX, ReactNode } from "react";
@@ -20,10 +21,10 @@ export default function LocaleLayout(props: Props): JSX.Element {
   }
 
   return (
-    <html className={variable} lang={locale} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <Analytics />
       <SpeedInsights />
-      <body>
+      <body className={cx(variable, "font-sans")}>
         <ServerProviders>
           {/* @ts-expect-error incorrect types on trpc.withTRPC */}
           <ClientProviders>{props.children}</ClientProviders>

@@ -12,17 +12,8 @@ module.exports = {
     "prettier",
   ],
   overrides: [
-    {
-      files: ["**/*.js", "**/.*.js"],
-      rules: {
-        "@typescript-eslint/no-var-requires": "off",
-        "tsdoc/syntax": "off",
-      },
-    },
-    {
-      files: ["src/**/*.stories.tsx"],
-      extends: ["plugin:storybook/recommended"],
-    },
+    { files: ["**/*.mjs", "**/.*.js"], rules: { "tsdoc/syntax": "off" } },
+    { files: ["src/**/*.stories.tsx"], extends: ["plugin:storybook/recommended"] },
   ],
   reportUnusedDisableDirectives: true,
   rules: {

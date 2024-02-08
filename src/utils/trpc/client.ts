@@ -5,14 +5,15 @@ import SuperJSON from "superjson";
 import type { Router } from "../../server/router";
 
 export const trpc = createTRPCNext<Router>({
+  transformer: SuperJSON,
   config() {
     return {
       links: [
         httpBatchStreamLink({
           url: "/api",
+          transformer: SuperJSON,
         }),
       ],
-      transformer: SuperJSON,
       abortOnUnmount: true,
     };
   },

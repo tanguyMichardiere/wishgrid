@@ -18,14 +18,11 @@
     // https://github.com/microsoft/vscode/issues/109083
     {
       "name": "Launch Debug Browser (port 3000)",
-      "presentation": {
-        "hidden": true
-      },
+      "presentation": { "hidden": true },
       "request": "launch",
-      "runtimeExecutable": "/opt/homebrew/bin/chromium",
-      "type": "chrome",
+      "type": "firefox",
+      "profile": "dev-edition-default",
       "url": "http://localhost:3000",
-      "userDataDir": false,
       "webRoot": "${workspaceFolder}"
     }
   ]

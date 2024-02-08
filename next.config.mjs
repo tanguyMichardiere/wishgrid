@@ -1,7 +1,11 @@
-// ensure all environment variables are defined at build time
-require("./src/env");
+import withNextBundleAnalyzer from "@next/bundle-analyzer";
+import createJiti from "jiti";
+import withNextIntl from "next-intl/plugin";
+import { headers } from "./headers.config.mjs";
 
-const { headers } = require("./headers.config");
+const jiti = createJiti(new URL(import.meta.url).pathname);
+// ensure all environment variables are defined at build time
+jiti("./src/env");
 
 /** @type {import("next").NextConfig} */
 let nextConfig = {
@@ -18,10 +22,10 @@ let nextConfig = {
   experimental: { serverComponentsExternalPackages: ["docx", "pdfkit", "pino"] },
 };
 
-nextConfig = require("next-intl/plugin")()(nextConfig);
+nextConfig = withNextIntl()(nextConfig);
 
-nextConfig = require("@next/bundle-analyzer")({
+nextConfig = withNextBundleAnalyzer({
   enabled: process.env["ANALYZE"] === "true",
 })(nextConfig);
 
-module.exports = nextConfig;
+export default nextConfig;

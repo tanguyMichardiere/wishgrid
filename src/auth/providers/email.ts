@@ -1,4 +1,4 @@
 import Email from "next-auth/providers/email";
-import { AUTH_EMAIL_FROM, AUTH_EMAIL_SERVER } from "../../env";
+import { env } from "../../env";
 
-export default Email({ server: AUTH_EMAIL_SERVER, from: AUTH_EMAIL_FROM });
+export default Email({ server: env.AUTH_EMAIL_SERVER, from: env.AUTH_EMAIL_FROM });

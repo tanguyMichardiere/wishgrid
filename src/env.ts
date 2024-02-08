@@ -1,7 +1,7 @@
-const { createEnv } = require("@t3-oss/env-nextjs");
-const { z } = require("zod");
+import { createEnv } from "@t3-oss/env-nextjs";
+import { z } from "zod";
 
-const env = createEnv({
+export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "production", "test"]),
     LOG_LEVEL: z
@@ -33,10 +33,7 @@ const env = createEnv({
     DATABASE_URL: process.env["DATABASE_URL"],
     DATABASE_DIRECT_URL: process.env["DATABASE_DIRECT_URL"],
   },
+  // // eslint-disable-next-line camelcase
+  // experimental__runtimeEnv: {},
   emptyStringAsUndefined: true,
 });
-
-module.exports = {
-  ...env,
-  default: env,
-};
