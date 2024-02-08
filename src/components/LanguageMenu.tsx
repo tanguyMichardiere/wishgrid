@@ -2,6 +2,7 @@
 
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useLocale } from "next-intl";
+import type { JSX } from "react";
 import { useMemo } from "react";
 import { usePathname } from "../navigation";
 import type { Props as MenuProps } from "./Menu";

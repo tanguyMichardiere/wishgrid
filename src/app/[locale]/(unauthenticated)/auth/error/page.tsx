@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { Link } from "../../../../../navigation";
 import { useServerTranslations } from "../../../../../utils/translations/server";
 

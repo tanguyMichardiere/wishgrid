@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { signOut } from "../../auth";
 import { useServerTranslations } from "../../utils/translations/server";
 import SignOutButtonClient from "./client";

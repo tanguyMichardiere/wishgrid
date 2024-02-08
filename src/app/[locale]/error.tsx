@@ -1,5 +1,6 @@
 "use client";
 
+import type { JSX } from "react";
 import { useClientTranslations } from "../../utils/translations/client";
 
 type Props = {

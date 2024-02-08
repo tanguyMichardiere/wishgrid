@@ -1,5 +1,6 @@
 "use client";
 
+import type { JSX } from "react";
 import { useRef } from "react";
 import NewWishModal from "../NewWishModal";
 

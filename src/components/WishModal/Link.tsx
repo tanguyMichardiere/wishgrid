@@ -1,8 +1,10 @@
+import type { JSX } from "react";
+
 type Props = {
   link: string;
 };
 
-export default function Link(props: Props): JSX.Element | null {
+export default function Link(props: Props): JSX.Element {
   return (
     <>
       {props.link.length > 0 && (

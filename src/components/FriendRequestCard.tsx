@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import type { User } from "../server/database/types/user";
 import AcceptFriendRequestButton from "./AcceptFriendRequestButton";
 import Avatar from "./Avatar";

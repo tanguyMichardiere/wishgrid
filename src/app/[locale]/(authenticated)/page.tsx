@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { getFriendRequestsList } from "../../../utils/serverQueries/friendRequests/list";
 import { getFriendsList } from "../../../utils/serverQueries/friends/list";
 import FriendList from "./FriendList";

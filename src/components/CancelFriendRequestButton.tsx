@@ -1,5 +1,6 @@
 "use client";
 
+import type { JSX } from "react";
 import { useCancelFriendRequestMutation } from "../hooks/mutations/friendRequests/cancel";
 import { useClientTranslations } from "../utils/translations/client";
 import MutationButton from "./MutationButton";

@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import cx from "classix";
-import type { FormEvent } from "react";
+import type { FormEvent, JSX } from "react";
 import { useForm } from "react-hook-form";
 import { useCurrentUser } from "../../../../context/currentUser/hook";
 import { useUpdateUserMutation } from "../../../../hooks/mutations/users/update";

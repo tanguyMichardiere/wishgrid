@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { useServerTranslations } from "../utils/translations/server";
 
 export default function About(): JSX.Element {

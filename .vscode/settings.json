@@ -24,7 +24,7 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
     ".env": ".env*",
-    "next.config.js": ".eslintrc.js, *.config.js, knip.ts",
+    "next.config.mjs": "*.config.ts, *.config.mjs, *.config.js, .eslintrc.js",
     "package.json": "pnpm-lock.yaml",
     "README.md": "LICENSE"
   },

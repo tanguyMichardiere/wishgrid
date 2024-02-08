@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import "server-only";
 import { signIn } from "../auth";
 import { useServerTranslations } from "../utils/translations/server";

@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import Avatar from "../../../../../components/Avatar";
 import { getFriendRequestsStatus } from "../../../../../utils/serverQueries/friendRequests/status";
 import { getUser } from "../../../../../utils/serverQueries/users/get";

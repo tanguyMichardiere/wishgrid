@@ -1,4 +1,5 @@
 import cx from "classix";
+import type { JSX } from "react";
 import type { Friend } from "../server/database/types/user";
 import { useClientTranslations } from "../utils/translations/client";
 import Avatar from "./Avatar";

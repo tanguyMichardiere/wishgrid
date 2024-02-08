@@ -1,5 +1,6 @@
 "use client";
 
+import type { JSX } from "react";
 import FriendRequestsCard from "../../../components/FriendRequestCard";
 import type { User } from "../../../server/database/types/user";
 import { useClientTranslations } from "../../../utils/translations/client";

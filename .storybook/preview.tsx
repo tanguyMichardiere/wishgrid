@@ -3,6 +3,7 @@ import cx from "classix";
 import { NextIntlClientProvider } from "next-intl";
 import { client } from "../messages/en.json";
 import { variable } from "../src/app/font";
+import { defaultLocale } from "../src/navigation";
 import "../src/styles.css";
 
 const preview: Preview = {
@@ -17,7 +18,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <NextIntlClientProvider locale="en" messages={{ client }}>
+      <NextIntlClientProvider locale={defaultLocale} messages={{ client }}>
         <div className={cx(variable, "font-sans")}>
           <Story />
         </div>

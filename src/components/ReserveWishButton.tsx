@@ -1,6 +1,7 @@
 "use client";
 
 import { LockClosedIcon } from "@heroicons/react/24/outline";
+import type { JSX } from "react";
 import { useReserveWishMutation } from "../hooks/mutations/wishes/reserve";
 import { useClientTranslations } from "../utils/translations/client";
 import MutationButton from "./MutationButton";

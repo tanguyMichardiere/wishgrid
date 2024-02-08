@@ -3,7 +3,8 @@ import type { User } from "@prisma/client";
 import type { Session } from "next-auth";
 import NextAuth from "next-auth";
 import Discord from "next-auth/providers/discord";
-import { LOG_LEVEL, NODE_ENV } from "../env";
+import "server-only";
+import { env } from "../env";
 import { createDatabaseClient } from "../server/database/createClient";
 import { logger } from "../server/logger";
 import Email from "./providers/email";
@@ -19,7 +20,7 @@ adapter.createUser = async (data) =>
 
 const nextAuth = NextAuth({
   adapter,
-  providers: [Discord, NODE_ENV === "development" ? Mock : Email],
+  providers: [Discord, env.NODE_ENV !== "production" ? Mock : Email],
   pages: {
     signIn: "/sign-in",
     signOut: "/",
@@ -33,7 +34,7 @@ const nextAuth = NextAuth({
       return session;
     },
   },
-  debug: ["debug", "trace"].includes(LOG_LEVEL),
+  debug: ["debug", "trace"].includes(env.LOG_LEVEL),
 });
 
 export const { handlers, auth } = nextAuth;

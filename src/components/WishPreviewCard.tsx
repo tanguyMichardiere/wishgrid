@@ -2,6 +2,7 @@
 
 import { ChatBubbleLeftRightIcon, LockClosedIcon, LockOpenIcon } from "@heroicons/react/24/outline";
 import cx from "classix";
+import type { JSX } from "react";
 import { useRef } from "react";
 import { useSetWishViewedMutation } from "../hooks/mutations/wishes/setViewed";
 import type { Wish } from "../server/database/types/wishes";

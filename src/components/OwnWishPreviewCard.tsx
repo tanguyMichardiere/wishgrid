@@ -1,5 +1,6 @@
 "use client";
 
+import type { JSX } from "react";
 import { useRef } from "react";
 import type { OwnWish } from "../server/database/types/wishes";
 import Card from "./Card";

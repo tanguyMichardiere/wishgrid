@@ -1,5 +1,5 @@
 /** @type {import("prettier").Config} */
-module.exports = {
+const config = {
   printWidth: 100,
   plugins: [
     "prettier-plugin-organize-imports",
@@ -9,3 +9,5 @@ module.exports = {
   tsdoc: true,
   tailwindFunctions: ["cx"],
 };
+
+export default config;

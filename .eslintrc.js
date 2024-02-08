@@ -7,21 +7,13 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/strict-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked",
+    "plugin:deprecation/recommended",
     "next/core-web-vitals",
     "prettier",
   ],
   overrides: [
-    {
-      files: ["**/*.js", "**/.*.js"],
-      rules: {
-        "@typescript-eslint/no-var-requires": "off",
-        "tsdoc/syntax": "off",
-      },
-    },
-    {
-      files: ["src/**/*.stories.tsx"],
-      extends: ["plugin:storybook/recommended"],
-    },
+    { files: ["**/*.mjs", "**/.*.js"], rules: { "tsdoc/syntax": "off" } },
+    { files: ["src/**/*.stories.tsx"], extends: ["plugin:storybook/recommended"] },
   ],
   reportUnusedDisableDirectives: true,
   rules: {

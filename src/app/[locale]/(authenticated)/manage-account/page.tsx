@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import type { JSX } from "react";
 import Avatar from "../../../../components/Avatar";
 import DeleteCurrentUserButton from "../../../../components/DeleteCurrentUserButton";
 import { getCurrentUser } from "../../../../utils/serverQueries/users/getCurrent";
