@@ -11,13 +11,11 @@
     },
     "editor.wordWrap": "on"
   },
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit"
-  },
+  "editor.codeActionsOnSave": { "source.fixAll": "explicit" },
   "editor.formatOnSave": true,
-  "editor.quickSuggestions": {
-    "strings": true
-  },
+  // TODO: bug with i18n Ally
+  "editor.guides.bracketPairsHorizontal": false,
+  "editor.quickSuggestions": { "strings": true },
   "editor.rulers": [100],
   "editor.wordWrap": "bounded",
   "editor.wordWrapColumn": 100,
@@ -28,9 +26,7 @@
     "package.json": "pnpm-lock.yaml",
     "README.md": "LICENSE"
   },
-  "files.associations": {
-    "*.css": "tailwindcss"
-  },
+  "files.associations": { "*.css": "tailwindcss" },
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
