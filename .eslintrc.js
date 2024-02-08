@@ -12,7 +12,7 @@ module.exports = {
     "prettier",
   ],
   overrides: [
-    { files: ["**/*.mjs", "**/.*.js"], rules: { "tsdoc/syntax": "off" } },
+    { files: ["**/*.mjs", "**/*.js", "**/.eslintrs.js"], rules: { "tsdoc/syntax": "off" } },
     { files: ["src/**/*.stories.tsx"], extends: ["plugin:storybook/recommended"] },
   ],
   reportUnusedDisableDirectives: true,
