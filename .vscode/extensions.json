@@ -3,6 +3,7 @@
     "bradlc.vscode-tailwindcss",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
+    "firefox-devtools.vscode-firefox-debug",
     "lokalise.i18n-ally",
     "prisma.prisma"
   ]
