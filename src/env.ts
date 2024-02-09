@@ -19,21 +19,7 @@ export const env = createEnv({
     DATABASE_DIRECT_URL: z.string().url().startsWith("postgresql://"),
   },
   client: {},
-  runtimeEnv: {
-    NODE_ENV: process.env.NODE_ENV,
-    LOG_LEVEL: process.env["LOG_LEVEL"],
-
-    NEXTAUTH_URL: process.env["NEXTAUTH_URL"],
-    AUTH_SECRET: process.env["AUTH_SECRET"],
-    AUTH_DISCORD_ID: process.env["AUTH_DISCORD_ID"],
-    AUTH_DISCORD_SECRET: process.env["AUTH_DISCORD_SECRET"],
-    AUTH_EMAIL_SERVER: process.env["AUTH_EMAIL_SERVER"],
-    AUTH_EMAIL_FROM: process.env["AUTH_EMAIL_FROM"],
-
-    DATABASE_URL: process.env["DATABASE_URL"],
-    DATABASE_DIRECT_URL: process.env["DATABASE_DIRECT_URL"],
-  },
-  // // eslint-disable-next-line camelcase
-  // experimental__runtimeEnv: {},
+  // eslint-disable-next-line camelcase
+  experimental__runtimeEnv: {},
   emptyStringAsUndefined: true,
 });
