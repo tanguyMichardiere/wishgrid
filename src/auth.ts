@@ -5,9 +5,9 @@ import NextAuth from "next-auth";
 import Discord from "next-auth/providers/discord";
 import Resend from "next-auth/providers/resend";
 import "server-only";
-import { env } from "../env";
-import { createDatabaseClient } from "../server/database/createClient";
-import { logger } from "../server/logger";
+import { env } from "./env";
+import { createDatabaseClient } from "./server/database/createClient";
+import { logger } from "./server/logger";
 
 const databaseClient = createDatabaseClient(logger);
 const adapter = PrismaAdapter(databaseClient);

@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 
-# TODO: remove sharp once it works
-EXCLUDE="@types/node,sharp"
+EXCLUDE="@types/node"
 
 pnpm exec npm-check-updates -x "$EXCLUDE" -u
 pnpm install
