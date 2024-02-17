@@ -13,7 +13,7 @@ export default function EmailSignIn(props: Props): JSX.Element {
   async function signInAction(formData: FormData) {
     "use server";
 
-    await signIn("email", { email: formData.get("email"), redirectTo: props.redirectTo });
+    await signIn("nodemailer", { email: formData.get("email"), redirectTo: props.redirectTo });
   }
 
   return (

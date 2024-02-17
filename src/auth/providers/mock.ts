@@ -1,7 +1,8 @@
-import Email from "next-auth/providers/email";
+import Nodemailer from "next-auth/providers/nodemailer";
 import { logger } from "../../server/logger";
 
-export default Email({
+export default Nodemailer({
+  server: {},
   sendVerificationRequest({ url }) {
     logger.info(url);
   },
