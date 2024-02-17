@@ -18,7 +18,6 @@ export const env = createEnv({
     DATABASE_URL: z.string().url().startsWith("postgresql://"),
     DATABASE_DIRECT_URL: z.string().url().startsWith("postgresql://"),
   },
-  client: {},
   // eslint-disable-next-line camelcase
   experimental__runtimeEnv: {},
   emptyStringAsUndefined: true,
