@@ -5,18 +5,6 @@
     "node": "20.11.0",
     "pnpm": "8"
   },
-  "pnpm": {
-    "supportedArchitectures": {
-      "os": [
-        "linux",
-        "current"
-      ],
-      "cpu": [
-        "x64",
-        "current"
-      ]
-    }
-  },
   "scripts": {
     "postinstall": "prisma generate",
     "update-dependencies": "sh scripts/update-dependencies.sh",
@@ -97,6 +85,7 @@
     "@types/ws": "8.5.10",
     "@typescript-eslint/eslint-plugin": "7.0.1",
     "@typescript-eslint/parser": "7.0.1",
+    "@vercel/nft": "0.26.4",
     "autoprefixer": "10.4.17",
     "cross-env": "7.0.3",
     "eslint": "8.56.0",
