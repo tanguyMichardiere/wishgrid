@@ -43,6 +43,7 @@
     "@trpc/server": "11.0.0-next-beta.289",
     "@vercel/analytics": "1.2.0",
     "@vercel/speed-insights": "1.0.10",
+    "bufferutil": "4.0.8",
     "classix": "2.1.36",
     "client-only": "0.0.1",
     "csv-stringify": "6.4.5",
