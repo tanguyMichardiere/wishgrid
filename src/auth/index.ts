@@ -7,8 +7,8 @@ import "server-only";
 import { env } from "../env";
 import { createDatabaseClient } from "../server/database/createClient";
 import { logger } from "../server/logger";
-import Email from "./providers/email";
 import Mock from "./providers/mock";
+import Nodemailer from "./providers/nodemailer";
 
 const databaseClient = createDatabaseClient(logger);
 const adapter = PrismaAdapter(databaseClient);
@@ -20,7 +20,8 @@ adapter.createUser = async (data) =>
 
 const nextAuth = NextAuth({
   adapter,
-  providers: [Discord, env.NODE_ENV !== "production" ? Mock : Email],
+  providers: [Discord, env.NODE_ENV !== "production" ? Mock : Nodemailer],
+  basePath: "/api/auth",
   pages: {
     signIn: "/sign-in",
     signOut: "/",

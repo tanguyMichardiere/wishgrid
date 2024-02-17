@@ -8,7 +8,7 @@ export const env = createEnv({
       .enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"])
       .default("info"),
 
-    NEXTAUTH_URL: z.string().url(),
+    AUTH_URL: z.string().url().endsWith("/api/auth"),
     AUTH_SECRET: z.string().regex(/[0-9a-f]{64}/),
     AUTH_DISCORD_ID: z.string(),
     AUTH_DISCORD_SECRET: z.string(),
