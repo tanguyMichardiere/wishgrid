@@ -3,12 +3,11 @@ import type { User } from "@prisma/client";
 import type { Session } from "next-auth";
 import NextAuth from "next-auth";
 import Discord from "next-auth/providers/discord";
+import Resend from "next-auth/providers/resend";
 import "server-only";
 import { env } from "../env";
 import { createDatabaseClient } from "../server/database/createClient";
 import { logger } from "../server/logger";
-import Mock from "./providers/mock";
-import Nodemailer from "./providers/nodemailer";
 
 const databaseClient = createDatabaseClient(logger);
 const adapter = PrismaAdapter(databaseClient);
@@ -20,7 +19,8 @@ adapter.createUser = async (data) =>
 
 const nextAuth = NextAuth({
   adapter,
-  providers: [Discord, env.NODE_ENV !== "production" ? Mock : Nodemailer],
+  // TODO: customize email
+  providers: [Discord, Resend({ from: "WishGrid <no-reply@wishgrid.app>" })],
   basePath: "/api/auth",
   pages: {
     signIn: "/sign-in",
@@ -36,6 +36,17 @@ const nextAuth = NextAuth({
     },
   },
   debug: ["debug", "trace"].includes(env.LOG_LEVEL),
+  logger: {
+    debug(message, metadata) {
+      logger.debug(metadata, message);
+    },
+    warn(code) {
+      logger.warn(code);
+    },
+    error(error) {
+      logger.error(error);
+    },
+  },
 });
 
 export const { handlers, auth } = nextAuth;

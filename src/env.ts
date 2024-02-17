@@ -11,8 +11,7 @@ export const env = createEnv({
     AUTH_SECRET: z.string().regex(/[0-9a-f]{64}/),
     AUTH_DISCORD_ID: z.string(),
     AUTH_DISCORD_SECRET: z.string(),
-    AUTH_EMAIL_SERVER: z.string().url().startsWith("smtp://"),
-    AUTH_EMAIL_FROM: z.string(),
+    AUTH_RESEND_KEY: z.string().regex(/^re_[0-9A-Za-z]{8}_[0-9A-Za-z]{24}$/),
 
     DATABASE_URL: z.string().url().startsWith("postgresql://"),
     DATABASE_DIRECT_URL: z.string().url().startsWith("postgresql://"),
