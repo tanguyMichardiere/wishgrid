@@ -22,7 +22,18 @@ adapter.createUser = async (data) =>
 const nextAuth = NextAuth({
   adapter,
   // TODO: customize email
-  providers: [Discord, Resend({ from: "WishGrid <no-reply@wishgrid.app>" })],
+  providers: [
+    Discord,
+    Resend(
+      env.NODE_ENV !== "development"
+        ? { from: "WishGrid <no-reply@wishgrid.app>" }
+        : {
+            async sendVerificationRequest({ url }) {
+              logger.info(url);
+            },
+          },
+    ),
+  ],
   basePath: "/api/auth",
   pages: {
     signIn: "/sign-in",
