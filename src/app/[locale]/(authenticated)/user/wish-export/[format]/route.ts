@@ -10,6 +10,13 @@ import { generateDocx } from "./generateDocx";
 import { generatePdf } from "./generatePdf";
 import { Params } from "./params";
 
+// docx and pdfkit require node
+export const runtime = "nodejs";
+
+const logger = baseLogger.child({ context: "wish-export" });
+
+const db = createDatabaseClient(logger);
+
 const Params = z.object({
   locale: z.enum(["en", "fr"]),
   format: z.enum(["json", "csv", "docx", "pdf"]),
@@ -31,9 +38,6 @@ export async function GET(
   const { locale, format } = params.data;
 
   const t = await getTranslations({ locale, namespace: "wish-export" });
-
-  const logger = baseLogger.child({});
-  const db = createDatabaseClient(logger);
 
   const { wishes } = await db.user.findUniqueOrThrow({
     include: {

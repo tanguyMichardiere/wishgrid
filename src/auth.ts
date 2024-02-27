@@ -7,9 +7,11 @@ import Resend from "next-auth/providers/resend";
 import "server-only";
 import { env } from "./env";
 import { createDatabaseClient } from "./server/database/createClient";
-import { logger } from "./server/logger";
+import { logger as baseLogger } from "./server/logger";
 
-const databaseClient = createDatabaseClient(logger);
+const logger = baseLogger.child({ context: "auth" });
+
+const databaseClient = createDatabaseClient(baseLogger.child({ context: "auth-prisma" }));
 const adapter = PrismaAdapter(databaseClient);
 adapter.createUser = async (data) =>
   databaseClient.user.create({

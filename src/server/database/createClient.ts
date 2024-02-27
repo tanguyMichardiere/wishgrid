@@ -6,7 +6,9 @@ import "server-only";
 import ws from "ws";
 import { env } from "../../env";
 
-neonConfig.webSocketConstructor = ws;
+if (!("WebSocket" in global)) {
+  neonConfig.webSocketConstructor = ws;
+}
 
 const pool = new Pool({ connectionString: env.DATABASE_URL });
 const adapter = new PrismaNeon(pool);

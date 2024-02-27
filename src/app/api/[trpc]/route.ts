@@ -10,9 +10,9 @@ async function handler(req: Request): Promise<Response> {
     endpoint: "/api",
     router,
     req,
-    createContext: createContext,
+    createContext,
     onError({ path, input, error }) {
-      logger.error({ input, error }, path);
+      logger.error({ context: "trpc", input, error }, path);
     },
   });
 }
