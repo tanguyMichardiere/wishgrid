@@ -28,7 +28,7 @@ const nextAuth = NextAuth({
       env.NODE_ENV !== "development"
         ? { from: "WishGrid <no-reply@wishgrid.app>" }
         : {
-            async sendVerificationRequest({ url }) {
+            sendVerificationRequest({ url }) {
               logger.info(url);
             },
           },
