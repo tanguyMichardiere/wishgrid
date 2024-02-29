@@ -20,9 +20,10 @@
       "name": "Launch Debug Browser (port 3000)",
       "presentation": { "hidden": true },
       "request": "launch",
-      "type": "firefox",
-      "profile": "dev-edition-default",
+      "runtimeExecutable": "/opt/homebrew/bin/chromium",
+      "type": "chrome",
       "url": "http://localhost:3000",
+      "userDataDir": false,
       "webRoot": "${workspaceFolder}"
     }
   ]
