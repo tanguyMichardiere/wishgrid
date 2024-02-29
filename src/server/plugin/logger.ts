@@ -1,8 +1,10 @@
-import { experimental_trpcMiddleware as trpcMiddleware } from "@trpc/server";
+import { initTRPC } from "@trpc/server";
 import "server-only";
 import { logger as baseLogger } from "../logger";
 
-export const logger = trpcMiddleware().create(async function ({
+const t = initTRPC.create();
+
+export const loggerPlugin = t.procedure.use(async function ({
   ctx,
   type,
   path,
