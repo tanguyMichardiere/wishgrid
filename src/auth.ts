@@ -7,9 +7,11 @@ import Resend from "next-auth/providers/resend";
 import "server-only";
 import { env } from "./env";
 import { createDatabaseClient } from "./server/database/createClient";
-import { logger } from "./server/logger";
+import { logger as baseLogger } from "./server/logger";
 
-const databaseClient = createDatabaseClient(logger);
+const logger = baseLogger.child({ context: "auth" });
+
+const databaseClient = createDatabaseClient(baseLogger.child({ context: "auth-prisma" }));
 const adapter = PrismaAdapter(databaseClient);
 adapter.createUser = async (data) =>
   databaseClient.user.create({
@@ -20,7 +22,18 @@ adapter.createUser = async (data) =>
 const nextAuth = NextAuth({
   adapter,
   // TODO: customize email
-  providers: [Discord, Resend({ from: "WishGrid <no-reply@wishgrid.app>" })],
+  providers: [
+    Discord,
+    Resend(
+      env.NODE_ENV !== "development"
+        ? { from: "WishGrid <no-reply@wishgrid.app>" }
+        : {
+            sendVerificationRequest({ url }) {
+              logger.info(url);
+            },
+          },
+    ),
+  ],
   basePath: "/api/auth",
   pages: {
     signIn: "/sign-in",

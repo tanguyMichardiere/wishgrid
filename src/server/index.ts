@@ -2,12 +2,15 @@ import { initTRPC } from "@trpc/server";
 import "server-only";
 import SuperJSON from "superjson";
 import type { Context } from "./context";
-import { databaseClient } from "./middleware/databaseClient";
-import { logger } from "./middleware/logger";
-import { requireAuthentication } from "./middleware/requireAuthentication";
+import { databaseClientPlugin } from "./plugin/databaseClient";
+import { loggerPlugin } from "./plugin/logger";
+import { requireAuthenticationPlugin } from "./plugin/requireAuthentication";
 
 const t = initTRPC.context<Context>().create({ transformer: SuperJSON });
 
 export const createRouter = t.router;
 
-export const procedure = t.procedure.use(logger).use(requireAuthentication).use(databaseClient);
+export const procedure = t.procedure
+  .unstable_concat(loggerPlugin)
+  .unstable_concat(requireAuthenticationPlugin)
+  .unstable_concat(databaseClientPlugin);

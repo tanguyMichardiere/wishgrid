@@ -5,7 +5,7 @@ export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "production", "test"]),
     LOG_LEVEL: z
-      .enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"])
+      .enum(["silent", "fatal", "error", "warn", "info", "debug", "trace"])
       .default("info"),
 
     AUTH_SECRET: z.string().regex(/[0-9a-f]{64}/),
@@ -14,7 +14,6 @@ export const env = createEnv({
     AUTH_RESEND_KEY: z.string().regex(/^re_[0-9A-Za-z]{8}_[0-9A-Za-z]{24}$/),
 
     DATABASE_URL: z.string().url().startsWith("postgresql://"),
-    DATABASE_DIRECT_URL: z.string().url().startsWith("postgresql://"),
   },
   // eslint-disable-next-line camelcase
   experimental__runtimeEnv: {},

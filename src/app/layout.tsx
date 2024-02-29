@@ -1,6 +1,8 @@
 import type { JSX, ReactNode } from "react";
 import "../styles.css";
 
+// export const runtime = "edge";
+
 export const metadata = {
   title: "WishGrid",
   description: "Personal wishlists",

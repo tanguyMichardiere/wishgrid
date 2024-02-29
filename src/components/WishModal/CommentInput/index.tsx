@@ -3,7 +3,8 @@
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import cx from "classix";
-import { forwardRef, type FormEvent } from "react";
+import type { FormEvent } from "react";
+import { forwardRef } from "react";
 import { useForm } from "react-hook-form";
 import { useCreateCommentMutation } from "../../../hooks/mutations/comments/create";
 import { setRef } from "../../../utils/refs";
