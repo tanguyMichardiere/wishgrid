@@ -45,7 +45,7 @@ const nextAuth = NextAuth({
       return session;
     },
   },
-  debug: env.NODE_ENV === "development",
+  debug: env.LOG_LEVEL === "info",
   logger: {
     debug: logger.info,
     warn: logger.warning,
