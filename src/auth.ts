@@ -26,7 +26,7 @@ const nextAuth = NextAuth({
         ? { from: "WishGrid <no-reply@wishgrid.app>" }
         : {
             sendVerificationRequest({ url }) {
-              logger.info(url);
+              logger.debug(url);
             },
           },
     ),
@@ -45,9 +45,9 @@ const nextAuth = NextAuth({
       return session;
     },
   },
-  debug: env.LOG_LEVEL === "info",
+  debug: true,
   logger: {
-    debug: logger.info,
+    debug: logger.debug,
     warn: logger.warning,
     error: logger.error,
   },

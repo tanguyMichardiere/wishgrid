@@ -25,7 +25,7 @@ export const databaseClient = new PrismaClient({
 
 databaseClient.$on("query", function (e) {
   if (e.params !== "[]") {
-    logger.info(
+    logger.debug(
       e.query,
       Object.fromEntries(
         // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
@@ -33,7 +33,7 @@ databaseClient.$on("query", function (e) {
       ),
     );
   } else {
-    logger.info(e.query);
+    logger.debug(e.query);
   }
 });
 databaseClient.$on("info", function (e) {
