@@ -17,7 +17,7 @@ export const update = procedure
           where: { id: ctx.user.id },
         });
       } catch (error) {
-        console.error(error);
+        console.error(error.meta.response);
       }
     }
     await ctx.db.user.update({ data: { name: input.name }, where: { id: ctx.user.id } });
