@@ -6,12 +6,9 @@ import Discord from "next-auth/providers/discord";
 import Resend from "next-auth/providers/resend";
 import "server-only";
 import { env } from "./env";
-import { createDatabaseClient } from "./server/database/createClient";
-import { logger as baseLogger } from "./server/logger";
+import { databaseClient } from "./server/database/client";
+import { logger } from "./server/logger";
 
-const logger = baseLogger.child({ context: "auth" });
-
-const databaseClient = createDatabaseClient(baseLogger.child({ context: "auth-prisma" }));
 const adapter = PrismaAdapter(databaseClient);
 adapter.createUser = async (data) =>
   databaseClient.user.create({
@@ -48,17 +45,11 @@ const nextAuth = NextAuth({
       return session;
     },
   },
-  debug: ["debug", "trace"].includes(env.LOG_LEVEL),
+  debug: env.NODE_ENV === "development",
   logger: {
-    debug(message, metadata) {
-      logger.debug(metadata, message);
-    },
-    warn(code) {
-      logger.warn(code);
-    },
-    error(error) {
-      logger.error(error);
-    },
+    debug: logger.info,
+    warn: logger.error,
+    error: logger.error,
   },
 });
 

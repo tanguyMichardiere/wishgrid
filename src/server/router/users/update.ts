@@ -9,16 +9,12 @@ export const update = procedure
   .output(z.void())
   .mutation(async function ({ ctx, input }) {
     if (input.image !== undefined) {
-      try {
-        const trpcNode = createNodeClient();
-        const images = await trpcNode.imageResize.mutate(input.image);
-        await ctx.db.user.update({
-          data: { name: input.name, image: images[96] },
-          where: { id: ctx.user.id },
-        });
-      } catch (error) {
-        console.error(error.meta.response);
-      }
+      const trpcNode = createNodeClient();
+      const images = await trpcNode.imageResize.mutate(input.image);
+      await ctx.db.user.update({
+        data: { name: input.name, image: images[96] },
+        where: { id: ctx.user.id },
+      });
     }
     await ctx.db.user.update({ data: { name: input.name }, where: { id: ctx.user.id } });
   });

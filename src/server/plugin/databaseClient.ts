@@ -1,10 +1,9 @@
 import { initTRPC } from "@trpc/server";
-import type { Logger } from "pino";
 import "server-only";
-import { createDatabaseClient } from "../database/createClient";
+import { databaseClient } from "../database/client";
 
-const t = initTRPC.context<{ logger: Logger }>().create();
+const t = initTRPC.create();
 
 export const databaseClientPlugin = t.procedure.use(async ({ ctx, next }) =>
-  createDatabaseClient(ctx.logger).$transaction((db) => next({ ctx: { ...ctx, db } })),
+  databaseClient.$transaction((db) => next({ ctx: { ...ctx, db } })),
 );

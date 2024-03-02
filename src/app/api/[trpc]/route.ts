@@ -11,8 +11,8 @@ async function handler(req: Request): Promise<Response> {
     router,
     req,
     createContext,
-    onError({ path, input, error }) {
-      logger.error({ context: "trpc", input, error }, path);
+    onError({ error }) {
+      logger.error(error);
     },
   });
 }

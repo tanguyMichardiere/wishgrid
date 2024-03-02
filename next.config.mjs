@@ -29,7 +29,7 @@ let nextConfig = {
     config.experiments.asyncWebAssembly = true;
     return config;
   },
-  experimental: { serverComponentsExternalPackages: ["docx", "pdfkit", "pino"] },
+  experimental: { serverComponentsExternalPackages: ["docx", "pdfkit"] },
 };
 
 nextConfig = withNextIntl()(nextConfig);
