@@ -259,6 +259,9 @@ devDependencies:
   vercel:
     specifier: 33.5.3
     version: 33.5.3(@swc/core@1.4.2)
+  webpack:
+    specifier: 5.90.3
+    version: 5.90.3(@swc/core@1.4.2)(esbuild@0.18.20)
 
 packages:
 

@@ -23,6 +23,12 @@ let nextConfig = {
   headers() {
     return Promise.resolve([{ source: "/:path*", headers }]);
   },
+  /** @param {import("webpack").Configuration} config */
+  webpack(config) {
+    config.experiments ??= {};
+    config.experiments.asyncWebAssembly = true;
+    return config;
+  },
   experimental: { serverComponentsExternalPackages: ["docx", "pdfkit", "pino"] },
 };
 
