@@ -15,7 +15,6 @@ export const createServerSideHelpers = async (): Promise<
 export function createNodeClient(): ReturnType<typeof createTRPCClient<NodeRouter>> {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const originHeader = headers().get("origin")!;
-  console.log(originHeader);
   const authCookie = cookies().get("authjs.session-token");
   return createTRPCClient<NodeRouter>({
     links: [
