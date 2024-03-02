@@ -10,16 +10,12 @@ import { transformer } from "./transformer";
 
 export const createServerSideHelpers = async (): Promise<
   ReturnType<typeof _createServerSideHelpers<Router>>
-> =>
-  _createServerSideHelpers({
-    router,
-    ctx: await createContext(),
-    transformer,
-  });
+> => _createServerSideHelpers({ router, ctx: await createContext(), transformer });
 
 export function createNodeClient(): ReturnType<typeof createTRPCClient<NodeRouter>> {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const originHeader = headers().get("origin")!;
+  console.log(originHeader);
   const authCookie = cookies().get("authjs.session-token");
   return createTRPCClient<NodeRouter>({
     links: [
