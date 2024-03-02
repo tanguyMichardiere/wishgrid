@@ -7,7 +7,7 @@ import { env } from "../env";
 export const logger = {
   info(this: void, message: unknown, ...optionalParams: Array<unknown>): void {
     if (env.LOG_LEVEL === "info") {
-      console.log(message, optionalParams);
+      console.log(message, ...optionalParams);
     }
   },
   warning(this: void, message: string, ...optionalParams: Array<unknown>): void {
@@ -16,6 +16,6 @@ export const logger = {
     }
   },
   error(this: void, message: unknown, ...optionalParams: Array<unknown>): void {
-    console.error(message, optionalParams);
+    console.error(message, ...optionalParams);
   },
 };
