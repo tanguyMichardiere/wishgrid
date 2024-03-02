@@ -10,7 +10,7 @@ export const logger = {
   info: env.LOG_LEVEL === "info" ? console.log : noop,
   warning: ["info", "warning"].includes(env.LOG_LEVEL)
     ? function (message: string, ...optionalParams: Array<unknown>): void {
-        console.warn(`WARNING: ${message}`, ...optionalParams);
+        console.log(`WARNING: ${message}`, ...optionalParams);
       }
     : noop,
   error: console.error,
