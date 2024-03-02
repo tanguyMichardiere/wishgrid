@@ -25,7 +25,13 @@ export const databaseClient = new PrismaClient({
 
 databaseClient.$on("query", function (e) {
   if (e.params !== "[]") {
-    logger.info(e.query, e.params);
+    logger.info(
+      e.query,
+      Object.fromEntries(
+        // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+        (JSON.parse(e.params) as Array<unknown>).map((param, index) => [`$${index + 1}`, param]),
+      ),
+    );
   } else {
     logger.info(e.query);
   }
