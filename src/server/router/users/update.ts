@@ -1,7 +1,7 @@
 import "server-only";
 import { z } from "zod";
 import { procedure } from "../..";
-import { trpcNode } from "../../../utils/trpc/server";
+import { createNodeClient } from "../../../utils/trpc/server";
 import { UserName } from "../../database/types/user";
 
 export const update = procedure
@@ -9,6 +9,7 @@ export const update = procedure
   .output(z.void())
   .mutation(async function ({ ctx, input }) {
     if (input.image !== undefined) {
+      const trpcNode = createNodeClient();
       const images = await trpcNode.imageResize.mutate(input.image);
       await ctx.db.user.update({
         data: { name: input.name, image: images[96] },

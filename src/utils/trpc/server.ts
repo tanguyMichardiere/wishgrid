@@ -1,6 +1,6 @@
 import { createTRPCClient, httpLink } from "@trpc/client";
 import { createServerSideHelpers as _createServerSideHelpers } from "@trpc/react-query/server";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import "server-only";
 import { createContext } from "../../server/context";
 import type { NodeRouter } from "../../server/nodeRouter";
@@ -17,18 +17,22 @@ export const createServerSideHelpers = async (): Promise<
     transformer,
   });
 
-export const trpcNode = createTRPCClient<NodeRouter>({
-  links: [
-    httpLink({
-      url: "http://localhost:3000/api/node",
-      transformer,
-      headers() {
-        const authCookie = cookies().get("authjs.session-token");
-        if (authCookie !== undefined) {
-          return { Cookie: `${authCookie.name}=${authCookie.value}` };
-        }
-        return {};
-      },
-    }),
-  ],
-});
+export function createNodeClient(): ReturnType<typeof createTRPCClient<NodeRouter>> {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const originHeader = headers().get("origin")!;
+  const authCookie = cookies().get("authjs.session-token");
+  return createTRPCClient<NodeRouter>({
+    links: [
+      httpLink({
+        url: `${originHeader}/api/node`,
+        headers() {
+          if (authCookie !== undefined) {
+            return { Cookie: `${authCookie.name}=${authCookie.value}` };
+          }
+          return {};
+        },
+        transformer,
+      }),
+    ],
+  });
+}
