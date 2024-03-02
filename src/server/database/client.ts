@@ -24,14 +24,18 @@ export const databaseClient = new PrismaClient({
 });
 
 databaseClient.$on("query", function (e) {
-  logger.info(e, e.query);
+  if (e.params !== "[]") {
+    logger.info(e.query, e.params);
+  } else {
+    logger.info(e.query);
+  }
 });
 databaseClient.$on("info", function (e) {
-  logger.info(e, e.message);
+  logger.info(e.message);
 });
 databaseClient.$on("warn", function (e) {
-  logger.info(e, e.message);
+  logger.warning(e.message);
 });
 databaseClient.$on("error", function (e) {
-  logger.error(e, e.message);
+  logger.error(e.message);
 });

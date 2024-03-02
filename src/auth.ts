@@ -48,7 +48,7 @@ const nextAuth = NextAuth({
   debug: env.NODE_ENV === "development",
   logger: {
     debug: logger.info,
-    warn: logger.error,
+    warn: logger.warning,
     error: logger.error,
   },
 });
