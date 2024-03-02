@@ -1,6 +1,7 @@
 import "server-only";
 import { z } from "zod";
 import { procedure } from "../..";
+import { trpcNode } from "../../../utils/trpc/server";
 import { UserName } from "../../database/types/user";
 
 export const update = procedure
@@ -8,17 +9,9 @@ export const update = procedure
   .output(z.void())
   .mutation(async function ({ ctx, input }) {
     if (input.image !== undefined) {
-      const sharp = await import("sharp");
-      const imageBuffer = await sharp
-        .default(Buffer.from(input.image, "base64"))
-        .resize(96)
-        .webp()
-        .toBuffer();
+      const images = await trpcNode.imageResize.mutate(input.image);
       await ctx.db.user.update({
-        data: {
-          name: input.name,
-          image: `data:image/webp;base64,${imageBuffer.toString("base64")}`,
-        },
+        data: { name: input.name, image: images[96] },
         where: { id: ctx.user.id },
       });
     }
