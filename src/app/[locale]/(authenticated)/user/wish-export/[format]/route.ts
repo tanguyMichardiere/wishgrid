@@ -7,7 +7,7 @@ import { auth } from "../../../../../../auth";
 import { databaseClient } from "../../../../../../server/database/client";
 import { generateDocx } from "./generateDocx";
 import { generatePdf } from "./generatePdf";
-import { Params } from "./params";
+import type { Params } from "./params";
 
 // docx and pdfkit require node
 export const runtime = "nodejs";

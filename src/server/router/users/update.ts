@@ -1,3 +1,4 @@
+import type { Prisma } from "@prisma/client";
 import "server-only";
 import { z } from "zod";
 import { procedure } from "../..";
@@ -8,17 +9,15 @@ export const update = procedure
   .input(z.object({ name: UserName, image: z.optional(z.string().regex(/[A-Za-z0-9+/]+={0,2}/)) }))
   .output(z.void())
   .mutation(async function ({ ctx, input }) {
+    const data: Prisma.UserUpdateInput = { name: input.name };
     if (input.image !== undefined) {
       try {
         const trpcNode = createNodeClient();
         const images = await trpcNode.imageResize.mutate(input.image);
-        await ctx.db.user.update({
-          data: { name: input.name, image: images[96] },
-          where: { id: ctx.user.id },
-        });
+        data.image = images[96];
       } catch (error) {
         console.error(error);
       }
     }
-    await ctx.db.user.update({ data: { name: input.name }, where: { id: ctx.user.id } });
+    await ctx.db.user.update({ data, where: { id: ctx.user.id } });
   });
