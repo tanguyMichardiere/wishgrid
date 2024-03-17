@@ -3,8 +3,6 @@ import { createContext } from "../../../../server/context";
 import { logger } from "../../../../server/logger";
 import { nodeRouter } from "../../../../server/nodeRouter";
 
-export const runtime = "nodejs";
-
 async function handler(req: Request): Promise<Response> {
   return fetchRequestHandler({
     endpoint: "/api/node",

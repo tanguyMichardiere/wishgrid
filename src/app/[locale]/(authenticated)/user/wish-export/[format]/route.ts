@@ -7,10 +7,7 @@ import { auth } from "../../../../../../auth";
 import { databaseClient } from "../../../../../../server/database/client";
 import { generateDocx } from "./generateDocx";
 import { generatePdf } from "./generatePdf";
-import type { Params } from "./params";
-
-// docx and pdfkit require node
-export const runtime = "nodejs";
+import { Params } from "./params";
 
 const Params = z.object({
   locale: z.enum(["en", "fr"]),

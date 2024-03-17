@@ -3,8 +3,6 @@ import { createContext } from "../../../server/context";
 import { logger } from "../../../server/logger";
 import { router } from "../../../server/router";
 
-// export const runtime = "edge";
-
 async function handler(req: Request): Promise<Response> {
   return fetchRequestHandler({
     endpoint: "/api",
