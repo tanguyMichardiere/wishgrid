@@ -3,16 +3,14 @@ import { createContext } from "../../../server/context";
 import { logger } from "../../../server/logger";
 import { router } from "../../../server/router";
 
-// export const runtime = "edge";
-
 async function handler(req: Request): Promise<Response> {
   return fetchRequestHandler({
     endpoint: "/api",
     router,
     req,
     createContext,
-    onError({ path, input, error }) {
-      logger.error({ context: "trpc", input, error }, path);
+    onError({ error }) {
+      logger.error(error);
     },
   });
 }

@@ -1,9 +1,9 @@
 import "client-only";
 import type { Router } from "../../../server/router";
-import { useOptimisticUpdates } from "../../../state/optimisticUpdates";
 import { toast } from "../../../utils/toast";
 import { useClientTranslations } from "../../../utils/translations/client";
 import { trpc } from "../../../utils/trpc/client";
+import { useOptimisticUpdates } from "../optimisticUpdates";
 import type { OptimisticRelatedProcedures } from "../relatedProcedures";
 
 function useRelatedProcedures(

@@ -1,26 +1,31 @@
+import type { Prisma } from "@prisma/client";
 import "server-only";
+import sharp from "sharp";
 import { z } from "zod";
 import { procedure } from "../..";
 import { UserName } from "../../database/types/user";
 
 export const update = procedure
-  .input(z.object({ name: UserName, image: z.optional(z.string().regex(/[A-Za-z0-9+/]+={0,2}/)) }))
+  .input(
+    z.object({
+      name: UserName,
+      image: z.optional(
+        z.string().transform(function (arg, ctx) {
+          try {
+            return sharp(Buffer.from(arg, "base64"));
+          } catch {
+            ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Invalid image" });
+            return z.NEVER;
+          }
+        }),
+      ),
+    }),
+  )
   .output(z.void())
   .mutation(async function ({ ctx, input }) {
+    const data: Prisma.UserUpdateInput = { name: input.name };
     if (input.image !== undefined) {
-      const sharp = await import("sharp");
-      const imageBuffer = await sharp
-        .default(Buffer.from(input.image, "base64"))
-        .resize(96)
-        .webp()
-        .toBuffer();
-      await ctx.db.user.update({
-        data: {
-          name: input.name,
-          image: `data:image/webp;base64,${imageBuffer.toString("base64")}`,
-        },
-        where: { id: ctx.user.id },
-      });
+      data.image = `data:image/webp;base64,${(await input.image.resize(96).webp().toBuffer()).toString("base64")}`;
     }
-    await ctx.db.user.update({ data: { name: input.name }, where: { id: ctx.user.id } });
+    await ctx.db.user.update({ data, where: { id: ctx.user.id } });
   });

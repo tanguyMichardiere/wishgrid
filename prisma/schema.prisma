@@ -6,7 +6,7 @@ datasource db {
 
 generator client {
     provider        = "prisma-client-js"
-    previewFeatures = ["postgresqlExtensions", "driverAdapters"]
+    previewFeatures = ["postgresqlExtensions"]
 }
 
 model Account {

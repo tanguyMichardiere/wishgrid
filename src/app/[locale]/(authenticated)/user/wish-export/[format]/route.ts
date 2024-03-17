@@ -4,18 +4,11 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { auth } from "../../../../../../auth";
-import { createDatabaseClient } from "../../../../../../server/database/createClient";
-import { logger as baseLogger } from "../../../../../../server/logger";
+import { databaseClient } from "../../../../../../server/database/client";
 import { generateDocx } from "./generateDocx";
 import { generatePdf } from "./generatePdf";
-import { Params } from "./params";
-
-// docx and pdfkit require node
-export const runtime = "nodejs";
-
-const logger = baseLogger.child({ context: "wish-export" });
-
-const db = createDatabaseClient(logger);
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { Params } from "./params";
 
 const Params = z.object({
   locale: z.enum(["en", "fr"]),
@@ -39,7 +32,7 @@ export async function GET(
 
   const t = await getTranslations({ locale, namespace: "wish-export" });
 
-  const { wishes } = await db.user.findUniqueOrThrow({
+  const { wishes } = await databaseClient.user.findUniqueOrThrow({
     include: {
       wishes: {
         select: { title: true, description: true, link: true },
