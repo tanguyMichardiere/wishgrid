@@ -22,7 +22,11 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
     setData({ name, image }) {
       trpcUtils.users.getCurrent.setData(undefined, (currentUser) =>
         currentUser !== undefined
-          ? { ...currentUser, name, image: `data:image/png;base64,${image}` }
+          ? {
+              ...currentUser,
+              name,
+              image: image !== undefined ? `data:image/png;base64,${image}` : currentUser.image,
+            }
           : undefined,
       );
     },

@@ -17,7 +17,10 @@ databaseClient.$on("query", function (e) {
       e.query,
       Object.fromEntries(
         // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-        (JSON.parse(e.params) as Array<unknown>).map((param, index) => [`$${index + 1}`, param]),
+        (JSON.parse(e.params) as Array<unknown>).map((param, index) => [
+          `$${(index + 1).toString()}`,
+          param,
+        ]),
       ),
     );
   } else {

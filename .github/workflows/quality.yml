@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v3
         with:
           version: 8
       - name: Setup Node
@@ -31,7 +31,7 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v3
         with:
           version: 8
       - name: Setup Node
@@ -51,7 +51,7 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v3
         with:
           version: 8
       - name: Setup Node
@@ -71,7 +71,7 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v3
         with:
           version: 8
       - name: Setup Node
