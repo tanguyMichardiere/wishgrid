@@ -7,6 +7,6 @@ export const transformer = {
   output: {
     serialize: uneval,
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    deserialize: (object) => eval(`(${object})`),
+    deserialize: (object) => eval(`(${String(object)})`),
   },
 } satisfies DataTransformerOptions;
