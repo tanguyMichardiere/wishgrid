@@ -7,7 +7,6 @@ import { auth } from "../../../../../../auth";
 import { databaseClient } from "../../../../../../server/database/client";
 import { generateDocx } from "./generateDocx";
 import { generatePdf } from "./generatePdf";
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import type { Params } from "./params";
 
 const Params = z.object({
