@@ -11,7 +11,9 @@ import { getBase64 } from "../../../../utils/base64";
 import { useClientTranslations } from "../../../../utils/translations/client";
 import { FormSchema } from "./form-schema";
 
-export function UpdateUser(): JSX.Element {
+// TODO: remove default export once dynamic import can handle named exports
+// biome-ignore lint/style/noDefaultExport:
+export default function UpdateUser(): JSX.Element {
 	const router = useRouter();
 	const t = useClientTranslations("client.UpdateUser");
 
@@ -80,7 +82,3 @@ export function UpdateUser(): JSX.Element {
 		</form>
 	);
 }
-
-// TODO: remove once dynamic import can handle named exports
-// biome-ignore lint/style/noDefaultExport:
-export default UpdateUser;
