@@ -80,3 +80,7 @@ export function UpdateUser(): JSX.Element {
 		</form>
 	);
 }
+
+// TODO: remove once dynamic import can handle named exports
+// biome-ignore lint/style/noDefaultExport:
+export default UpdateUser;

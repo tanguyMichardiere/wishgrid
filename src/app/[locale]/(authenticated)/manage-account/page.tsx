@@ -5,7 +5,7 @@ import { DeleteCurrentUserButton } from "../../../../components/delete-current-u
 import { getCurrentUser } from "../../../../utils/server-queries/users/get-current";
 
 // cannot be server-rendered because it uses FileList which is browser-only
-const UpdateUser = dynamic(() => import("./update-user").then((module) => module.UpdateUser), {
+const UpdateUser = dynamic(() => import("./update-user"), {
 	ssr: false,
 	loading: () => <span className="loading loading-spinner" />,
 });
