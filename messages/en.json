@@ -1,224 +1,224 @@
 {
-  "About": {
-    "subtitle": "A platform to share gift ideas with your friends",
-    "title": "WishGrid"
-  },
-  "AuthErrorPage": {
-    "defaultTitle": "Authentication error",
-    "signInLinkText": "Sign in",
-    "Verification": {
-      "body": "The sign in link is no longer valid. It may have been used already or it may have expired.",
-      "title": "Unable to sign in"
-    }
-  },
-  "AuthVerifyRequestPage": {
-    "body": "A sign in link has been sent to your email address.",
-    "title": "Check your email"
-  },
-  "client": {
-    "AcceptFriendRequestButton": {
-      "text": "Accept"
-    },
-    "Avatar": {
-      "altText": "profile picture"
-    },
-    "CancelFriendRequestButton": {
-      "text": "Cancel Friend Request"
-    },
-    "CommentInput": {
-      "placeholder": "Comment",
-      "textTooBig": "Comment must be at most {length} characters",
-      "textTooSmall": "Comment must be at least {length} characters"
-    },
-    "DeclineFriendRequestButton": {
-      "text": "Decline"
-    },
-    "DeleteCurrentUserButton": {
-      "modalBody": "This will also delete all your wishes and comments, and remove you from anyone's friend list.",
-      "modalTitle": "Delete Account?",
-      "text": "Delete Account"
-    },
-    "DeleteWishButton": {
-      "confirmationText": "Are you sure?",
-      "text": "Delete"
-    },
-    "Error": {
-      "digest": "Digest: {digest}",
-      "title": "An unexpected error has occurred, it has been reported",
-      "tryAgain": "Try Again"
-    },
-    "ExportMenu": {
-      "export": "Export"
-    },
-    "FriendList": {
-      "link": "or share yours",
-      "text": "To send friend requests, ask your friends to share their link"
-    },
-    "FriendPreviewCard": {
-      "newWishCountTooltip": "{count} wishes of which {newCount, plural, =1 {one new one} other {# new ones}}",
-      "onlyNewWishCountTooltip": "{count, plural, =1 {one new wish} other {# new wishes}}",
-      "wishCountTooltip": "{count, plural, =0 {no wish} =1 {one wish} other {# wishes}}"
-    },
-    "FriendRequestList": {
-      "friendRequests": "Friend requests"
-    },
-    "Modal": {
-      "closeButtonText": "close"
-    },
-    "MutationModal": {
-      "cancel": "Cancel",
-      "ok": "OK"
-    },
-    "mutations": {
-      "comments": {
-        "create": {
-          "errorText": "An error has occurred, please try again"
-        }
-      },
-      "friendRequests": {
-        "accept": {
-          "errorText": "An error has occurred, please try again"
-        },
-        "cancel": {
-          "errorText": "An error has occurred, please try again"
-        },
-        "create": {
-          "errorText": "An error has occurred, please try again"
-        },
-        "decline": {
-          "errorText": "An error has occurred, please try again"
-        }
-      },
-      "users": {
-        "deleteCurrent": {
-          "errorText": "An error has occurred, please try again"
-        },
-        "update": {
-          "errorText": "An error has occurred, please try again"
-        }
-      },
-      "wishes": {
-        "create": {
-          "errorText": "An error has occurred, please try again"
-        },
-        "delete": {
-          "errorText": "An error has occurred, please try again"
-        },
-        "reserve": {
-          "errorText": "An error has occurred, please try again"
-        },
-        "setViewed": {
-          "errorText": "An error has occurred, please try again"
-        },
-        "unreserve": {
-          "errorText": "An error has occurred, please try again"
-        },
-        "update": {
-          "errorText": "An error has occurred, please try again"
-        }
-      }
-    },
-    "NewWishModal": {
-      "cancelButtonText": "Cancel",
-      "createButtonText": "Create"
-    },
-    "OwnWishList": {
-      "noWish": "No wish"
-    },
-    "OwnWishModal": {
-      "cancelButtonText": "Cancel",
-      "updateButtonText": "Update"
-    },
-    "RequestFriendButton": {
-      "text": "Request Friend"
-    },
-    "ReserveWishButton": {
-      "text": "Reserve"
-    },
-    "ShareUserLinkButton": {
-      "buttonText": "Share my link",
-      "modalTitle": "Share your link to allow others to send you friend requests",
-      "toastMessage": "Link copied to clipboard"
-    },
-    "UnreserveWishButton": {
-      "text": "Unreserve"
-    },
-    "UpdateUser": {
-      "imageLabel": "Change image",
-      "nameLabel": "Change name",
-      "namePlaceholder": "Name",
-      "nameTooBig": "Name must be at most {length} characters",
-      "nameTooSmall": "Name must be at least {length} characters",
-      "submitButtonText": "Submit"
-    },
-    "WishDescriptionFormInput": {
-      "placeholder": "Description",
-      "tooBig": "Description must be at most {length} characters"
-    },
-    "WishLinkFormInput": {
-      "invalid": "Invalid URL",
-      "placeholder": "Link",
-      "tooBig": "Link must be at most {length} characters"
-    },
-    "WishList": {
-      "noWish": "No wish"
-    },
-    "WishModal": {
-      "reservedBy": "Reserved by: <bold>{name}</bold>{you, select, true { (you)} other {}}"
-    },
-    "WishPreviewCard": {
-      "commentsTooltip": "{count, plural, =0 {No comment yet} =1 {1 comment} other {# comments}}",
-      "notReservedTooltip": "Not reserved",
-      "reservedTooltip": "Reserved"
-    },
-    "WishTitleFormInput": {
-      "placeholder": "Title",
-      "tooBig": "Title must be at most {length} characters",
-      "tooSmall": "Title must be at least {length} characters"
-    }
-  },
-  "EmailSignIn": {
-    "buttonText": "Sign in with Email",
-    "placeholder": "Email"
-  },
-  "Navbar": {
-    "friends": "Friends",
-    "myWishes": "My Wishes",
-    "settings": "Settings",
-    "title": "WishGrid"
-  },
-  "NewWishButton": {
-    "text": "New Wish"
-  },
-  "NotFound": {
-    "returnHome": "Return to Home Page",
-    "title": "Page Not Found"
-  },
-  "SettingsPage": {
-    "about": "About",
-    "language": "Language",
-    "manageAccount": "Manage account",
-    "theme": "Theme"
-  },
-  "SignInButton": {
-    "text": "Sign in with {provider}"
-  },
-  "SignInPage": {
-    "error": {
-      "defaultTitle": "Authentication error",
-      "OAuthAccountNotLinked": {
-        "body": "Please connect with your original account",
-        "title": "OAuth account not linked"
-      }
-    },
-    "or": "or"
-  },
-  "SignOutButton": {
-    "text": "Sign out"
-  },
-  "wish-export": {
-    "description": "description",
-    "link": "link",
-    "title": "title"
-  }
+	"About": {
+		"subtitle": "A platform to share gift ideas with your friends",
+		"title": "WishGrid"
+	},
+	"AuthErrorPage": {
+		"defaultTitle": "Authentication error",
+		"signInLinkText": "Sign in",
+		"Verification": {
+			"body": "The sign in link is no longer valid. It may have been used already or it may have expired.",
+			"title": "Unable to sign in"
+		}
+	},
+	"AuthVerifyRequestPage": {
+		"body": "A sign in link has been sent to your email address.",
+		"title": "Check your email"
+	},
+	"client": {
+		"AcceptFriendRequestButton": {
+			"text": "Accept"
+		},
+		"Avatar": {
+			"altText": "profile picture"
+		},
+		"CancelFriendRequestButton": {
+			"text": "Cancel Friend Request"
+		},
+		"CommentInput": {
+			"placeholder": "Comment",
+			"textTooBig": "Comment must be at most {length} characters",
+			"textTooSmall": "Comment must be at least {length} characters"
+		},
+		"DeclineFriendRequestButton": {
+			"text": "Decline"
+		},
+		"DeleteCurrentUserButton": {
+			"modalBody": "This will also delete all your wishes and comments, and remove you from anyone's friend list.",
+			"modalTitle": "Delete Account?",
+			"text": "Delete Account"
+		},
+		"DeleteWishButton": {
+			"confirmationText": "Are you sure?",
+			"text": "Delete"
+		},
+		"Error": {
+			"digest": "Digest: {digest}",
+			"title": "An unexpected error has occurred, it has been reported",
+			"tryAgain": "Try Again"
+		},
+		"ExportMenu": {
+			"export": "Export"
+		},
+		"FriendList": {
+			"link": "or share yours",
+			"text": "To send friend requests, ask your friends to share their link"
+		},
+		"FriendPreviewCard": {
+			"newWishCountTooltip": "{count} wishes of which {newCount, plural, =1 {one new one} other {# new ones}}",
+			"onlyNewWishCountTooltip": "{count, plural, =1 {one new wish} other {# new wishes}}",
+			"wishCountTooltip": "{count, plural, =0 {no wish} =1 {one wish} other {# wishes}}"
+		},
+		"FriendRequestList": {
+			"friendRequests": "Friend requests"
+		},
+		"Modal": {
+			"closeButtonText": "close"
+		},
+		"MutationModal": {
+			"cancel": "Cancel",
+			"ok": "OK"
+		},
+		"mutations": {
+			"comments": {
+				"create": {
+					"errorText": "An error has occurred, please try again"
+				}
+			},
+			"friendRequests": {
+				"accept": {
+					"errorText": "An error has occurred, please try again"
+				},
+				"cancel": {
+					"errorText": "An error has occurred, please try again"
+				},
+				"create": {
+					"errorText": "An error has occurred, please try again"
+				},
+				"decline": {
+					"errorText": "An error has occurred, please try again"
+				}
+			},
+			"users": {
+				"deleteCurrent": {
+					"errorText": "An error has occurred, please try again"
+				},
+				"update": {
+					"errorText": "An error has occurred, please try again"
+				}
+			},
+			"wishes": {
+				"create": {
+					"errorText": "An error has occurred, please try again"
+				},
+				"delete": {
+					"errorText": "An error has occurred, please try again"
+				},
+				"reserve": {
+					"errorText": "An error has occurred, please try again"
+				},
+				"setViewed": {
+					"errorText": "An error has occurred, please try again"
+				},
+				"unreserve": {
+					"errorText": "An error has occurred, please try again"
+				},
+				"update": {
+					"errorText": "An error has occurred, please try again"
+				}
+			}
+		},
+		"NewWishModal": {
+			"cancelButtonText": "Cancel",
+			"createButtonText": "Create"
+		},
+		"OwnWishList": {
+			"noWish": "No wish"
+		},
+		"OwnWishModal": {
+			"cancelButtonText": "Cancel",
+			"updateButtonText": "Update"
+		},
+		"RequestFriendButton": {
+			"text": "Request Friend"
+		},
+		"ReserveWishButton": {
+			"text": "Reserve"
+		},
+		"ShareUserLinkButton": {
+			"buttonText": "Share my link",
+			"modalTitle": "Share your link to allow others to send you friend requests",
+			"toastMessage": "Link copied to clipboard"
+		},
+		"UnreserveWishButton": {
+			"text": "Unreserve"
+		},
+		"UpdateUser": {
+			"imageLabel": "Change image",
+			"nameLabel": "Change name",
+			"namePlaceholder": "Name",
+			"nameTooBig": "Name must be at most {length} characters",
+			"nameTooSmall": "Name must be at least {length} characters",
+			"submitButtonText": "Submit"
+		},
+		"WishDescriptionFormInput": {
+			"placeholder": "Description",
+			"tooBig": "Description must be at most {length} characters"
+		},
+		"WishLinkFormInput": {
+			"invalid": "Invalid URL",
+			"placeholder": "Link",
+			"tooBig": "Link must be at most {length} characters"
+		},
+		"WishList": {
+			"noWish": "No wish"
+		},
+		"WishModal": {
+			"reservedBy": "Reserved by: <bold>{name}</bold>{you, select, true { (you)} other {}}"
+		},
+		"WishPreviewCard": {
+			"commentsTooltip": "{count, plural, =0 {No comment yet} =1 {1 comment} other {# comments}}",
+			"notReservedTooltip": "Not reserved",
+			"reservedTooltip": "Reserved"
+		},
+		"WishTitleFormInput": {
+			"placeholder": "Title",
+			"tooBig": "Title must be at most {length} characters",
+			"tooSmall": "Title must be at least {length} characters"
+		}
+	},
+	"EmailSignIn": {
+		"buttonText": "Sign in with Email",
+		"placeholder": "Email"
+	},
+	"Navbar": {
+		"friends": "Friends",
+		"myWishes": "My Wishes",
+		"settings": "Settings",
+		"title": "WishGrid"
+	},
+	"NewWishButton": {
+		"text": "New Wish"
+	},
+	"NotFound": {
+		"returnHome": "Return to Home Page",
+		"title": "Page Not Found"
+	},
+	"SettingsPage": {
+		"about": "About",
+		"language": "Language",
+		"manageAccount": "Manage account",
+		"theme": "Theme"
+	},
+	"SignInButton": {
+		"text": "Sign in with {provider}"
+	},
+	"SignInPage": {
+		"error": {
+			"defaultTitle": "Authentication error",
+			"OAuthAccountNotLinked": {
+				"body": "Please connect with your original account",
+				"title": "OAuth account not linked"
+			}
+		},
+		"or": "or"
+	},
+	"SignOutButton": {
+		"text": "Sign out"
+	},
+	"wish-export": {
+		"description": "description",
+		"link": "link",
+		"title": "title"
+	}
 }

@@ -6,7 +6,7 @@ import type { ForwardedRef, RefCallback } from "react";
  * @example
  *
  * ```ts
- * export default forwardRef<{ close: () => void }, Props>(function Modal(props, ref) {
+ * export const Modal = forwardRef<{ close: () => void }, Props>(function Modal(props, ref) {
  *   function close() {
  *     // ...
  *   }
@@ -18,11 +18,11 @@ import type { ForwardedRef, RefCallback } from "react";
  * ```
  */
 export function setRef<T>(ref: ForwardedRef<T>, value: T): void {
-  if (typeof ref === "function") {
-    ref(value);
-  } else if (ref !== null) {
-    ref.current = value;
-  }
+	if (typeof ref === "function") {
+		ref(value);
+	} else if (ref !== null) {
+		ref.current = value;
+	}
 }
 
 /**
@@ -31,7 +31,7 @@ export function setRef<T>(ref: ForwardedRef<T>, value: T): void {
  * @example
  *
  * ```ts
- * export default forwardRef<HTMLDialogElement, Props>(function SpecializedModal(props, ref) {
+ * export const SpecializedModal = forwardRef<HTMLDialogElement, Props>(function SpecializedModal(props, ref) {
  *   const innerRef = useRef<HTMLDialogElement>(null)
  *
  *   function close() {
@@ -42,10 +42,10 @@ export function setRef<T>(ref: ForwardedRef<T>, value: T): void {
  * });
  * ```
  */
-export function mergeRefs<T>(...refs: Array<ForwardedRef<T>>): RefCallback<T> {
-  return function (value) {
-    for (const ref of refs) {
-      setRef(ref, value);
-    }
-  };
+export function mergeRefs<T>(...refs: ForwardedRef<T>[]): RefCallback<T> {
+	return (value) => {
+		for (const ref of refs) {
+			setRef(ref, value);
+		}
+	};
 }

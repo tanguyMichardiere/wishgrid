@@ -6,5 +6,5 @@ import { router } from "../../server/router";
 import { transformer } from "./transformer";
 
 export const createServerSideHelpers = async (): Promise<
-  ReturnType<typeof _createServerSideHelpers<Router>>
+	ReturnType<typeof _createServerSideHelpers<Router>>
 > => _createServerSideHelpers({ router, ctx: await createContext(), transformer });

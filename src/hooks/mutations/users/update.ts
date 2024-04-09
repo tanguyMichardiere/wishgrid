@@ -3,77 +3,77 @@ import type { Router } from "../../../server/router";
 import { toast } from "../../../utils/toast";
 import { useClientTranslations } from "../../../utils/translations/client";
 import { trpc } from "../../../utils/trpc/client";
-import { useOptimisticUpdates } from "../optimisticUpdates";
-import type { OptimisticRelatedProcedures } from "../relatedProcedures";
+import { useOptimisticUpdates } from "../optimistic-updates";
+import type { OptimisticRelatedProcedures } from "../related-procedures";
 
 function useRelatedProcedures(): OptimisticRelatedProcedures<
-  Router["users"]["update"],
-  [Router["users"]["getCurrent"]]
+	Router["users"]["update"],
+	[Router["users"]["getCurrent"]]
 > {
-  const trpcUtils = trpc.useUtils();
+	const trpcUtils = trpc.useUtils();
 
-  return {
-    async cancel() {
-      await trpcUtils.users.getCurrent.cancel();
-    },
-    getData() {
-      return [trpcUtils.users.getCurrent.getData()];
-    },
-    setData({ name, image }) {
-      trpcUtils.users.getCurrent.setData(undefined, (currentUser) =>
-        currentUser !== undefined
-          ? {
-              ...currentUser,
-              name,
-              image: image !== undefined ? `data:image/png;base64,${image}` : currentUser.image,
-            }
-          : undefined,
-      );
-    },
-    revertData(_variables, context) {
-      if (context[0] !== undefined) {
-        trpcUtils.users.getCurrent.setData(undefined, context[0]);
-      }
-    },
-    async invalidate() {
-      await trpcUtils.users.getCurrent.invalidate();
-    },
-  };
+	return {
+		async cancel() {
+			await trpcUtils.users.getCurrent.cancel();
+		},
+		getData() {
+			return [trpcUtils.users.getCurrent.getData()];
+		},
+		setData({ name, image }) {
+			trpcUtils.users.getCurrent.setData(undefined, (currentUser) =>
+				currentUser !== undefined
+					? {
+							...currentUser,
+							name,
+							image: image !== undefined ? `data:image/png;base64,${image}` : currentUser.image,
+						}
+					: undefined,
+			);
+		},
+		revertData(_variables, context) {
+			if (context[0] !== undefined) {
+				trpcUtils.users.getCurrent.setData(undefined, context[0]);
+			}
+		},
+		async invalidate() {
+			await trpcUtils.users.getCurrent.invalidate();
+		},
+	};
 }
 
-export function useUpdateUserMutation({ onSuccess }: { onSuccess?: () => void } = {}): ReturnType<
-  typeof trpc.users.update.useMutation
-> {
-  const t = useClientTranslations("client.mutations.users.update");
+export function useUpdateUserMutation({
+	onSuccess,
+}: { onSuccess?: () => void } = {}): ReturnType<typeof trpc.users.update.useMutation> {
+	const t = useClientTranslations("client.mutations.users.update");
 
-  const relatedProcedures = useRelatedProcedures();
+	const relatedProcedures = useRelatedProcedures();
 
-  const optimisticUpdates = useOptimisticUpdates();
+	const optimisticUpdates = useOptimisticUpdates();
 
-  return trpc.users.update.useMutation({
-    async onMutate(variables) {
-      if (optimisticUpdates) {
-        await relatedProcedures.cancel(variables);
-        const context = relatedProcedures.getData(variables);
-        relatedProcedures.setData(variables);
-        return context;
-      }
-      return undefined;
-    },
-    onSuccess(_data, variables) {
-      if (!optimisticUpdates) {
-        relatedProcedures.setData(variables);
-      }
-      onSuccess?.();
-    },
-    onError(_error, variables, context) {
-      toast.error(t("errorText"));
-      if (context !== undefined) {
-        relatedProcedures.revertData(variables, context);
-      }
-    },
-    async onSettled(_data, _error, variables) {
-      await relatedProcedures.invalidate(variables);
-    },
-  });
+	return trpc.users.update.useMutation({
+		async onMutate(variables) {
+			if (optimisticUpdates) {
+				await relatedProcedures.cancel(variables);
+				const context = relatedProcedures.getData(variables);
+				relatedProcedures.setData(variables);
+				return context;
+			}
+			return undefined;
+		},
+		onSuccess(_data, variables) {
+			if (!optimisticUpdates) {
+				relatedProcedures.setData(variables);
+			}
+			onSuccess?.();
+		},
+		onError(_error, variables, context) {
+			toast.error(t("errorText"));
+			if (context !== undefined) {
+				relatedProcedures.revertData(variables, context);
+			}
+		},
+		async onSettled(_data, _error, variables) {
+			await relatedProcedures.invalidate(variables);
+		},
+	});
 }

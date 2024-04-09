@@ -1,1 +1,1 @@
-export { default } from "../../../components/DefaultLoadingPage";
+export { DefaultLoadingPage as default } from "../../../components/default-loading-page";

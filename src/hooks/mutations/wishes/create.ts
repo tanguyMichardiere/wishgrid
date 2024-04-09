@@ -1,50 +1,50 @@
 import "client-only";
-import { useCurrentUser } from "../../../context/currentUser/hook";
+import { useCurrentUser } from "../../../context/current-user/hook";
 import type { Router } from "../../../server/router";
 import { toast } from "../../../utils/toast";
 import { useClientTranslations } from "../../../utils/translations/client";
 import { trpc } from "../../../utils/trpc/client";
-import type { RelatedProcedures } from "../relatedProcedures";
+import type { RelatedProcedures } from "../related-procedures";
 
 function useRelatedProcedures(): RelatedProcedures<Router["wishes"]["create"]> {
-  const currentUser = useCurrentUser();
+	const currentUser = useCurrentUser();
 
-  const trpcUtils = trpc.useUtils();
+	const trpcUtils = trpc.useUtils();
 
-  return {
-    setData({ title, description, link }, id) {
-      trpcUtils.wishes.listOwn.setData(undefined, (wishes) =>
-        wishes !== undefined
-          ? [
-              ...wishes,
-              { id, title, description, link, userId: currentUser.id, reservedById: null },
-            ].toSorted((a, b) => a.title.localeCompare(b.title))
-          : undefined,
-      );
-    },
-    async invalidate() {
-      await trpcUtils.wishes.listOwn.invalidate();
-    },
-  };
+	return {
+		setData({ title, description, link }, id) {
+			trpcUtils.wishes.listOwn.setData(undefined, (wishes) =>
+				wishes !== undefined
+					? [
+							...wishes,
+							{ id, title, description, link, userId: currentUser.id, reservedById: null },
+						].toSorted((a, b) => a.title.localeCompare(b.title))
+					: undefined,
+			);
+		},
+		async invalidate() {
+			await trpcUtils.wishes.listOwn.invalidate();
+		},
+	};
 }
 
-export function useCreateWishMutation({ onSuccess }: { onSuccess?: () => void } = {}): ReturnType<
-  typeof trpc.wishes.create.useMutation
-> {
-  const t = useClientTranslations("client.mutations.wishes.create");
+export function useCreateWishMutation({
+	onSuccess,
+}: { onSuccess?: () => void } = {}): ReturnType<typeof trpc.wishes.create.useMutation> {
+	const t = useClientTranslations("client.mutations.wishes.create");
 
-  const relatedProcedures = useRelatedProcedures();
+	const relatedProcedures = useRelatedProcedures();
 
-  return trpc.wishes.create.useMutation({
-    onSuccess(data, variables) {
-      relatedProcedures.setData(variables, data);
-      onSuccess?.();
-    },
-    onError() {
-      toast.error(t("errorText"));
-    },
-    async onSettled(_data, _error, variables) {
-      await relatedProcedures.invalidate(variables);
-    },
-  });
+	return trpc.wishes.create.useMutation({
+		onSuccess(data, variables) {
+			relatedProcedures.setData(variables, data);
+			onSuccess?.();
+		},
+		onError() {
+			toast.error(t("errorText"));
+		},
+		async onSettled(_data, _error, variables) {
+			await relatedProcedures.invalidate(variables);
+		},
+	});
 }

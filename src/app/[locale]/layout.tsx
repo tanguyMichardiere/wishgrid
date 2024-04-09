@@ -4,26 +4,26 @@ import cx from "classix";
 import { useLocale } from "next-intl";
 import type { JSX, ReactNode } from "react";
 import { variable } from "../font";
-import ClientProviders from "./ClientProviders";
-import ServerProviders from "./ServerProviders";
+import { ClientProviders } from "./client-providers";
+import { ServerProviders } from "./server-providers";
 
 type Props = {
-  children: ReactNode;
+	children: ReactNode;
 };
 
 export default function LocaleLayout(props: Props): JSX.Element {
-  const locale = useLocale();
+	const locale = useLocale();
 
-  return (
-    <html lang={locale} suppressHydrationWarning>
-      <Analytics />
-      <SpeedInsights />
-      <body className={cx(variable, "font-sans")}>
-        <ServerProviders>
-          {/* @ts-expect-error incorrect types on trpc.withTRPC */}
-          <ClientProviders>{props.children}</ClientProviders>
-        </ServerProviders>
-      </body>
-    </html>
-  );
+	return (
+		<html lang={locale} suppressHydrationWarning={true}>
+			<Analytics />
+			<SpeedInsights />
+			<body className={cx(variable, "font-sans")}>
+				<ServerProviders>
+					{/* @ts-expect-error incorrect types on trpc.withTRPC */}
+					<ClientProviders>{props.children}</ClientProviders>
+				</ServerProviders>
+			</body>
+		</html>
+	);
 }
