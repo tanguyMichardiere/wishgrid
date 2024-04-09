@@ -3,10 +3,10 @@ import { uneval } from "devalue";
 import superjson from "superjson";
 
 export const transformer = {
-  input: superjson,
-  output: {
-    serialize: uneval,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    deserialize: (object) => eval(`(${String(object)})`),
-  },
+	input: superjson,
+	output: {
+		serialize: uneval,
+		// biome-ignore lint/security/noGlobalEval: only run with code from TRPC
+		deserialize: (object) => eval(`(${String(object)})`),
+	},
 } satisfies DataTransformerOptions;

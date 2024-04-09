@@ -1,0 +1,52 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"defaultBranch": "production"
+	},
+	"linter": {
+		"rules": {
+			"all": true
+		}
+	},
+	"formatter": {
+		"lineWidth": 100
+	},
+	"organizeImports": {
+		"enabled": true
+	},
+	"overrides": [
+		{
+			// VSCode JSON files are actually JSONC
+			"include": [".vscode/*.json"],
+			"json": {
+				"parser": {
+					"allowComments": true
+				}
+			}
+		},
+		{
+			// NextJS component files, and most config files, require a default export
+			"include": [
+				"src/app/**/default.tsx",
+				"src/app/**/error.tsx",
+				"src/app/**/layout.tsx",
+				"src/app/**/loading.tsx",
+				"src/app/middleware.ts",
+				"src/app/**/not-found.tsx",
+				"src/app/**/page.tsx",
+				"src/app/**/template.tsx",
+				"*.config.ts",
+				"*.config.mjs"
+			],
+			"linter": {
+				"rules": {
+					"style": {
+						"noDefaultExport": "off"
+					}
+				}
+			}
+		}
+	]
+}

@@ -1,11 +1,11 @@
 export const getBase64 = (file: File): Promise<string> =>
-  new Promise(function (resolve) {
-    const reader = new FileReader();
-    reader.addEventListener("load", function (event) {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/consistent-type-assertions
-      const imageUrl = event.target!.result as string;
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      resolve(imageUrl.split(",", 2)[1]!);
-    });
-    reader.readAsDataURL(file);
-  });
+	new Promise((resolve) => {
+		const reader = new FileReader();
+		reader.addEventListener("load", (event) => {
+			// biome-ignore lint/style/noNonNullAssertion: event.target is always a FileReader
+			const imageUrl = event.target!.result as string;
+			// biome-ignore lint/style/noNonNullAssertion: a data URL always contains a comma
+			resolve(imageUrl.split(",", 2)[1]!);
+		});
+		reader.readAsDataURL(file);
+	});

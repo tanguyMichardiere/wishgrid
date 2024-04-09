@@ -5,8 +5,8 @@ import { list } from "./list";
 import { status } from "./status";
 
 export const friends = createRouter({
-  // queries
-  get,
-  list,
-  status,
+	// queries
+	get,
+	list,
+	status,
 });

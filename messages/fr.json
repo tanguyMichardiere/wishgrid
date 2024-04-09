@@ -1,224 +1,224 @@
 {
-  "About": {
-    "subtitle": "Une plateforme pour partager des idées de cadeaux avec ses amis",
-    "title": "WishGrid"
-  },
-  "AuthErrorPage": {
-    "defaultTitle": "Erreur d'authentification",
-    "signInLinkText": "Connexion",
-    "Verification": {
-      "body": "Le lien de connexion n'est plus valide. Il a peut-être déjà été utilisé, ou il a expiré.",
-      "title": "Connexion impossible"
-    }
-  },
-  "AuthVerifyRequestPage": {
-    "body": "Un lien de connexion a été envoyé à votre adresse email.",
-    "title": "Vérifiez votre email"
-  },
-  "client": {
-    "AcceptFriendRequestButton": {
-      "text": "Accepter"
-    },
-    "Avatar": {
-      "altText": "photo de profil"
-    },
-    "CancelFriendRequestButton": {
-      "text": "Annuler la demande d'ami"
-    },
-    "CommentInput": {
-      "placeholder": "Commentaire",
-      "textTooBig": "Un commentaire doit faire au plus {length} caractères",
-      "textTooSmall": "Un commentaire doit faire au moins {length} caractères"
-    },
-    "DeclineFriendRequestButton": {
-      "text": "Refuser"
-    },
-    "DeleteCurrentUserButton": {
-      "modalBody": "Vos vœux et commentaires seront supprimés, et vous serez retiré de toute liste d'amis.",
-      "modalTitle": "Supprimer votre compte ?",
-      "text": "Supprimer le compte"
-    },
-    "DeleteWishButton": {
-      "confirmationText": "Êtes-vous sûr ?",
-      "text": "Supprimer"
-    },
-    "Error": {
-      "digest": "Code : {digest}",
-      "title": "Une erreur inattendue a eu lieu, elle a été signalée",
-      "tryAgain": "Réessayer"
-    },
-    "ExportMenu": {
-      "export": "Export"
-    },
-    "FriendList": {
-      "link": "ou partagez le vôtre",
-      "text": "Pour envoyer des demandes d'ami, demandez à vos amis de partager leur lien"
-    },
-    "FriendPreviewCard": {
-      "newWishCountTooltip": "{count} vœux dont {newCount, plural, =1 {un nouveau} other {# nouveaux}}",
-      "onlyNewWishCountTooltip": "{count, plural, =1 {un nouveau vœu} other {# nouveaux vœux}}",
-      "wishCountTooltip": "{count, plural, =0 {aucun vœu} =1 {un vœu} other {# vœux}}"
-    },
-    "FriendRequestList": {
-      "friendRequests": "Demandes d'ami"
-    },
-    "Modal": {
-      "closeButtonText": "fermer"
-    },
-    "MutationModal": {
-      "cancel": "Annuler",
-      "ok": "OK"
-    },
-    "mutations": {
-      "comments": {
-        "create": {
-          "errorText": "Une erreur a eu lieu, merci de réessayer"
-        }
-      },
-      "friendRequests": {
-        "accept": {
-          "errorText": "Une erreur a eu lieu, merci de réessayer"
-        },
-        "cancel": {
-          "errorText": "Une erreur a eu lieu, merci de réessayer"
-        },
-        "create": {
-          "errorText": "Une erreur a eu lieu, merci de réessayer"
-        },
-        "decline": {
-          "errorText": "Une erreur a eu lieu, merci de réessayer"
-        }
-      },
-      "users": {
-        "deleteCurrent": {
-          "errorText": "Une erreur a eu lieu, merci de réessayer"
-        },
-        "update": {
-          "errorText": "Une erreur a eu lieu, merci de réessayer"
-        }
-      },
-      "wishes": {
-        "create": {
-          "errorText": "Une erreur a eu lieu, merci de réessayer"
-        },
-        "delete": {
-          "errorText": "Une erreur a eu lieu, merci de réessayer"
-        },
-        "reserve": {
-          "errorText": "Une erreur a eu lieu, merci de réessayer"
-        },
-        "setViewed": {
-          "errorText": "Une erreur a eu lieu, merci de réessayer"
-        },
-        "unreserve": {
-          "errorText": "Une erreur a eu lieu, merci de réessayer"
-        },
-        "update": {
-          "errorText": "Une erreur a eu lieu, merci de réessayer"
-        }
-      }
-    },
-    "NewWishModal": {
-      "cancelButtonText": "Annuler",
-      "createButtonText": "Créer"
-    },
-    "OwnWishList": {
-      "noWish": "Aucun vœu"
-    },
-    "OwnWishModal": {
-      "cancelButtonText": "Annuler",
-      "updateButtonText": "Modifier"
-    },
-    "RequestFriendButton": {
-      "text": "Demander en ami"
-    },
-    "ReserveWishButton": {
-      "text": "Réserver"
-    },
-    "ShareUserLinkButton": {
-      "buttonText": "Partager mon lien",
-      "modalTitle": "Partagez votre lien pour permettre à d'autres utilisateurs de vous envoyer des demandes d'ami",
-      "toastMessage": "Lien copié dans le presse-papier"
-    },
-    "UnreserveWishButton": {
-      "text": "Ne plus réserver"
-    },
-    "UpdateUser": {
-      "imageLabel": "Changer l'image",
-      "nameLabel": "Changer le nom",
-      "namePlaceholder": "Nom",
-      "nameTooBig": "Le nom doit faire au plus {length} caractères",
-      "nameTooSmall": "Le nom doit faire au moins {length} caractères",
-      "submitButtonText": "Valider"
-    },
-    "WishDescriptionFormInput": {
-      "placeholder": "Description",
-      "tooBig": "La description doit faire au plus {length} caractères"
-    },
-    "WishLinkFormInput": {
-      "invalid": "URL invalide",
-      "placeholder": "Lien",
-      "tooBig": "Le lien doit faire au plus {length} caractères"
-    },
-    "WishList": {
-      "noWish": "Aucun vœu"
-    },
-    "WishModal": {
-      "reservedBy": "Réservé par : <bold>{name}</bold>{you, select, true { (vous)} other {}}"
-    },
-    "WishPreviewCard": {
-      "commentsTooltip": "{count, plural, =0 {Aucun commentaire} =1 {1 commentaire} other {# commentaires}}",
-      "notReservedTooltip": "Pas réservé",
-      "reservedTooltip": "Réservé"
-    },
-    "WishTitleFormInput": {
-      "placeholder": "Titre",
-      "tooBig": "Le titre doit faire au plus {length} caractères",
-      "tooSmall": "Le titre doit faire au moins {length} caractères"
-    }
-  },
-  "EmailSignIn": {
-    "buttonText": "Connexion par Email",
-    "placeholder": "Email"
-  },
-  "Navbar": {
-    "friends": "Amis",
-    "myWishes": "Mes vœux",
-    "settings": "Paramètres",
-    "title": "WishGrid"
-  },
-  "NewWishButton": {
-    "text": "Nouveau vœu"
-  },
-  "NotFound": {
-    "returnHome": "Retour à la page d'accueil",
-    "title": "Page inexistante"
-  },
-  "SettingsPage": {
-    "about": "À propos",
-    "language": "Langue",
-    "manageAccount": "Gestion du compte",
-    "theme": "Thème"
-  },
-  "SignInButton": {
-    "text": "Connexion avec {provider}"
-  },
-  "SignInPage": {
-    "error": {
-      "defaultTitle": "Erreur d'authentification",
-      "OAuthAccountNotLinked": {
-        "body": "Merci de vous connecter avec votre compte original",
-        "title": "Le compte OAuth n'est pas lié"
-      }
-    },
-    "or": "ou"
-  },
-  "SignOutButton": {
-    "text": "Déconnexion"
-  },
-  "wish-export": {
-    "description": "description",
-    "link": "lien",
-    "title": "titre"
-  }
+	"About": {
+		"subtitle": "Une plateforme pour partager des idées de cadeaux avec ses amis",
+		"title": "WishGrid"
+	},
+	"AuthErrorPage": {
+		"defaultTitle": "Erreur d'authentification",
+		"signInLinkText": "Connexion",
+		"Verification": {
+			"body": "Le lien de connexion n'est plus valide. Il a peut-être déjà été utilisé, ou il a expiré.",
+			"title": "Connexion impossible"
+		}
+	},
+	"AuthVerifyRequestPage": {
+		"body": "Un lien de connexion a été envoyé à votre adresse email.",
+		"title": "Vérifiez votre email"
+	},
+	"client": {
+		"AcceptFriendRequestButton": {
+			"text": "Accepter"
+		},
+		"Avatar": {
+			"altText": "photo de profil"
+		},
+		"CancelFriendRequestButton": {
+			"text": "Annuler la demande d'ami"
+		},
+		"CommentInput": {
+			"placeholder": "Commentaire",
+			"textTooBig": "Un commentaire doit faire au plus {length} caractères",
+			"textTooSmall": "Un commentaire doit faire au moins {length} caractères"
+		},
+		"DeclineFriendRequestButton": {
+			"text": "Refuser"
+		},
+		"DeleteCurrentUserButton": {
+			"modalBody": "Vos vœux et commentaires seront supprimés, et vous serez retiré de toute liste d'amis.",
+			"modalTitle": "Supprimer votre compte ?",
+			"text": "Supprimer le compte"
+		},
+		"DeleteWishButton": {
+			"confirmationText": "Êtes-vous sûr ?",
+			"text": "Supprimer"
+		},
+		"Error": {
+			"digest": "Code : {digest}",
+			"title": "Une erreur inattendue a eu lieu, elle a été signalée",
+			"tryAgain": "Réessayer"
+		},
+		"ExportMenu": {
+			"export": "Export"
+		},
+		"FriendList": {
+			"link": "ou partagez le vôtre",
+			"text": "Pour envoyer des demandes d'ami, demandez à vos amis de partager leur lien"
+		},
+		"FriendPreviewCard": {
+			"newWishCountTooltip": "{count} vœux dont {newCount, plural, =1 {un nouveau} other {# nouveaux}}",
+			"onlyNewWishCountTooltip": "{count, plural, =1 {un nouveau vœu} other {# nouveaux vœux}}",
+			"wishCountTooltip": "{count, plural, =0 {aucun vœu} =1 {un vœu} other {# vœux}}"
+		},
+		"FriendRequestList": {
+			"friendRequests": "Demandes d'ami"
+		},
+		"Modal": {
+			"closeButtonText": "fermer"
+		},
+		"MutationModal": {
+			"cancel": "Annuler",
+			"ok": "OK"
+		},
+		"mutations": {
+			"comments": {
+				"create": {
+					"errorText": "Une erreur a eu lieu, merci de réessayer"
+				}
+			},
+			"friendRequests": {
+				"accept": {
+					"errorText": "Une erreur a eu lieu, merci de réessayer"
+				},
+				"cancel": {
+					"errorText": "Une erreur a eu lieu, merci de réessayer"
+				},
+				"create": {
+					"errorText": "Une erreur a eu lieu, merci de réessayer"
+				},
+				"decline": {
+					"errorText": "Une erreur a eu lieu, merci de réessayer"
+				}
+			},
+			"users": {
+				"deleteCurrent": {
+					"errorText": "Une erreur a eu lieu, merci de réessayer"
+				},
+				"update": {
+					"errorText": "Une erreur a eu lieu, merci de réessayer"
+				}
+			},
+			"wishes": {
+				"create": {
+					"errorText": "Une erreur a eu lieu, merci de réessayer"
+				},
+				"delete": {
+					"errorText": "Une erreur a eu lieu, merci de réessayer"
+				},
+				"reserve": {
+					"errorText": "Une erreur a eu lieu, merci de réessayer"
+				},
+				"setViewed": {
+					"errorText": "Une erreur a eu lieu, merci de réessayer"
+				},
+				"unreserve": {
+					"errorText": "Une erreur a eu lieu, merci de réessayer"
+				},
+				"update": {
+					"errorText": "Une erreur a eu lieu, merci de réessayer"
+				}
+			}
+		},
+		"NewWishModal": {
+			"cancelButtonText": "Annuler",
+			"createButtonText": "Créer"
+		},
+		"OwnWishList": {
+			"noWish": "Aucun vœu"
+		},
+		"OwnWishModal": {
+			"cancelButtonText": "Annuler",
+			"updateButtonText": "Modifier"
+		},
+		"RequestFriendButton": {
+			"text": "Demander en ami"
+		},
+		"ReserveWishButton": {
+			"text": "Réserver"
+		},
+		"ShareUserLinkButton": {
+			"buttonText": "Partager mon lien",
+			"modalTitle": "Partagez votre lien pour permettre à d'autres utilisateurs de vous envoyer des demandes d'ami",
+			"toastMessage": "Lien copié dans le presse-papier"
+		},
+		"UnreserveWishButton": {
+			"text": "Ne plus réserver"
+		},
+		"UpdateUser": {
+			"imageLabel": "Changer l'image",
+			"nameLabel": "Changer le nom",
+			"namePlaceholder": "Nom",
+			"nameTooBig": "Le nom doit faire au plus {length} caractères",
+			"nameTooSmall": "Le nom doit faire au moins {length} caractères",
+			"submitButtonText": "Valider"
+		},
+		"WishDescriptionFormInput": {
+			"placeholder": "Description",
+			"tooBig": "La description doit faire au plus {length} caractères"
+		},
+		"WishLinkFormInput": {
+			"invalid": "URL invalide",
+			"placeholder": "Lien",
+			"tooBig": "Le lien doit faire au plus {length} caractères"
+		},
+		"WishList": {
+			"noWish": "Aucun vœu"
+		},
+		"WishModal": {
+			"reservedBy": "Réservé par : <bold>{name}</bold>{you, select, true { (vous)} other {}}"
+		},
+		"WishPreviewCard": {
+			"commentsTooltip": "{count, plural, =0 {Aucun commentaire} =1 {1 commentaire} other {# commentaires}}",
+			"notReservedTooltip": "Pas réservé",
+			"reservedTooltip": "Réservé"
+		},
+		"WishTitleFormInput": {
+			"placeholder": "Titre",
+			"tooBig": "Le titre doit faire au plus {length} caractères",
+			"tooSmall": "Le titre doit faire au moins {length} caractères"
+		}
+	},
+	"EmailSignIn": {
+		"buttonText": "Connexion par Email",
+		"placeholder": "Email"
+	},
+	"Navbar": {
+		"friends": "Amis",
+		"myWishes": "Mes vœux",
+		"settings": "Paramètres",
+		"title": "WishGrid"
+	},
+	"NewWishButton": {
+		"text": "Nouveau vœu"
+	},
+	"NotFound": {
+		"returnHome": "Retour à la page d'accueil",
+		"title": "Page inexistante"
+	},
+	"SettingsPage": {
+		"about": "À propos",
+		"language": "Langue",
+		"manageAccount": "Gestion du compte",
+		"theme": "Thème"
+	},
+	"SignInButton": {
+		"text": "Connexion avec {provider}"
+	},
+	"SignInPage": {
+		"error": {
+			"defaultTitle": "Erreur d'authentification",
+			"OAuthAccountNotLinked": {
+				"body": "Merci de vous connecter avec votre compte original",
+				"title": "Le compte OAuth n'est pas lié"
+			}
+		},
+		"or": "ou"
+	},
+	"SignOutButton": {
+		"text": "Déconnexion"
+	},
+	"wish-export": {
+		"description": "description",
+		"link": "lien",
+		"title": "titre"
+	}
 }

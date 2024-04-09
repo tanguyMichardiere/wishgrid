@@ -11,46 +11,46 @@ import { logger } from "./server/logger";
 
 const adapter = PrismaAdapter(databaseClient);
 adapter.createUser = async (data) =>
-  databaseClient.user.create({
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    data: { ...data, name: data.name ?? data.email.split("@", 2)[0]! },
-  });
+	databaseClient.user.create({
+		// biome-ignore lint/style/noNonNullAssertion: guaranteed by the form page
+		data: { ...data, name: data.name ?? data.email.split("@", 2)[0]! },
+	});
 
 const nextAuth = NextAuth({
-  adapter,
-  // TODO: customize email
-  providers: [
-    Discord,
-    Resend(
-      env.NODE_ENV !== "development"
-        ? { from: "WishGrid <no-reply@wishgrid.app>" }
-        : {
-            sendVerificationRequest({ url }) {
-              logger.debug(url);
-            },
-          },
-    ),
-  ],
-  basePath: "/api/auth",
-  pages: {
-    signIn: "/sign-in",
-    signOut: "/",
-    error: "/auth/error",
-    verifyRequest: "/auth/verify-request",
-  },
-  callbacks: {
-    // @ts-expect-error in database mode we always have `user` and not `token`
-    session({ session, user }: { session: Session; user: User }) {
-      session.user = user;
-      return session;
-    },
-  },
-  debug: true,
-  logger: {
-    debug: logger.debug,
-    warn: logger.warning,
-    error: logger.error,
-  },
+	adapter,
+	// TODO: customize email
+	providers: [
+		Discord,
+		Resend(
+			env.NODE_ENV !== "development"
+				? { from: "WishGrid <no-reply@wishgrid.app>" }
+				: {
+						sendVerificationRequest({ url }) {
+							logger.debug(url);
+						},
+					},
+		),
+	],
+	basePath: "/api/auth",
+	pages: {
+		signIn: "/sign-in",
+		signOut: "/",
+		error: "/auth/error",
+		verifyRequest: "/auth/verify-request",
+	},
+	callbacks: {
+		// @ts-expect-error in database mode we always have `user` and not `token`
+		session({ session, user }: { session: Session; user: User }) {
+			session.user = user;
+			return session;
+		},
+	},
+	debug: true,
+	logger: {
+		debug: logger.debug,
+		warn: logger.warning,
+		error: logger.error,
+	},
 });
 
 export const { handlers, auth } = nextAuth;

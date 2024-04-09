@@ -1,47 +1,47 @@
 import { useLocale } from "next-intl";
 import type { JSX } from "react";
-import About from "../../../../../components/About";
-import EmailSignIn from "../../../../../components/EmailSignIn";
-import SignInButton from "../../../../../components/SignInButton";
+import { About } from "../../../../../components/about";
+import { EmailSignIn } from "../../../../../components/email-signin";
+import { SignInButton } from "../../../../../components/sign-in-button";
 import { defaultLocale } from "../../../../../navigation";
 import { useServerTranslations } from "../../../../../utils/translations/server";
 
 type Props = {
-  searchParams: {
-    redirectTo?: string;
-    error?: string;
-  };
+	searchParams: {
+		redirectTo?: string;
+		error?: string;
+	};
 };
 
 export default function SignInPage(props: Props): JSX.Element {
-  const locale = useLocale();
-  const t = useServerTranslations("SignInPage");
+	const locale = useLocale();
+	const t = useServerTranslations("SignInPage");
 
-  const redirectTo =
-    props.searchParams.redirectTo !== undefined
-      ? decodeURIComponent(props.searchParams.redirectTo)
-      : `/${locale !== defaultLocale ? locale : ""}`;
+	const redirectTo =
+		props.searchParams.redirectTo !== undefined
+			? decodeURIComponent(props.searchParams.redirectTo)
+			: `/${locale !== defaultLocale ? locale : ""}`;
 
-  return (
-    <div className="flex flex-col items-center gap-8">
-      <About />
-      {props.searchParams.error !== undefined && (
-        <div className="alert alert-error flex flex-col gap-2 text-center">
-          {props.searchParams.error === "OAuthAccountNotLinked" ? (
-            <>
-              <h3 className="text-lg">{t("error.OAuthAccountNotLinked.title")}</h3>
-              <p>{t("error.OAuthAccountNotLinked.body")}</p>
-            </>
-          ) : (
-            <div className="text-lg">{t("error.defaultTitle")}</div>
-          )}
-        </div>
-      )}
-      <div className="flex flex-col items-center gap-2">
-        <SignInButton provider="discord" redirectTo={redirectTo} />
-        <div className="divider">{t("or")}</div>
-        <EmailSignIn redirectTo={redirectTo} />
-      </div>
-    </div>
-  );
+	return (
+		<div className="flex flex-col items-center gap-8">
+			<About />
+			{props.searchParams.error !== undefined && (
+				<div className="alert alert-error flex flex-col gap-2 text-center">
+					{props.searchParams.error === "OAuthAccountNotLinked" ? (
+						<>
+							<h3 className="text-lg">{t("error.OAuthAccountNotLinked.title")}</h3>
+							<p>{t("error.OAuthAccountNotLinked.body")}</p>
+						</>
+					) : (
+						<div className="text-lg">{t("error.defaultTitle")}</div>
+					)}
+				</div>
+			)}
+			<div className="flex flex-col items-center gap-2">
+				<SignInButton provider="discord" redirectTo={redirectTo} />
+				<div className="divider">{t("or")}</div>
+				<EmailSignIn redirectTo={redirectTo} />
+			</div>
+		</div>
+	);
 }

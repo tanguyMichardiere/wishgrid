@@ -1,53 +1,53 @@
 import "client-only";
-import { useCurrentUser } from "../../../context/currentUser/hook";
+import { useCurrentUser } from "../../../context/current-user/hook";
 import type { Router } from "../../../server/router";
 import { toast } from "../../../utils/toast";
 import { useClientTranslations } from "../../../utils/translations/client";
 import { trpc } from "../../../utils/trpc/client";
-import type { RelatedProcedures } from "../relatedProcedures";
+import type { RelatedProcedures } from "../related-procedures";
 
 function useRelatedProcedures(userId: string): RelatedProcedures<Router["comments"]["create"]> {
-  const currentUser = useCurrentUser();
+	const currentUser = useCurrentUser();
 
-  const trpcUtils = trpc.useUtils();
+	const trpcUtils = trpc.useUtils();
 
-  return {
-    setData({ text, wishId }, { id, timestamp }) {
-      trpcUtils.wishes.list.setData({ userId }, (wishes) =>
-        wishes?.map((wish) =>
-          wish.id === wishId
-            ? {
-                ...wish,
-                comments: [{ id, text, timestamp, user: currentUser }, ...wish.comments],
-              }
-            : wish,
-        ),
-      );
-    },
-    async invalidate() {
-      await trpcUtils.wishes.list.invalidate({ userId });
-    },
-  };
+	return {
+		setData({ text, wishId }, { id, timestamp }) {
+			trpcUtils.wishes.list.setData({ userId }, (wishes) =>
+				wishes?.map((wish) =>
+					wish.id === wishId
+						? {
+								...wish,
+								comments: [{ id, text, timestamp, user: currentUser }, ...wish.comments],
+							}
+						: wish,
+				),
+			);
+		},
+		async invalidate() {
+			await trpcUtils.wishes.list.invalidate({ userId });
+		},
+	};
 }
 
 export function useCreateCommentMutation(
-  userId: string,
-  { onSuccess }: { onSuccess?: () => void } = {},
+	userId: string,
+	{ onSuccess }: { onSuccess?: () => void } = {},
 ): ReturnType<typeof trpc.comments.create.useMutation> {
-  const t = useClientTranslations("client.mutations.comments.create");
+	const t = useClientTranslations("client.mutations.comments.create");
 
-  const relatedProcedures = useRelatedProcedures(userId);
+	const relatedProcedures = useRelatedProcedures(userId);
 
-  return trpc.comments.create.useMutation({
-    onSuccess(data, variables) {
-      relatedProcedures.setData(variables, data);
-      onSuccess?.();
-    },
-    onError() {
-      toast.error(t("errorText"));
-    },
-    async onSettled(_data, _error, variables) {
-      await relatedProcedures.invalidate(variables);
-    },
-  });
+	return trpc.comments.create.useMutation({
+		onSuccess(data, variables) {
+			relatedProcedures.setData(variables, data);
+			onSuccess?.();
+		},
+		onError() {
+			toast.error(t("errorText"));
+		},
+		async onSettled(_data, _error, variables) {
+			await relatedProcedures.invalidate(variables);
+		},
+	});
 }
