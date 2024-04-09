@@ -134,8 +134,8 @@ devDependencies:
     specifier: 0.5.1
     version: 0.5.1
   '@types/node':
-    specifier: 20.11.1
-    version: 20.11.1
+    specifier: 20.12.1
+    version: 20.12.1
   '@types/pdfkit':
     specifier: 0.13.4
     version: 0.13.4
@@ -156,7 +156,7 @@ devDependencies:
     version: 1.21.0
   knip:
     specifier: 5.9.3
-    version: 5.9.3(@types/node@20.11.1)(typescript@5.4.4)
+    version: 5.9.3(@types/node@20.12.1)(typescript@5.4.4)
   npm-check-updates:
     specifier: 16.14.18
     version: 16.14.18
@@ -1797,7 +1797,7 @@ packages:
     resolution: {integrity: sha512-qelS/Ra6sacc4loe/3MSjXNL1dNQ/GjxNHVzuChwMfmk7HuycRLVQN2qNY3XahK+fZc5E2szqQSKUyAF0E+2bg==}
     dev: true
 
-  /@types/node@20.11.1:
+  /@types/node@20.12.1:
     resolution: {integrity: sha512-DsXojJUES2M+FE8CpptJTKpg+r54moV9ZEncPstni1WHFmTcCzeFLnMFfyhCVS8XNOy/OQG+8lVxRLRrVHmV5A==}
     dependencies:
       undici-types: 5.26.5
@@ -1805,7 +1805,7 @@ packages:
   /@types/pdfkit@0.13.4:
     resolution: {integrity: sha512-ixGNDHYJCCKuamY305wbfYSphZ2WPe8FPkjn8oF4fHV+PgPV4V+hecPh2VOS2h4RNtpSB3zQcR4sCpNvvrEb1A==}
     dependencies:
-      '@types/node': 20.11.1
+      '@types/node': 20.12.1
     dev: true
 
   /@types/picomatch@2.3.3:
@@ -3125,7 +3125,7 @@ packages:
     resolution: {integrity: sha512-4SbcbedPXTciySXiSnNNLuJXpvxFe5nqivbiEHXyL8P/w0wx2uW7YXNjnYgjW0e2e6vy+L/tMISU/oAiXCl57Q==}
     engines: {node: '>=10'}
     dependencies:
-      '@types/node': 20.11.1
+      '@types/node': 20.12.1
       jszip: 3.10.1
       nanoid: 5.0.7
       xml: 1.0.1
@@ -4449,7 +4449,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 20.11.1
+      '@types/node': 20.12.1
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
@@ -4571,7 +4571,7 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /knip@5.9.3(@types/node@20.11.1)(typescript@5.4.4):
+  /knip@5.9.3(@types/node@20.12.1)(typescript@5.4.4):
     resolution: {integrity: sha512-z7Qxb4O1RJ6q+MygvBKCgpnQjQScgGobtPyh624bYHKJfrWqLS48TmfADfkHsep0ITicudv4fijQVgXunugGvQ==}
     engines: {node: '>=18.6.0'}
     hasBin: true
@@ -4586,7 +4586,7 @@ packages:
       '@pnpm/logger': 5.0.0
       '@pnpm/workspace.pkgs-graph': 2.0.14(@pnpm/logger@5.0.0)
       '@snyk/github-codeowners': 1.1.0
-      '@types/node': 20.11.1
+      '@types/node': 20.12.1
       '@types/picomatch': 2.3.3
       easy-table: 1.2.0
       fast-glob: 3.3.2
