@@ -1,33 +1,33 @@
-import * as docx from "docx";
+import { Document, ExternalHyperlink, Packer, Paragraph, TextRun } from "docx";
 
 export async function generateDocx(
 	wishes: Array<{ title: string; description: string; link: string }>,
 ): Promise<Buffer> {
-	return docx.Packer.toBuffer(
-		new docx.Document({
+	return Packer.toBuffer(
+		new Document({
 			sections: [
 				{
 					properties: {},
 					children: wishes.flatMap((wish) => {
-						const paragraphs: docx.Paragraph[] = [
-							new docx.Paragraph({
-								children: [new docx.TextRun({ text: wish.title, font: "Helvetica", bold: true })],
+						const paragraphs: Paragraph[] = [
+							new Paragraph({
+								children: [new TextRun({ text: wish.title, font: "Helvetica", bold: true })],
 							}),
 						];
 						if (wish.description !== "") {
 							for (const text of wish.description.split("\n")) {
 								paragraphs.push(
-									new docx.Paragraph({ children: [new docx.TextRun({ text, font: "Helvetica" })] }),
+									new Paragraph({ children: [new TextRun({ text, font: "Helvetica" })] }),
 								);
 							}
 						}
 						if (wish.link !== "") {
 							paragraphs.push(
-								new docx.Paragraph({
+								new Paragraph({
 									children: [
-										new docx.ExternalHyperlink({
+										new ExternalHyperlink({
 											children: [
-												new docx.TextRun({
+												new TextRun({
 													text: wish.link,
 													font: "Helvetica",
 													style: "Hyperlink",
@@ -39,7 +39,7 @@ export async function generateDocx(
 								}),
 							);
 						}
-						paragraphs.push(new docx.Paragraph({}));
+						paragraphs.push(new Paragraph({}));
 						return paragraphs;
 					}),
 				},
