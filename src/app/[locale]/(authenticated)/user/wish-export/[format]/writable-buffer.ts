@@ -1,3 +1,4 @@
+// biome-ignore lint/correctness/noNodejsModules: <explanation>
 import { Writable } from "node:stream";
 
 export class WritableBuffer extends Writable {

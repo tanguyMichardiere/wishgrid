@@ -10,3 +10,4 @@ pnpm install @trpc/client@next @trpc/next@next @trpc/react-query@next @trpc/serv
 pnpm exec npm-check-updates -x "$EXCLUDE" -u
 pnpm install
 pnpm update
+biome format --write package.json

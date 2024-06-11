@@ -1,10 +1,15 @@
 "use client";
 
-import { Menu as HeadlessUiMenu, Transition } from "@headlessui/react";
+import {
+	Menu as HeadlessUiMenu,
+	MenuButton,
+	MenuItem,
+	MenuItems,
+	Transition,
+} from "@headlessui/react";
 import { cx } from "classix";
 import type { Route } from "next";
 import type { JSX, ReactNode } from "react";
-import { Fragment } from "react";
 import { Link } from "../navigation";
 import type { Locale } from "../types/locale";
 
@@ -26,11 +31,10 @@ export type Props = {
 export function Menu(props: Props): JSX.Element {
 	return (
 		<HeadlessUiMenu as="div" className="relative inline-block">
-			<HeadlessUiMenu.Button className={props.buttonClassName} disabled={props.disabled}>
+			<MenuButton className={props.buttonClassName} disabled={props.disabled}>
 				{props.children}
-			</HeadlessUiMenu.Button>
+			</MenuButton>
 			<Transition
-				as={Fragment}
 				enter="transition ease-out duration-100"
 				enterFrom="transform opacity-0 scale-95"
 				enterTo="transform opacity-100 scale-100"
@@ -38,7 +42,7 @@ export function Menu(props: Props): JSX.Element {
 				leaveFrom="transform opacity-100 scale-100"
 				leaveTo="transform opacity-0 scale-95"
 			>
-				<HeadlessUiMenu.Items
+				<MenuItems
 					as="ul"
 					className={cx(
 						"menu absolute z-50 mt-2 max-h-72 flex-nowrap overflow-y-auto rounded-md bg-base-100 shadow-md",
@@ -50,31 +54,31 @@ export function Menu(props: Props): JSX.Element {
 					{props.items.map((item) => (
 						<li key={item.key}>
 							{"onClick" in item ? (
-								<HeadlessUiMenu.Item as="button" className={item.className} onClick={item.onClick}>
+								<MenuItem as="button" className={item.className} onClick={item.onClick}>
 									{item.children}
-								</HeadlessUiMenu.Item>
+								</MenuItem>
 							) : "download" in item ? (
-								<HeadlessUiMenu.Item
+								<MenuItem
 									as="a"
 									className={item.className}
 									download={item.download}
 									href={item.href}
 								>
 									{item.children}
-								</HeadlessUiMenu.Item>
+								</MenuItem>
 							) : (
-								<HeadlessUiMenu.Item
+								<MenuItem
 									as={Link}
 									className={item.className}
 									href={item.href}
 									locale={item.locale}
 								>
 									{item.children}
-								</HeadlessUiMenu.Item>
+								</MenuItem>
 							)}
 						</li>
 					))}
-				</HeadlessUiMenu.Items>
+				</MenuItems>
 			</Transition>
 		</HeadlessUiMenu>
 	);

@@ -25,9 +25,7 @@ export const update = procedure
 	.mutation(async ({ ctx, input }) => {
 		const data: Prisma.UserUpdateInput = { name: input.name };
 		if (input.image !== undefined) {
-			data.image = `data:image/webp;base64,${(
-				await input.image.resize(96).webp().toBuffer()
-			).toString("base64")}`;
+			data.image = `data:image/webp;base64,${(await input.image.resize(96).webp().toBuffer()).toString("base64")}`;
 		}
 		await ctx.db.user.update({ data, where: { id: ctx.user.id } });
 	});

@@ -14,7 +14,6 @@ const ParsedParams = z.object({
 	format: z.enum(["json", "csv", "docx", "pdf"]),
 });
 
-// biome-ignore lint/style/useNamingConvention: HTTP verb
 export async function GET(
 	_request: NextRequest,
 	context: { params: Params },
