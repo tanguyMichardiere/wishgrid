@@ -1,6 +1,6 @@
 import { SessionProvider } from "next-auth/react";
-import { NextIntlClientProvider, useLocale } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 import type { JSX, ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
 import { auth } from "../../auth";
@@ -11,7 +11,7 @@ type Props = {
 
 export async function ServerProviders(props: Props): Promise<JSX.Element> {
 	const session = await auth();
-	const locale = useLocale();
+	const locale = await getLocale();
 	const { client } = await getMessages();
 
 	return (

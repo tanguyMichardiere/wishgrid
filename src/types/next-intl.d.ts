@@ -7,5 +7,6 @@ declare module "next-intl" {
 }
 
 declare module "next-intl/server" {
+	declare function getLocale(): Promise<Locale>;
 	declare function getMessages(): Promise<Messages>;
 }

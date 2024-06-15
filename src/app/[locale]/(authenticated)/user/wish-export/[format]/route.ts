@@ -1,4 +1,4 @@
-import * as csv from "csv-stringify/sync";
+import { stringify as csvStringify } from "csv-stringify/sync";
 import { getTranslations } from "next-intl/server";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
@@ -14,7 +14,6 @@ const ParsedParams = z.object({
 	format: z.enum(["json", "csv", "docx", "pdf"]),
 });
 
-// biome-ignore lint/style/useNamingConvention: HTTP verb
 export async function GET(
 	_request: NextRequest,
 	context: { params: Params },
@@ -53,7 +52,7 @@ export async function GET(
 			return new NextResponse(JSON.stringify(localizedWishes, undefined, 2));
 		case "csv":
 			return new NextResponse(
-				csv.stringify(localizedWishes, {
+				csvStringify(localizedWishes, {
 					columns: [t("title"), t("description"), t("link")],
 					header: true,
 					cast: {

@@ -14,7 +14,6 @@ export default {
 		require("@tailwindcss/typography"),
 		require("@tailwindcss/forms"),
 		require("@tailwindcss/container-queries"),
-		require("@headlessui/tailwindcss"),
 		require("daisyui"),
 	],
 	daisyui: {
