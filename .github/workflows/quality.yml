@@ -4,10 +4,6 @@ on:
   push:
 
 jobs:
-  check-format:
-    name: Check format
-    runs-on: ubuntu-latest
-
   lint:
     name: Lint
     runs-on: ubuntu-latest
