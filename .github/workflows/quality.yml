@@ -8,22 +8,6 @@ jobs:
     name: Check format
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Clone repository
-        uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.12.2
-          cache: pnpm
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-      - name: Check format
-        run: pnpm run check-format
-
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -31,7 +15,7 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
         with:
           version: 9
       - name: Setup Node
@@ -42,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Lint
-        run: pnpm run lint
+        run: pnpm run lint --reporter=github
 
   check-types:
     name: Check types
@@ -51,7 +35,7 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
         with:
           version: 9
       - name: Setup Node
@@ -71,7 +55,7 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
         with:
           version: 9
       - name: Setup Node
