@@ -12,6 +12,7 @@ import { logger } from "./server/logger";
 const adapter = PrismaAdapter(databaseClient);
 adapter.createUser = async (data) =>
 	databaseClient.user.create({
+		// biome-ignore lint/style/noNonNullAssertio: guaranteed by the form page
 		data: { ...data, name: data.name ?? data.email.split("@", 2)[0]! },
 	});
 
