@@ -43,7 +43,9 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
 
 export function useUpdateUserMutation({
 	onSuccess,
-}: { onSuccess?: () => void } = {}): ReturnType<typeof trpc.users.update.useMutation> {
+}: {
+	onSuccess?: () => void;
+} = {}): ReturnType<typeof trpc.users.update.useMutation> {
 	const t = useClientTranslations("client.mutations.users.update");
 
 	const relatedProcedures = useRelatedProcedures();

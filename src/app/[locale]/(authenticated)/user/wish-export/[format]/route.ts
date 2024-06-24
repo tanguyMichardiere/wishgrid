@@ -34,7 +34,11 @@ export async function GET(
 	const { wishes } = await databaseClient.user.findUniqueOrThrow({
 		include: {
 			wishes: {
-				select: { title: true, description: true, link: true },
+				select: {
+					title: true,
+					description: true,
+					link: true,
+				},
 				orderBy: { title: "asc" },
 			},
 		},

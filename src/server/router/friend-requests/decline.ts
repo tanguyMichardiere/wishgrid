@@ -8,7 +8,11 @@ export const decline = procedure
 	.output(z.void())
 	.mutation(async ({ ctx, input }) => {
 		await ctx.db.user.update({
-			data: { friendRequests: { disconnect: { id: input.userId } } },
+			data: {
+				friendRequests: {
+					disconnect: { id: input.userId },
+				},
+			},
 			where: { id: ctx.user.id },
 		});
 	});

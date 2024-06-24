@@ -6,9 +6,7 @@ import type { User } from "../../../server/database/types/user";
 import { useClientTranslations } from "../../../utils/translations/client";
 import { trpc } from "../../../utils/trpc/client";
 
-type Props = {
-	initialFriendRequests: User[];
-};
+type Props = { initialFriendRequests: User[] };
 
 export function FriendRequestList(props: Props): JSX.Element {
 	const t = useClientTranslations("client.FriendRequestList");

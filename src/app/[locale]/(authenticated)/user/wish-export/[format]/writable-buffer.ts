@@ -1,5 +1,6 @@
-// biome-ignore lint/correctness/noNodejsModules: <explanation>
+// biome-ignore lint/correctness/noNodejsModules: server only
 import { Writable } from "node:stream";
+import "server-only";
 
 export class WritableBuffer extends Writable {
 	private chunks: Uint8Array[] = [];

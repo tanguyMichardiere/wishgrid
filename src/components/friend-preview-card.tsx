@@ -5,9 +5,7 @@ import { useClientTranslations } from "../utils/translations/client";
 import { Avatar } from "./avatar";
 import { Card } from "./card";
 
-type Props = {
-	friend: Friend;
-};
+type Props = { friend: Friend };
 
 export function FriendPreviewCard(props: Props): JSX.Element {
 	const t = useClientTranslations("client.FriendPreviewCard");

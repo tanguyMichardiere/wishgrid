@@ -17,8 +17,6 @@
 		"source.organizeImports.biome": "explicit"
 	},
 	"editor.formatOnSave": true,
-	// TODO: bug with i18n Ally
-	"editor.guides.bracketPairsHorizontal": false,
 	"editor.quickSuggestions": { "strings": true },
 	"editor.rulers": [100],
 	"editor.wordWrap": "bounded",

@@ -16,9 +16,7 @@
 		"title": "Vérifiez votre email"
 	},
 	"client": {
-		"AcceptFriendRequestButton": {
-			"text": "Accepter"
-		},
+		"AcceptFriendRequestButton": { "text": "Accepter" },
 		"Avatar": {
 			"altText": "photo de profil"
 		},
@@ -30,9 +28,7 @@
 			"textTooBig": "Un commentaire doit faire au plus {length} caractères",
 			"textTooSmall": "Un commentaire doit faire au moins {length} caractères"
 		},
-		"DeclineFriendRequestButton": {
-			"text": "Refuser"
-		},
+		"DeclineFriendRequestButton": { "text": "Refuser" },
 		"DeleteCurrentUserButton": {
 			"modalBody": "Vos vœux et commentaires seront supprimés, et vous serez retiré de toute liste d'amis.",
 			"modalTitle": "Supprimer votre compte ?",
@@ -47,9 +43,7 @@
 			"title": "Une erreur inattendue a eu lieu, elle a été signalée",
 			"tryAgain": "Réessayer"
 		},
-		"ExportMenu": {
-			"export": "Export"
-		},
+		"ExportMenu": { "export": "Export" },
 		"FriendList": {
 			"link": "ou partagez le vôtre",
 			"text": "Pour envoyer des demandes d'ami, demandez à vos amis de partager leur lien"
@@ -62,9 +56,7 @@
 		"FriendRequestList": {
 			"friendRequests": "Demandes d'ami"
 		},
-		"Modal": {
-			"closeButtonText": "fermer"
-		},
+		"Modal": { "closeButtonText": "fermer" },
 		"MutationModal": {
 			"cancel": "Annuler",
 			"ok": "OK"
@@ -132,9 +124,7 @@
 		"RequestFriendButton": {
 			"text": "Demander en ami"
 		},
-		"ReserveWishButton": {
-			"text": "Réserver"
-		},
+		"ReserveWishButton": { "text": "Réserver" },
 		"ShareUserLinkButton": {
 			"buttonText": "Partager mon lien",
 			"modalTitle": "Partagez votre lien pour permettre à d'autres utilisateurs de vous envoyer des demandes d'ami",
@@ -164,7 +154,7 @@
 			"noWish": "Aucun vœu"
 		},
 		"WishModal": {
-			"reservedBy": "Réservé par : <bold>{name}</bold>{you, select, true { (vous)} other {}}"
+			"reservedBy": "Réservé par : <bold>{name}</bold>{you, select, true {(vous)} other {}}"
 		},
 		"WishPreviewCard": {
 			"commentsTooltip": "{count, plural, =0 {Aucun commentaire} =1 {1 commentaire} other {# commentaires}}",
@@ -213,9 +203,7 @@
 		},
 		"or": "ou"
 	},
-	"SignOutButton": {
-		"text": "Déconnexion"
-	},
+	"SignOutButton": { "text": "Déconnexion" },
 	"wish-export": {
 		"description": "description",
 		"link": "lien",

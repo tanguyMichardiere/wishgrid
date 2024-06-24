@@ -9,8 +9,12 @@ export const status = procedure
 	.query(async ({ ctx, input }) => {
 		const { friendRequests, outFriendRequests } = await ctx.db.user.findUniqueOrThrow({
 			include: {
-				friendRequests: { select: { id: true } },
-				outFriendRequests: { select: { id: true } },
+				friendRequests: {
+					select: { id: true },
+				},
+				outFriendRequests: {
+					select: { id: true },
+				},
 			},
 			where: { id: ctx.user.id },
 		});

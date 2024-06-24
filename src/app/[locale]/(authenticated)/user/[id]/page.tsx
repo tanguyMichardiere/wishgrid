@@ -5,9 +5,7 @@ import { getUser } from "../../../../../utils/server-queries/users/get";
 import { Buttons } from "./buttons";
 import type { Params } from "./params";
 
-type Props = {
-	params: Params;
-};
+type Props = { params: Params };
 
 export default async function UserIdPage(props: Props): Promise<JSX.Element> {
 	const user = await getUser(props.params.id);

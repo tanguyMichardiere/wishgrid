@@ -18,9 +18,23 @@ export const list = procedure
 					include: {
 						wishes: {
 							include: {
-								reservedBy: { select: { id: true, name: true, image: true } },
+								reservedBy: {
+									select: {
+										id: true,
+										name: true,
+										image: true,
+									},
+								},
 								comments: {
-									include: { user: { select: { id: true, name: true, image: true } } },
+									include: {
+										user: {
+											select: {
+												id: true,
+												name: true,
+												image: true,
+											},
+										},
+									},
 									orderBy: { timestamp: "desc" },
 								},
 							},
@@ -29,7 +43,9 @@ export const list = procedure
 					},
 					where: { id: input.userId },
 				},
-				viewedWishes: { select: { id: true } },
+				viewedWishes: {
+					select: { id: true },
+				},
 			},
 			where: { id: ctx.user.id },
 		});

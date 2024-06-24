@@ -6,9 +6,7 @@ import type { OwnWish } from "../server/database/types/wishes";
 import { Card } from "./card";
 import { OwnWishModal } from "./own-wish-modal";
 
-type Props = {
-	wish: OwnWish;
-};
+type Props = { wish: OwnWish };
 
 export function OwnWishPreviewCard(props: Props): JSX.Element {
 	const modalRef = useRef<HTMLDialogElement>(null);

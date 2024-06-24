@@ -5,9 +5,7 @@ import { getWishesList } from "../../../../../utils/server-queries/wishes/list";
 import type { Params } from "./params";
 import { WishList } from "./wish-list";
 
-type Props = {
-	params: Params;
-};
+type Props = { params: Params };
 
 export default async function FriendIdPage(props: Props): Promise<JSX.Element> {
 	const friend = await getFriend(props.params.id);

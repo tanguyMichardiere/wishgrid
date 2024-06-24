@@ -6,9 +6,7 @@ import { setRef } from "../utils/refs";
 import { useClientTranslations } from "../utils/translations/client";
 import { MutationButton } from "./mutation-button";
 
-type Props = {
-	wishId: string;
-};
+type Props = { wishId: string };
 
 export const DeleteWishButton = forwardRef<{ reset: () => void }, Props>(
 	function DeleteWishButton(props, ref) {

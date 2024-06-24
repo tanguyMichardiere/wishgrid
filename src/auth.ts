@@ -12,8 +12,11 @@ import { logger } from "./server/logger";
 const adapter = PrismaAdapter(databaseClient);
 adapter.createUser = async (data) =>
 	databaseClient.user.create({
-		// biome-ignore lint/style/noNonNullAssertion: guaranteed by the form page
-		data: { ...data, name: data.name ?? data.email.split("@", 2)[0]! },
+		data: {
+			...data,
+			// biome-ignore lint/style/noNonNullAssertion: guaranteed by the form page
+			name: data.name ?? data.email.split("@", 2)[0]!,
+		},
 	});
 
 const nextAuth = NextAuth({
@@ -23,7 +26,9 @@ const nextAuth = NextAuth({
 		Discord,
 		Resend(
 			env.NODE_ENV !== "development"
-				? { from: "WishGrid <no-reply@wishgrid.app>" }
+				? {
+						from: "WishGrid <no-reply@wishgrid.app>",
+					}
 				: {
 						sendVerificationRequest({ url }) {
 							logger.debug(url);
@@ -40,7 +45,13 @@ const nextAuth = NextAuth({
 	},
 	callbacks: {
 		// @ts-expect-error in database mode we always have `user` and not `token`
-		session({ session, user }: { session: Session; user: User }) {
+		session({
+			session,
+			user,
+		}: {
+			session: Session;
+			user: User;
+		}) {
 			session.user = user;
 			return session;
 		},

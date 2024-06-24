@@ -8,7 +8,11 @@ export const create = procedure
 	.output(z.void())
 	.mutation(async ({ ctx, input }) => {
 		await ctx.db.user.update({
-			data: { outFriendRequests: { connect: { id: input.userId } } },
+			data: {
+				outFriendRequests: {
+					connect: { id: input.userId },
+				},
+			},
 			where: { id: ctx.user.id },
 		});
 	});

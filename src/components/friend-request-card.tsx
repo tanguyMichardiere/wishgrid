@@ -5,9 +5,7 @@ import { Avatar } from "./avatar";
 import { Card } from "./card";
 import { DeclineFriendRequestButton } from "./decline-friend-request-button";
 
-type Props = {
-	user: User;
-};
+type Props = { user: User };
 
 export function FriendRequestsCard(props: Props): JSX.Element {
 	return (

@@ -1,8 +1,6 @@
 import type { JSX } from "react";
 
-type Props = {
-	description: string;
-};
+type Props = { description: string };
 
 export function Description(props: Props): JSX.Element | null {
 	if (props.description.length === 0) {

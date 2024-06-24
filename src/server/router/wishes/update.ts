@@ -20,7 +20,11 @@ export const update = procedure
 			throw new TRPCError({ code: "FORBIDDEN" });
 		}
 		await ctx.db.wish.update({
-			data: { description: input.description, link: input.link, viewedBy: { set: [] } },
+			data: {
+				description: input.description,
+				link: input.link,
+				viewedBy: { set: [] },
+			},
 			where: { id: input.id },
 		});
 	});

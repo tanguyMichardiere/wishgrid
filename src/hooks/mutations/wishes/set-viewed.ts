@@ -27,11 +27,23 @@ function useRelatedProcedures(
 		setData({ id }) {
 			trpcUtils.friends.list.setData(undefined, (friends) =>
 				friends?.map((friend) =>
-					friend.id === userId ? { ...friend, newWishCount: friend.newWishCount - 1 } : friend,
+					friend.id === userId
+						? {
+								...friend,
+								newWishCount: friend.newWishCount - 1,
+							}
+						: friend,
 				),
 			);
 			trpcUtils.wishes.list.setData({ userId }, (wishes) =>
-				wishes?.map((wish) => (wish.id === id ? { ...wish, viewed: true } : wish)),
+				wishes?.map((wish) =>
+					wish.id === id
+						? {
+								...wish,
+								viewed: true,
+							}
+						: wish,
+				),
 			);
 		},
 		revertData(_variables, context) {
@@ -53,7 +65,11 @@ function useRelatedProcedures(
 
 export function useSetWishViewedMutation(
 	userId: string,
-	{ onSuccess }: { onSuccess?: () => void } = {},
+	{
+		onSuccess,
+	}: {
+		onSuccess?: () => void;
+	} = {},
 ): ReturnType<typeof trpc.wishes.setViewed.useMutation> {
 	const t = useClientTranslations("client.mutations.wishes.setViewed");
 

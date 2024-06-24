@@ -37,9 +37,7 @@ function useShareLink(url: string) {
 	return supportsSharing ? shareLink : undefined;
 }
 
-type Props = {
-	url: string;
-};
+type Props = { url: string };
 
 export const ShareUserLinkModal = forwardRef<HTMLDialogElement, Props>(
 	function ShareUserLinkModal(props, ref) {

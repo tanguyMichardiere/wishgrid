@@ -9,7 +9,10 @@ export const unreserve = procedure
 	.output(z.void())
 	.mutation(async ({ ctx, input }) => {
 		const wish = await ctx.db.wish.findUnique({
-			select: { userId: true, reservedById: true },
+			select: {
+				userId: true,
+				reservedById: true,
+			},
 			where: { id: input.id },
 		});
 		if (wish === null) {
@@ -22,7 +25,9 @@ export const unreserve = procedure
 			throw new TRPCError({ code: "BAD_REQUEST" });
 		}
 		await ctx.db.wish.update({
-			data: { reservedBy: { disconnect: true } },
+			data: {
+				reservedBy: { disconnect: true },
+			},
 			where: { id: input.id },
 		});
 	});

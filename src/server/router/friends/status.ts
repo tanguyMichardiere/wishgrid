@@ -8,7 +8,11 @@ export const status = procedure
 	.output(z.boolean())
 	.query(async ({ ctx, input }) => {
 		const { friends } = await ctx.db.user.findUniqueOrThrow({
-			include: { friends: { select: { id: true } } },
+			include: {
+				friends: {
+					select: { id: true },
+				},
+			},
 			where: { id: ctx.user.id },
 		});
 		return friends.map(({ id }) => id).includes(input.userId);

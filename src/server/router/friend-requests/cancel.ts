@@ -8,7 +8,11 @@ export const cancel = procedure
 	.output(z.void())
 	.mutation(async ({ ctx, input }) => {
 		await ctx.db.user.update({
-			data: { outFriendRequests: { disconnect: { id: input.userId } } },
+			data: {
+				outFriendRequests: {
+					disconnect: { id: input.userId },
+				},
+			},
 			where: { id: ctx.user.id },
 		});
 	});

@@ -15,9 +15,7 @@ function useUrl(id: string) {
 	return url;
 }
 
-type Props = {
-	id: string;
-};
+type Props = { id: string };
 
 export function ShareUserLinkButton(props: Props): JSX.Element {
 	const t = useClientTranslations("client.ShareUserLinkButton");

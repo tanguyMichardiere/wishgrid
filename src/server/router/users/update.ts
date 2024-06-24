@@ -27,5 +27,8 @@ export const update = procedure
 		if (input.image !== undefined) {
 			data.image = `data:image/webp;base64,${(await input.image.resize(96).webp().toBuffer()).toString("base64")}`;
 		}
-		await ctx.db.user.update({ data, where: { id: ctx.user.id } });
+		await ctx.db.user.update({
+			data,
+			where: { id: ctx.user.id },
+		});
 	});
