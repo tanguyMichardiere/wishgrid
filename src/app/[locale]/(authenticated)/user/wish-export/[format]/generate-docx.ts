@@ -11,13 +11,26 @@ export async function generateDocx(
 					children: wishes.flatMap((wish) => {
 						const paragraphs: Paragraph[] = [
 							new Paragraph({
-								children: [new TextRun({ text: wish.title, font: "Helvetica", bold: true })],
+								children: [
+									new TextRun({
+										text: wish.title,
+										font: "Helvetica",
+										bold: true,
+									}),
+								],
 							}),
 						];
 						if (wish.description !== "") {
 							for (const text of wish.description.split("\n")) {
 								paragraphs.push(
-									new Paragraph({ children: [new TextRun({ text, font: "Helvetica" })] }),
+									new Paragraph({
+										children: [
+											new TextRun({
+												text,
+												font: "Helvetica",
+											}),
+										],
+									}),
 								);
 							}
 						}

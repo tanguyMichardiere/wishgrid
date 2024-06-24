@@ -33,7 +33,10 @@ export const CommentInput = forwardRef<{ reset: () => void }, Props>(
 
 		function submit(event: FormEvent<HTMLFormElement>) {
 			handleSubmit((data) => {
-				createComment.mutate({ ...data, wishId: props.wishId });
+				createComment.mutate({
+					...data,
+					wishId: props.wishId,
+				});
 			})(event);
 		}
 

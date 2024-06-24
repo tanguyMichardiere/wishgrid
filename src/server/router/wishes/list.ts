@@ -54,5 +54,8 @@ export const list = procedure
 			throw new TRPCError({ code: "NOT_FOUND" });
 		}
 		const viewedWishIds = viewedWishes.map(({ id }) => id);
-		return user.wishes.map((wish) => ({ ...wish, viewed: viewedWishIds.includes(wish.id) }));
+		return user.wishes.map((wish) => ({
+			...wish,
+			viewed: viewedWishIds.includes(wish.id),
+		}));
 	});

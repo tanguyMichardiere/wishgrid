@@ -75,8 +75,8 @@ async function format() {
 
 // open all objects on several lines
 await directoryReplace(".", {
-	searchValue: / \{ /g,
-	replaceValue: "{\n",
+	searchValue: /([ \()])\{ /g,
+	replaceValue: "$1{\n",
 	fileExtensions: ["js", "mjs", "ts", "tsx", "json", "jsonc"],
 	exclude: [".next", ".vercel", "node_modules"],
 });

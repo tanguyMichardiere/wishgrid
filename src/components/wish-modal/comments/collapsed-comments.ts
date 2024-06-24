@@ -10,7 +10,10 @@ export function useCollapsedComments(comments: Comment[]): Array<{
 	return useMemo(
 		() =>
 			comments
-				.map((comment) => ({ ...comment, dayTimestamp: extractDay(comment.timestamp).getTime() }))
+				.map((comment) => ({
+					...comment,
+					dayTimestamp: extractDay(comment.timestamp).getTime(),
+				}))
 				.map((comment, index, comments) => ({
 					comment,
 					// comments are in reverse chronological order (newest first)

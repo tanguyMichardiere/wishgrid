@@ -6,7 +6,13 @@ import { Id } from "../../database/types";
 import { WishDescription, WishLink } from "../../database/types/wishes";
 
 export const update = procedure
-	.input(z.object({ id: Id, description: WishDescription, link: WishLink }))
+	.input(
+		z.object({
+			id: Id,
+			description: WishDescription,
+			link: WishLink,
+		}),
+	)
 	.output(z.void())
 	.mutation(async ({ ctx, input }) => {
 		const wish = await ctx.db.wish.findUnique({

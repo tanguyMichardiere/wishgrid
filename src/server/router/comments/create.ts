@@ -6,8 +6,18 @@ import { Id } from "../../database/types";
 import { CommentText, CommentTimestamp } from "../../database/types/comments";
 
 export const create = procedure
-	.input(z.object({ text: CommentText, wishId: Id }))
-	.output(z.object({ id: Id, timestamp: CommentTimestamp }))
+	.input(
+		z.object({
+			text: CommentText,
+			wishId: Id,
+		}),
+	)
+	.output(
+		z.object({
+			id: Id,
+			timestamp: CommentTimestamp,
+		}),
+	)
 	.mutation(async ({ ctx, input }) => {
 		const wish = await ctx.db.wish.findUnique({
 			where: { id: input.wishId },

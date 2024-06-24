@@ -17,6 +17,7 @@
 		"env-pull": "vercel env pull .env",
 		"dev": "next dev",
 		"format": "biome format --write .",
+		"format-objects": "node scripts/format-objects.mjs",
 		"lint": "biome ci .",
 		"check-types": "tsc",
 		"check-dead-code": "knip",

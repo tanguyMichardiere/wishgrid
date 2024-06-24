@@ -29,7 +29,10 @@ export async function GET(
 	}
 	const { locale, format } = params.data;
 
-	const t = await getTranslations({ locale, namespace: "wish-export" });
+	const t = await getTranslations({
+		locale,
+		namespace: "wish-export",
+	});
 
 	const { wishes } = await databaseClient.user.findUniqueOrThrow({
 		include: {

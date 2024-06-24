@@ -33,7 +33,10 @@ export default function UpdateUser(): JSX.Element {
 	function submit(event: FormEvent<HTMLFormElement>) {
 		handleSubmit(async (data) => {
 			if (data.image !== undefined) {
-				updateUser.mutate({ name: data.name, image: await getBase64(data.image) });
+				updateUser.mutate({
+					name: data.name,
+					image: await getBase64(data.image),
+				});
 			} else {
 				updateUser.mutate({ name: data.name });
 			}

@@ -14,7 +14,10 @@ export const update = procedure
 					try {
 						return sharp(Buffer.from(arg, "base64"));
 					} catch {
-						ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Invalid image" });
+						ctx.addIssue({
+							code: z.ZodIssueCode.custom,
+							message: "Invalid image",
+						});
 						return z.NEVER;
 					}
 				}),

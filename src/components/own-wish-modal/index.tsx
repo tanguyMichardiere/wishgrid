@@ -68,7 +68,10 @@ export const OwnWishModal = forwardRef<HTMLDialogElement, Props>(function OwnWis
 
 	function submit(event: FormEvent<HTMLFormElement>) {
 		handleSubmit((data) => {
-			updateWish.mutate({ id: props.wish.id, ...data });
+			updateWish.mutate({
+				id: props.wish.id,
+				...data,
+			});
 		})(event);
 	}
 
