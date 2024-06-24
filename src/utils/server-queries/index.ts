@@ -6,8 +6,13 @@ import "server-only";
 import { redirect } from "../../navigation";
 import { createServerSideHelpers } from "../trpc/server";
 
-const linkRegex = /<(?<url>\S+)>; rel="(?<rel>\S+)"; hreflang="(?<hreflang>\S+)"/g;
-type LinkRegexGroups = { url: string; rel: string; hreflang: string };
+const linkRegex = /<(\S+)>; rel="\S+"; hreflang="(\S+)"/g;
+type LinkRegexMatch = RegExpExecArray &
+	[
+		string, // match
+		string, // URL
+		string, // hreflang
+	];
 
 function getRequestPathname(): string | undefined {
 	try {
@@ -17,7 +22,7 @@ function getRequestPathname(): string | undefined {
 		}
 		const locale = headers().get("x-next-intl-locale") ?? "x-default";
 		for (const match of linkHeader.matchAll(linkRegex)) {
-			const { url, hreflang } = match.groups as LinkRegexGroups;
+			const [_, url, hreflang] = match as LinkRegexMatch;
 			if (hreflang === locale) {
 				return new URL(url).pathname;
 			}

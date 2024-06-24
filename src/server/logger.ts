@@ -24,7 +24,7 @@ export const logger = {
 	},
 	warning(this: void, message: string, ...optionalParams: unknown[]): void {
 		if (level[env.LOG_LEVEL] <= level.warning) {
-			console.warn(`WARNING: ${message}`, ...optionalParams);
+			console.warn(message, ...optionalParams);
 		}
 	},
 	error(this: void, message: unknown, ...optionalParams: unknown[]): void {
