@@ -7,7 +7,17 @@
 	},
 	"linter": {
 		"enabled": true,
-		"rules": { "all": true }
+		"rules": {
+			"all": true,
+			"nursery": {
+				"all": true,
+				"noExportedImports": "off", // conflicts with lint/performance/noBarrelFile
+				"noReactSpecificProps": "off",
+				"useDefaultSwitchClause": "off", // checked by typescript
+				"useImportExtensions": "off",
+				"useImportRestrictions": "off"
+			}
+		}
 	},
 	"formatter": {
 		"enabled": true,

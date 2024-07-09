@@ -18,7 +18,7 @@
 		"dev": "next dev",
 		"format": "biome format --write .",
 		"format-objects": "node scripts/format-objects.mjs",
-		"lint": "biome ci .",
+		"lint": "biome ci --error-on-warnings .",
 		"check-types": "tsc",
 		"check-dead-code": "knip",
 		"quality": "pnpm run lint && pnpm run check-types && pnpm run check-dead-code",

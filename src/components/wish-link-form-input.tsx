@@ -13,7 +13,7 @@ export function WishLinkFormInput(props: Props): JSX.Element {
 	const t = useClientTranslations("client.WishLinkFormInput");
 
 	return (
-		<div className="form-control self-center">
+		<label className="form-control self-center">
 			<input
 				{...props.register}
 				className={cx(
@@ -22,7 +22,7 @@ export function WishLinkFormInput(props: Props): JSX.Element {
 				)}
 				placeholder={t("placeholder")}
 			/>
-			<label className="label">
+			<div className="label">
 				<span className="label-text-alt">
 					{props.error?.type === "invalid_string"
 						? t("invalid")
@@ -30,7 +30,7 @@ export function WishLinkFormInput(props: Props): JSX.Element {
 							? t("tooBig", { length: 512 })
 							: props.error?.message}
 				</span>
-			</label>
-		</div>
+			</div>
+		</label>
 	);
 }
