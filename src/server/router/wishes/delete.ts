@@ -8,7 +8,11 @@ export const deleteWish = procedure
 	.output(z.void())
 	.mutation(async ({ ctx, input }) => {
 		await ctx.db.user.update({
-			data: { wishes: { delete: { id: input.id } } },
+			data: {
+				wishes: {
+					delete: { id: input.id },
+				},
+			},
 			where: { id: ctx.user.id },
 		});
 	});

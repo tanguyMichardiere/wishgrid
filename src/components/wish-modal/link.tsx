@@ -1,8 +1,6 @@
 import type { JSX } from "react";
 
-type Props = {
-	link: string;
-};
+type Props = { link: string };
 
 export function Link(props: Props): JSX.Element {
 	return (

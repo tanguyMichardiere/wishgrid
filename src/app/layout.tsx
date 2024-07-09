@@ -12,9 +12,7 @@ export const metadata = {
 	],
 };
 
-type Props = {
-	children: ReactNode;
-};
+type Props = { children: ReactNode };
 
 export default function RootLayout(props: Props): JSX.Element {
 	return <>{props.children}</>;

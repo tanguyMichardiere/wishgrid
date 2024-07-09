@@ -11,7 +11,8 @@ import type { ForwardedRef, RefCallback } from "react";
  *     // ...
  *   }
  *
- *   setRef(ref, { close });
+ *   setRef(ref, {
+close });
  *
  *   // ...
  * });

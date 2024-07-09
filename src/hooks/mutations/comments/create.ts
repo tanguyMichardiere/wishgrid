@@ -32,7 +32,11 @@ function useRelatedProcedures(userId: string): RelatedProcedures<Router["comment
 
 export function useCreateCommentMutation(
 	userId: string,
-	{ onSuccess }: { onSuccess?: () => void } = {},
+	{
+		onSuccess,
+	}: {
+		onSuccess?: () => void;
+	} = {},
 ): ReturnType<typeof trpc.comments.create.useMutation> {
 	const t = useClientTranslations("client.mutations.comments.create");
 

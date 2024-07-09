@@ -17,9 +17,7 @@ import { Link } from "../wish-modal/link";
 import { Title } from "../wish-modal/title";
 import { FormSchema } from "./form-schema";
 
-type Props = {
-	wish: OwnWish;
-};
+type Props = { wish: OwnWish };
 
 export const OwnWishModal = forwardRef<HTMLDialogElement, Props>(function OwnWishModal(props, ref) {
 	const t = useClientTranslations("client.OwnWishModal");
@@ -36,7 +34,10 @@ export const OwnWishModal = forwardRef<HTMLDialogElement, Props>(function OwnWis
 		reset,
 	} = useForm<FormSchema>({
 		resolver: zodResolver(FormSchema),
-		defaultValues: { description: props.wish.description, link: props.wish.link },
+		defaultValues: {
+			description: props.wish.description,
+			link: props.wish.link,
+		},
 	});
 
 	function cancelDeleting() {
@@ -67,7 +68,10 @@ export const OwnWishModal = forwardRef<HTMLDialogElement, Props>(function OwnWis
 
 	function submit(event: FormEvent<HTMLFormElement>) {
 		handleSubmit((data) => {
-			updateWish.mutate({ id: props.wish.id, ...data });
+			updateWish.mutate({
+				id: props.wish.id,
+				...data,
+			});
 		})(event);
 	}
 

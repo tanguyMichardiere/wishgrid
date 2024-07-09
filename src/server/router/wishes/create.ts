@@ -5,7 +5,13 @@ import { Id } from "../../database/types";
 import { WishDescription, WishLink, WishTitle } from "../../database/types/wishes";
 
 export const create = procedure
-	.input(z.object({ title: WishTitle, description: WishDescription, link: WishLink }))
+	.input(
+		z.object({
+			title: WishTitle,
+			description: WishDescription,
+			link: WishLink,
+		}),
+	)
 	.output(Id)
 	.mutation(async ({ ctx, input }) => {
 		const { id } = await ctx.db.wish.create({

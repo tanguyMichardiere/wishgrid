@@ -19,7 +19,11 @@ export const setViewed = procedure
 			throw new TRPCError({ code: "FORBIDDEN" });
 		}
 		await ctx.db.user.update({
-			data: { viewedWishes: { connect: { id: input.id } } },
+			data: {
+				viewedWishes: {
+					connect: { id: input.id },
+				},
+			},
 			where: { id: ctx.user.id },
 		});
 	});

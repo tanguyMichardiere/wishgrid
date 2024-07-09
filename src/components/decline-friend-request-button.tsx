@@ -5,9 +5,7 @@ import { useDeclineFriendRequestMutation } from "../hooks/mutations/friend-reque
 import { useClientTranslations } from "../utils/translations/client";
 import { MutationButton } from "./mutation-button";
 
-type Props = {
-	userId: string;
-};
+type Props = { userId: string };
 
 export function DeclineFriendRequestButton(props: Props): JSX.Element {
 	const t = useClientTranslations("client.DeclineFriendRequestButton");

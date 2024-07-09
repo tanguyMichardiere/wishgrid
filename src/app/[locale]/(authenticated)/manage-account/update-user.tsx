@@ -33,7 +33,10 @@ export default function UpdateUser(): JSX.Element {
 	function submit(event: FormEvent<HTMLFormElement>) {
 		handleSubmit(async (data) => {
 			if (data.image !== undefined) {
-				updateUser.mutate({ name: data.name, image: await getBase64(data.image) });
+				updateUser.mutate({
+					name: data.name,
+					image: await getBase64(data.image),
+				});
 			} else {
 				updateUser.mutate({ name: data.name });
 			}
@@ -42,21 +45,21 @@ export default function UpdateUser(): JSX.Element {
 
 	return (
 		<form className="flex flex-col gap-2" onSubmit={submit}>
-			<div className="form-control">
-				<label className="label">
+			<label className="form-control">
+				<div className="label">
 					<span className="label-text">{t("imageLabel")}</span>
-				</label>
+				</div>
 				<input
 					{...register("image", { required: false })}
 					accept="image/*"
 					className="file-input w-72"
 					type="file"
 				/>
-			</div>
-			<div className="form-control">
-				<label className="label">
+			</label>
+			<label className="form-control">
+				<div className="label">
 					<span className="label-text">{t("nameLabel")}</span>
-				</label>
+				</div>
 				<input
 					{...register("name")}
 					className={cx(
@@ -65,7 +68,7 @@ export default function UpdateUser(): JSX.Element {
 					)}
 					placeholder={t("namePlaceholder")}
 				/>
-				<label className="label">
+				<div className="label">
 					<span className="label-text-alt">
 						{errors.name?.type === "too_small"
 							? t("nameTooSmall", { length: 2 })
@@ -73,8 +76,8 @@ export default function UpdateUser(): JSX.Element {
 								? t("nameTooBig", { length: 32 })
 								: errors.name?.message}
 					</span>
-				</label>
-			</div>
+				</div>
+			</label>
 			<button className="btn btn-primary" disabled={updateUser.isPending} type="submit">
 				{updateUser.isPending && <span className="loading loading-spinner" />}
 				{t("submitButtonText")}

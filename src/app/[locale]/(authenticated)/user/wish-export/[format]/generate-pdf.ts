@@ -18,7 +18,10 @@ export async function generatePdf(
 		if (wish.link !== "") {
 			doc
 				.fillAndStroke("blue")
-				.text(wish.link, { link: wish.link, underline: true })
+				.text(wish.link, {
+					link: wish.link,
+					underline: true,
+				})
 				.fillAndStroke(defaultColor);
 		}
 		doc.moveDown();

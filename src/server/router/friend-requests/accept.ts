@@ -9,7 +9,11 @@ export const accept = procedure
 	.output(z.void())
 	.mutation(async ({ ctx, input }) => {
 		const { friendRequests } = await ctx.db.user.findUniqueOrThrow({
-			include: { friendRequests: { select: { id: true } } },
+			include: {
+				friendRequests: {
+					select: { id: true },
+				},
+			},
 			where: { id: ctx.user.id },
 		});
 		if (!friendRequests.map(({ id }) => id).includes(input.userId)) {
@@ -17,10 +21,18 @@ export const accept = procedure
 		}
 		await ctx.db.user.update({
 			data: {
-				friendRequests: { disconnect: { id: input.userId } },
-				outFriendRequests: { disconnect: { id: input.userId } },
-				friends: { connect: { id: input.userId } },
-				outFriends: { connect: { id: input.userId } },
+				friendRequests: {
+					disconnect: { id: input.userId },
+				},
+				outFriendRequests: {
+					disconnect: { id: input.userId },
+				},
+				friends: {
+					connect: { id: input.userId },
+				},
+				outFriends: {
+					connect: { id: input.userId },
+				},
 			},
 			where: { id: ctx.user.id },
 		});

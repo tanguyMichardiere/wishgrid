@@ -3,5 +3,7 @@ import { z } from "zod";
 import { procedure } from "../..";
 
 export const deleteCurrent = procedure.output(z.void()).mutation(async ({ ctx }) => {
-	await ctx.db.user.delete({ where: { id: ctx.user.id } });
+	await ctx.db.user.delete({
+		where: { id: ctx.user.id },
+	});
 });

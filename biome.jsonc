@@ -8,45 +8,61 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"all": true
+			"all": true,
+			"nursery": {
+				"all": true,
+				"noExportedImports": "off", // conflicts with lint/performance/noBarrelFile
+				"noReactSpecificProps": "off",
+				"useDefaultSwitchClause": "off", // checked by typescript
+				"useImportExtensions": "off",
+				"useImportRestrictions": "off"
+			}
 		}
 	},
 	"formatter": {
 		"enabled": true,
 		"lineWidth": 100
 	},
-	"organizeImports": {
-		"enabled": true
-	},
+	"organizeImports": { "enabled": true },
 	"overrides": [
 		{
 			// VSCode JSON files are actually JSONC
 			"include": [".vscode/*.json"],
 			"json": {
-				"parser": {
-					"allowComments": true
-				}
+				"parser": { "allowComments": true }
 			}
 		},
 		{
-			// NextJS component files, and most config files, require a default export
 			"include": [
+				// NextJS component files use default exports
 				"src/app/**/default.tsx",
 				"src/app/**/error.tsx",
 				"src/app/**/layout.tsx",
 				"src/app/**/loading.tsx",
-				"src/app/middleware.ts",
 				"src/app/**/not-found.tsx",
 				"src/app/**/page.tsx",
 				"src/app/**/template.tsx",
+				"src/middleware.ts",
+				// most config files use default exports
 				"*.config.ts",
 				"*.config.mjs"
 			],
 			"linter": {
 				"rules": {
-					"style": {
-						"noDefaultExport": "off"
-					}
+					"style": { "noDefaultExport": "off" }
+				}
+			}
+		},
+		{
+			"include": [
+				// environment variable names are not in camelCase
+				"src/env.ts",
+				// TRPC error codes are not in camelCase
+				"src/utils/server-queries/**/*.ts"
+			],
+			"linter": {
+				"rules": {
+					"style": { "useNamingConvention": "off" }
 				}
 			}
 		}

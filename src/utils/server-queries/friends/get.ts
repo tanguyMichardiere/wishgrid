@@ -3,6 +3,5 @@ import "server-only";
 import { serverQuery } from "..";
 
 export const getFriend = serverQuery((trpc, userId: string) => trpc.friends.get.fetch({ userId }), {
-	// biome-ignore lint/style/useNamingConvention: TRPC error code
 	NOT_FOUND: notFound,
 });

@@ -6,10 +6,22 @@ import { Id } from "../../database/types";
 import { CommentText, CommentTimestamp } from "../../database/types/comments";
 
 export const create = procedure
-	.input(z.object({ text: CommentText, wishId: Id }))
-	.output(z.object({ id: Id, timestamp: CommentTimestamp }))
+	.input(
+		z.object({
+			text: CommentText,
+			wishId: Id,
+		}),
+	)
+	.output(
+		z.object({
+			id: Id,
+			timestamp: CommentTimestamp,
+		}),
+	)
 	.mutation(async ({ ctx, input }) => {
-		const wish = await ctx.db.wish.findUnique({ where: { id: input.wishId } });
+		const wish = await ctx.db.wish.findUnique({
+			where: { id: input.wishId },
+		});
 		if (wish === null) {
 			throw new TRPCError({ code: "NOT_FOUND" });
 		}
@@ -18,12 +30,23 @@ export const create = procedure
 		}
 
 		const comment = await ctx.db.comment.create({
-			data: { text: input.text, userId: ctx.user.id, wishId: input.wishId },
-			select: { id: true, timestamp: true },
+			data: {
+				text: input.text,
+				userId: ctx.user.id,
+				wishId: input.wishId,
+			},
+			select: {
+				id: true,
+				timestamp: true,
+			},
 		});
 
 		await ctx.db.wish.update({
-			data: { viewedBy: { set: [{ id: ctx.user.id }] } },
+			data: {
+				viewedBy: {
+					set: [{ id: ctx.user.id }],
+				},
+			},
 			where: { id: input.wishId },
 		});
 

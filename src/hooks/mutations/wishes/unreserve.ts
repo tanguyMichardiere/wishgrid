@@ -20,7 +20,14 @@ function useRelatedProcedures(
 		},
 		setData({ id }) {
 			trpcUtils.wishes.list.setData({ userId }, (wishes) =>
-				wishes?.map((wish) => (wish.id === id ? { ...wish, reservedBy: null } : wish)),
+				wishes?.map((wish) =>
+					wish.id === id
+						? {
+								...wish,
+								reservedBy: null,
+							}
+						: wish,
+				),
 			);
 		},
 		revertData(_variables, context) {
@@ -36,7 +43,11 @@ function useRelatedProcedures(
 
 export function useUnreserveWishMutation(
 	userId: string,
-	{ onSuccess }: { onSuccess?: () => void } = {},
+	{
+		onSuccess,
+	}: {
+		onSuccess?: () => void;
+	} = {},
 ): ReturnType<typeof trpc.wishes.unreserve.useMutation> {
 	const t = useClientTranslations("client.mutations.wishes.unreserve");
 

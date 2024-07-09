@@ -10,7 +10,11 @@ export const get = procedure
 	.output(User)
 	.query(async ({ ctx, input }) => {
 		const user = await ctx.db.user.findUnique({
-			select: { id: true, name: true, image: true },
+			select: {
+				id: true,
+				name: true,
+				image: true,
+			},
 			where: { id: input.userId },
 		});
 		if (user === null) {

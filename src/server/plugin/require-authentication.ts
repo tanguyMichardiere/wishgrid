@@ -9,5 +9,10 @@ export const requireAuthenticationPlugin = t.procedure.use(async ({ ctx, next })
 	if (session?.user === undefined) {
 		throw new TRPCError({ code: "UNAUTHORIZED" });
 	}
-	return next({ ctx: { ...ctx, user: session.user } });
+	return next({
+		ctx: {
+			...ctx,
+			user: session.user,
+		},
+	});
 });

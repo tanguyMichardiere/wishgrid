@@ -6,9 +6,7 @@ import type { OwnWish } from "../../../../server/database/types/wishes";
 import { useClientTranslations } from "../../../../utils/translations/client";
 import { trpc } from "../../../../utils/trpc/client";
 
-type Props = {
-	initialWishes: OwnWish[];
-};
+type Props = { initialWishes: OwnWish[] };
 
 export function OwnWishList(props: Props): JSX.Element {
 	const t = useClientTranslations("client.OwnWishList");

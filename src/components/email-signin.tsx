@@ -3,9 +3,7 @@ import "server-only";
 import { signIn } from "../auth";
 import { useServerTranslations } from "../utils/translations/server";
 
-type Props = {
-	redirectTo: string;
-};
+type Props = { redirectTo: string };
 
 export function EmailSignIn(props: Props): JSX.Element {
 	const t = useServerTranslations("EmailSignIn");
@@ -13,7 +11,10 @@ export function EmailSignIn(props: Props): JSX.Element {
 	async function signInAction(formData: FormData) {
 		"use server";
 
-		await signIn("resend", { email: formData.get("email"), redirectTo: props.redirectTo });
+		await signIn("resend", {
+			email: formData.get("email"),
+			redirectTo: props.redirectTo,
+		});
 	}
 
 	return (

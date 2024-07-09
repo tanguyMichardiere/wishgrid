@@ -9,7 +9,10 @@ import { trpc } from "../../../../../utils/trpc/client";
 
 type Props = {
 	userId: string;
-	initialFriendRequestsStatus: { from: boolean; to: boolean };
+	initialFriendRequestsStatus: {
+		from: boolean;
+		to: boolean;
+	};
 };
 
 export function Buttons(props: Props): JSX.Element {

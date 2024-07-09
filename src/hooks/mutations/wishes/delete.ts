@@ -37,7 +37,9 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
 
 export function useDeleteWishMutation({
 	onSuccess,
-}: { onSuccess?: () => void } = {}): ReturnType<typeof trpc.wishes.delete.useMutation> {
+}: {
+	onSuccess?: () => void;
+} = {}): ReturnType<typeof trpc.wishes.delete.useMutation> {
 	const t = useClientTranslations("client.mutations.wishes.delete");
 
 	const relatedProcedures = useRelatedProcedures();

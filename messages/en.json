@@ -16,9 +16,7 @@
 		"title": "Check your email"
 	},
 	"client": {
-		"AcceptFriendRequestButton": {
-			"text": "Accept"
-		},
+		"AcceptFriendRequestButton": { "text": "Accept" },
 		"Avatar": {
 			"altText": "profile picture"
 		},
@@ -30,9 +28,7 @@
 			"textTooBig": "Comment must be at most {length} characters",
 			"textTooSmall": "Comment must be at least {length} characters"
 		},
-		"DeclineFriendRequestButton": {
-			"text": "Decline"
-		},
+		"DeclineFriendRequestButton": { "text": "Decline" },
 		"DeleteCurrentUserButton": {
 			"modalBody": "This will also delete all your wishes and comments, and remove you from anyone's friend list.",
 			"modalTitle": "Delete Account?",
@@ -47,9 +43,7 @@
 			"title": "An unexpected error has occurred, it has been reported",
 			"tryAgain": "Try Again"
 		},
-		"ExportMenu": {
-			"export": "Export"
-		},
+		"ExportMenu": { "export": "Export" },
 		"FriendList": {
 			"link": "or share yours",
 			"text": "To send friend requests, ask your friends to share their link"
@@ -62,9 +56,7 @@
 		"FriendRequestList": {
 			"friendRequests": "Friend requests"
 		},
-		"Modal": {
-			"closeButtonText": "close"
-		},
+		"Modal": { "closeButtonText": "close" },
 		"MutationModal": {
 			"cancel": "Cancel",
 			"ok": "OK"
@@ -132,17 +124,13 @@
 		"RequestFriendButton": {
 			"text": "Request Friend"
 		},
-		"ReserveWishButton": {
-			"text": "Reserve"
-		},
+		"ReserveWishButton": { "text": "Reserve" },
 		"ShareUserLinkButton": {
 			"buttonText": "Share my link",
 			"modalTitle": "Share your link to allow others to send you friend requests",
 			"toastMessage": "Link copied to clipboard"
 		},
-		"UnreserveWishButton": {
-			"text": "Unreserve"
-		},
+		"UnreserveWishButton": { "text": "Unreserve" },
 		"UpdateUser": {
 			"imageLabel": "Change image",
 			"nameLabel": "Change name",
@@ -164,7 +152,7 @@
 			"noWish": "No wish"
 		},
 		"WishModal": {
-			"reservedBy": "Reserved by: <bold>{name}</bold>{you, select, true { (you)} other {}}"
+			"reservedBy": "Reserved by: <bold>{name}</bold>{you, select, true {(you)} other {}}"
 		},
 		"WishPreviewCard": {
 			"commentsTooltip": "{count, plural, =0 {No comment yet} =1 {1 comment} other {# comments}}",

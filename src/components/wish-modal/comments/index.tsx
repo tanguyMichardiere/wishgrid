@@ -10,9 +10,7 @@ import { extractDay } from "../../../utils/dates";
 import { Avatar } from "../../avatar";
 import { useCollapsedComments } from "./collapsed-comments";
 
-type Props = {
-	comments: Comment[];
-};
+type Props = { comments: Comment[] };
 
 export function Comments(props: Props): JSX.Element {
 	const format = useFormatter();

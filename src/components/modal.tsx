@@ -21,7 +21,7 @@ export const Modal = forwardRef<HTMLDialogElement, Props>(function Modal(props, 
 				{props.close !== undefined ? (
 					<button
 						aria-label={t("closeButtonText")}
-						className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2"
+						className="btn btn-circle btn-ghost btn-sm absolute top-2 right-2"
 						onClick={props.close}
 						type="button"
 					>
@@ -31,7 +31,7 @@ export const Modal = forwardRef<HTMLDialogElement, Props>(function Modal(props, 
 					<form method="dialog">
 						<button
 							aria-label={t("closeButtonText")}
-							className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2"
+							className="btn btn-circle btn-ghost btn-sm absolute top-2 right-2"
 							type="submit"
 						>
 							<XMarkIcon className="h-6 w-6" />

@@ -21,7 +21,12 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
 		},
 		setData({ userId }) {
 			trpcUtils.friendRequests.status.setData({ userId }, (friendRequestStatus) =>
-				friendRequestStatus !== undefined ? { ...friendRequestStatus, to: true } : undefined,
+				friendRequestStatus !== undefined
+					? {
+							...friendRequestStatus,
+							to: true,
+						}
+					: undefined,
 			);
 		},
 		revertData({ userId }, context) {
@@ -37,7 +42,9 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
 
 export function useCreateFriendRequestMutation({
 	onSuccess,
-}: { onSuccess?: () => void } = {}): ReturnType<typeof trpc.friendRequests.create.useMutation> {
+}: {
+	onSuccess?: () => void;
+} = {}): ReturnType<typeof trpc.friendRequests.create.useMutation> {
 	const t = useClientTranslations("client.mutations.friendRequests.create");
 
 	const relatedProcedures = useRelatedProcedures();

@@ -21,9 +21,17 @@ export type Props = {
 	menuClassName?: string;
 	items: ReadonlyArray<
 		{ key: string; children: ReactNode; className?: string } & (
-			| { onClick: () => void }
-			| { href: Route; download: string }
-			| { href: Route; locale?: Locale }
+			| {
+					onClick: () => void;
+			  }
+			| {
+					href: Route;
+					download: string;
+			  }
+			| {
+					href: Route;
+					locale?: Locale;
+			  }
 		)
 	>;
 };

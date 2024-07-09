@@ -11,7 +11,14 @@ export const get = procedure
 	.query(async ({ ctx, input }) => {
 		const { friends } = await ctx.db.user.findUniqueOrThrow({
 			include: {
-				friends: { select: { id: true, name: true, image: true }, where: { id: input.userId } },
+				friends: {
+					select: {
+						id: true,
+						name: true,
+						image: true,
+					},
+					where: { id: input.userId },
+				},
 			},
 			where: { id: ctx.user.id },
 		});

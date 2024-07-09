@@ -21,7 +21,7 @@ export const MutationModal = forwardRef(function MutationModal<Variables>(
 
 	return (
 		<Modal ref={ref}>
-			<h3 className="text-lg font-bold">{props.title}</h3>
+			<h3 className="font-bold text-lg">{props.title}</h3>
 			<p className="py-4">{props.body}</p>
 			<form className="modal-action" method="dialog">
 				<button className="btn btn-ghost" type="submit">

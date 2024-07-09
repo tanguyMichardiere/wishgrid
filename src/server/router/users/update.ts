@@ -14,7 +14,10 @@ export const update = procedure
 					try {
 						return sharp(Buffer.from(arg, "base64"));
 					} catch {
-						ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Invalid image" });
+						ctx.addIssue({
+							code: z.ZodIssueCode.custom,
+							message: "Invalid image",
+						});
 						return z.NEVER;
 					}
 				}),
@@ -27,5 +30,8 @@ export const update = procedure
 		if (input.image !== undefined) {
 			data.image = `data:image/webp;base64,${(await input.image.resize(96).webp().toBuffer()).toString("base64")}`;
 		}
-		await ctx.db.user.update({ data, where: { id: ctx.user.id } });
+		await ctx.db.user.update({
+			data,
+			where: { id: ctx.user.id },
+		});
 	});

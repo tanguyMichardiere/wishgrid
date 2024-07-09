@@ -8,7 +8,12 @@ export const trpc = createTRPCNext<Router>({
 	transformer,
 	config() {
 		return {
-			links: [httpBatchStreamLink({ url: "/api", transformer })],
+			links: [
+				httpBatchStreamLink({
+					url: "/api",
+					transformer,
+				}),
+			],
 			abortOnUnmount: true,
 		};
 	},

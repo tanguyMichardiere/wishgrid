@@ -15,7 +15,9 @@ export type OptimisticRelatedProcedures<
 	};
 	revertData: (
 		variables: inferProcedureInput<Procedure>,
-		context: { [Key in keyof Queries]: inferProcedureOutput<Queries[Key]> | undefined },
+		context: {
+			[Key in keyof Queries]: inferProcedureOutput<Queries[Key]> | undefined;
+		},
 	) => void;
 };
 

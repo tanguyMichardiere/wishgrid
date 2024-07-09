@@ -5,5 +5,12 @@ import { databaseClient } from "../database/client";
 const t = initTRPC.create();
 
 export const databaseClientPlugin = t.procedure.use(async ({ ctx, next }) =>
-	databaseClient.$transaction((db) => next({ ctx: { ...ctx, db } })),
+	databaseClient.$transaction((db) =>
+		next({
+			ctx: {
+				...ctx,
+				db,
+			},
+		}),
+	),
 );

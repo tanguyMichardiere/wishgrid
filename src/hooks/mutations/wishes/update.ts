@@ -21,7 +21,15 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
 		},
 		setData({ id, description, link }) {
 			trpcUtils.wishes.listOwn.setData(undefined, (wishes) =>
-				wishes?.map((wish) => (wish.id === id ? { ...wish, description, link } : wish)),
+				wishes?.map((wish) =>
+					wish.id === id
+						? {
+								...wish,
+								description,
+								link,
+							}
+						: wish,
+				),
 			);
 		},
 		revertData(_variables, context) {
@@ -37,7 +45,9 @@ function useRelatedProcedures(): OptimisticRelatedProcedures<
 
 export function useUpdateWishMutation({
 	onSuccess,
-}: { onSuccess?: () => void } = {}): ReturnType<typeof trpc.wishes.update.useMutation> {
+}: {
+	onSuccess?: () => void;
+} = {}): ReturnType<typeof trpc.wishes.update.useMutation> {
 	const t = useClientTranslations("client.mutations.wishes.update");
 
 	const relatedProcedures = useRelatedProcedures();

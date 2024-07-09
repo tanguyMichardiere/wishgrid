@@ -30,7 +30,9 @@ function useRelatedProcedures(): RelatedProcedures<Router["wishes"]["create"]> {
 
 export function useCreateWishMutation({
 	onSuccess,
-}: { onSuccess?: () => void } = {}): ReturnType<typeof trpc.wishes.create.useMutation> {
+}: {
+	onSuccess?: () => void;
+} = {}): ReturnType<typeof trpc.wishes.create.useMutation> {
 	const t = useClientTranslations("client.mutations.wishes.create");
 
 	const relatedProcedures = useRelatedProcedures();

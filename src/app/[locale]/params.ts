@@ -1,5 +1,3 @@
 import type { Locale } from "../../types/locale";
 
-export type Params = {
-	locale: Locale;
-};
+export type Params = { locale: Locale };
