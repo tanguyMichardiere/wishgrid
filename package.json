@@ -12,7 +12,7 @@
 		}
 	},
 	"scripts": {
-		"postinstall": "prisma generate",
+		"postinstall": "prisma generate --no-hints",
 		"update-dependencies": "sh scripts/update-dependencies.sh",
 		"env-pull": "vercel env pull .env",
 		"dev": "next dev",
