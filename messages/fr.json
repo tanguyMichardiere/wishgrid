@@ -154,7 +154,7 @@
 			"noWish": "Aucun vœu"
 		},
 		"WishModal": {
-			"reservedBy": "Réservé par : <bold>{name}</bold>{you, select, true {(vous)} other {}}"
+			"reservedBy": "Réservé par : <bold>{name}</bold>{you, select, true { (vous)} other {}}"
 		},
 		"WishPreviewCard": {
 			"commentsTooltip": "{count, plural, =0 {Aucun commentaire} =1 {1 commentaire} other {# commentaires}}",
