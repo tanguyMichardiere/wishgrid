@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { formatQuery } from "prisma-query-formatter";
 import "server-only";
 import { logger } from "../logger";
 
@@ -12,19 +13,7 @@ export const databaseClient = new PrismaClient({
 });
 
 databaseClient.$on("query", (e) => {
-	if (e.params !== "[]") {
-		logger.debug(
-			e.query,
-			Object.fromEntries(
-				(JSON.parse(e.params) as unknown[]).map((param, index) => [
-					`$${(index + 1).toString()}`,
-					param,
-				]),
-			),
-		);
-	} else {
-		logger.debug(e.query);
-	}
+	logger.debug(formatQuery(e.query, e.params, { escapeParams: true }));
 });
 databaseClient.$on("info", (e) => {
 	logger.info(e.message);

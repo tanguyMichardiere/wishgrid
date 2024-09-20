@@ -11,9 +11,13 @@ export default {
 		},
 	},
 	plugins: [
+		// biome-ignore lint/nursery/noCommonJs:
 		require("@tailwindcss/typography"),
+		// biome-ignore lint/nursery/noCommonJs:
 		require("@tailwindcss/forms"),
+		// biome-ignore lint/nursery/noCommonJs:
 		require("@tailwindcss/container-queries"),
+		// biome-ignore lint/nursery/noCommonJs:
 		require("daisyui"),
 	],
 	daisyui: {

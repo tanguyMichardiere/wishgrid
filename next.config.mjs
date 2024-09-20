@@ -35,6 +35,7 @@ let nextConfig = {
 nextConfig = withNextIntl()(nextConfig);
 
 nextConfig = withNextBundleAnalyzer({
+	// biome-ignore lint/nursery/noProcessEnv:
 	enabled: process.env.ANALYZE === "true",
 })(nextConfig);
 

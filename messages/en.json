@@ -152,7 +152,7 @@
 			"noWish": "No wish"
 		},
 		"WishModal": {
-			"reservedBy": "Reserved by: <bold>{name}</bold>{you, select, true {(you)} other {}}"
+			"reservedBy": "Reserved by: <bold>{name}</bold>{you, select, true { (you)} other {}}"
 		},
 		"WishPreviewCard": {
 			"commentsTooltip": "{count, plural, =0 {No comment yet} =1 {1 comment} other {# comments}}",
