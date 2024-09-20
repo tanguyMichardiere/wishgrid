@@ -12,25 +12,25 @@ const level = {
 export const logger = {
 	debug(this: void, message: unknown, ...optionalParams: unknown[]): void {
 		if (level[env.LOG_LEVEL] <= level.debug) {
-			// biome-ignore lint/suspicious/noConsoleLog lint/nursery/noConsole:
+			// biome-ignore lint/suspicious/noConsoleLog lint/suspicious/noConsole:
 			console.log(message, ...optionalParams);
 		}
 	},
 	info(this: void, message: unknown, ...optionalParams: unknown[]): void {
 		if (level[env.LOG_LEVEL] <= level.info) {
-			// biome-ignore lint/suspicious/noConsoleLog lint/nursery/noConsole:
+			// biome-ignore lint/suspicious/noConsoleLog lint/suspicious/noConsole:
 			console.log(message, ...optionalParams);
 		}
 	},
 	warning(this: void, message: string, ...optionalParams: unknown[]): void {
 		if (level[env.LOG_LEVEL] <= level.warning) {
-			// biome-ignore lint/nursery/noConsole:
+			// biome-ignore lint/suspicious/noConsole:
 			console.warn(message, ...optionalParams);
 		}
 	},
 	error(this: void, message: unknown, ...optionalParams: unknown[]): void {
 		if (level[env.LOG_LEVEL] <= level.error) {
-			// biome-ignore lint/nursery/noConsole:
+			// biome-ignore lint/suspicious/noConsole:
 			console.error(message, ...optionalParams);
 		}
 	},

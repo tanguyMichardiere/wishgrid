@@ -25,6 +25,7 @@ function addSrc(key, value) {
 	}
 }
 
+// biome-ignore lint/nursery/noProcessEnv:
 if (process.env.NODE_ENV === "development") {
 	// fonts are fetched in development but replaced by static files in production
 	addSrc("font-src", "fonts.gstatic.com");
@@ -43,6 +44,7 @@ export const headers = [
 	{ key: "Referrer-Policy", value: "origin-when-cross-origin" },
 	{
 		key:
+			// biome-ignore lint/nursery/noProcessEnv:
 			process.env.NODE_ENV === "production"
 				? "Content-Security-Policy"
 				: "Content-Security-Policy-Report-Only",

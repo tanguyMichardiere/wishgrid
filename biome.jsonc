@@ -1,5 +1,8 @@
 {
 	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"files": {
+		"ignore": ["**/*.yml"]
+	},
 	"vcs": {
 		"enabled": true,
 		"clientKind": "git",
@@ -9,12 +12,19 @@
 		"enabled": true,
 		"rules": {
 			"all": true,
+			"correctness": {
+				"useImportExtensions": "off"
+			},
+			"suspicious": {
+				"noReactSpecificProps": "off"
+			},
+			"style": {
+				"useDefaultSwitchClause": "off" // checked by typescript
+			},
 			"nursery": {
 				"all": true,
 				"noExportedImports": "off", // conflicts with lint/performance/noBarrelFile
-				"noReactSpecificProps": "off",
-				"useDefaultSwitchClause": "off", // checked by typescript
-				"useImportExtensions": "off",
+				"useComponentExportOnlyModules": "off",
 				"useImportRestrictions": "off"
 			}
 		}

@@ -7,6 +7,7 @@ import { DiscordIcon } from "./discord-icon";
 
 const providers = {
 	discord: {
+		// biome-ignore lint/nursery/noSecrets: false positive
 		buttonClassName: "bg-[#5865F2] text-white hover:bg-[rgba(88,101,242,0.8)]",
 		icon: <DiscordIcon />,
 		name: "Discord",

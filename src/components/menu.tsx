@@ -53,6 +53,7 @@ export function Menu(props: Props): JSX.Element {
 				<MenuItems
 					as="ul"
 					className={cx(
+						// biome-ignore lint/nursery/noSecrets: false positive
 						"menu absolute z-50 mt-2 max-h-72 flex-nowrap overflow-y-auto rounded-md bg-base-100 shadow-md",
 						props.position === "left" && "right-0",
 						props.position === "right" && "left-0",

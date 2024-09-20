@@ -1,3 +1,4 @@
+// biome-ignore lint/nursery/noCommonJs:
 module.exports = {
 	plugins: {
 		"postcss-flexbugs-fixes": {},
