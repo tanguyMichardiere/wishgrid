@@ -1,4 +1,4 @@
-import { useLocale } from "next-intl";
+import { getLocale } from "next-intl/server";
 import type { JSX } from "react";
 import { About } from "../../../../../components/about";
 import { EmailSignIn } from "../../../../../components/email-signin";
@@ -16,7 +16,7 @@ type Props = {
 };
 
 export default async function SignInPage(props: Props): Promise<JSX.Element> {
-	const locale = useLocale();
+	const locale = await getLocale();
 	const t = useServerTranslations("SignInPage");
 
 	const searchParams = await props.searchParams;
