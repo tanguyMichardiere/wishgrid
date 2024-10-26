@@ -3,31 +3,35 @@ import type { JSX } from "react";
 import { About } from "../../../../../components/about";
 import { EmailSignIn } from "../../../../../components/email-signin";
 import { SignInButton } from "../../../../../components/sign-in-button";
-import { defaultLocale } from "../../../../../navigation";
+import { routing } from "../../../../../i18n/routing";
 import { useServerTranslations } from "../../../../../utils/translations/server";
 
-type Props = {
-	searchParams: {
-		redirectTo?: string;
-		error?: string;
-	};
+type SearchParams = {
+	redirectTo?: string;
+	error?: string;
 };
 
-export default function SignInPage(props: Props): JSX.Element {
+type Props = {
+	searchParams: Promise<SearchParams>;
+};
+
+export default async function SignInPage(props: Props): Promise<JSX.Element> {
 	const locale = useLocale();
 	const t = useServerTranslations("SignInPage");
 
+	const searchParams = await props.searchParams;
+
 	const redirectTo =
-		props.searchParams.redirectTo !== undefined
-			? decodeURIComponent(props.searchParams.redirectTo)
-			: `/${locale !== defaultLocale ? locale : ""}`;
+		searchParams.redirectTo !== undefined
+			? decodeURIComponent(searchParams.redirectTo)
+			: `/${locale !== routing.defaultLocale ? locale : ""}`;
 
 	return (
 		<div className="flex flex-col items-center gap-8">
 			<About />
-			{props.searchParams.error !== undefined && (
+			{searchParams.error !== undefined && (
 				<div className="alert alert-error flex flex-col gap-2 text-center">
-					{props.searchParams.error === "OAuthAccountNotLinked" ? (
+					{searchParams.error === "OAuthAccountNotLinked" ? (
 						<>
 							<h3 className="text-lg">{t("error.OAuthAccountNotLinked.title")}</h3>
 							<p>{t("error.OAuthAccountNotLinked.body")}</p>

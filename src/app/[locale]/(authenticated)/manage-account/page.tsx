@@ -1,14 +1,8 @@
-import dynamic from "next/dynamic";
 import type { JSX } from "react";
 import { Avatar } from "../../../../components/avatar";
 import { DeleteCurrentUserButton } from "../../../../components/delete-current-user-button";
 import { getCurrentUser } from "../../../../utils/server-queries/users/get-current";
-
-// cannot be server-rendered because it uses FileList which is browser-only
-const UpdateUser = dynamic(() => import("./update-user"), {
-	ssr: false,
-	loading: () => <span className="loading loading-spinner" />,
-});
+import { UpdateUser } from "./update-user";
 
 export default async function ManageAccountPage(): Promise<JSX.Element> {
 	const currentUser = await getCurrentUser();

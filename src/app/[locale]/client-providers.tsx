@@ -5,7 +5,9 @@ import { ThemeProvider } from "next-themes";
 import type { ReactNode } from "react";
 import { trpc } from "../../utils/trpc/client";
 
-type Props = { children: ReactNode };
+type Props = {
+	children: ReactNode;
+};
 
 export const ClientProviders = trpc.withTRPC(function ClientProviders(props: Props) {
 	return (

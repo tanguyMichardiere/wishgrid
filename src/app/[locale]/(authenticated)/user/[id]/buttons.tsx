@@ -21,18 +21,16 @@ export function Buttons(props: Props): JSX.Element {
 		{ initialData: props.initialFriendRequestsStatus },
 	);
 
-	return (
-		<>
-			{friendRequestsStatus.data.from ? (
-				<div className="flex gap-4">
-					<DeclineFriendRequestButton userId={props.userId} />
-					<AcceptFriendRequestButton userId={props.userId} />
-				</div>
-			) : friendRequestsStatus.data.to ? (
-				<CancelFriendRequestButton userId={props.userId} />
-			) : (
-				<RequestFriendButton userId={props.userId} />
-			)}
-		</>
-	);
+	if (friendRequestsStatus.data.from) {
+		return (
+			<div className="flex gap-4">
+				<DeclineFriendRequestButton userId={props.userId} />
+				<AcceptFriendRequestButton userId={props.userId} />
+			</div>
+		);
+	}
+	if (friendRequestsStatus.data.to) {
+		return <CancelFriendRequestButton userId={props.userId} />;
+	}
+	return <RequestFriendButton userId={props.userId} />;
 }

@@ -2,18 +2,16 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import cx from "classix";
-import type { FormEvent, JSX } from "react";
+import { type FormEvent, type JSX, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { useCurrentUser } from "../../../../context/current-user/hook";
 import { useUpdateUserMutation } from "../../../../hooks/mutations/users/update";
-import { useRouter } from "../../../../navigation";
+import { useRouter } from "../../../../i18n/routing";
 import { getBase64 } from "../../../../utils/base64";
 import { useClientTranslations } from "../../../../utils/translations/client";
 import { FormSchema } from "./form-schema";
 
-// TODO: remove default export once dynamic import can handle named exports
-// biome-ignore lint/style/noDefaultExport:
-export default function UpdateUser(): JSX.Element {
+export function UpdateUser(): JSX.Element {
 	const router = useRouter();
 	const t = useClientTranslations("client.UpdateUser");
 
@@ -43,6 +41,16 @@ export default function UpdateUser(): JSX.Element {
 		})(event);
 	}
 
+	const errorMessage = useMemo(() => {
+		if (errors.name?.type === "too_small") {
+			return t("nameTooSmall", { length: 2 });
+		}
+		if (errors.name?.type === "too_big") {
+			return t("nameTooBig", { length: 32 });
+		}
+		return errors.name?.message;
+	}, [errors.name, t]);
+
 	return (
 		<form className="flex flex-col gap-2" onSubmit={submit}>
 			<label className="form-control">
@@ -69,13 +77,7 @@ export default function UpdateUser(): JSX.Element {
 					placeholder={t("namePlaceholder")}
 				/>
 				<div className="label">
-					<span className="label-text-alt">
-						{errors.name?.type === "too_small"
-							? t("nameTooSmall", { length: 2 })
-							: errors.name?.type === "too_big"
-								? t("nameTooBig", { length: 32 })
-								: errors.name?.message}
-					</span>
+					<span className="label-text-alt">{errorMessage}</span>
 				</div>
 			</label>
 			<button className="btn btn-primary" disabled={updateUser.isPending} type="submit">

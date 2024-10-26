@@ -10,7 +10,7 @@ import {
 import { cx } from "classix";
 import type { Route } from "next";
 import type { JSX, ReactNode } from "react";
-import { Link } from "../navigation";
+import { Link } from "../i18n/routing";
 import type { Locale } from "../types/locale";
 
 export type Props = {
@@ -53,7 +53,6 @@ export function Menu(props: Props): JSX.Element {
 				<MenuItems
 					as="ul"
 					className={cx(
-						// biome-ignore lint/nursery/noSecrets: false positive
 						"menu absolute z-50 mt-2 max-h-72 flex-nowrap overflow-y-auto rounded-md bg-base-100 shadow-md",
 						props.position === "left" && "right-0",
 						props.position === "right" && "left-0",
@@ -66,6 +65,8 @@ export function Menu(props: Props): JSX.Element {
 								<MenuItem as="button" className={item.className} onClick={item.onClick}>
 									{item.children}
 								</MenuItem>
+								// TODO extract a MenuItem component
+								// biome-ignore lint/nursery/noNestedTernary: TODO
 							) : "download" in item ? (
 								<MenuItem
 									as="a"

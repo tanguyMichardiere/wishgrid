@@ -1,10 +1,8 @@
 import createIntlMiddleware from "next-intl/middleware";
-import { defaultLocale, localePrefix, locales } from "./navigation";
+import { routing } from "./i18n/routing";
 
-export default createIntlMiddleware({
-	locales,
-	defaultLocale,
-	localePrefix,
-});
+export default createIntlMiddleware(routing);
 
-export const config = { matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"] };
+export const config = {
+	matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+};

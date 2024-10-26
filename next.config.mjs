@@ -27,9 +27,7 @@ let nextConfig = {
 	// webpack(config) {
 	//   return config;
 	// },
-	experimental: {
-		serverComponentsExternalPackages: ["docx", "pdfkit"],
-	},
+	serverExternalPackages: ["docx", "pdfkit"],
 };
 
 nextConfig = withNextIntl()(nextConfig);

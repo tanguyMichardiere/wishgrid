@@ -2,7 +2,7 @@ import type { JSX } from "react";
 import { LanguageMenu } from "../../../../components/language-menu";
 import { SignOutButton } from "../../../../components/sign-out-button";
 import { ThemeMenu } from "../../../../components/theme-menu";
-import { Link } from "../../../../navigation";
+import { Link } from "../../../../i18n/routing";
 import { useServerTranslations } from "../../../../utils/translations/server";
 
 export default function SettingsPage(): JSX.Element {

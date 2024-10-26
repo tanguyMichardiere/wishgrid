@@ -3,7 +3,9 @@ import { Navbar } from "../../../components/navbar";
 import { CurrentUserContextProvider } from "../../../context/current-user/provider";
 import { getCurrentUser } from "../../../utils/server-queries/users/get-current";
 
-type Props = { children: ReactNode };
+type Props = {
+	children: ReactNode;
+};
 
 export default async function SignedInLayout(props: Props): Promise<JSX.Element> {
 	const currentUser = await getCurrentUser();
