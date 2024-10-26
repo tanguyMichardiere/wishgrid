@@ -13,7 +13,7 @@ export const databaseClient = new PrismaClient({
 });
 
 databaseClient.$on("query", (e) => {
-	logger.debug(formatQuery(e.query, e.params, { escapeParams: true }));
+	logger.debug(formatQuery(e.query.replaceAll('"public".', ""), e.params, { escapeParams: true }));
 });
 databaseClient.$on("info", (e) => {
 	logger.info(e.message);

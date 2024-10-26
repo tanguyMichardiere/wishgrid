@@ -4,7 +4,7 @@ import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import cx from "classix";
 import type { FormEvent } from "react";
-import { forwardRef } from "react";
+import { forwardRef, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { useCreateCommentMutation } from "../../../hooks/mutations/comments/create";
 import { setRef } from "../../../utils/refs";
@@ -40,6 +40,16 @@ export const CommentInput = forwardRef<{ reset: () => void }, Props>(
 			})(event);
 		}
 
+		const errorMessage = useMemo(() => {
+			if (errors.text?.type === "too_small") {
+				return t("textTooSmall", { length: 4 });
+			}
+			if (errors.text?.type === "too_big") {
+				return t("textTooBig", { length: 256 });
+			}
+			return errors.text?.message;
+		}, [errors.text, t]);
+
 		return (
 			<form onSubmit={submit}>
 				<div className="flex items-center gap-2">
@@ -55,13 +65,7 @@ export const CommentInput = forwardRef<{ reset: () => void }, Props>(
 						<PaperAirplaneIcon className="h-6 w-6" />
 					</button>
 				</div>
-				<p className="text-sm">
-					{errors.text?.type === "too_small"
-						? t("textTooSmall", { length: 4 })
-						: errors.text?.type === "too_big"
-							? t("textTooBig", { length: 256 })
-							: errors.text?.message}
-				</p>
+				<p className="text-sm">{errorMessage}</p>
 			</form>
 		);
 	},

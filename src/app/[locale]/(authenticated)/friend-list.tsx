@@ -2,12 +2,14 @@
 
 import type { JSX } from "react";
 import { FriendPreviewCard } from "../../../components/friend-preview-card";
-import { Link } from "../../../navigation";
+import { Link } from "../../../i18n/routing";
 import type { Friend } from "../../../server/database/types/user";
 import { useClientTranslations } from "../../../utils/translations/client";
 import { trpc } from "../../../utils/trpc/client";
 
-type Props = { initialFriends: Friend[] };
+type Props = {
+	initialFriends: Friend[];
+};
 
 export function FriendList(props: Props): JSX.Element {
 	const t = useClientTranslations("client.FriendList");

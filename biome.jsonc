@@ -25,7 +25,9 @@
 				"all": true,
 				"noExportedImports": "off", // conflicts with lint/performance/noBarrelFile
 				"useComponentExportOnlyModules": "off",
-				"useImportRestrictions": "off"
+				"useExplicitType": "off", // only useful for exported functions
+				"useImportRestrictions": "off",
+				"noSecrets": "off"
 			}
 		}
 	},

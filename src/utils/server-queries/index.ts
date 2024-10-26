@@ -1,9 +1,10 @@
 import { TRPCError } from "@trpc/server";
 import type { TRPC_ERROR_CODE_KEY } from "@trpc/server/rpc";
+import { getLocale } from "next-intl/server";
 import { headers } from "next/headers";
 import { cache } from "react";
 import "server-only";
-import { redirect } from "../../navigation";
+import { redirect } from "../../i18n/routing";
 import { createServerSideHelpers } from "../trpc/server";
 
 const linkRegex = /<(\S+)>; rel="\S+"; hreflang="(\S+)"/g;
@@ -14,13 +15,14 @@ type LinkRegexMatch = RegExpExecArray &
 		string, // hreflang
 	];
 
-function getRequestPathname(): string | undefined {
+async function getRequestPathname(): Promise<string | undefined> {
 	try {
-		const linkHeader = headers().get("link");
+		const headersList = await headers();
+		const linkHeader = headersList.get("link");
 		if (linkHeader === null) {
 			return undefined;
 		}
-		const locale = headers().get("x-next-intl-locale") ?? "x-default";
+		const locale = headersList.get("x-next-intl-locale") ?? "x-default";
 		for (const match of linkHeader.matchAll(linkRegex)) {
 			const [_, url, hreflang] = match as LinkRegexMatch;
 			if (hreflang === locale) {
@@ -33,17 +35,18 @@ function getRequestPathname(): string | undefined {
 	}
 }
 
-function handleServerQueryError<R>(
+async function handleServerQueryError<R>(
 	error: unknown,
 	errors: Partial<Record<TRPC_ERROR_CODE_KEY, (error: TRPCError) => R>>,
-): R {
+): Promise<R> {
 	if (error instanceof TRPCError) {
 		if (error.code === "UNAUTHORIZED") {
-			const requestPathname = getRequestPathname();
+			const requestPathname = await getRequestPathname();
+			const locale = await getLocale();
 			if (requestPathname !== undefined) {
-				redirect(`/sign-in?redirectTo=${encodeURIComponent(requestPathname)}`);
+				redirect({ href: `/sign-in?redirectTo=${encodeURIComponent(requestPathname)}`, locale });
 			} else {
-				redirect("/sign-in");
+				redirect({ href: "/sign-in", locale });
 			}
 		}
 		const handler = errors[error.code];
@@ -63,6 +66,6 @@ export const serverQuery = <P extends unknown[], R>(
 		try {
 			return await fn(trpc, ...args);
 		} catch (error) {
-			return handleServerQueryError(error, errors);
+			return await handleServerQueryError(error, errors);
 		}
 	});

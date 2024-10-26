@@ -1,6 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import "client-only";
-import { useRouter } from "../../../navigation";
+import { useRouter } from "../../../i18n/routing";
 import { toast } from "../../../utils/toast";
 import { useClientTranslations } from "../../../utils/translations/client";
 import { trpc } from "../../../utils/trpc/client";

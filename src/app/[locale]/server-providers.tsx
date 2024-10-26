@@ -5,7 +5,9 @@ import type { JSX, ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
 import { auth } from "../../auth";
 
-type Props = { children: ReactNode };
+type Props = {
+	children: ReactNode;
+};
 
 export async function ServerProviders(props: Props): Promise<JSX.Element> {
 	const session = await auth();

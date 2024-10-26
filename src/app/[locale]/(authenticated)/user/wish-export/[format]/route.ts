@@ -16,7 +16,7 @@ const ParsedParams = z.object({
 
 export async function GET(
 	_request: NextRequest,
-	context: { params: Params },
+	context: { params: Promise<Params> },
 ): Promise<NextResponse> {
 	const session = await auth();
 	if (session === null) {

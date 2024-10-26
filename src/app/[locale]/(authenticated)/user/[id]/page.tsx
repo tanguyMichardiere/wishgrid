@@ -5,11 +5,15 @@ import { getUser } from "../../../../../utils/server-queries/users/get";
 import { Buttons } from "./buttons";
 import type { Params } from "./params";
 
-type Props = { params: Params };
+type Props = {
+	params: Promise<Params>;
+};
 
 export default async function UserIdPage(props: Props): Promise<JSX.Element> {
-	const user = await getUser(props.params.id);
-	const friendRequestsStatus = await getFriendRequestsStatus(props.params.id);
+	const params = await props.params;
+
+	const user = await getUser(params.id);
+	const friendRequestsStatus = await getFriendRequestsStatus(params.id);
 
 	return (
 		<div className="flex flex-col items-center gap-4">

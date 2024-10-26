@@ -7,7 +7,9 @@ import { variable } from "../font";
 import { ClientProviders } from "./client-providers";
 import { ServerProviders } from "./server-providers";
 
-type Props = { children: ReactNode };
+type Props = {
+	children: ReactNode;
+};
 
 export default function LocaleLayout(props: Props): JSX.Element {
 	const locale = useLocale();

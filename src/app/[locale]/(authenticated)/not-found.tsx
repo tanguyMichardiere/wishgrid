@@ -1,5 +1,5 @@
 import type { JSX } from "react";
-import { Link } from "../../../navigation";
+import { Link } from "../../../i18n/routing";
 import { useServerTranslations } from "../../../utils/translations/server";
 
 export default function NotFound(): JSX.Element {

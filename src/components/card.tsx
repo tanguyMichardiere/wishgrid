@@ -11,7 +11,6 @@ export function Card(props: Props): JSX.Element {
 		<div className="@container">
 			<div
 				className={cx(
-					// biome-ignore lint/nursery/noSecrets: false positive
 					"@sm:mx-2 @sm:mb-2 flex max-w-sm grow flex-row items-center gap-4 @sm:rounded-xl border-base-900 bg-base-100 px-4 py-2 @sm:shadow-xl transition-colors hover:bg-base-200",
 					props.className,
 				)}
