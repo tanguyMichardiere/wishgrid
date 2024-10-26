@@ -2,5 +2,5 @@ languageIds:
   - typescriptreact
 usageMatchRegex:
   - "[^\\w\\d]t\\(['\"`]({key})['\"`]"
-scopeRangeRegex: "use(?:Server|Client)Translations\\(\\s*\\[?\\s*['\"`](.*?)['\"`]"
+scopeRangeRegex: "(?:getTranslations|useClientTranslations|useServerTranslations)\\(\\s*\\[?\\s*['\"`](.*?)['\"`]"
 monopoly: true

@@ -1,10 +1,9 @@
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import type { JSX } from "react";
 import { About } from "../../../../../components/about";
 import { EmailSignIn } from "../../../../../components/email-signin";
 import { SignInButton } from "../../../../../components/sign-in-button";
 import { routing } from "../../../../../i18n/routing";
-import { useServerTranslations } from "../../../../../utils/translations/server";
 
 type SearchParams = {
 	redirectTo?: string;
@@ -17,7 +16,7 @@ type Props = {
 
 export default async function SignInPage(props: Props): Promise<JSX.Element> {
 	const locale = await getLocale();
-	const t = useServerTranslations("SignInPage");
+	const t = await getTranslations("SignInPage");
 
 	const searchParams = await props.searchParams;
 
