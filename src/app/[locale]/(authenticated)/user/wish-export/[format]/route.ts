@@ -23,7 +23,7 @@ export async function GET(
 		return NextResponse.json(null, { status: 401 });
 	}
 
-	const params = ParsedParams.safeParse(context.params);
+	const params = ParsedParams.safeParse(await context.params);
 	if (!params.success) {
 		return NextResponse.json(null, { status: 404 });
 	}
