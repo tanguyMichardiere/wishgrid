@@ -28,6 +28,9 @@ let nextConfig = {
 	//   return config;
 	// },
 	serverExternalPackages: ["docx", "pdfkit"],
+	// experimental: {
+	// 	reactCompiler: true,
+	// },
 };
 
 nextConfig = withNextIntl()(nextConfig);
