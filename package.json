@@ -11,7 +11,7 @@
 		"postinstall": "prisma generate --no-hints",
 		"update-dependencies": "sh scripts/update-dependencies.sh",
 		"env-pull": "vercel env pull .env",
-		"dev": "next dev --turbo",
+		"dev": "next dev --turbopack",
 		"format": "biome format --write .",
 		"lint": "biome ci --error-on-warnings .",
 		"check-types": "tsc",
