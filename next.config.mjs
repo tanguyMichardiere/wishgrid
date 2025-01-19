@@ -1,9 +1,12 @@
 import withNextBundleAnalyzer from "@next/bundle-analyzer";
-import createJiti from "jiti";
+import { createJiti } from "jiti";
 import withNextIntl from "next-intl/plugin";
 import { headers } from "./headers.config.mjs";
 
-const jiti = createJiti(new URL(import.meta.url).pathname);
+// biome-ignore lint/correctness/noNodejsModules:
+import { fileURLToPath } from "node:url";
+
+const jiti = createJiti(fileURLToPath(import.meta.url));
 // ensure all environment variables are defined at build time
 jiti("./src/env");
 
@@ -28,6 +31,9 @@ let nextConfig = {
 	//   return config;
 	// },
 	serverExternalPackages: ["docx", "pdfkit"],
+	experimental: {
+		reactCompiler: true,
+	},
 };
 
 nextConfig = withNextIntl()(nextConfig);
