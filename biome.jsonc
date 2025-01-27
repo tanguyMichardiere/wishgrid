@@ -77,6 +77,15 @@
 					"style": { "useNamingConvention": "off" }
 				}
 			}
+		},
+		{
+			// TailwindCSS config uses non-standard properties
+			"include": ["src/styles.css"],
+			"linter": {
+				"rules": {
+					"correctness": { "noUnknownProperty": "off" }
+				}
+			}
 		}
 	]
 }
