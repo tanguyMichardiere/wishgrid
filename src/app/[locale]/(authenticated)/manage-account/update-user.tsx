@@ -53,21 +53,17 @@ export function UpdateUser(): JSX.Element {
 
 	return (
 		<form className="flex flex-col gap-2" onSubmit={submit}>
-			<label className="form-control">
-				<div className="label">
-					<span className="label-text">{t("imageLabel")}</span>
-				</div>
+			<fieldset className="fieldset">
+				<legend className="fieldset-legend">{t("imageLabel")}</legend>
 				<input
 					{...register("image", { required: false })}
 					accept="image/*"
 					className="file-input w-72"
 					type="file"
 				/>
-			</label>
-			<label className="form-control">
-				<div className="label">
-					<span className="label-text">{t("nameLabel")}</span>
-				</div>
+			</fieldset>
+			<fieldset className="fieldset">
+				<legend className="fieldset-legend">{t("nameLabel")}</legend>
 				<input
 					{...register("name")}
 					className={cx(
@@ -76,10 +72,8 @@ export function UpdateUser(): JSX.Element {
 					)}
 					placeholder={t("namePlaceholder")}
 				/>
-				<div className="label">
-					<span className="label-text-alt">{errorMessage}</span>
-				</div>
-			</label>
+				<p className="fieldset-label">{errorMessage}</p>
+			</fieldset>
 			<button className="btn btn-primary" disabled={updateUser.isPending} type="submit">
 				{updateUser.isPending && <span className="loading loading-spinner" />}
 				{t("submitButtonText")}

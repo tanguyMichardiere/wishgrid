@@ -23,7 +23,7 @@ export function WishLinkFormInput(props: Props): JSX.Element {
 	}, [props.error, t]);
 
 	return (
-		<label className="form-control self-center">
+		<fieldset className="fieldset self-center">
 			<input
 				{...props.register}
 				className={cx(
@@ -32,9 +32,7 @@ export function WishLinkFormInput(props: Props): JSX.Element {
 				)}
 				placeholder={t("placeholder")}
 			/>
-			<div className="label">
-				<span className="label-text-alt">{errorMessage}</span>
-			</div>
-		</label>
+			<p className="fieldset-label">{errorMessage}</p>
+		</fieldset>
 	);
 }

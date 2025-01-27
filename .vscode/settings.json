@@ -1,5 +1,5 @@
 {
-	"[javascript][typescript][javascriptreact][typescriptreact][json][jsonc]": {
+	"[javascript][typescript][javascriptreact][typescriptreact][tailwindcss][json][jsonc]": {
 		"editor.defaultFormatter": "biomejs.biome",
 		"editor.insertSpaces": false,
 		"editor.tabSize": 2

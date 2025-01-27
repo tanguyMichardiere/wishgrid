@@ -43,6 +43,9 @@ const themes = [
 	"dim",
 	"nord",
 	"sunset",
+	"caramellatte",
+	"abyss",
+	"silk",
 ];
 
 type Props = Pick<MenuProps, "position">;

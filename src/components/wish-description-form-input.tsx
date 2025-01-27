@@ -13,7 +13,7 @@ export function WishDescriptionFormInput(props: Props): JSX.Element {
 	const t = useClientTranslations("client.WishDescriptionFormInput");
 
 	return (
-		<label className="form-control self-center">
+		<fieldset className="fieldset self-center">
 			<textarea
 				{...props.register}
 				className={cx(
@@ -23,11 +23,9 @@ export function WishDescriptionFormInput(props: Props): JSX.Element {
 				placeholder={t("placeholder")}
 				rows={5}
 			/>
-			<div className="label">
-				<span className="label-text-alt">
-					{props.error?.type === "too_big" ? t("tooBig", { length: 512 }) : props.error?.message}
-				</span>
-			</div>
-		</label>
+			<p className="fieldset-label">
+				{props.error?.type === "too_big" ? t("tooBig", { length: 512 }) : props.error?.message}
+			</p>
+		</fieldset>
 	);
 }
