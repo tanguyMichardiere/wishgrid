@@ -2,6 +2,8 @@
 
 ONLY_MINOR="@types/node"
 
+# TODO: remove once daisyui@5 is released
+pnpm install daisyui@beta
 # TODO: remove once next-auth@5 is released
 pnpm install next-auth@beta
 # TODO: remove once trpc@11 is released
