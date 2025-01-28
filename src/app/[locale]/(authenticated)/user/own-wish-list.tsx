@@ -1,7 +1,7 @@
 "use client";
 
 import type { JSX } from "react";
-import { OwnWishPreviewCard } from "../../../../components/own-wish-preview-card";
+import { OwnWishListRow } from "../../../../components/own-wish-list-row";
 import type { OwnWish } from "../../../../server/database/types/wishes";
 import { useClientTranslations } from "../../../../utils/translations/client";
 import { trpc } from "../../../../utils/trpc/client";
@@ -24,12 +24,12 @@ export function OwnWishList(props: Props): JSX.Element {
 	}
 
 	return (
-		<>
+		<ul className="list rounded-box bg-base-100 shadow-md">
 			{wishes.data.map((wish) => (
-				<li key={wish.id}>
-					<OwnWishPreviewCard wish={wish} />
+				<li key={wish.id} className="list-row">
+					<OwnWishListRow wish={wish} />
 				</li>
 			))}
-		</>
+		</ul>
 	);
 }

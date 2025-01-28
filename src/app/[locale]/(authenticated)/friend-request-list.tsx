@@ -1,7 +1,7 @@
 "use client";
 
 import type { JSX } from "react";
-import { FriendRequestsCard } from "../../../components/friend-request-card";
+import { FriendRequestListRow } from "../../../components/friend-request-list-row";
 import type { User } from "../../../server/database/types/user";
 import { useClientTranslations } from "../../../utils/translations/client";
 import { trpc } from "../../../utils/trpc/client";
@@ -23,10 +23,10 @@ export function FriendRequestList(props: Props): JSX.Element {
 				<div className="flex flex-col">
 					<div className="flex flex-col gap-2">
 						<h3 className="self-center">{t("friendRequests")}</h3>
-						<ul className="flex flex-col">
+						<ul className="list">
 							{friendRequests.data.map((user) => (
-								<li key={user.id}>
-									<FriendRequestsCard user={user} />
+								<li key={user.id} className="list-row">
+									<FriendRequestListRow user={user} />
 								</li>
 							))}
 						</ul>

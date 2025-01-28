@@ -1,7 +1,7 @@
 "use client";
 
 import type { JSX } from "react";
-import { WishPreviewCard } from "../../../../../components/wish-preview-card";
+import { WishPreviewListRow } from "../../../../../components/wish-preview-list-row";
 import type { Wish } from "../../../../../server/database/types/wishes";
 import { useClientTranslations } from "../../../../../utils/translations/client";
 import { trpc } from "../../../../../utils/trpc/client";
@@ -28,12 +28,10 @@ export function WishList(props: Props): JSX.Element {
 	}
 
 	return (
-		<>
+		<ul className="list">
 			{wishes.data.map((wish) => (
-				<li key={wish.id}>
-					<WishPreviewCard userId={props.userId} wish={wish} />
-				</li>
+				<WishPreviewListRow key={wish.id} userId={props.userId} wish={wish} />
 			))}
-		</>
+		</ul>
 	);
 }

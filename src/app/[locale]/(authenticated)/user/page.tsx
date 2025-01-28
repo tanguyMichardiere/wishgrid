@@ -19,9 +19,7 @@ export default async function UserPage(): Promise<JSX.Element> {
 				<ExportMenu position="left" />
 			</div>
 			<NewWishButton />
-			<ul className="flex flex-col">
-				<OwnWishList initialWishes={wishes} />
-			</ul>
+			<OwnWishList initialWishes={wishes} />
 		</div>
 	);
 }

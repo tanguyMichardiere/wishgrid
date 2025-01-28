@@ -14,7 +14,7 @@ export function DeclineFriendRequestButton(props: Props): JSX.Element {
 
 	return (
 		<MutationButton
-			className="btn-ghost"
+			className="btn btn-ghost"
 			mutation={declineFriendRequest}
 			variables={{ userId: props.userId }}
 		>
