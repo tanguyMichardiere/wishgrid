@@ -1,6 +1,6 @@
 "use client";
 
-import { PencilSquareIcon } from "@heroicons/react/24/outline";
+import { EyeIcon } from "@heroicons/react/24/outline";
 import type { JSX } from "react";
 import { useRef } from "react";
 import type { OwnWish } from "../server/database/types/wishes";
@@ -19,7 +19,7 @@ export function OwnWishListRow(props: Props): JSX.Element {
 		<>
 			<div className="flex list-col-grow items-center">{props.wish.title}</div>
 			<button className="btn btn-circle btn-ghost" onClick={showModal} type="button">
-				<PencilSquareIcon className="h-6 w-6" />
+				<EyeIcon className="h-6 w-6" />
 			</button>
 			<OwnWishModal ref={modalRef} wish={props.wish} />
 		</>

@@ -119,7 +119,7 @@
 		},
 		"OwnWishModal": {
 			"cancelButtonText": "Annuler",
-			"updateButtonText": "Modifier"
+			"editButtonText": "Modifier"
 		},
 		"RequestFriendButton": {
 			"text": "Demander en ami"
