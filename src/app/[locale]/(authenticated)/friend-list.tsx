@@ -1,7 +1,7 @@
 "use client";
 
 import type { JSX } from "react";
-import { FriendPreviewCard } from "../../../components/friend-preview-card";
+import { FriendPreviewListRow } from "../../../components/friend-preview-list-row";
 import { Link } from "../../../i18n/routing";
 import type { Friend } from "../../../server/database/types/user";
 import { useClientTranslations } from "../../../utils/translations/client";
@@ -28,13 +28,15 @@ export function FriendList(props: Props): JSX.Element {
 	}
 
 	return (
-		<ul className="flex flex-col">
+		<ul className="list">
 			{friends.data.map((friend) => (
-				<li key={friend.id}>
-					<Link href={`/friend/${friend.id}`}>
-						<FriendPreviewCard friend={friend} />
-					</Link>
-				</li>
+				<Link
+					key={friend.id}
+					className="list-row transition-colors hover:bg-base-200"
+					href={`/friend/${friend.id}`}
+				>
+					<FriendPreviewListRow friend={friend} />
+				</Link>
 			))}
 		</ul>
 	);

@@ -96,13 +96,13 @@ export const OwnWishModal = forwardRef<HTMLDialogElement, Props>(function OwnWis
 						</button>
 						<button className="btn btn-primary" disabled={updateWish.isPending} type="submit">
 							{updateWish.isPending && <span className="loading loading-spinner" />}
-							{t("updateButtonText")}
+							{t("editButtonText")}
 						</button>
 					</div>
 				) : (
 					<div className="modal-action">
 						<button className="btn" onClick={startUpdating} type="button">
-							{t("updateButtonText")}
+							{t("editButtonText")}
 						</button>
 						<DeleteWishButton ref={deleteWishButtonRef} wishId={props.wish.id} />
 					</div>

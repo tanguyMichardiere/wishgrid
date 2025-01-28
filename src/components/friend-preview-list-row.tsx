@@ -3,11 +3,10 @@ import { type JSX, useMemo } from "react";
 import type { Friend } from "../server/database/types/user";
 import { useClientTranslations } from "../utils/translations/client";
 import { Avatar } from "./avatar";
-import { Card } from "./card";
 
 type Props = { friend: Friend };
 
-export function FriendPreviewCard(props: Props): JSX.Element {
+export function FriendPreviewListRow(props: Props): JSX.Element {
 	const t = useClientTranslations("client.FriendPreviewCard");
 
 	const toolTip = useMemo(() => {
@@ -24,16 +23,14 @@ export function FriendPreviewCard(props: Props): JSX.Element {
 	}, [props.friend, t]);
 
 	return (
-		<Card className="justify-between">
-			<div className="flex items-center gap-4">
-				<Avatar size="small" user={props.friend} />
-				{props.friend.name}
-			</div>
-			<div className="tooltip tooltip-left" data-tip={toolTip}>
+		<>
+			<Avatar size="small" user={props.friend} />
+			<div className="flex items-center">{props.friend.name}</div>
+			<div className="tooltip tooltip-left flex items-center" data-tip={toolTip}>
 				<span className={cx("badge", props.friend.newWishCount > 0 && "badge-primary")}>
 					{props.friend.wishCount}
 				</span>
 			</div>
-		</Card>
+		</>
 	);
 }

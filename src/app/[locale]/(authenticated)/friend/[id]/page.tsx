@@ -21,9 +21,7 @@ export default async function FriendIdPage(props: Props): Promise<JSX.Element> {
 				<Avatar size="large" user={friend} />
 				<h3 className="text-lg">{friend.name}</h3>
 			</div>
-			<ul className="flex flex-col">
-				<WishList initialWishes={wishes} userId={params.id} />
-			</ul>
+			<WishList initialWishes={wishes} userId={params.id} />
 		</div>
 	);
 }
