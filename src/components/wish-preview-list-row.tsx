@@ -1,12 +1,12 @@
 "use client";
 
 import { ChatBubbleLeftRightIcon, LockClosedIcon, LockOpenIcon } from "@heroicons/react/24/outline";
-import cx from "classix";
 import type { JSX } from "react";
 import { useRef } from "react";
 import { useSetWishViewedMutation } from "../hooks/mutations/wishes/set-viewed";
 import type { Wish } from "../server/database/types/wishes";
 import { useClientTranslations } from "../utils/translations/client";
+import { NewIndicator } from "./new-indicator";
 import { WishModal } from "./wish-modal";
 
 type Props = {
@@ -31,15 +31,13 @@ export function WishPreviewListRow(props: Props): JSX.Element {
 	return (
 		<>
 			<button
-				className={cx(
-					"cursor-pointer list-row transition-colors hover:bg-base-200",
-					!props.wish.viewed && "ring ring-primary ring-offset-base-100",
-				)}
+				className="cursor-pointer list-row transition-colors hover:bg-base-200"
 				onClick={showModal}
 				type="button"
 			>
 				<div className="list-col-grow text-left">{props.wish.title}</div>
 				<div className="flex items-center gap-2">
+					{!props.wish.viewed && <NewIndicator />}
 					<div
 						className="tooltip tooltip-left"
 						data-tip={t("commentsTooltip", { count: props.wish.comments.length })}

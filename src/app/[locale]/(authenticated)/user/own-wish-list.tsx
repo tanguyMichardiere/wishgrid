@@ -26,9 +26,7 @@ export function OwnWishList(props: Props): JSX.Element {
 	return (
 		<ul className="list rounded-box bg-base-100 shadow-md">
 			{wishes.data.map((wish) => (
-				<li key={wish.id} className="list-row">
-					<OwnWishListRow wish={wish} />
-				</li>
+				<OwnWishListRow key={wish.id} wish={wish} />
 			))}
 		</ul>
 	);

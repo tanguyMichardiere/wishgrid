@@ -31,6 +31,8 @@ export function WishTitleFormInput(props: Props): JSX.Element {
 					props.error !== undefined && "outline outline-error",
 				)}
 				placeholder={t("placeholder")}
+				// biome-ignore lint/a11y/noAutofocus: inside modal
+				autoFocus={true}
 			/>
 			<p className="fieldset-label">{errorMessage}</p>
 		</fieldset>
